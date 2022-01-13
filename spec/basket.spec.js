@@ -28,6 +28,11 @@ describe("Basket", () => {
     expect(basket.items).toEqual(expected)
   })
 
+  it("cannot add item that is not in inventory", () => {
+    const expected = "We do not stock this item"
+    expect(basket.add("Snot Bagel")).toEqual(expected)
+  })
+
   it("add existing items to basket", () => {
     const expected = [{
       "sku": "BGLO",
@@ -81,7 +86,7 @@ describe("Basket", () => {
     basket.add("BGLO")
     basket.add("BGLS")
     basket.add("BGLO")
-    expect(basket.add("BGLO")).toEqual(expected)
+    expect(function() {basket.add("BGLO")}).toThrow()
     expect(basket.items.length).toEqual(5)
   })
 
@@ -90,7 +95,6 @@ describe("Basket", () => {
     basket.add("BGLS")
     basket.add("BGLO")
     basket.add("BGLS")
-    basket.add("BGLO")
     basket.add("BGLO")
     basket.changeBasketSize(medium)
     basket.add("BGLS")
@@ -141,11 +145,6 @@ describe("Basket", () => {
   })
 
   it("check price of basket", () => {
-    // set up
-    // const expected = "You cannot remove items that are not in your basket"
-    // execute
-    // const result = todoList.create("turn the heating on!")
-    // verify
     basket.add("BGLO")
     basket.add("BGLS")
     basket.add("BGLO")
@@ -157,6 +156,118 @@ describe("Basket", () => {
     
     expect(basket.priceOfBagel("BGLO")).toEqual("0.49")
   })
+
+
+  it("check special offer on onion bagels by itself", () => {
+    basket.changeBasketSize(medium)
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    expect(basket.priceOfBasket()).toEqual(2.49)
+  })
+
+  it("check special offer on plain bagels itself", () => {
+    basket.changeBasketSize(large)
+    basket.add("BGLP")
+    basket.add("BGLP")
+    basket.add("BGLP")
+    basket.add("BGLP")
+    basket.add("BGLP")
+    basket.add("BGLP")
+    basket.add("BGLP")
+    basket.add("BGLP")
+    basket.add("BGLP")
+    basket.add("BGLP")
+    basket.add("BGLP")
+    basket.add("BGLP")
+    expect(basket.priceOfBasket()).toEqual(3.99)
+  })
+
+  it("check special offer on everything bagels itself", () => {
+    basket.changeBasketSize(medium)
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    expect(basket.priceOfBasket()).toEqual(2.49)
+  })
+
+  it("check two special offer deals together", () => {
+    basket.changeBasketSize(large)
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    expect(basket.priceOfBasket()).toEqual(4.98)
+  })
+
+  it("check two of samespecial offer deals together", () => {
+    basket.changeBasketSize(large)
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    expect(basket.priceOfBasket()).toEqual(4.98)
+  })
+
+  it("check bagel coffee offerr", () => {
+    basket.add("BGLP")
+    basket.add("COF")
+    expect(basket.priceOfBasket()).toEqual(1)
+  })
+
+  it("check bagel coffee offer with another offer ", () => {
+    basket.changeBasketSize(medium)
+    basket.add("BGLE")
+    basket.add("COF")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLP") 
+    expect(basket.priceOfBasket()).toEqual(3.49)
+  })
+
+  it("check special offer plus extra", () => {
+    // set up
+    // const expected = "You cannot remove items that are not in your basket"
+    // execute
+    // const result = todoList.create("turn the heating on!")
+    // verify
+    basket.changeBasketSize(medium)
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    basket.add("BGLO")
+    expect(basket.priceOfBasket()).toEqual(3.47)
+  })
+
 
 
 })
