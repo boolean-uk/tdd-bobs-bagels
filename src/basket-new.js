@@ -1,4 +1,4 @@
-// const Receipt = require("./receipt.js")
+const Receipt2 = require("./receipt-new.js")
 const data = require("../inventory-quant.json");
 const inventory = data.inventory;
 const small = 5;
