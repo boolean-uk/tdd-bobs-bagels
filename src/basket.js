@@ -1,3 +1,4 @@
+const Receipt = require("./receipt.js")
 const data = require("../inventory.json");
 const INVENTORY = data["inventory"];
 const small = 5;
@@ -118,13 +119,52 @@ let counter = 0
         counter++
       }
     }
-  }
-      
+  }     
 
-return counter
+return counter*1.25
 }
 
+checkout() {
+  // pay
+
+  let receipt = new Receipt(this.items)
+  return receipt.print(this.priceOfBasket())
+
+  // this.items = []
+
 }
 
+
+}
+
+// let basket = new Basket(medium)
+//     basket.add("BGLO")
+//     basket.add("BGLS")
+//     basket.add("BGLO")
+//     basket.add("BGLS")
+//     basket.add("BGLE")
+//     basket.add("BGLO")
+// console.log(basket.checkout())
 
 module.exports = Basket;
+
+//   priceOfBasket() {
+//     let total = 0;
+    
+//     for (let product of this.items) {
+//         total += Number(product.price);
+//       } 
+//       if (this.inBasket('BGLO')/6 >= 1) {
+//         total -= 0.45*Math.floor(this.inBasket('BGLO')/6)
+//     } 
+//     if (this.inBasket('BGLE')/6 >= 1) {
+//       total -= 0.45*Math.floor(this.inBasket('BGLE')/6)
+//   } 
+//     if (this.inBasket('BGLP')/12 >= 1) {
+//         total -= 0.69*Math.floor(this.inBasket('BGLP')/12)
+//     } 
+//     if (this.inBasket('COF') === 1 && this.inBasket('BGLP') === 1 && this.items.length === 2) {
+//         total = 1.25
+//     } 
+//     return Math.floor(total * 100) / 100
+// }

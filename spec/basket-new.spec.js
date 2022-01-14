@@ -1,14 +1,14 @@
-const Basket = require("../src/basket.js")
+const Basket2 = require("../src/basket-new.js")
 
 const small = 5
 const medium = 10
 const large = 15
 
-describe("Basket", () => {
+describe("Basket2", () => {
   let basket
 
   beforeEach(() => {
-    basket = new Basket()
+    basket = new Basket2()
   })
 
   
@@ -22,9 +22,9 @@ describe("Basket", () => {
       "sku": "BGLO",
       "price": "0.49",
       "name": "Bagel",
-      "variant": "Onion"
+      "variant": "Onion",
+      "quantity": 1
     }]
-
     basket.add("BGLO")
     expect(basket.items).toEqual(expected)
   })
@@ -39,31 +39,58 @@ describe("Basket", () => {
       "sku": "BGLO",
       "price": "0.49",
       "name": "Bagel",
-      "variant": "Onion"
-    },
-    {
-      "sku": "BGLO",
-      "price": "0.49",
-      "name": "Bagel",
-      "variant": "Onion"
+      "variant": "Onion",
+      "quantity": 3  
     }]
+    basket.add("BGLO")
     basket.add("BGLO")
     expect(basket.add("BGLO")).toEqual("This item is already in your basket")
     expect(basket.items).toEqual(expected)
   })
 
-  it("remove items to basket", () => {
+  it("add existing items to basket", () => {
     const expected = [{
       "sku": "BGLS",
       "price": "0.49",
       "name": "Bagel",
-      "variant": "Sesame"
+      "variant": "Sesame",
+      "quantity": 2  
+    }]
+    basket.add("BGLS", 2)
+    expect(basket.items).toEqual(expected)
+  })
+
+  it("remove item with quantity of 1 in basket", () => {
+    const expected = [{
+      "sku": "BGLS",
+      "price": "0.49",
+      "name": "Bagel",
+      "variant": "Sesame",
+      "quantity": 1
     }]
     basket.add("BGLO")
     basket.add("BGLS")
     basket.remove("BGLO")
+    //if change BGLO to BGLP tests work? added BGLO from before? 
     expect(basket.items).toEqual(expected)
   })
+
+
+  it("remove items when more than one in basket", () => {
+    const expected = [{
+      "sku": "BGLS",
+      "price": "0.49",
+      "name": "Bagel",
+      "variant": "Sesame",
+      "quantity": 2
+    }]
+    basket.add("BGLS")
+    basket.add("BGLS")
+    basket.add("BGLS")
+    basket.remove("BGLS")
+    expect(basket.items).toEqual(expected)
+  })
+
 
   it("know if full and not full", () => {
     basket.add("BGLO")
@@ -73,11 +100,13 @@ describe("Basket", () => {
 
   it("know if full and is full", () => {
     basket.add("BGLO")
-    basket.add("BGLS")
+    basket.add("BGLO")
     basket.add("BGLO")
     basket.add("BGLS")
-    basket.add("BGLO")
+    basket.add("BGLS")
+    //when console log out 2 bglo still full
     expect(basket.isFull()).toEqual(true)
+    expect(basket.totalItemsInBasket()).toEqual(5)
   })
 
   it("know if basket is full so cannot add items", () => {
@@ -87,8 +116,8 @@ describe("Basket", () => {
     basket.add("BGLO")
     basket.add("BGLS")
     basket.add("BGLO")
-    expect(function() {basket.add("BGLO")}).toThrow()
-    expect(basket.items.length).toEqual(5)
+    expect(basket.add("BGLO")).toEqual(expected)
+    expect(basket.totalItemsInBasket()).toEqual(5)
   })
 
   it("change basket size", () => {
@@ -100,7 +129,7 @@ describe("Basket", () => {
     basket.changeBasketSize(medium)
     basket.add("BGLS")
     basket.add("BGLO")
-    expect(basket.items.length).toEqual(7)
+    expect(basket.totalItemsInBasket()).toEqual(7)
     expect(basket.size).toEqual(10)
   })
 
@@ -136,13 +165,14 @@ describe("Basket", () => {
   it("check if item exists in basket, not there", () => {
     basket.add("BGLO")
     basket.add("BGLS")
-    expect(basket.inBasket("BGLW")).toEqual(0)
+    expect(basket.howManyOfItem("BGLW")).toEqual(0)
   })
 
-  it("check if item exists in basket, not there", () => {
+  it("check if item exists in basket, one is there", () => {
     basket.add("BGLO")
     basket.add("BGLS")
-    expect(basket.inBasket("BGLO")).toEqual(1)
+    //says 3 there when should be one
+    expect(basket.howManyOfItem("BGLO")).toEqual(1)
   })
 
   it("check price of basket", () => {
@@ -150,14 +180,13 @@ describe("Basket", () => {
     basket.add("BGLS")
     basket.add("BGLO")
     basket.add("BGLS")
+    //BGLO changes to BGLE and outcome mwent from 3.43 to 2.45
     expect(basket.priceOfBasket()).toEqual(1.96)
   })
 
   it("check price of item", () => {
-    
     expect(basket.priceOfBagel("BGLO")).toEqual("0.49")
   })
-
 
   it("check special offer on onion bagels by itself", () => {
     basket.changeBasketSize(medium)
@@ -238,6 +267,14 @@ describe("Basket", () => {
     expect(basket.priceOfBasket()).toEqual(1.25)
   })
 
+  it("2 bagel coffee offers", () => {
+    basket.add("BGLP")
+    basket.add("COF")
+    basket.add("BGLP")
+    basket.add("COF")
+    expect(basket.priceOfBasket()).toEqual(2.50)
+  })
+
   it("check bagel coffee offer with another offer ", () => {
     basket.changeBasketSize(medium)
     basket.add("BGLE")
@@ -268,8 +305,6 @@ describe("Basket", () => {
     basket.add("BGLO")
     expect(basket.priceOfBasket()).toEqual(3.47)
   })
-
-
 
 
 
