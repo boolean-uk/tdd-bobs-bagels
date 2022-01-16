@@ -112,18 +112,8 @@ class Basket2 {
         total += Number(product.price)*product.quantity
       }
 
-//     if (this.howManyOfItem('BGLO')/6 >= 1) {
-//         total -= 0.45*Math.floor(this.howManyOfItem('BGLO')/6)
-//     } 
-//     if (this.howManyOfItem('BGLE')/6 >= 1) {
-//       total -= 0.45*Math.floor(this.howManyOfItem('BGLE')/6)
-//   } 
-//     if (this.howManyOfItem('BGLP')/12 >= 1) {
-//         total -= 0.69*Math.floor(this.howManyOfItem('BGLP')/12)
-//     } 
 
 return Math.floor(total * 100) / 100;
-    // return Math.ceil(total * 100) / 100;
   }
 
   applySpecialOffer(array, item, numberOfItem, dealPrice) {
@@ -157,9 +147,38 @@ let counter = 0
 return counter*1.25
 }
 
+totalSavings() {
+  let savings = 0
+  for (let product of this.items) {
+    savings += Number(product.price)*product.quantity
+  }
 
+  return Math.ceil((savings - this.priceOfBasket())*100)/100
+}
+
+checkOut() {
+  const receipt = new Receipt2(this.items, this.totalSavings())
+  return receipt.print(this.priceOfBasket())
+}
 
 }
+
+const exampleBasket = [
+  { sku: 'BGLE', price: '0.49', name: 'Bagel', variant: 'Everything', quantity: 6 },
+  { sku: 'BGL0', price: '0.49', name: 'Bagel', variant: 'Onion', quantity: 6 },
+  { sku: 'BGLP', price: '0.39', name: 'Bagel', variant: 'Plain', quantity: 1 },
+  { sku: 'COF', price: '0.99', name: '', variant: 'Coffee', quantity: 1 }
+]
+
+let basket = new Basket2(large)
+basket.add("BGLO", 6)
+basket.add("BGLE", 6)
+basket.add("BGLP", 1)
+basket.add("COF")
+
+console.log(basket.items)
+console.log(basket.priceOfBasket())
+console.log(basket.checkOut())
 
 
 

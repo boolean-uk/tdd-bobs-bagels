@@ -289,11 +289,7 @@ describe("Basket2", () => {
   })
 
   it("check special offer plus extra", () => {
-    // set up
-    // const expected = "You cannot remove items that are not in your basket"
-    // execute
-    // const result = todoList.create("turn the heating on!")
-    // verify
+
     basket.changeBasketSize(medium)
     basket.add("BGLO")
     basket.add("BGLO")
@@ -304,6 +300,48 @@ describe("Basket2", () => {
     basket.add("BGLO")
     basket.add("BGLO")
     expect(basket.priceOfBasket()).toEqual(3.47)
+  })
+
+  it("check total savings - no savings", () => {
+    basket.add("BGLO")
+    basket.add("BGLO")
+    expect(basket.totalSavings()).toEqual(0)
+  })
+
+  it("check total savings - correct savings plain bagel deal", () => {
+
+    basket.changeBasketSize(large)
+    basket.add("BGLP") 
+    basket.add("BGLP") 
+    basket.add("BGLP") 
+    basket.add("BGLP") 
+    basket.add("BGLP") 
+    basket.add("BGLP") 
+    basket.add("BGLP") 
+    basket.add("BGLP") 
+    basket.add("BGLP") 
+    basket.add("BGLP") 
+    basket.add("BGLP") 
+    basket.add("BGLP") 
+    expect(basket.totalSavings()).toEqual(0.69)
+  })
+
+  it("check total savings - correct savings with coffee and bagel deal", () => {
+    // set up
+    // const expected = "You cannot remove items that are not in your basket"
+    // execute
+    // const result = todoList.create("turn the heating on!")
+    // verify
+    basket.changeBasketSize(medium)
+    basket.add("BGLE")
+    basket.add("COF")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLP") 
+    expect(basket.totalSavings()).toEqual(0.58)
   })
 
 

@@ -3,8 +3,9 @@ const INVENTORY = data["inventory"];
 
 
 class Receipt2 {
-    constructor(basketCheckout) {
+    constructor(basketCheckout, savings) {
       this.items = basketCheckout;
+      this.totalSavings = savings
     }
 
 totalEachItem(object, numberOfItemsInDeal, priceOfDeal) {
@@ -23,13 +24,12 @@ printReceiptItems(object, numberOfItems, price) {
 }
 
 savingsMessage() {
-    let totalSavings = 0
-    
-    // for loop
-    return `You saved a total of ${totalSavings}
-    on this shop`
+    if(this.totalSavings === 0) {
+        return " "
+    }
 
- return " "
+    return `\n    You saved a total of £${this.totalSavings.toFixed(2)}
+    \t on this shop\n` 
 }
 
 print(price) {
@@ -52,8 +52,7 @@ print(price) {
         +`£${Number(this.items[i].price)*this.items[i].quantity}`.padStart(8, " ") + `\n`
         }
     }
-    
-  
+      
     
     return  `
         ~~~ Bob's Bagels ~~~
@@ -64,7 +63,6 @@ print(price) {
     ${receiptItems}
     ----------------------------
     Total                 £${price.toFixed(2)}
-
     ${this.savingsMessage()}
            Thank you
          for your order!
@@ -75,14 +73,14 @@ print(price) {
 
 }
 
-const exampleBasket = [
-    { sku: 'BGLO', price: '0.49', name: 'Bagel', variant: 'Onion', quantity: 6 },
-    { sku: 'BGLE', price: '0.49', name: 'Bagel', variant: 'Everything', quantity: 2 },
-    { sku: 'BGLP', price: '0.39', name: 'Bagel', variant: 'Plain', quantity: 14 }
-  ]
+// const exampleBasket = [
+//     { sku: 'BGLE', price: '0.49', name: 'Bagel', variant: 'Everything', quantity: 6 },
+//     { sku: 'BGLO', price: '0.49', name: 'Bagel', variant: 'Onion', quantity: 6 },
+//     { sku: 'BGLP', price: '0.39', name: 'Bagel', variant: 'Plain', quantity: 1 },
+//     { sku: 'COF', price: '0.99', name: '', variant: 'Coffee', quantity: 1 }
+//   ]
 
-  let receipt = new Receipt2(exampleBasket)
-  console.log(receipt.print(10))
-  console.log(bloop)
+//   let receipt = new Receipt2(exampleBasket, 1.03)
+//   console.log(receipt.print(6.23))
 
 module.exports = Receipt2
