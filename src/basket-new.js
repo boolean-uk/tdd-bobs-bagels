@@ -147,8 +147,8 @@ basket.add("BGLO", 7);
 basket.add("BGLP", 12);
 basket.add("COF", 1);
 
-console.log(basket.items);
 console.log(basket.checkOut());
-console.log(basket.items);
 
 module.exports = Basket2;
+
+
