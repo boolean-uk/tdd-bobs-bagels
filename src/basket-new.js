@@ -1,9 +1,9 @@
-const Receipt2 = require("./receipt-new.js")
+const Receipt2 = require("./receipt-new.js");
 const data = require("../inventory-quant.json");
 const inventory = data.inventory;
 const small = 5;
 const medium = 10;
-const large = 15;
+const large = 20;
 
 class Basket2 {
   constructor(size = small) {
@@ -12,58 +12,54 @@ class Basket2 {
   }
 
   add(item, num = 1) {
-    if (this.isFull()) 
-       return "You cannot add more items, your basket is full";
+    if (this.isFull()) return "You cannot add more items, your basket is full";
 
-    for(let i = 0; i < this.items.length; i++) {
-        if(this.items[i].sku === item) {
-            this.items[i].quantity+= num
-            return "This item is already in your basket"
-        }
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].sku === item) {
+        this.items[i].quantity += num;
+        return "This item is already in your basket";
+      }
     }
 
-    const element = inventory.filter(x => x.sku == item) 
-        if(element.length === 1) {
-        this.items.push(element[0])
-        }
-    
-    for(let i = 0; i < this.items.length; i++) {
-        if(this.items[i].sku === item) {
-                this.items[i].quantity = num
-            }
-        }
+    const element = inventory.filter((x) => x.sku == item);
+    if (element.length === 1) {
+      this.items.push(element[0]);
+    }
 
-
-      if(element.length === 0) {
-        return "We do not stock this item"
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].sku === item) {
+        this.items[i].quantity = num;
       }
-}
+    }
 
-      
+    if (element.length === 0) {
+      return "We do not stock this item";
+    }
+  }
 
   remove(item) {
     for (let i = 0; i < this.items.length; i++) {
       if (this.items[i].sku === item && this.items[i].quantity === 1) {
-             this.items.splice(i, 1);
-                return "Item Removed";
-          }
-
-      if(this.items[i].sku === item && this.items[i].quantity > 1) {
-            this.items[i].quantity-- 
-            return "Item Removed";
-          }
+        this.items.splice(i, 1);
+        return "Item Removed";
       }
+
+      if (this.items[i].sku === item && this.items[i].quantity > 1) {
+        this.items[i].quantity--;
+        return "Item Removed";
+      }
+    }
     return "You cannot remove items that are not in your basket";
   }
 
   totalItemsInBasket() {
-    let amount = 0
+    let amount = 0;
 
-    for(let i = 0; i < this.items.length; i++) {
-        amount += this.items[i].quantity
+    for (let i = 0; i < this.items.length; i++) {
+      amount += this.items[i].quantity;
     }
 
-  return amount
+    return amount;
   }
 
   isFull() {
@@ -83,13 +79,13 @@ class Basket2 {
   }
 
   howManyOfItem(item) {
-    for(let i = 0; i < this.items.length; i++) {
-        if(this.items[i].sku === item) {
-        return this.items[i].quantity
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].sku === item) {
+        return this.items[i].quantity;
+      }
     }
-}
-  return 0
-}
+    return 0;
+  }
 
   priceOfBagel(item) {
     for (let product of inventory) {
@@ -99,87 +95,60 @@ class Basket2 {
     }
   }
 
+  amountOfDeals(item, numberInDeal) {
+      return Math.floor(this.howManyOfItem(item)/numberInDeal)
+  }
+
   priceOfBasket() {
     let total = 0;
-    let changeArray = this.items.map(x => x)
 
-    total += this.applySpecialOffer(changeArray, "BGLO", 6, 2.49)
-    total += this.applySpecialOffer(changeArray, "BGLP", 12, 3.99)
-    total += this.applySpecialOffer(changeArray, "BGLE", 6, 2.49)
-    total += this.applyCoffeeBagelOffer(changeArray)
-
-    for (let product of changeArray) {
-        total += Number(product.price)*product.quantity
-      }
-
-
-return Math.floor(total * 100) / 100;
-  }
-
-  applySpecialOffer(array, item, numberOfItem, dealPrice) {
-    
-    const howManyInBasket = this.howManyOfItem(item)
-    const amountOfDeals = Math.floor(howManyInBasket/numberOfItem) 
-
-   if (amountOfDeals >= 1) {
-    for (let i = 0; i < array.length; i++) {
-        if (array[i].sku === item) {
-          array[i].quantity -= (numberOfItem*amountOfDeals)
-        }}}
-        
-    return amountOfDeals*dealPrice
-}
-
-applyCoffeeBagelOffer(array) {
-let counter = 0
-
-  for (let i = 0; i < array.length; i++) {
-    for (let j = 0; j < array.length; j++) {
-      if (array[i].sku === "COF" && array[j].sku === "BGLP") {
-          let least = Math.min(array[i].quantity, array[j].quantity)
-        array[i].quantity -= least
-        array[j].quantity -= least
-        counter+=least
-      }
+    for (let product of this.items) {
+      total += Number(product.price) * product.quantity;
     }
-  }     
+    if (this.amountOfDeals("BGLO",6) >= 1) {
+      total -= 0.45 * this.amountOfDeals("BGLO",6);
+    }
+    if (this.amountOfDeals("BGLE",6) >= 1) {
+      total -= 0.45 * this.amountOfDeals("BGLE",6);
+    }
+    if (this.amountOfDeals("BGLP",12) >= 1) {
+      total -= 0.69 * this.amountOfDeals("BGLP",12)
+    }
+    if (
+      this.howManyOfItem("COF") > 0 &&
+      this.howManyOfItem("BGLP") > 0 &&
+      this.howManyOfItem("BGLP") < 12
+    ) {
+      total -=
+        0.13 * Math.min(this.howManyOfItem("COF"), this.howManyOfItem("BGLP"));
+    }
 
-return counter*1.25
-}
-
-totalSavings() {
-  let savings = 0
-  for (let product of this.items) {
-    savings += Number(product.price)*product.quantity
+    return Math.ceil(total * 100) / 100;
   }
 
-  return Math.ceil((savings - this.priceOfBasket())*100)/100
+  totalSavings() {
+    let total = 0;
+    for (let product of this.items) {
+      total += Number(product.price) * product.quantity;
+    }
+
+    return Math.ceil((total - this.priceOfBasket()) * 100) / 100;
+  }
+
+  checkOut() {
+    const receipt = new Receipt2(this.items, this.totalSavings());
+    return receipt.print(this.priceOfBasket());
+  }
 }
 
-checkOut() {
-  const receipt = new Receipt2(this.items, this.totalSavings())
-  return receipt.print(this.priceOfBasket())
-}
 
-}
+let basket = new Basket2(large);
+basket.add("BGLO", 7);
+basket.add("BGLP", 12);
+basket.add("COF", 1);
 
-const exampleBasket = [
-  { sku: 'BGLE', price: '0.49', name: 'Bagel', variant: 'Everything', quantity: 6 },
-  { sku: 'BGL0', price: '0.49', name: 'Bagel', variant: 'Onion', quantity: 6 },
-  { sku: 'BGLP', price: '0.39', name: 'Bagel', variant: 'Plain', quantity: 1 },
-  { sku: 'COF', price: '0.99', name: '', variant: 'Coffee', quantity: 1 }
-]
+console.log(basket.items);
+console.log(basket.checkOut());
+console.log(basket.items);
 
-let basket = new Basket2(large)
-basket.add("BGLO", 6)
-basket.add("BGLE", 6)
-basket.add("BGLP", 1)
-basket.add("COF")
-
-console.log(basket.items)
-console.log(basket.priceOfBasket())
-console.log(basket.checkOut())
-
-
-
-module.exports = Basket2
+module.exports = Basket2;

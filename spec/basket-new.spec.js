@@ -2,7 +2,7 @@ const Basket2 = require("../src/basket-new.js")
 
 const small = 5
 const medium = 10
-const large = 15
+const large = 20
 
 describe("Basket2", () => {
   let basket
@@ -71,7 +71,6 @@ describe("Basket2", () => {
     basket.add("BGLO")
     basket.add("BGLS")
     basket.remove("BGLO")
-    //if change BGLO to BGLP tests work? added BGLO from before? 
     expect(basket.items).toEqual(expected)
   })
 
@@ -343,6 +342,57 @@ describe("Basket2", () => {
     basket.add("BGLP") 
     expect(basket.totalSavings()).toEqual(0.58)
   })
+
+  it("check amount of deals - 0 deals", () => {
+    // set up
+    // const expected = "You cannot remove items that are not in your basket"
+    // execute
+    // const result = todoList.create("turn the heating on!")
+    // verify
+    basket.add("BGLE")
+    basket.add("COF")
+    basket.add("BGLE")
+    expect(basket.amountOfDeals("BGLO", 6)).toEqual(0)
+  })
+
+  it("check amount of deals - 1 deal", () => {
+    // set up
+    // const expected = "You cannot remove items that are not in your basket"
+    // execute
+    // const result = todoList.create("turn the heating on!")
+    // verify
+    basket.changeBasketSize(medium)
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    expect(basket.amountOfDeals("BGLE", 6)).toEqual(1)
+  })
+
+  it("check amount of deals - 2 deal", () => {
+    // set up
+    // const expected = "You cannot remove items that are not in your basket"
+    // execute
+    // const result = todoList.create("turn the heating on!")
+    // verify
+    basket.changeBasketSize(large)
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    basket.add("BGLE")
+    expect(basket.amountOfDeals("BGLE", 6)).toEqual(2)
+  })
+
 
 
 

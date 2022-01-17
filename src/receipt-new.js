@@ -49,10 +49,17 @@ print(price) {
         }
         else {
         receiptItems +=  `    ${this.items[i].variant} ${this.items[i].name}`.padEnd(21, " ") + `${this.items[i].quantity}`.padStart(2," ") 
-        +`£${Number(this.items[i].price)*this.items[i].quantity}`.padStart(8, " ") + `\n`
+        +`£${Math.ceil((Number(this.items[i].price)*this.items[i].quantity)*100)/100}`.padStart(8, " ") + `\n`
         }
     }
       
+    for(let i = 0; i < this.items.length; i++) {
+        for(let j = 0; j < this.items.length; j++) {
+            if(this.items[i].sku === "BGLP" && this.items[i].quantity < 12 && this.items[j].sku === "COF") {
+                receiptItems += `Bagel Deal (-£${0.13*Math.min(this.items[i].quantity, this.items[j].quantity)})\n`.padStart(33, " ")
+            }
+        }
+    }
     
     return  `
         ~~~ Bob's Bagels ~~~
@@ -73,14 +80,5 @@ print(price) {
 
 }
 
-// const exampleBasket = [
-//     { sku: 'BGLE', price: '0.49', name: 'Bagel', variant: 'Everything', quantity: 6 },
-//     { sku: 'BGLO', price: '0.49', name: 'Bagel', variant: 'Onion', quantity: 6 },
-//     { sku: 'BGLP', price: '0.39', name: 'Bagel', variant: 'Plain', quantity: 1 },
-//     { sku: 'COF', price: '0.99', name: '', variant: 'Coffee', quantity: 1 }
-//   ]
-
-//   let receipt = new Receipt2(exampleBasket, 1.03)
-//   console.log(receipt.print(6.23))
 
 module.exports = Receipt2
