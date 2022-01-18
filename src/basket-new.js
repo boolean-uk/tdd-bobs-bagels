@@ -103,7 +103,7 @@ class Basket2 {
     let total = 0;
 
     for (let product of this.items) {
-      total += Number(product.price) * product.quantity;
+      total += Number(product.price).toFixed(2) * product.quantity;
     }
     if (this.amountOfDeals("BGLO",6) >= 1) {
       total -= 0.45 * this.amountOfDeals("BGLO",6);
@@ -117,7 +117,7 @@ class Basket2 {
     if (
       this.howManyOfItem("COF") > 0 &&
       this.howManyOfItem("BGLP") > 0 &&
-      this.howManyOfItem("BGLP") < 12
+      this.howManyOfItem("BGLP") % 12 !== 0
     ) {
       total -=
         0.13 * Math.min(this.howManyOfItem("COF"), this.howManyOfItem("BGLP"));
@@ -143,8 +143,8 @@ class Basket2 {
 
 
 let basket = new Basket2(large);
-basket.add("BGLO", 7);
-basket.add("BGLP", 12);
+basket.add("BGLO", 11);
+basket.add("BGLP", 3);
 basket.add("COF", 1);
 
 console.log(basket.checkOut());

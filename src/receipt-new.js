@@ -20,7 +20,6 @@ printReceiptItems(object, numberOfItems, price) {
     return `    ${object.variant} ${object.name}`.padEnd(21, " ") + `${object.quantity}`.padStart(2," ") 
     +`£${this.totalEachItem(object, numberOfItems, price)}`.padStart(8, " ") + `\n`
     + `(-£${(Math.ceil((Number(object.price)*object.quantity - this.totalEachItem(object, numberOfItems, price))*100)/100).toFixed(2)})\n`.padStart(33, " ")
-    
 }
 
 savingsMessage() {
@@ -55,8 +54,8 @@ print(price) {
       
     for(let i = 0; i < this.items.length; i++) {
         for(let j = 0; j < this.items.length; j++) {
-            if(this.items[i].sku === "BGLP" && this.items[i].quantity < 12 && this.items[j].sku === "COF") {
-                receiptItems += `Bagel Deal (-£${0.13*Math.min(this.items[i].quantity, this.items[j].quantity)})\n`.padStart(33, " ")
+            if(this.items[i].sku === "BGLP" && this.items[i].quantity % 12 !== 0 && this.items[j].sku === "COF") {
+                receiptItems += `Bagel Deal (-£${0.13*Math.min((this.items[i].quantity % 12), this.items[j].quantity)})\n`.padStart(33, " ")
             }
         }
     }
