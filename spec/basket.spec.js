@@ -25,8 +25,12 @@ describe('Basket', () => {
     basket.add(item)
 
     expect(basket.items.length).toEqual(1)
-    basket.remove(item)
+    expect(basket.remove(item)).toBeTrue()
     expect(basket.items.includes(item)).toBeFalse()
+
+    // Test with incorrect item
+    basket.add(item)
+    expect(basket.remove({})).toBeFalse()
   })
 
   it('has a maximum number of items to a basket', () => {
@@ -37,7 +41,7 @@ describe('Basket', () => {
     basket.add(new BasketItem(generateItem())) // 2
     basket.add(new BasketItem(generateItem())) // 3
     basket.add(new BasketItem(generateItem())) // 4
-    basket.add(new BasketItem(generateItem())) // 5
+    basket.add(new BasketItem(generateItem(), 2)) // 6, so shouldn't add !
     basket.add(new BasketItem(generateItem())) // Doesn't add this item
 
     expect(basket.size()).toEqual(5)
@@ -71,6 +75,6 @@ describe('Basket', () => {
     basket.add(item1) // 1
     basket.add(item2) // 2
 
-    expect(basket.totalPrice()).toEqual(totalPrice)
+    expect(basket.basketPrice()).toEqual(totalPrice)
   })
 })
