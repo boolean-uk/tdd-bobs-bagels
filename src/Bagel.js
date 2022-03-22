@@ -1,6 +1,7 @@
 class Bagel {
   constructor () {
     this.basket = []
+    this.capacity = 5
   }
 
   addToBasket (name) {
@@ -11,6 +12,10 @@ class Bagel {
 
   removeFromBasket (name) {
     return this.basket.filter(bagel => bagel !== name)
+  }
+
+  isFull () {
+    return this.basket.length > this.capacity ? 'Your basket is full' : 'Continue to order'
   }
 }
 
