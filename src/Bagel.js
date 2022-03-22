@@ -40,6 +40,13 @@ class Bagel {
 
     return `bagel: ${nameAndPrice[0]}, price: $${nameAndPrice[1]}`
   }
+
+  checkOut () {
+    // convert all bagels to its price, and then .reduce();
+    const bagelPriceArr = this.basket.map(bagel => this.priceList[bagel])
+    const totalSum = bagelPriceArr.reduce((firstPrice, nextPrice) => firstPrice + nextPrice)
+    return `total: $${totalSum}`
+  }
 }
 
 module.exports = Bagel

@@ -136,4 +136,33 @@ describe ('Bagel', () => {
     // verify
     expect(result).toEqual(expected)
   })
+
+  it ('returns total: $6', () => {
+    // setup
+    const bagel = new Bagel()
+    bagel.addToBasket('plain')
+    bagel.addToBasket('poppy')
+
+    const expected = 'total: $6'
+    // execute
+    const result = bagel.checkOut()
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  fit ('returns total: $13', () => {
+    // setup
+    const bagel = new Bagel()
+    bagel.addToBasket('plain')
+    bagel.addToBasket('plain')
+    bagel.addToBasket('cheese')
+    bagel.addToBasket('cheese')
+    bagel.addToBasket('cinnamon')
+
+    const expected = 'total: $13'
+    // execute
+    const result = bagel.checkOut()
+    // verify
+    expect(result).toEqual(expected)
+  })
 })

@@ -79,7 +79,7 @@ So that I can prepare to pay,
 When I go to checkout I'd like to know the total sum of the bagels in my basket.
 
 ## Noun & Verb
-Noun: price of each item
+Noun: price of each item, total sum
 Verb: see, before adding to basket
 
 ## Domain Model
