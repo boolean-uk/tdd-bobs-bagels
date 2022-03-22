@@ -32,9 +32,12 @@ class Bagel {
   }
 
   checkPrice (name) {
+    // make an object into an array with Object.entries()
     const priceListArr = Object.entries(this.priceList)
+    // find the bagel name and price that matches to the argument
+    const nameAndPrice = priceListArr.find(priceList => priceList[0] === name)
 
-    return priceListArr.find(priceList => priceList[0] === name)
+    return `bagel: ${nameAndPrice[0]}, price: $${nameAndPrice[1]}`
   }
 }
 

@@ -115,13 +115,24 @@ describe ('Bagel', () => {
     expect(result).toEqual(expected)
   })
 
-  it ('returns [plain, 2]', () => {
+  it ('returns bagel: poppy, price: $4', () => {
     // setup
     const bagel = new Bagel()
 
-    const expected = ['plain', 2]
+    const expected = 'bagel: poppy, price: $4'
     // execute
-    const result = bagel.checkPrice('plain')
+    const result = bagel.checkPrice('poppy')
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it ('returns bagel: cheese, price: $3', () => {
+    // setup
+    const bagel = new Bagel()
+
+    const expected = 'bagel: cheese, price: $3'
+    // execute
+    const result = bagel.checkPrice('cheese')
     // verify
     expect(result).toEqual(expected)
   })
