@@ -13,8 +13,10 @@ class Bagel {
   }
 
   addToBasket (name) {
+    const bagelNameArr = Object.keys(this.priceList)
+    // prevent adding bagels that are not in the menu
+    if (!bagelNameArr.includes(name)) return 'Please add bagels from the menu'
     this.basket.push(name)
-
     return this.basket
   }
 
@@ -29,7 +31,7 @@ class Bagel {
   }
 
   createBigBasket () {
-    if (this.basket.length > this.capacity) this.capacity = 12
+    if (this.basket.length >= this.capacity) this.capacity = 12
   }
 
   checkPrice (name) {

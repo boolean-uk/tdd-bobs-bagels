@@ -13,6 +13,17 @@ describe ('Bagel', () => {
     expect(result).toEqual(expected)
   })
 
+  it ('trys to add a bagel that is not in the menu', () => {
+    // setup
+    const bagel = new Bagel()
+
+    const expected = 'Please add bagels from the menu'
+    // execute
+    const result = bagel.addToBasket('chocolate chips')
+    // verify
+    expect(result).toEqual(expected)
+  })
+
   it ('adds another bagel and returns the basket with multiple bagels', () => {
     // setup
     const bagel = new Bagel()
@@ -84,7 +95,7 @@ describe ('Bagel', () => {
     expect(result).toEqual(expected)
   })
 
-  it ('returns "Continue to order; 6 bagels left"', () => {
+  fit ('returns "Continue to order; 6 bagels left"', () => {
     // setup
     const bagel = new Bagel()
     bagel.addToBasket('poppy')
@@ -92,8 +103,8 @@ describe ('Bagel', () => {
     bagel.addToBasket('plain')
     bagel.addToBasket('cheese')
     bagel.addToBasket('raisin')
-    bagel.addToBasket('cinammon')
     bagel.createBigBasket()
+    bagel.addToBasket('cinammon')
 
     const expected = 'Continue to order; 6 bagels left'
     // execute
