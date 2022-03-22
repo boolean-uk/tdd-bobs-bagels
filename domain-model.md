@@ -42,8 +42,8 @@ So that I can maintain my sanity
 I'd like to know if I try to remove an item that doesn't exist in my basket.
 
 ## Noun & Verb
-Noun: basket, item, basket capacity
-Verb: cannot overfill, is full, add
+Noun: basket, item, basket capacity, larger capacity
+Verb: cannot overfill, is full, add, create baskets
 
 ## Domain Model 
 | Objects | Properties           |
@@ -56,4 +56,4 @@ Verb: cannot overfill, is full, add
 | isFull()                |  @Boolean (true: @String 'your basket if full', false: @String 'continue to order') |
 
 - check if the length of basket @Array[@name] is more than capacity @Number with isFull()
-  => if true return @String 'your basket if full', if false return 'continue to order'
+  => if true return @String 'your basket if full', if false return 'continue to order' and tell how many bagels you're able to buy

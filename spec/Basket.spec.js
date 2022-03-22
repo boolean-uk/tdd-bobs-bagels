@@ -71,13 +71,13 @@ describe ('Bagel', () => {
     expect(result).toEqual(expected)
   })
 
-  it ('returns "Continue to order"', () => {
+  it ('returns "Continue to order; 3 bagels left"', () => {
     // setup
     const bagel = new Bagel()
     bagel.addToBasket('poppy')
     bagel.addToBasket('sesame')
 
-    const expected = 'Continue to order'
+    const expected = 'Continue to order; 3 bagels left'
     // execute
     const result = bagel.isFull()
     // verify

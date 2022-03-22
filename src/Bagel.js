@@ -15,7 +15,8 @@ class Bagel {
   }
 
   isFull () {
-    return this.basket.length > this.capacity ? 'Your basket is full' : 'Continue to order'
+    const bagelsLeft = this.capacity - this.basket.length
+    return this.basket.length > this.capacity ? 'Your basket is full' : `Continue to order; ${bagelsLeft} bagels left`
   }
 }
 
