@@ -24,5 +24,14 @@ class Bagels {
     console.log("Sorry we do not have your selection");
     return this.basket;
   }
+
+  removeItemByName(nameItemToRemove) {
+    this.basket.map((item, index) => {
+      if (item.name === nameItemToRemove) {
+        this.basket.splice(index, 1);
+      }
+    });
+    return this.basket;
+  }
 }
 module.exports = Bagels;
