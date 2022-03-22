@@ -95,7 +95,7 @@ describe ('Bagel', () => {
     expect(result).toEqual(expected)
   })
 
-  fit ('returns "Continue to order; 6 bagels left"', () => {
+  it ('returns "Continue to order; 7 bagels left"', () => {
     // setup
     const bagel = new Bagel()
     bagel.addToBasket('poppy')
@@ -104,9 +104,9 @@ describe ('Bagel', () => {
     bagel.addToBasket('cheese')
     bagel.addToBasket('raisin')
     bagel.createBigBasket()
-    bagel.addToBasket('cinammon')
 
-    const expected = 'Continue to order; 6 bagels left'
+
+    const expected = 'Continue to order; 7 bagels left'
     // execute
     const result = bagel.isFull()
     // verify
