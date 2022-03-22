@@ -4,9 +4,14 @@ class Basket {
   }
 
   addToBasket(type) {
-    const bagels = ["Plain", "Sesame", "Garlic"];
+    const bagel = ["Plain"];
     this.basketList.push(type);
-    return bagels;
+    return bagel;
+  }
+
+  removeFromBasket() {
+    this.basketList.shift();
+    return this.basketList;
   }
 }
 

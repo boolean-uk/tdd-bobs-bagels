@@ -1,6 +1,6 @@
 # Domain Model
 
-| Objects | Properties       | Methods             | Output        |
-| Bagels  | Type @string     | addToBasket (@type) | basket @array |
-|         |                  |                     |               |
-|         |                  |                     |               |    
+| Objects | Properties       | Methods                  | Output        |
+| Bagels  | Type @string     | addToBasket (@type)      | basket @array |
+|         |                  | removeFromBasket (@type) |               |
+|         |                  |                          |               |    
