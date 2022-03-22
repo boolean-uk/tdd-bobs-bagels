@@ -11,7 +11,7 @@ class Bagel {
   }
 
   removeFromBasket (name) {
-    return this.basket.filter(bagel => bagel !== name)
+    return this.basket.includes(name) ? this.basket.filter(bagel => bagel !== name) : 'You have not order this bagel'
   }
 
   isFull () {
