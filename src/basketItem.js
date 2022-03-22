@@ -6,6 +6,7 @@ class BasketItem extends Item {
   }
 
   totalPrice = () => {
+    if(this.offerPrice) return this.offerPrice
     return this.price*this.quantity
   }
 }

@@ -1,3 +1,5 @@
+const Inventory = require("./inventory/inventory");
+
 class Basket {
   constructor(itemCapacity = 5) {
     this.items = [];
@@ -5,6 +7,10 @@ class Basket {
   }
 
   getItems = () => this.items;
+
+  getItem = (item) => {
+    return this.items.find(i => i.sku === item.sku)
+  }
 
   itemCount = () => this.items.length;
 
@@ -31,6 +37,11 @@ class Basket {
   basketPrice = () => {
     return this.items.reduce((p, c) => p + c.totalPrice(), 0);
   };
+
+  includes = (item) => {
+      return this.items.find(bItem => bItem.sku === item.sku );
+  }
+
 }
 
 module.exports = Basket;
