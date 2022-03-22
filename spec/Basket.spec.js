@@ -25,7 +25,7 @@ describe ('Bagel', () => {
     expect(result).toEqual(expected)
   })
 
-  fit ('adds a bagel, then removes, and returns an empty basket', () => {
+  it ('adds a bagel, then removes, and returns an empty basket', () => {
     // setup
     const bagel = new Bagel()
     bagel.addToBasket('poppy')
@@ -102,7 +102,7 @@ describe ('Bagel', () => {
     expect(result).toEqual(expected)
   })
 
-  fit ('trys to remove a non-existing bagel and returns "You have not order this bagel"', () => {
+  it ('trys to remove a non-existing bagel and returns "You have not order this bagel"', () => {
     // setup
     const bagel = new Bagel()
     bagel.addToBasket('poppy')
@@ -111,6 +111,17 @@ describe ('Bagel', () => {
     const expected = 'You have not order this bagel'
     // execute
     const result = bagel.removeFromBasket('raisin')
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it ('returns [plain, 2]', () => {
+    // setup
+    const bagel = new Bagel()
+
+    const expected = ['plain', 2]
+    // execute
+    const result = bagel.checkPrice('plain')
     // verify
     expect(result).toEqual(expected)
   })

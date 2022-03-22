@@ -2,6 +2,14 @@ class Bagel {
   constructor () {
     this.basket = []
     this.capacity = 5
+    this.priceList = {
+      plain: 2,
+      cheese: 3,
+      cinnamon: 3,
+      raisin: 3,
+      poppy: 4,
+      sesame: 4
+    }
   }
 
   addToBasket (name) {
@@ -21,6 +29,12 @@ class Bagel {
 
   createBigBasket () {
     if (this.basket.length > this.capacity) this.capacity = 12
+  }
+
+  checkPrice (name) {
+    const priceListArr = Object.entries(this.priceList)
+
+    return priceListArr.find(priceList => priceList[0] === name)
   }
 }
 
