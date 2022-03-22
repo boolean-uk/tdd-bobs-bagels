@@ -8,6 +8,10 @@ class Bagel {
 
     return this.basket
   }
+
+  removeFromBasket (name) {
+    return this.basket.filter(bagel => bagel !== name)
+  }
 }
 
 module.exports = Bagel
