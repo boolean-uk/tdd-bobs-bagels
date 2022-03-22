@@ -23,6 +23,12 @@ class Basket {
   remove = (item) => {
     return this.items.splice(this.items.indexOf(item), 1).length === 1;
   };
+
+  totalPrice = () => {
+      let tP = 0;
+      this.items.forEach(basketItem => tP += basketItem.totalPrice())
+      return tP;
+  }
 }
 
 module.exports = Basket;
