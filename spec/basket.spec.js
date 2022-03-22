@@ -22,5 +22,19 @@ describe("Basket", () => {
     // verify
     expect(newBasket).toEqual(expectedBasket)
   });
-  
+
+
+  it("Can remove item from basket", () => {
+    //  setup
+    const expectedBasket = ["onion"]
+    const basket = new Basket();
+    // execute
+    basket.add("onion")
+    basket.add("plain")
+
+    const newBasket = basket.remove("plain")
+    // verify
+    expect(newBasket).toEqual(expectedBasket)
+  });
+
 });

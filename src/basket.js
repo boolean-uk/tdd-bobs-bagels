@@ -1,31 +1,21 @@
-// const bagelList = [bagelbutter, bagel2, bagel3];
-
-var indexToDelete = 0;
-
 class Basket {
-  constructor() {
-    this.bagelBasket = [];
-
-    // this.bagelNames = ["plain", "butter", "onion"];
+  constructor () {
+    this.bagelBasket = []
   }
-  //   if (this.bagelBasket = [])
-  add(bagelName) {
-    this.bagelBasket.push(bagelName);
 
-    return this.bagelBasket;
+  add (bagelName) {
+    this.bagelBasket.push(bagelName)
+
+    return this.bagelBasket
   }
- 
-  //   remove(this.bagelList[]) {
-  //     this.bagelBasket.find(this.bagelBasket[this.bagelList[1]]).pop();
-  //     return this.bagelBasket;
-  //   }
 
-    // let newbagelBasket = bagelBasket.filter( (item, index) => {
-    //     if ( index !== this.indexToDelete) {
-    //         return item
-    //     }
-    //     return newbagelBasket;
-    // });
+  remove (bagelName) {
+    this.bagelBasket = this.bagelBasket.filter((item) => {
+      return item !== bagelName
+    })
+
+    return this.bagelBasket
+  }
 }
 
-module.exports = Basket;
+module.exports = Basket
