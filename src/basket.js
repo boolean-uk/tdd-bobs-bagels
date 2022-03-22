@@ -3,8 +3,11 @@ class Basket {
     this.basketList = [];
   }
 
-  //create a for loop
-  //push the list of items inside the empty array
+  addToBasket(type) {
+    const bagels = ["Plain", "Sesame", "Garlic"];
+    this.basketList.push(type);
+    return bagels;
+  }
 }
 
 module.exports = Basket;
