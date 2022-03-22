@@ -13,7 +13,7 @@ describe('InventoryItem', () => {
     expect(iItem.inStock()).toBeFalse()
   })
 
-  it('applies special offer', () => {
+  it('applies special offer for required quantity', () => {
     const basket = new Basket()
     const inventory = new Inventory()
     const item = new Item('BGLO', 'Bagel', 10)
@@ -30,8 +30,8 @@ describe('InventoryItem', () => {
     iItem.addOffer(offer)
 
     const bItem = new BasketItem(item, 4) // 4 items
-    const calculatedPrice = (10 * 4);
-    const calculatedOfferPrice = 7.5 + (10 * 2);
+    const calculatedPrice = (10 * 4)
+    const calculatedOfferPrice = 7.5 + (10 * 2)
 
     basket.add(bItem)
     expect(basket.basketPrice()).toEqual(calculatedPrice)

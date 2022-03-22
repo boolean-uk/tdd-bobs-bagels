@@ -3,6 +3,10 @@ class Inventory {
     this.items = [];
   }
 
+  getItemBySKU = (sku) => {
+      return this.items.find(i => i.sku === sku);
+  }
+
   add = (item) => {
     if (this.items.find((i) => i.sku === item.sku)) return false;
     this.items.push(item);
