@@ -90,5 +90,7 @@ Verb: see, before adding to basket
 | Methods            | Output                  |
 | ------------------ | ----------------------- |
 | checkPrice(@name)  | @Object {@name, @price} |
+| checkOut()         | @Number                 |
 
 - when using checkPrice(@name), it will return @Object {@name, @price} according to the priceList
+- With checkOut(), it will add all the price of each bagel and returns the sum @Number
