@@ -115,6 +115,7 @@ describe ('Bagel', () => {
     expect(result).toEqual(expected)
   })
 
+  /* --- REQUIREMENT PART 3 --- */
   it ('returns bagel: poppy, price: $4', () => {
     // setup
     const bagel = new Bagel()
@@ -150,7 +151,7 @@ describe ('Bagel', () => {
     expect(result).toEqual(expected)
   })
 
-  fit ('returns total: $13', () => {
+  it ('returns total: $13', () => {
     // setup
     const bagel = new Bagel()
     bagel.addToBasket('plain')
