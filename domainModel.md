@@ -16,3 +16,5 @@
 | Create new bagel, update menu | @array  | {id, price, name} | createNewBagel()   | {id:0, price: 2.39, name: 'New'} |
 | Add item to basket            | @array  | name              | addToBasket()      | [{}, {},{}]                      |
 | Remove item from basket       | @array  | name              | RemoveBasket()     | [{}, {}]                         |
+| Is my basket full             | @array  | #basketCapacity   | isMyBasketFull()   | true / false                     |
+| When i try to add, is it full | @array  | #basketCapacity   | isMyBasketFull()   | true / false                     |
