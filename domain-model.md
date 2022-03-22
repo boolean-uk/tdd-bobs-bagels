@@ -43,7 +43,7 @@ I'd like to know if I try to remove an item that doesn't exist in my basket.
 
 ## Noun & Verb
 Noun: basket, item, basket capacity, larger capacity
-Verb: cannot overfill, is full, add, create baskets
+Verb: cannot overfill, is full, add, create baskets, remove
 
 ## Domain Model 
 | Objects | Properties           |
@@ -51,11 +51,13 @@ Verb: cannot overfill, is full, add, create baskets
 | capacity|  capacity @Number    |
 
 
-| Methods                 | Output                                                                                         |
-| ----------------------- | ---------------------------------------------------------------------------------------------- |
-| isFull()                |  @Boolean (true: @String 'your basket if full', false: @String 'continue to order')            |
-| createBigBasket()       |  ---                                                                                           |
+| Methods                               | Output                                                                                         |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| isFull()                              |  @Boolean (true: @String 'your basket if full', false: @String 'continue to order')            |
+| createBigBasket()                     |  ---                                                                                           |
+| removeFromBasket(@name) (from part 1) | @Boolean (true: basket @Array[@name] false: @String 'You haven't order this bagel              |
 
 - check if the length of basket @Array[@name] is more than capacity @Number with isFull()
   => if true return @String 'your basket if full', if false return 'continue to order' and tell how many bagels you're able to buy
 - With createBigBasket(), capacity @Number will change to a bigger number
+- Utilizing removeFromBasket(@name) from part 1, if the bagel @name includes in basket @Array[@name], return basket @Array[@name] without the removed bagel @String; if not, return @String 'You haven't order this bagel
