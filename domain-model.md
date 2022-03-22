@@ -61,3 +61,34 @@ Verb: cannot overfill, is full, add, create baskets, remove
   => if true return @String 'your basket if full', if false return 'continue to order' and tell how many bagels you're able to buy
 - With createBigBasket(), capacity @Number will change to a bigger number
 - Utilizing removeFromBasket(@name) from part 1, if the bagel @name includes in basket @Array[@name], return basket @Array[@name] without the removed bagel @String; if not, return @String 'You haven't order this bagel
+
+
+---
+
+## Requirement Part 3
+As a member of the public,
+So that I can know how much my bagels are,
+I’d like to see the price of each item before I add it to my basket.
+
+As a member of the public
+So that I can buy many of my favorite bagel,
+I'd like to be able to add the same type of bagel to my basket more than once.
+
+As a member of the public,
+So that I can prepare to pay,
+When I go to checkout I'd like to know the total sum of the bagels in my basket.
+
+## Noun & Verb
+Noun: price of each item
+Verb: see, before adding to basket
+
+## Domain Model
+| Objects   | Properties                 |
+| --------- | -------------------------- |
+| priceList |  priceList {@name, @price} |
+
+| Methods            | Output                  |
+| ------------------ | ----------------------- |
+| checkPrice(@name)  | @Object {@name, @price} |
+
+- when using checkPrice(@name), it will return @Object {@name, @price} according to the priceList
