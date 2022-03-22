@@ -51,9 +51,11 @@ Verb: cannot overfill, is full, add, create baskets
 | capacity|  capacity @Number    |
 
 
-| Methods                 | Output                                                                              |
-| ----------------------- | ----------------------------------------------------------------------------------- |
-| isFull()                |  @Boolean (true: @String 'your basket if full', false: @String 'continue to order') |
+| Methods                 | Output                                                                                         |
+| ----------------------- | ---------------------------------------------------------------------------------------------- |
+| isFull()                |  @Boolean (true: @String 'your basket if full', false: @String 'continue to order')            |
+| createBigBasket()       |  ---                                                                                           |
 
 - check if the length of basket @Array[@name] is more than capacity @Number with isFull()
   => if true return @String 'your basket if full', if false return 'continue to order' and tell how many bagels you're able to buy
+- With createBigBasket(), capacity @Number will change to a bigger number

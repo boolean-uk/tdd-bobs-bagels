@@ -83,4 +83,22 @@ describe ('Bagel', () => {
     // verify
     expect(result).toEqual(expected)
   })
+
+  fit ('returns "Continue to order; 6 bagels left"', () => {
+    // setup
+    const bagel = new Bagel()
+    bagel.addToBasket('poppy')
+    bagel.addToBasket('sesame')
+    bagel.addToBasket('plain')
+    bagel.addToBasket('cheese')
+    bagel.addToBasket('raisin')
+    bagel.addToBasket('cinammon')
+    bagel.createBigBasket()
+
+    const expected = 'Continue to order; 6 bagels left'
+    // execute
+    const result = bagel.isFull()
+    // verify
+    expect(result).toEqual(expected)
+  })
 })

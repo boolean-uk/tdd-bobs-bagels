@@ -18,6 +18,10 @@ class Bagel {
     const bagelsLeft = this.capacity - this.basket.length
     return this.basket.length > this.capacity ? 'Your basket is full' : `Continue to order; ${bagelsLeft} bagels left`
   }
+
+  createBigBasket () {
+    if (this.basket.length > this.capacity) this.capacity = 12
+  }
 }
 
 module.exports = Bagel
