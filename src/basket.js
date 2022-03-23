@@ -28,6 +28,17 @@ class Basket {
       return "You can buy more bagels";
     }
   }
+
+  createBaskets() {
+    const basketsHigherCapacity = {
+      basketOne: "Capacity 5",
+      basketTwo: "Capacity 8",
+      basketThree: "Capacity 10",
+    };
+    this.basketList.push(basketsHigherCapacity);
+    console.log(basketsHigherCapacity);
+    return basketsHigherCapacity;
+  }
 }
 
 module.exports = Basket;

@@ -31,16 +31,16 @@ describe("", () => {
     const bagel = new Bagel();
     const expected = "Your basket is full";
     //execute
-    basket.addToBasket(Bagel);
-    basket.addToBasket(Bagel);
-    basket.addToBasket(Bagel);
-    basket.addToBasket(Bagel);
+    basket.addToBasket(bagel);
+    basket.addToBasket(bagel);
+    basket.addToBasket(bagel);
+    basket.addToBasket(bagel);
     const result = basket.fullBasket();
     //verify
     expect(result).toEqual(expected);
   });
 
-  /* it("create baskets with larger capacity", () => {
+  it("create baskets with larger capacity", () => {
     //set up
     const basket = new Basket();
     const expected = {
@@ -49,8 +49,8 @@ describe("", () => {
       basketThree: "Capacity 10",
     };
     //execute
-    const result = basket.create();
+    const result = basket.createBaskets();
     //verify
     expect(result).toEqual(expected);
-  }); */
+  });
 });
