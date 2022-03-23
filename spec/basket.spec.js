@@ -40,4 +40,13 @@ describe('Basket', () => {
         const result = basket.setCapacity(20)
         expect(result).toEqual(expected)
     })
+
+    it('should tell the user when item is not in the basket', () => {
+        const basket = new Basket()
+        const item = new Item(1, 'bagel')
+        const expected = 'Sorry, that item is not in the basket'
+        basket.add(item)
+        const result = basket.remove(2)
+        expect(result).toEqual(expected)
+    })
 })

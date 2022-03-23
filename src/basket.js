@@ -11,6 +11,8 @@ class Basket {
     }
 
     remove (id) {
+        if (!this._itemExists(id)) return 'Sorry, that item is not in the basket'
+        
         this.items = this.items.filter((item) => item.id !== id)
         return this.items
     }
@@ -22,6 +24,13 @@ class Basket {
 
     _hasCapacity () {
         return this.items.length < this.capacity
+    }
+
+    _itemExists (id) {
+        for (const item of this.items) {
+            if (item.id === id) return true
+        }
+        return false
     }
 }
 
