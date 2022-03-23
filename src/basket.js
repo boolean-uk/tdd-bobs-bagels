@@ -21,14 +21,24 @@ class Basket {
 // write conditional statement in the remove function
 // so it doesn't try to remove an item that doesn't exist
     remove(bagelName) {
-        // if (this.bagelBasket = this.bagelBasket.filter((item)){
-        //     return item !== bagelName;
-        // }
         this.bagelBasket = this.bagelBasket.filter((item) => {
             return item !== bagelName;
+        
         });
+
         console.log(this.bagelBasket);
-        return this.bagelBasket; 
+        return this.bagelBasket;
+
+        // if (this.bagelBasket.length === bagelName) {
+        //     this.bagelBasket = this.bagelBasket.filter((item) => {
+        //         // return item !== bagelName;
+        //     return item !== bagelName
+        //     })
+        //     return this.bagelBasket
+        // }
+        // else if (this.bagelBasket.length !== bagelName ) {
+        //     return "cannot remove a non existing item"
+        // }
     }
 
     // itemDoesNotExist(bagelName) {
