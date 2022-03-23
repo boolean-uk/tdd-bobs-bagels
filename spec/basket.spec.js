@@ -21,4 +21,18 @@ describe("", () => {
     //verify
     expect(result).toEqual(expected);
   });
+
+  it("is the basket full of bagels?", () => {
+    //set up
+    const basket = new Basket();
+    const expected = "Your basket is full";
+    //execute
+    basket.addToBasket("Plain");
+    basket.addToBasket("Plain");
+    basket.addToBasket("Plain");
+    basket.addToBasket("Plain");
+    const result = basket.fullBasket();
+    //verify
+    expect(result).toEqual(expected);
+  });
 });

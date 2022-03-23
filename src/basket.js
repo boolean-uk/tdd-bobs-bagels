@@ -1,17 +1,25 @@
 class Basket {
   constructor() {
     this.basketList = [];
+    this.capacity = 4;
   }
 
-  addToBasket(type) {
-    const bagel = ["Plain"];
-    this.basketList.push(type);
-    return bagel;
-  }
-
-  removeFromBasket() {
-    this.basketList.shift();
+  addToBasket(bagel) {
+    this.basketList.push(bagel);
     return this.basketList;
+  }
+
+  removeFromBasket(bagel) {
+    this.basketList.shift(bagel);
+    return this.basketList;
+  }
+
+  fullBasket() {
+    if (this.basketList.length >= this.capacity) {
+      return "Your basket is full";
+    } else {
+      return "You can buy more bagels";
+    }
   }
 }
 
