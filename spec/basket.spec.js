@@ -62,3 +62,36 @@ describe("Basket remove function", () => {
     expect(result).toEqual(expected);
   });
 });
+
+describe("Basket is full function", () => {
+  it("returns an error message when you try to add more than 5 items", () => {
+    // set up
+    const basket = new Basket();
+    basket.add("Blueberry");
+    basket.add("Chocolate Chip");
+    basket.add("Chocolate Chip");
+    basket.add("Blueberry");
+    basket.add("Blueberry");
+    basket.add("Cinnamon Raisin");
+    basket.add("Chocolate Chip");
+
+    const expected = `you've reached the max number of items (5) allowed in your basket.`;
+    // execute
+    const result = basket.add("Blueberry");
+    // verify
+    expect(result).toEqual(expected);
+  });
+});
+
+describe("Basket mac capacity function", () => {
+  it("sets a new max capacity for the basket", () => {
+    // set up
+    const basket = new Basket();
+
+    const expected = 10;
+    // execute
+    const result = basket.setNewBasketMaxCapacity(10);
+    // verify
+    expect(result).toEqual(expected);
+  });
+});

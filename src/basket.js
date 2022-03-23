@@ -6,6 +6,8 @@ class Basket {
       { name: "Blueberry" },
     ];
     this.currentBasket = [];
+    this.currentBasketMaxCapacity = 5;
+    this.currentBasketCapacity = 0;
   }
 
   add(name) {
@@ -13,8 +15,17 @@ class Basket {
 
     if (selectedBagel === undefined) return "Bagel not found";
 
-    this.currentBasket.push(selectedBagel);
-    return this.currentBasket;
+    // if(this.basketHasSpaceForMoreItems) dont know why this doesnt work but the code directly below does
+    if (this.currentBasketCapacity < this.currentBasketMaxCapacity) {
+      this.currentBasket.push(selectedBagel);
+      this.currentBasketCapacity += 1;
+
+      return this.currentBasket;
+    }
+
+    if (this.basketIsFull) {
+      return `you've reached the max number of items (${this.currentBasketMaxCapacity}) allowed in your basket.`;
+    }
   }
 
   remove(name) {
@@ -22,14 +33,37 @@ class Basket {
       (bagel) => bagel.name === name
     );
 
+    // if (selectedBagelindex === -1) return "Bagel not found";
     if (selectedBagelindex === -1) return "Bagel not found";
 
     this.currentBasket.splice(selectedBagelindex, 1);
+    this.currentBasketCapacity -= 1;
     return this.currentBasket;
   }
 
   removeAll(name) {
+    this.currentBasket.forEach((bagel) => {
+      if (bagel.name === name) this.currentBasketCapacity -= 1;
+    });
+
     return this.currentBasket.filter((bagel) => bagel.name !== name);
+  }
+
+  basketHasSpaceForMoreItems() {
+    if (this.currentBasketCapacity < this.currentBasketMaxCapacity) {
+      return true;
+    }
+  }
+
+  basketIsFull() {
+    if (this.currentBasketCapacity >= this.currentBasketMaxCapacity) {
+      return true;
+    }
+  }
+
+  setNewBasketMaxCapacity(desiredMaxCapacity) {
+    if (desiredMaxCapacity > 5 && desiredMaxCapacity <= 20)
+      return (this.currentBasketMaxCapacity = desiredMaxCapacity);
   }
 }
 
