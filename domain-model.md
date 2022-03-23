@@ -17,12 +17,13 @@ Verb: order, add, change, remove
 | bagel   | name @String         |
 | order   | basket @Array[@name] |
 
-| Methods                 | Output               |
-| ----------------------- | -------------------- |
-| addToBasket(@name)      | basket @Array[@name] |
-| removeFromBasket(@name) | basket @Array[@name] |
+| Methods       | Output               |
+| ------------- | -------------------- |
+| check()       | basket @Array[@name] |
+| add(@name)    | basket @Array[@name] |
+| remove(@name) | basket @Array[@name] |
 
-- add bagel @String with addToBasket(@name) => return the basket @Array[@name] with the added bagel @String
+- add bagel @String with add(@name) => return the basket @Array[@name] with the added bagel @String
 - remove bagel @String with removeFromBasket(@name) => return the basket @Array[@name] without the removed bagel @String
 
 
@@ -51,13 +52,13 @@ Verb: cannot overfill, is full, add, create baskets, remove
 | capacity|  capacity @Number    |
 
 
-| Methods                               | Output                                                                                         |
-| ------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| isFull()                              |  @Boolean (true: @String 'your basket if full', false: @String 'continue to order')            |
-| createBigBasket()                     |  ---                                                                                           |
-| removeFromBasket(@name) (from part 1) | @Boolean (true: basket @Array[@name] false: @String 'You haven't order this bagel              |
+| Methods                     | Output                                                                                         |
+| --------------------------- | ---------------------------------------------------------------------------------------------- |
+| add(@name)                  |  @Boolean (true: @String 'your basket if full', false: @String 'continue to order')            |
+| createBigBasket()           |  ---                                                                                           |
+| remove(@name) (from part 1) | @Boolean (true: basket @Array[@name] false: @String 'You haven't order this bagel              |
 
-- check if the length of basket @Array[@name] is more than capacity @Number with isFull()
+- check if the length of basket @Array[@name] is more than capacity @Number with a refactored add(@name)
   => if true return @String 'your basket if full', if false return 'continue to order' and tell how many bagels you're able to buy
 - With createBigBasket(), capacity @Number will change to a bigger number
 - Utilizing removeFromBasket(@name) from part 1, if the bagel @name includes in basket @Array[@name], return basket @Array[@name] without the removed bagel @String; if not, return @String 'You haven't order this bagel
@@ -90,11 +91,9 @@ Verb: see, add more than once, before adding to basket
 | Methods                     | Output                  |
 | --------------------------- | ----------------------- |
 | checkPrice(@name)           | @Object {@name, @price} |
-| addToBasket(@name, @number) | basket @Array[@name]    |
+| add(@name, @number)         | basket @Array[@name]    |
 | checkOut()                  | @Number                 |
 
 - when using checkPrice(@name), it will return @Object {@name, @price} according to the priceList
 - Utilizing addToBasket(@name) from part 1, add a new parameter @number; it will loop that number amount of time and push it into the basket. Set @number 1 as default when customer only needs one bagel.
 - With checkOut(), it will add all the price of each bagel and returns the sum @Number
-
-
