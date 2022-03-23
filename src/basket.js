@@ -40,7 +40,7 @@ class Basket {
 
   addMultipleFavoriteToCart(name, times) {
     if (times > this.limit - this.itemsArr.length)
-      return `Too many items for your basket ${this.itemsArr.length} of ${this.limit}`;
+      return `Too much item for your basket ${this.itemsArr.length} of ${this.limit}`;
     for (let i = 0; i < times; i++) {
       this.addItemToBasket(name);
     }
