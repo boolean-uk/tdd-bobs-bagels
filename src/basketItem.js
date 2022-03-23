@@ -5,9 +5,13 @@ class BasketItem extends Item {
     this.quantity = quantity
   }
 
-  totalPrice = () => {
-    if(this.offerPrice) return this.offerPrice
-    return this.price*this.quantity
+  totalPrice () {
+    if (this.offerPrice) return this.offerPrice
+    return this.totalBasePrice()
+  }
+
+  totalBasePrice () {
+    return this.price * this.quantity
   }
 }
 
