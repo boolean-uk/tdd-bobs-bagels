@@ -1,22 +1,36 @@
 {
-  "inventory": [
-    {
+  "inventory": [{
       "sku": "BGLO",
       "price": "0.49",
       "name": "Bagel",
-      "variant": "Onion"
+      "variant": "Onion",
+      "specialOffer": {
+        "requiredQuantity": 6,
+        "recursive": true,
+        "price": 2.49
+      }
     },
     {
       "sku": "BGLP",
       "price": "0.39",
       "name": "Bagel",
-      "variant": "Plain"
+      "variant": "Plain",
+      "specialOffer": {
+        "requiredQuantity": 12,
+        "recursive": true,
+        "price": 3.99
+      }
     },
     {
       "sku": "BGLE",
       "price": "0.49",
       "name": "Bagel",
-      "variant": "Everything"
+      "variant": "Everything",
+      "specialOffer": {
+        "requiredQuantity": 6,
+        "recursive": true,
+        "price": 2.49
+      }
     },
     {
       "sku": "BGLS",
@@ -28,7 +42,12 @@
       "sku": "COF",
       "price": "0.99",
       "name": "Bagel",
-      "variant": ""
+      "variant": "",
+      "specialOffer" : {
+        "requiredItem" : "BGLO",
+        "requiredQuantity": 1,
+        "price" : 1.49
+      }
     },
     {
       "sku": "BGSE",
@@ -50,6 +69,6 @@
         "Cream Cheese",
         "Smoked Salmon"
       ]
-    },
+    }
   ]
 }

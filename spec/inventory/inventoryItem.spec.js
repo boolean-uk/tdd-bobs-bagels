@@ -64,4 +64,6 @@ describe('InventoryItem', () => {
     expect(offer.check(basket)).toBeTrue()
     expect(basket.basketPrice()).toBeCloseTo(calculatedOfferPrice)
   })
+
+
 })
