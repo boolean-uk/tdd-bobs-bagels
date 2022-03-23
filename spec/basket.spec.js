@@ -21,4 +21,16 @@ describe('Basket', () => {
         expect(result).toEqual(expected)
     })
 
+    it('should tell the user when basket is full', () => {
+        const basket = new Basket()
+        const item1 = new Item(1, 'bagel')
+        const expected = 'Sorry, your basket is already full.'
+        basket.add(item1)
+        basket.add(item1)
+        basket.add(item1)
+        basket.add(item1)
+        basket.add(item1)
+        const result = basket.add(item1)
+        expect(result).toEqual(expected)
+    })
 })

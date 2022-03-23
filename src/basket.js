@@ -1,8 +1,11 @@
-const Item = require("../src/item")
 class Basket {
-    items = []
+    constructor () {
+        this.items = []
+        this.capacity = 5
+    }
 
     add (item) {
+        if (!this._hasCapacity()) return 'Sorry, your basket is already full.'
         this.items.push(item)
         return this.items
     }
@@ -11,8 +14,13 @@ class Basket {
         this.items = this.items.filter((item) => item.id !== id)
         return this.items
     }
+
+    _hasCapacity () {
+        return this.items.length < this.capacity
+    }
 }
 
+const Item = require("../src/item")
 const basket = new Basket()
 const item = new Item(1, 'bagel')
 const item2 = new Item(2, 'bagel')
