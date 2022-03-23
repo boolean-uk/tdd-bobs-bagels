@@ -1,6 +1,7 @@
 class Basket {
   constructor () {
     this.bagelBasket = []
+    this.fullCapacity = 3
   }
 
   add (bagelName) {
@@ -15,6 +16,12 @@ class Basket {
     })
     console.log(this.bagelBasket)
     return this.bagelBasket
+  }
+
+  isFull () {
+    if (this.bagelBasket.length > this.fullCapacity) {
+      return "Basket is Full"
+    } else return "Basket is not full, you can continue to order"
   }
 }
 
