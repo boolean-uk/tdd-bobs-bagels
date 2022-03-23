@@ -1,5 +1,5 @@
 class Price {
-  constructor() {
+  constructor () {
     this.priceList = {
       plain: 2,
       cheese: 3,
@@ -18,9 +18,9 @@ class Price {
     return `bagel: ${nameAndPrice[0]}, price: $${nameAndPrice[1]}`
   }
 
-  checkOut () {
+  checkOut (basket) {
   // convert all bagels to its price, and then .reduce();
-    const bagelPriceArr = this.basket.map(bagel => this.priceList[bagel])
+    const bagelPriceArr = basket.map(bagel => this.priceList[bagel])
     const totalSum = bagelPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
     return `total: $${totalSum}`
   }

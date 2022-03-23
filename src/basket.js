@@ -1,20 +1,11 @@
-// const pricing = require('../src/pricinc.js')
+const Price = require('../src/price.js')
 
 class Basket {
   // parameter the capacity for extension
   constructor () {
     this.basket = []
     this.capacity = 5
-    this.priceList = {
-      plain: 2,
-      cheese: 3,
-      cinnamon: 3,
-      raisin: 3,
-      poppy: 4,
-      sesame: 4
-    }
-
-    // this.price = new Price ()
+    this.price = new Price()
   }
 
   check () {
@@ -22,7 +13,7 @@ class Basket {
   }
 
   add (name, num = 1) {
-    const bagelNameArr = Object.keys(this.priceList)
+    const bagelNameArr = Object.keys(this.price.priceList)
     // prevent adding bagels that are not in the list
     if (!bagelNameArr.includes(name)) return 'Please add bagels from the list'
 
@@ -48,26 +39,17 @@ class Basket {
   }
 
   checkPrice (name) {
-    // make an object into an array with Object.entries()
-    const priceListArr = Object.entries(this.priceList)
-    // find the bagel name and price that matches to the argument
-    const nameAndPrice = priceListArr.find(priceList => priceList[0] === name)
-
-    return `bagel: ${nameAndPrice[0]}, price: $${nameAndPrice[1]}`
-
-    // return this.price.checkPrice(name)
+    return this.price.checkPrice(name)
   }
 
   checkOut () {
-    // convert all bagels to its price, and then .reduce();
-    const bagelPriceArr = this.basket.map(bagel => this.priceList[bagel])
-    const totalSum = bagelPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
-    return `total: $${totalSum}`
-
-    // return this.price.checkOut(this.basket)
+    return this.price.checkOut(this.basket)
   }
 }
 
 module.exports = Basket
 
 /* try to apply the discount in the basket */
+
+const basket = new Basket()
+console.log(basket.add('poppy'))

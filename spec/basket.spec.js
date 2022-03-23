@@ -1,7 +1,7 @@
 const Basket = require('../src/basket.js')
 
 describe ('basket', () => {
-  /* --- REQUIREMENT PART 1 --- */
+  /* --- PART 1 - 1 --- */
   it ('adds a bagel and returns the basket with that bagel', () => {
     // setup
     const basket = new Basket()
@@ -38,6 +38,7 @@ describe ('basket', () => {
     expect(result).toEqual(expected)
   })
 
+  /* --- PART 1 - 2 --- */
   it ('adds a bagel, then removes, and returns an empty basket', () => {
     // setup
     const basket = new Basket()
@@ -67,7 +68,7 @@ describe ('basket', () => {
     expect(result).toEqual(expected)
   })
 
-  /* --- REQUIREMENT PART 2 --- */
+  /* --- PART 2 - 1 --- */
   it ('returns "Your basket is full"', () => {
     // setup
     const basket = new Basket()
@@ -97,6 +98,7 @@ describe ('basket', () => {
     expect(result).toEqual(expected)
   })
 
+  /* --- PART 2 - 2 --- */
   it ('returns "Continue to order; 6 bagels left"', () => {
     // setup
     const basket = new Basket()
@@ -114,6 +116,7 @@ describe ('basket', () => {
     expect(result).toEqual(expected)
   })
 
+  /* --- PART 2 - 3 --- */
   it ('trys to remove a non-existing bagel and returns "You have not order this bagel"', () => {
     // setup
     const basket = new Basket()
@@ -127,29 +130,7 @@ describe ('basket', () => {
     expect(result).toEqual(expected)
   })
 
-  /* --- REQUIREMENT PART 3 --- */
-  it ('returns bagel: poppy, price: $4', () => {
-    // setup
-    const basket = new Basket()
-
-    const expected = 'bagel: poppy, price: $4'
-    // execute
-    const result = basket.checkPrice('poppy')
-    // verify
-    expect(result).toEqual(expected)
-  })
-
-  it ('returns bagel: cheese, price: $3', () => {
-    // setup
-    const basket = new Basket()
-
-    const expected = 'bagel: cheese, price: $3'
-    // execute
-    const result = basket.checkPrice('cheese')
-    // verify
-    expect(result).toEqual(expected)
-  })
-
+  /* --- PART 3 - 2 --- */
   it ('adds cheese with one method', () => {
     // setup
     const basket = new Basket()
@@ -173,6 +154,7 @@ describe ('basket', () => {
     expect(result).toEqual(expected)
   })
 
+  /* --- PART 3 - 3 --- */
   it ('returns total: $6', () => {
     // setup
     const basket = new Basket()
@@ -186,7 +168,7 @@ describe ('basket', () => {
     expect(result).toEqual(expected)
   })
 
-  it ('returns total: $13', () => {
+it ('returns total: $13', () => {
     // setup
     const basket = new Basket()
     basket.add('plain')
