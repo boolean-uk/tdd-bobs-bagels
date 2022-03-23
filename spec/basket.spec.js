@@ -4,6 +4,7 @@ describe("Basket", () => {
   it("check bagel menu", () => {
     // set up
     const newBagel = new Basket();
+    newBagel.menu.createItemUpdateMenu("Bagel Onion", 0.49);
     const expected = [
       { id: 0, name: "New Yorker", price: 3.69 },
       { id: 1, name: "Philli", price: 2.89 },

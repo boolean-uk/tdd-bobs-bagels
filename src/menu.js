@@ -1,4 +1,4 @@
-class Item {
+class Menu {
   createSkuCode(string) {
     let SKU = "";
     if (string.slice(0, 1) !== "B") {
@@ -35,4 +35,4 @@ class Item {
   }
 }
 
-module.exports = Item;
+module.exports = Menu;

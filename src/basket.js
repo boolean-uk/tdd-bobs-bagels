@@ -1,4 +1,8 @@
+const Menu = require("./menu.js");
+
 class Basket {
+  // create instance of menu
+  menu = new Menu();
   bagelMenu = [
     { id: 0, name: "New Yorker", price: 3.69 },
     { id: 1, name: "Philli", price: 2.89 },
@@ -19,6 +23,7 @@ class Basket {
 
   constructor() {
     this.#basketCapacity = 5;
+    this.cost = new Cost(this);
   }
 
   get basketCapacity() {

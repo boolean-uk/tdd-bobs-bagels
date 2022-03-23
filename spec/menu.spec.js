@@ -1,9 +1,9 @@
-const Item = require("../src/item.js");
+const Menu = require("../src/menu.js");
 
-describe("Item", () => {
+describe("Menu", () => {
   it("check bagel menu", () => {
     // set up
-    const newMenu = new Item();
+    const newMenu = new Menu();
     const expected = [
       { SKU: "BGLO", id: 0, name: "Bagel Onion", price: 0.49 },
       { SKU: "BGLP", id: 1, name: "Bagel Plain", price: 0.39 },
@@ -21,7 +21,7 @@ describe("Item", () => {
 
   it("create SKU code form string", () => {
     // set up
-    const newCode = new Item();
+    const newCode = new Menu();
     const expected = "BGLO";
     // execute
     const result = newCode.createSkuCode("Bagel Onion");
@@ -31,7 +31,7 @@ describe("Item", () => {
 
   it("create SKU code for non-bagel string", () => {
     // set up
-    const newCode = new Item();
+    const newCode = new Menu();
     const expected = "COF";
     // execute
     const result = newCode.createSkuCode("Coffee");
