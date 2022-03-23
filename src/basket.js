@@ -1,16 +1,17 @@
-//const Basket = require("./item")
+//const Basket = require("./bagel")
 
 class Basket {
     constructor () {
-        this.basket =  [] 
+        this.basket =  []
+        this.capacityBasket = 2 
     }
 
-    addBagelToBasket (item) {
+    addItemToBasket (item) {
         this.basket.push(item)
         return this.basket
     }
 
-    removeBagelFromBasket (id) {
+    removeItemFromBasket (id) {
         const newBasket = []
 
         for (let i = 0; i < this.basket.length; i++){
@@ -20,6 +21,11 @@ class Basket {
         }
         this.basket = newBasket
         return this.basket
+    }
+
+    isFull () {
+        if ( this.basket.length >= this.capacityBasket ) { return true }
+        return false
     }
 }
 module.exports = Basket
