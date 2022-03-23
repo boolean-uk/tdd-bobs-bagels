@@ -1,4 +1,4 @@
-# Requirement 1
+// # Requirement 1
 As a member of the public
 So I can order a bagel when I want to
 I'd like to add an item to my basket
@@ -7,7 +7,7 @@ As a member of the public,
 So that I can change my order
 I'd like to remove an item from my basket
 
-# Requirement 2
+// # Requirement 2
 As a member of the public,
 So that I can not overfill my small bagel basket
 I'd like to know when my basket is full when I try adding an item beyond my basket capacity.
@@ -20,7 +20,7 @@ As a member of the public
 So that I can maintain my sanity
 I'd like to know if I try to remove an item that doesn't exist in my basket.
 
-# Requirement 3
+// # Requirement 3
 As a member of the public,
 So that I can know how much my bagels are,
 I’d like to see the price of each item before I add it to my basket.
@@ -32,7 +32,7 @@ When I go to checkout I'd like to know the total sum of the bagels in my basket
 
 Objects: Basket, Bagel
 Properties: Capacity, ID
-Verbs: Add, Remove, Know when (is full), Create, Know if (item isn't in basket)
+Verbs: Add, Remove, Know when (basket is full), Create, Know if (item isn't in basket)
 
 
 
