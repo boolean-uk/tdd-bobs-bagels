@@ -41,27 +41,27 @@ describe('InventoryItem', () => {
   })
 
   it('applies special offer for required quantity (recursive)', () => {
-    const basket = new Basket()
+    const basket = new Basket(200)
     const inventory = new Inventory()
-    const item = new Item('BGLO', 'Bagel', 10)
-    const options = { requiredQuantity: 2, recursive: true, price: 7.5 }
+    const item = new Item('BGLP', 'Bagel', 0.39)
+    const options = { requiredQuantity: 12, recursive: true, price: 3.99 }
     const offer = new SpecialOffer(item, options)
 
     const iItem = new InventoryItem(item, 200) // 200 supply
 
-    inventory.add(iItem)
-
     iItem.addOffer(offer)
 
-    const bItem = new BasketItem(item, 4) // 4 items
-    const calculatedPrice = (10 * 4)
-    const calculatedOfferPrice = 7.5 * 2
+    inventory.add(iItem)
+
+    const bItem = new BasketItem(item, 16) // 4 items
+    const calculatedPrice = item.price * bItem.quantity
+    const calculatedOfferPrice = 5.55
 
     basket.add(bItem)
     expect(basket.baseBasketPrice()).toEqual(calculatedPrice)
     const foundOffers = inventory.findOffers(basket)
     expect(foundOffers).toEqual([offer])
     expect(offer.check(basket)).toBeTrue()
-    expect(basket.basketPrice()).toEqual(calculatedOfferPrice)
+    expect(basket.basketPrice()).toBeCloseTo(calculatedOfferPrice)
   })
 })

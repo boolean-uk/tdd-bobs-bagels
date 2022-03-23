@@ -34,7 +34,7 @@ class Basket {
   };
 
   // So we can compare the base price and the price after applying offers
-  baseBasketPrice() {
+  baseBasketPrice () {
     return this.items.reduce((p, c) => p + c.totalBasePrice(), 0)
   }
 
