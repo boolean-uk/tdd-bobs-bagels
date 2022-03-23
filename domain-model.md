@@ -96,3 +96,5 @@ Verb: see, add more than once, before adding to basket
 - when using checkPrice(@name), it will return @Object {@name, @price} according to the priceList
 - Utilizing addToBasket(@name) from part 1, add a new parameter @number; it will loop that number amount of time and push it into the basket. Set @number 1 as default when customer only needs one bagel.
 - With checkOut(), it will add all the price of each bagel and returns the sum @Number
+
+
