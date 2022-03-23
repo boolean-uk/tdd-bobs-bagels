@@ -5,10 +5,11 @@ describe ('basket', () => {
   it ('adds a bagel and returns the basket with that bagel', () => {
     // setup
     const basket = new Basket()
+    basket.add('poppy')
 
     const expected = ['poppy']
     // execute
-    const result = basket.add('poppy')
+    const result = basket.check()
     // verify
     expect(result).toEqual(expected)
   })
@@ -28,10 +29,11 @@ describe ('basket', () => {
     // setup
     const basket = new Basket()
     basket.add('poppy')
+    basket.add('sesame')
 
     const expected = ['poppy', 'sesame']
     // execute
-    const result = basket.add('sesame')
+    const result = basket.check()
     // verify
     expect(result).toEqual(expected)
   })
@@ -41,10 +43,10 @@ describe ('basket', () => {
     const basket = new Basket()
     basket.add('poppy')
     basket.remove('poppy')
-
+    
     const expected = []
     // execute
-    const result = basket.remove('poppy')
+    const result = basket.check()
     // verify
     expect(result).toEqual(expected)
   })
@@ -56,16 +58,17 @@ describe ('basket', () => {
     basket.add('sesame')
     basket.add('plain')
     basket.add('cheese')
+    basket.remove('plain')
 
     const expected = ['poppy', 'sesame', 'cheese']
     // execute
-    const result = basket.remove('plain')
+    const result = basket.check()
     // verify
     expect(result).toEqual(expected)
   })
 
   /* --- REQUIREMENT PART 2 --- */
-  fit ('returns "Your basket is full"', () => {
+  it ('returns "Your basket is full"', () => {
     // setup
     const basket = new Basket()
     basket.add('poppy')
@@ -82,20 +85,20 @@ describe ('basket', () => {
     expect(result).toEqual(expected)
   })
 
-  fit ('returns "Continue to order; 3 bagels left"', () => {
+  it ('returns "Continue to order; 3 bagels left"', () => {
     // setup
     const basket = new Basket()
     basket.add('poppy')
     basket.add('sesame')
 
-    const expected = 'Continue to order; 3 bagels left'
+    const expected = 'Continue to order; 2 bagels left'
     // execute
-    const result = basket.isFull()
+    const result = basket.add('cinnamon')
     // verify
     expect(result).toEqual(expected)
   })
 
-  fit ('returns "Continue to order; 7 bagels left"', () => {
+  it ('returns "Continue to order; 7 bagels left"', () => {
     // setup
     const basket = new Basket()
     basket.add('poppy')
@@ -105,10 +108,9 @@ describe ('basket', () => {
     basket.add('raisin')
     basket.createBigBasket()
 
-
-    const expected = 'Continue to order; 7 bagels left'
+    const expected = 'Continue to order; 6 bagels left'
     // execute
-    const result = basket.isFull()
+    const result = basket.add('cinnamon')
     // verify
     expect(result).toEqual(expected)
   })
@@ -149,11 +151,11 @@ describe ('basket', () => {
     expect(result).toEqual(expected)
   })
 
-  it ('returns 3 cheese with one method', () => {
+  it ('adds cheese with one method', () => {
     // setup
     const basket = new Basket()
 
-    const expected = ['cheese', 'cheese', 'cheese']
+    const expected = 'Continue to order; 2 bagels left'
     // execute
     const result = basket.add('cheese', 3)
     // verify
@@ -165,7 +167,7 @@ describe ('basket', () => {
     const basket = new Basket()
     basket.add('plain')
 
-    const expected = ['plain', 'cheese', 'cheese', 'cheese']
+    const expected = 'Continue to order; 1 bagels left'
     // execute
     const result = basket.add('cheese', 3)
     // verify

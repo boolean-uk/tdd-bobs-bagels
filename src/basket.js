@@ -1,4 +1,4 @@
-const Item = require('../src/item.js')
+// const Item = require('../src/item.js')
 
 class Basket {
   constructor () {
@@ -14,12 +14,16 @@ class Basket {
     }
   }
 
+  check () {
+    return this.basket
+  }
+
   add (name, num = 1) {
     const bagelNameArr = Object.keys(this.priceList)
     // prevent adding bagels that are not in the list
     if (!bagelNameArr.includes(name)) return 'Please add bagels from the list'
 
-    if (this.basket.length < this.capacity && num <= this.capacity) {
+    if (this.basket.length < this.capacity && num < this.capacity) {
       for (let i = 0; i < num; i++) {
         this.basket.push(name)
       }
@@ -30,7 +34,8 @@ class Basket {
   }
 
   remove (name) {
-    return this.basket.includes(name) ? this.basket.filter(bagel => bagel !== name) : 'You have not order this bagel'
+    if (this.basket.includes(name)) this.basket = this.basket.filter(bagel => bagel !== name)
+    return 'You have not order this bagel'
   }
 
   createBigBasket () {
