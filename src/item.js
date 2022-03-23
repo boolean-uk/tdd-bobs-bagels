@@ -1,5 +1,5 @@
 class Item {
-  constructor (sku, name, price = 1, variant = 'None') {
+  constructor (sku, name, price = 1, variant = '') {
     this.sku = sku
     this.name = name
     this.price = price

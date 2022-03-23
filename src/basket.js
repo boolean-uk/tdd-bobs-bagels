@@ -1,4 +1,5 @@
 const Inventory = require('./inventory/inventory')
+const Receipt = require('./receipt/Receipt')
 
 class Basket {
   constructor (itemCapacity = 5) {
@@ -48,6 +49,10 @@ class Basket {
 
   includes (item) {
     return this.getItem(item) !== undefined
+  }
+
+  receipt () {
+    return new Receipt(this)
   }
 }
 

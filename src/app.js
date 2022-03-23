@@ -20,10 +20,12 @@ InventoryJSON.inventory.forEach(itemJSON => {
   inventory.add(iItem)
 })
 
-
-
 const b = new Basket(100)
 
-b.add(new BasketItem(inventory.getItemBySKU('BGLE'), 64))
+b.add(new BasketItem(inventory.getItemBySKU('BGLE'), 60))
+b.add(new BasketItem(inventory.getItemBySKU('BGLO'), 3))
+b.add(new BasketItem(inventory.getItemBySKU('COF'), 3))
 
 console.log(b.basketPrice(), '| BEFORE :', b.baseBasketPrice())
+
+console.log(b.receipt().toString())

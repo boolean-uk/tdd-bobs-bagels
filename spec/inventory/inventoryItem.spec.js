@@ -83,7 +83,7 @@ describe('InventoryItem', () => {
 
     const bBgl = new BasketItem(bgl, 1) // 4 items
     const bCof = new BasketItem(cof, 1) // 4 items
-    const calculatedPrice = bBgl.totalBasePrice() + bCof.totalBasePrice()
+    const calculatedPrice = bBgl.totalBasePrice() + bCof.totalBasePrice() // 1.38
     const calculatedOfferPrice = 1.29 // Offer price
 
     basket.add(bBgl)

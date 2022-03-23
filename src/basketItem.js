@@ -1,7 +1,7 @@
 const Item = require('./item')
 class BasketItem extends Item {
   constructor (item, quantity = 1) {
-    super(item.sku, item.name, item.price)
+    super(item.sku, item.name, item.price, item.variant)
     this.quantity = quantity
     this.offerPrice = undefined
   }
