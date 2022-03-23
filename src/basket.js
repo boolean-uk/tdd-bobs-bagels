@@ -21,6 +21,9 @@ class Basket {
 // write conditional statement in the remove function
 // so it doesn't try to remove an item that doesn't exist
     remove(bagelName) {
+        // if (this.bagelBasket = this.bagelBasket.filter((item)){
+        //     return item !== bagelName;
+        // }
         this.bagelBasket = this.bagelBasket.filter((item) => {
             return item !== bagelName;
         });
