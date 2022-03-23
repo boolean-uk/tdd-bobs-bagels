@@ -9,6 +9,7 @@ class Basket {
   getItems () { return this.items }
 
   getItem (item) {
+    if (typeof item === 'string') return this.items.find(i => i.sku === item)
     return this.items.find(i => i.sku === item.sku)
   }
 
@@ -46,7 +47,7 @@ class Basket {
   };
 
   includes (item) {
-    return this.items.find(bItem => bItem.sku === item.sku)
+    return this.getItem(item) !== undefined
   }
 }
 

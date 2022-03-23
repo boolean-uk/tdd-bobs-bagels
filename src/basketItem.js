@@ -8,7 +8,7 @@ class BasketItem extends Item {
 
   // Price after applying offers
   totalPrice () {
-    if (this.offerPrice) return this.offerPrice
+    if (this.offerPrice !== undefined) return this.offerPrice
     return this.totalBasePrice()
   }
 

@@ -65,5 +65,33 @@ describe('InventoryItem', () => {
     expect(basket.basketPrice()).toBeCloseTo(calculatedOfferPrice)
   })
 
+  it('applies special offer for multiple items', () => {
+    const basket = new Basket(200)
+    const inventory = new Inventory()
+    const bgl = new Item('BGLO', 'Bagel', 0.39)
+    const cof = new Item('COF', 'Coffee', 0.99)
+    const options = { requiredItem: 'BGLO', requiredQuantity: 1, price: 1.29 }
+    const offer = new SpecialOffer(cof, options)
 
+    const iBgl = new InventoryItem(bgl, 200) // 200 supply
+    const iCof = new InventoryItem(cof, 200) // 200 supply
+
+    iCof.addOffer(offer)
+
+    inventory.add(iBgl)
+    inventory.add(iCof)
+
+    const bBgl = new BasketItem(bgl, 1) // 4 items
+    const bCof = new BasketItem(cof, 1) // 4 items
+    const calculatedPrice = bBgl.totalBasePrice() + bCof.totalBasePrice()
+    const calculatedOfferPrice = 1.29 // Offer price
+
+    basket.add(bBgl)
+    basket.add(bCof)
+    expect(basket.baseBasketPrice()).toEqual(calculatedPrice)
+    const foundOffers = inventory.findOffers(basket)
+    expect(foundOffers).toEqual([offer])
+    expect(offer.check(basket)).toBeTrue()
+    expect(basket.basketPrice()).toBeCloseTo(calculatedOfferPrice)
+  })
 })

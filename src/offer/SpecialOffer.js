@@ -22,18 +22,25 @@ class SpecialOffer {
   apply (basket) {
     if (this.check(basket)) {
       if (this.callback) { return this.callback(basket) } else {
-        const bItem = basket.getItem(this.item)
-        const offerRepetition = Math.floor(bItem.quantity / this.options.requiredQuantity)
-        if (this.options.recursive) {
-          bItem.offerPrice =
-            this.options.price * offerRepetition +
-            bItem.price *
-              (bItem.quantity - this.options.requiredQuantity * offerRepetition)
+        const rItem = this.options.requiredItem
+        if (rItem && basket.includes(rItem)) {
+          const dealItem = basket.getItem(this.item)
+          dealItem.offerPrice = this.options.price
+          basket.getItem(rItem).offerPrice = (basket.getItem(rItem).quantity - 1) * basket.getItem(rItem).price
         } else {
-          bItem.offerPrice =
-            this.options.price + bItem.price * (bItem.quantity - this.options.requiredQuantity)
+          const bItem = basket.getItem(this.item)
+          const offerRepetition = Math.floor(bItem.quantity / this.options.requiredQuantity)
+          if (this.options.recursive) {
+            bItem.offerPrice =
+              this.options.price * offerRepetition +
+              bItem.price *
+                (bItem.quantity - this.options.requiredQuantity * offerRepetition)
+          } else {
+            bItem.offerPrice =
+              this.options.price + bItem.price * (bItem.quantity - this.options.requiredQuantity)
+          }
+          return bItem.offerPrice
         }
-        return bItem.offerPrice
       }
     }
     return undefined
