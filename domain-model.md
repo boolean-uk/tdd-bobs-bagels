@@ -80,17 +80,19 @@ When I go to checkout I'd like to know the total sum of the bagels in my basket.
 
 ## Noun & Verb
 Noun: price of each item, total sum
-Verb: see, before adding to basket
+Verb: see, add more than once, before adding to basket
 
 ## Domain Model
 | Objects   | Properties                 |
 | --------- | -------------------------- |
 | priceList |  priceList {@name, @price} |
 
-| Methods            | Output                  |
-| ------------------ | ----------------------- |
-| checkPrice(@name)  | @Object {@name, @price} |
-| checkOut()         | @Number                 |
+| Methods                     | Output                  |
+| --------------------------- | ----------------------- |
+| checkPrice(@name)           | @Object {@name, @price} |
+| addToBasket(@name, @number) | basket @Array[@name]    |
+| checkOut()                  | @Number                 |
 
 - when using checkPrice(@name), it will return @Object {@name, @price} according to the priceList
+- Utilizing addToBasket(@name) from part 1, add a new parameter @number; it will loop that number amount of time and push it into the basket. Set @number 1 as default when customer only needs one bagel.
 - With checkOut(), it will add all the price of each bagel and returns the sum @Number

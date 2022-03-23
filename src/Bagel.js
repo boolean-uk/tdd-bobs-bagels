@@ -12,11 +12,14 @@ class Bagel {
     }
   }
 
-  addToBasket (name) {
+  addToBasket (name, num = 1) {
     const bagelNameArr = Object.keys(this.priceList)
     // prevent adding bagels that are not in the menu
     if (!bagelNameArr.includes(name)) return 'Please add bagels from the menu'
-    this.basket.push(name)
+
+    for (let i = 0; i < num; i++) {
+      this.basket.push(name)
+    }
     return this.basket
   }
 
@@ -26,7 +29,7 @@ class Bagel {
 
   isFull () {
     const bagelsLeft = this.capacity - this.basket.length
-    
+
     return this.basket.length >= this.capacity ? 'Your basket is full' : `Continue to order; ${bagelsLeft} bagels left`
   }
 
@@ -52,3 +55,4 @@ class Bagel {
 }
 
 module.exports = Bagel
+

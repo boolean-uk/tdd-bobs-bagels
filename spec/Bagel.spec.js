@@ -149,6 +149,29 @@ describe ('Bagel', () => {
     expect(result).toEqual(expected)
   })
 
+  it ('returns 3 cheese with one method', () => {
+    // setup
+    const bagel = new Bagel()
+
+    const expected = ['cheese', 'cheese', 'cheese']
+    // execute
+    const result = bagel.addToBasket('cheese', 3)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it ('returns ["plain", "cheese", "cheese", "cheese"] to add multiple same bagels at the same time', () => {
+    // setup
+    const bagel = new Bagel()
+    bagel.addToBasket('plain')
+
+    const expected = ['plain', 'cheese', 'cheese', 'cheese']
+    // execute
+    const result = bagel.addToBasket('cheese', 3)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
   it ('returns total: $6', () => {
     // setup
     const bagel = new Bagel()
