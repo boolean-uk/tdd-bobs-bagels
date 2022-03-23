@@ -8,6 +8,13 @@ class Price {
       poppy: 4,
       sesame: 4
     }
+
+    this.itemList = {
+      BGLO: 0.49,
+      BGLP: 0.39,
+      BGLE: 0.49,
+      COF: 0.99
+    }
   }
 
   checkPrice (name) {
@@ -23,6 +30,10 @@ class Price {
     const bagelPriceArr = basket.map(bagel => this.priceList[bagel])
     const totalSum = bagelPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
     return `total: $${totalSum}`
+  }
+
+  createReipt() {
+    
   }
 }
 

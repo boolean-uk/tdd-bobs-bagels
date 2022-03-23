@@ -14,8 +14,9 @@ class Basket {
 
   add (name, num = 1) {
     const bagelNameArr = Object.keys(this.price.priceList)
+    const SKUArr = Object.keys(this.price.itemList)
     // prevent adding bagels that are not in the list
-    if (!bagelNameArr.includes(name)) return 'Please add bagels from the list'
+    if (!bagelNameArr.includes(name) || !SKUArr.includes(name)) return 'Please add bagels from the list'
 
     if (this.basket.length + num <= this.capacity) {
       for (let i = 0; i < num; i++) {
@@ -43,8 +44,12 @@ class Basket {
     return this.price.checkPrice(name)
   }
 
-  checkOut () {
+  totalPrice () {
     return this.price.checkOut(this.basket)
+  }
+
+  createRecipe () {
+
   }
 }
 
