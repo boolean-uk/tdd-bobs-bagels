@@ -1,7 +1,8 @@
 | Objects | Properties | Messages | Output |
 | - | :-: | :-: | - |
 | item  | name @String | getPrice() | @Number
-|| id @Number
+|| SKU @String
+|| variant @String
 || price @Number
 || quantity @ Number
 | basket | items @Array[@item]| add(@item) | items @Array[@item] **OR** @String

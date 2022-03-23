@@ -35,3 +35,17 @@ Our goods are priced individually. In addition, some items are multi-priced: buy
 Update and extend your program to handle these orders at Bob's Bagels.
 
 Start with extracting useful stories and a functional domain model that represents these requirements.
+
+## User Stories
+
+```
+As a member of the public
+So I can save money
+I'd like to buy bagels at the special prices.
+
+As a member of the public
+So I can save money
+I'd like to buy coffee and a plain bagel at the offered discount.
+```
+
+---

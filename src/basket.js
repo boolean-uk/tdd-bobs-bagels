@@ -12,15 +12,15 @@ class Basket {
         return this.items
     }
 
-    remove (id) {
-        if (!this._itemExists(id)) return 'Sorry, that item is not in the basket'
+    remove (SKU) {
+        if (!this._itemExists(SKU)) return 'Sorry, that item is not in the basket'
 
-        this.items = this.items.filter((item) => item.id !== id)
+        this.items = this.items.filter((item) => item.SKU !== SKU)
         return this.items
     }
 
     getTotalPrice () {
-        return this.items.reduce((total, item) => total += item.price * item.quantity, 0)
+        return this.items.reduce((total, item) => total += item.price, 0)
     }
 
     setCapacity (newCapacity) {
@@ -32,9 +32,9 @@ class Basket {
         return num <= this.capacity
     }
 
-    _itemExists (id) {
+    _itemExists (SKU) {
         for (const item of this.items) {
-            if (item.id === id) return true
+            if (item.SKU === SKU) return true
         }
         return false
     }
