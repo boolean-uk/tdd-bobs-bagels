@@ -1,4 +1,4 @@
-class Bagel {
+class Basket {
   constructor () {
     this.basket = []
     this.capacity = 5
@@ -12,7 +12,7 @@ class Bagel {
     }
   }
 
-  addToBasket (name, num = 1) {
+  add (name, num = 1) {
     const bagelNameArr = Object.keys(this.priceList)
     // prevent adding bagels that are not in the list
     if (!bagelNameArr.includes(name)) return 'Please add bagels from the list'
@@ -23,7 +23,7 @@ class Bagel {
     return this.basket
   }
 
-  removeFromBasket (name) {
+  remove (name) {
     return this.basket.includes(name) ? this.basket.filter(bagel => bagel !== name) : 'You have not order this bagel'
   }
 
@@ -54,4 +54,4 @@ class Bagel {
   }
 }
 
-module.exports = Bagel
+module.exports = Basket
