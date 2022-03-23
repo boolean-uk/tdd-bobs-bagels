@@ -68,7 +68,7 @@ describe ('basket', () => {
   })
 
   /* --- REQUIREMENT PART 2 --- */
-  fit ('returns "Your basket is full"', () => {
+  it ('returns "Your basket is full"', () => {
     // setup
     const basket = new Basket()
     basket.add('poppy')
