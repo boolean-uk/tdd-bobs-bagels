@@ -4,9 +4,9 @@ describe("Bob's Bagels", function () {
   it("add a bagel to the basket", () => {
     // set up
     const bobsBagels = new BobsBagels();
-    const expected = [{ id: 1, description: "Bobs first ever Bagel" }];
+    const expected = [{ description: "Plain", price: 1 }];
     // execute
-    const result = bobsBagels.addBagel("Bobs first ever Bagel", 1);
+    const result = bobsBagels.addBagel("Plain", 1);
     // verify
     expect(result).toEqual(expected);
   });
@@ -45,26 +45,28 @@ describe("Bob's Bagels", function () {
     expect(result).toEqual(expected);
   });
 
-  it("check if the ID is valid - valid ID", () => {
-    // set up
-    const bobsBagels = new BobsBagels();
-    const expected = true;
-    // execute
-    bobsBagels.addBagel("cake-1", 1);
-    bobsBagels.addBagel("cake-2", 1);
-    bobsBagels.addBagel("cake-3", 1);
-    bobsBagels.addBagel("cake-4", 1);
-    const result = bobsBagels.isIdValid(2);
-    // verify
-    expect(result).toEqual(expected);
-  });
-
-  it("check if the ID is valid - not a valid ID", () => {
+  it("check if item is in the basket before removing", () => {
     // set up
     const bobsBagels = new BobsBagels();
     const expected = false;
     // execute
-    const result = bobsBagels.isIdValid(54);
+    bobsBagels.addBagel("Very Tasty", 1);
+    bobsBagels.addBagel("Bagel Extra", 1);
+    bobsBagels.addBagel("Bagel Special", 1);
+    const result = bobsBagels.isItemValid("Bagel Nonsense");
+    // verify
+    expect(result).toEqual(expected);
+  });
+
+  it("check if item is in the basket before removing", () => {
+    // set up
+    const bobsBagels = new BobsBagels();
+    const expected = true;
+    // execute
+    bobsBagels.addBagel("Very Tasty", 1);
+    bobsBagels.addBagel("Bagel Extra", 1);
+    bobsBagels.addBagel("Bagel Special", 1);
+    const result = bobsBagels.isItemValid("Bagel Extra");
     // verify
     expect(result).toEqual(expected);
   });
@@ -83,15 +85,12 @@ describe("Bob's Bagels", function () {
     // set up
     const bobsBagels = new BobsBagels();
     const expected = [
-      { id: 1, description: "i-like-this-so-much-i-will-take-three" },
-      { id: 2, description: "i-like-this-so-much-i-will-take-three" },
-      { id: 3, description: "i-like-this-so-much-i-will-take-three" },
+      { description: "Plain", price: 1 },
+      { description: "Plain", price: 1 },
+      { description: "Plain", price: 1 },
     ];
     // execute
-    const result = bobsBagels.addBagel(
-      "i-like-this-so-much-i-will-take-three",
-      3
-    );
+    const result = bobsBagels.addBagel("Plain", 3);
     // verify
     expect(result).toEqual(expected);
   });
@@ -105,6 +104,21 @@ describe("Bob's Bagels", function () {
     bobsBagels.addBagel("Not So Plain", 1);
     bobsBagels.addBagel("Very Tasty", 3);
     const result = bobsBagels.totalSum();
+    // verify
+    expect(result).toEqual(expected);
+  });
+
+  // EXTENSION starts here ---------------------
+
+  it("returns the sum of the order", () => {
+    // set up
+    const bobsBagels = new BobsBagels();
+    const expected = 9.5;
+    // execute
+    bobsBagels.addBagel("Plain", 2);
+    bobsBagels.addBagel("Not So Plain", 1);
+    bobsBagels.addBagel("Very Tasty", 3);
+    const result = bobsBagels.calcTotalSum();
     // verify
     expect(result).toEqual(expected);
   });

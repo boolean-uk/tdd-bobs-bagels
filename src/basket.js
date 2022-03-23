@@ -27,19 +27,21 @@ class BobsBagels {
   }
 
   addBagel(description, quantity) {
+    let newBagel;
+    for (let i = 0; i < this.menu.length; i++) {
+      if (this.menu[i].description === description) {
+        newBagel = this.menu[i];
+      }
+    }
     for (let i = 0; i < quantity; i++) {
       this.isBasketFull();
-      let newBagel = {
-        id: this.basket.length + 1,
-        description: description,
-      };
       this.basket.push(newBagel);
     }
     return this.basket;
   }
 
   removeBagel(id) {
-    if (this.isIdValid === true) {
+    if (this.isItemValid === true) {
       this.basket = this.basket.filter((bagel) => bagel.id !== id);
       return this.basket;
     } else {
@@ -58,12 +60,14 @@ class BobsBagels {
     return this.basketCapacity;
   }
 
-  isIdValid(id) {
-    let validIds = [];
+  isItemValid(item) {
+    let validItems = [];
     for (let i = 0; i < this.basket.length; i++) {
-      validIds.push(this.basket[i].id);
+      if (this.basket[i].description === item) {
+        validItems.push(this.basket[i].description);
+      }
     }
-    if (validIds.includes(id)) {
+    if (validItems.length > 0) {
       return true;
     } else {
       return false;
@@ -80,6 +84,18 @@ class BobsBagels {
 
   totalSum() {
     return this.basket.length;
+  }
+
+  calcTotalSum() {
+    console.log(this.basket);
+    let basketSum = 0;
+    //loop basket
+    for (let i = 0; i < this.basket.length; i++) {
+      //find prices
+      basketSum += this.basket[i].price;
+    }
+    return basketSum;
+    //add prices together
   }
 }
 
