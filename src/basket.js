@@ -1,4 +1,4 @@
-class Bagels {
+class Basket {
   bagelMenu = [
     { id: 0, name: "New Yorker", price: 3.69 },
     { id: 1, name: "Philli", price: 2.89 },
@@ -10,7 +10,6 @@ class Bagels {
 
   constructor() {
     this.#basketCapacity = 5;
-    this.str;
   }
 
   get basketCapacity() {
@@ -42,27 +41,65 @@ class Bagels {
     return this.basket;
   }
 
+  noSuchItemToRemove(nameOfItemToRemove) {}
+
   removeItemByName(nameItemToRemove) {
-    this.basket.map((item, index) => {
-      if (item.name === nameItemToRemove) {
-        this.basket.splice(index, 1);
+    const itemInBasket = [];
+    for (let item of this.basket) {
+      itemInBasket.push(item.name);
+    }
+    if (!itemInBasket.includes(nameItemToRemove)) {
+      return `No such item to remove. Get a grip !!!!`;
+    } else {
+      this.basket.map((item, index) => {
+        if (item.name === nameItemToRemove) {
+          this.basket.splice(index, 1);
+        }
+      });
+      return this.basket;
+    }
+  }
+
+  removeItemByNameVanilla(nameItemToRemove) {
+    const itemInBasket = [];
+    for (let j = 0; j < this.basket.length; j++) {
+      if (nameItemToRemove === this.basket[j].name) {
+        continue;
       }
-    });
+      itemInBasket.push(this.basket[j]);
+    }
+    this.basket = itemInBasket;
     return this.basket;
   }
 
   isMyBasketFull() {
     if (this.basket.length === this.#basketCapacity) {
-      return (this.str = `I'm afraid your basket is full`);
+      return `I'm afraid your basket is full`;
     }
     if (this.basket.length < this.#basketCapacity) {
       const spareCapacity = this.#basketCapacity - this.basket.length;
-      return (this.str = `You can buy another ${spareCapacity} bagels`);
+      return `You can buy another ${spareCapacity} bagels`;
     }
     if (this.basket.length > this.#basketCapacity) {
       const overCapacity = this.basket.length - this.#basketCapacity;
-      return (this.str = `Sorry, you are over capacity, please return ${overCapacity} bagels`);
+      return `Sorry, you are over capacity, please return ${overCapacity} bagels`;
     }
   }
+
+  pricePerItem() {
+    let str = "";
+    for (let item of this.basket) {
+      str += `Your ${item.name} will cost you $${item.price}.`;
+    }
+    return str;
+  }
+
+  totalForBasket() {
+    let total = 0;
+    for (let item of this.basket) {
+      total += item.price;
+    }
+    return `$${total.toFixed(2)}`;
+  }
 }
-module.exports = Bagels;
+module.exports = Basket;
