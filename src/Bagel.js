@@ -49,7 +49,7 @@ class Bagel {
   checkOut () {
     // convert all bagels to its price, and then .reduce();
     const bagelPriceArr = this.basket.map(bagel => this.priceList[bagel])
-    const totalSum = bagelPriceArr.reduce((firstPrice, nextPrice) => firstPrice + nextPrice)
+    const totalSum = bagelPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
     return `total: $${totalSum}`
   }
 }
