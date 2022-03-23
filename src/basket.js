@@ -5,7 +5,7 @@ class Basket {
 
   add (bagelName) {
     this.bagelBasket.push(bagelName)
-
+    console.log(this.bagelBasket)
     return this.bagelBasket
   }
 
@@ -13,7 +13,7 @@ class Basket {
     this.bagelBasket = this.bagelBasket.filter((item) => {
       return item !== bagelName
     })
-
+    console.log(this.bagelBasket)
     return this.bagelBasket
   }
 }

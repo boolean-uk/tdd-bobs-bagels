@@ -30,9 +30,9 @@ describe("Basket", () => {
     const basket = new Basket();
     // execute
     basket.add("onion")
-    basket.add("plain")
+    basket.add("peanut")
 
-    const newBasket = basket.remove("plain")
+    const newBasket = basket.remove("peanut")
     // verify
     expect(newBasket).toEqual(expectedBasket)
   });
