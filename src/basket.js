@@ -70,33 +70,4 @@ class Basket {
 
 module.exports = Basket
 
-/* create a pricing.js with pricing class
-
-constructor() {
-   this.priceList = {
-      plain: 2,
-      cheese: 3,
-      cinnamon: 3,
-      raisin: 3,
-      poppy: 4,
-      sesame: 4
-    }
-
-checkPrice (name) {
-    // make an object into an array with Object.entries()
-    const priceListArr = Object.entries(this.priceList)
-    // find the bagel name and price that matches to the argument
-    const nameAndPrice = priceListArr.find(priceList => priceList[0] === name)
-
-    return `bagel: ${nameAndPrice[0]}, price: $${nameAndPrice[1]}`
-  }
-
-  checkOut () {
-    // convert all bagels to its price, and then .reduce();
-    const bagelPriceArr = this.basket.map(bagel => this.priceList[bagel])
-    const totalSum = bagelPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
-    return `total: $${totalSum}`
-  }}
-*/
-
-/*try to apply the discount in the basket*/ 
+/* try to apply the discount in the basket */
