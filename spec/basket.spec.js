@@ -4,7 +4,11 @@ describe("Bob's Bagels", function () {
   it("add a bagel to the basket", () => {
     // set up
     const bobsBagels = new BobsBagels();
-    const expected = [{ description: "Plain", price: 1 }];
+    const expected = [{ sku: "BGLP",
+        type: "Bagel",
+        description: "Plain",
+        price: 1,
+      }];
     // execute
     const result = bobsBagels.addBagel("Plain", 1);
     // verify
@@ -85,9 +89,19 @@ describe("Bob's Bagels", function () {
     // set up
     const bobsBagels = new BobsBagels();
     const expected = [
-      { description: "Plain", price: 1 },
-      { description: "Plain", price: 1 },
-      { description: "Plain", price: 1 },
+      { sku: "BGLP",
+        type: "Bagel",
+        description: "Plain",
+        price: 1,
+      }, { sku: "BGLP",
+        type: "Bagel",
+        description: "Plain",
+        price: 1,
+      }, { sku: "BGLP",
+        type: "Bagel",
+        description: "Plain",
+        price: 1,
+      }
     ];
     // execute
     const result = bobsBagels.addBagel("Plain", 3);
@@ -110,16 +124,30 @@ describe("Bob's Bagels", function () {
 
   // EXTENSION starts here ---------------------
 
-  it("returns the sum of the order", () => {
+  it("returns full order value", () => {
     // set up
     const bobsBagels = new BobsBagels();
-    const expected = 9.5;
+    const expected = 12.25;
     // execute
-    bobsBagels.addBagel("Plain", 2);
-    bobsBagels.addBagel("Not So Plain", 1);
-    bobsBagels.addBagel("Very Tasty", 3);
-    const result = bobsBagels.calcTotalSum();
+    bobsBagels.addBagel("BGLP", 2);
+    bobsBagels.addBagel("BGLV", 1);
+    bobsBagels.addBagel("COFL", 3);
+    const result = bobsBagels.orderSum();
     // verify
     expect(result).toEqual(expected);
   });
+
+    it("print receipt", () => {
+    // set up
+    const bobsBagels = new BobsBagels();
+    const expected = "receipt printed"
+    // execute
+    bobsBagels.addBagel("BGLP", 2);
+    bobsBagels.addBagel("BGLV", 1);
+    bobsBagels.addBagel("COFL", 3);
+    const result = bobsBagels.printReceipt();
+    // verify
+    expect(result).toEqual(expected);
+  });
+
 });

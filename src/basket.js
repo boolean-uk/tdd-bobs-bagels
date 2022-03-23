@@ -1,35 +1,30 @@
+class Item {
+  constructor() {
+
+  }
+}
+
 class BobsBagels {
   constructor() {
     this.basket = [];
     this.basketCapacity = 3;
     this.menu = [
-      {
-        description: "Plain",
-        price: 1,
-      },
-      {
-        description: "Not So Plain",
-        price: 1.5,
-      },
-      {
-        description: "Very Tasty",
-        price: 2,
-      },
-      {
-        description: "Bagel Extra",
-        price: 2.5,
-      },
-      {
-        description: "Bagel Special",
-        price: 3,
-      },
+      { sku: "BGLP", type: "Bagel", description: "Plain", price: 1.00 },
+      { sku: "BGLN", type: "Bagel", description: "Not So Plain", price: 1.50 },
+      { sku: "BGLV", type: "Bagel", description: "Very Tasty", price: 2.00 },
+      { sku: "BGLE", type: "Bagel", description: "Bagel Extra", price: 2.50 },
+      { sku: "BGLS", type: "Bagel", description: "Bagel Special", price: 3.00 },
+      { sku: "COFL", type: "Coffee", description: "Latte", price: 2.75 },
     ];
   }
 
   addBagel(description, quantity) {
     let newBagel;
     for (let i = 0; i < this.menu.length; i++) {
-      if (this.menu[i].description === description) {
+      if (
+        this.menu[i].description === description ||
+        this.menu[i].sku === description
+      ) {
         newBagel = this.menu[i];
       }
     }
@@ -86,17 +81,39 @@ class BobsBagels {
     return this.basket.length;
   }
 
-  calcTotalSum() {
-    console.log(this.basket);
-    let basketSum = 0;
-    //loop basket
+  orderSum() {
+    console.log(this.basket)
+    let sum = 0
     for (let i = 0; i < this.basket.length; i++) {
-      //find prices
-      basketSum += this.basket[i].price;
+      sum += this.basket[i].price
     }
-    return basketSum;
-    //add prices together
+    return sum
   }
+
+  printReceipt() {
+    //find out how many of each???
+    
+
+
+
+
+    console.log("     ~~~ Bob's Bagels ~~~     ")
+    console.log()
+    console.log("      202-03-23 18:38:44      ")
+    console.log()
+    console.log("------------------------------")
+    console.log()
+    console.log(this.basket[0].description + " " + this.basket[0].type)
+    console.log("                   " + "£ " + this.basket[0].price)
+    console.log(this.basket[2].description + " " + this.basket[2].type)
+    console.log("                   " + "£ " + this.basket[2].price)
+    console.log(this.basket[3].description + " " + this.basket[3].type)
+    console.log("                   " + "£ " + this.basket[3].price)
+  
+
+  }
+
+
 }
 
 module.exports = BobsBagels;
