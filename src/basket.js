@@ -1,56 +1,58 @@
-const Bagel = require("../src/bagel.js");
+const Manager = require("../src/manager");
+const Item = require("../src/item");
 
 class Basket {
-  constructor(number = 3) {
-    this.contents = [];
-    this.IDcounter = 0;
-    this.capacity = number;
+  itemsArr = [];
+  currentId = 1;
+  limit = 5;
+  manager = new Manager();
+
+  addItemToBasket(name) {
+    const price = name.length * 10;
+    const { ...item } = new Item(name, this.currentId, price);
+    this.currentId++;
+    this.itemsArr.push(item);
+
+    return this.isBasketFull() ? "Your basket is full!" : this.itemsArr;
   }
 
-  getPriceOfBagel() {
-    const output = new Bagel();
-    return output.price;
+  isBasketFull() {
+    return this.itemsArr.length > this.limit;
   }
 
-  addBagel(bagelType, numOfBagels = 1) {
-    for (let i = 0; i < numOfBagels; i++) {
-      if (!this.basketIsFull()) {
-        this.IDcounter++;
-        const id = this.IDcounter;
-        let bagelItem = new Bagel(id, bagelType);
-        this.contents.push(bagelItem);
-      }
+  removeItemFromBasket(id) {
+    const itemsBeforeRemove = this.itemsArr;
+    this.itemsArr = this.itemsArr.filter((item) => item.id !== id);
+
+    return itemsBeforeRemove.length === this.itemsArr.length
+      ? "Item doesn't exist"
+      : this.itemsArr;
+  }
+
+  changeBasketLimit(newLimit) {
+    return (this.limit = this.manager.changeBasketLimit(newLimit));
+  }
+
+  checkForPriceBeforeAddToCart(item) {
+    const price = `The price of your ${item} is ${item.length * 10} pence`;
+    return price;
+  }
+
+  addMultipleFavoriteToCart(name, times) {
+    if (times > this.limit - this.itemsArr.length)
+      return `Too many items for your basket ${this.itemsArr.length} of ${this.limit}`;
+    for (let i = 0; i < times; i++) {
+      this.addItemToBasket(name);
     }
-    return this.contents;
+
+    return this.itemsArr;
   }
 
-  removeBagel(id) {
-    for (let i = 0; i < this.contents.length; i++) {
-      if (this.contents[i].id === id) {
-        this.contents.splice([i], 1);
-        return this.contents;
-      }
-    }
-    return "Bagel isn't in basket";
-  }
-
-  basketIsFull() {
-    console.log("capacity" + this.capacity);
-    if (this.contents.length >= this.capacity) {
-      return "basket is full";
-    }
-    return false;
-  }
-
-  getTotal() {
-    let total = 0;
-    for (let i = 0; i < this.contents.length; i++) {
-      total += this.contents[i].price;
-    }
-    return total;
+  getTotalSumOfCart() {
+    return this.itemsArr.reduce((acc, item) => (acc += item.price), 0);
   }
 }
 
-module.exports = Basket;
+console.log(Basket.limit);
 
 module.exports = Basket;
