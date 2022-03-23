@@ -27,5 +27,11 @@ class Basket {
         if ( this.basket.length >= this.capacityBasket ) { return true }
         return false
     }
+
+    isFullManager () {
+        this.capacityBasket = 4
+        if ( this.basket.length >= this.capacityBasket ) { return true }
+        return false
+    }
 }
 module.exports = Basket
