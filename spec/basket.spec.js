@@ -33,4 +33,11 @@ describe('Basket', () => {
         const result = basket.add(item1)
         expect(result).toEqual(expected)
     })
+
+    it('should set a new capacity', () => {
+        const basket = new Basket()
+        const expected = 20
+        const result = basket.setCapacity(20)
+        expect(result).toEqual(expected)
+    })
 })

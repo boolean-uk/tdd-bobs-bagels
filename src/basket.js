@@ -15,6 +15,11 @@ class Basket {
         return this.items
     }
 
+    setCapacity (newCapacity) {
+        this.capacity = newCapacity
+        return this.capacity
+    }
+
     _hasCapacity () {
         return this.items.length < this.capacity
     }
