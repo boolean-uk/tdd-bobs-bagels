@@ -20,11 +20,7 @@ class Basket {
     }
 
     getTotalPrice () {
-        let total = 0
-        for (const item of this.items) {
-            total += item.price * item.quantity
-        }
-        return total
+        return this.items.reduce((total, item) => total += item.price * item.quantity, 0)
     }
 
     setCapacity (newCapacity) {
