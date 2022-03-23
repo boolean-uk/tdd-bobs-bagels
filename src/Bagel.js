@@ -14,8 +14,8 @@ class Bagel {
 
   addToBasket (name, num = 1) {
     const bagelNameArr = Object.keys(this.priceList)
-    // prevent adding bagels that are not in the menu
-    if (!bagelNameArr.includes(name)) return 'Please add bagels from the menu'
+    // prevent adding bagels that are not in the list
+    if (!bagelNameArr.includes(name)) return 'Please add bagels from the list'
 
     for (let i = 0; i < num; i++) {
       this.basket.push(name)
@@ -55,4 +55,3 @@ class Bagel {
 }
 
 module.exports = Bagel
-

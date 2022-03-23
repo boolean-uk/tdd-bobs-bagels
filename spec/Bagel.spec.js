@@ -13,11 +13,11 @@ describe ('Bagel', () => {
     expect(result).toEqual(expected)
   })
 
-  it ('trys to add a bagel that is not in the menu', () => {
+  it ('trys to add a bagel that is not in the list', () => {
     // setup
     const bagel = new Bagel()
 
-    const expected = 'Please add bagels from the menu'
+    const expected = 'Please add bagels from the list'
     // execute
     const result = bagel.addToBasket('chocolate chips')
     // verify
