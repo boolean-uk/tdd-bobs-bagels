@@ -41,4 +41,6 @@ I'd like to know if I try to remove an item that doesn't exist in my basket.
 Objects |Messages / Properties  | Methods | Output
 ---- | ---- | ---- | ----
 fullCapacity| @number | isFull() | @conditional flow with if true then its at full capacity else continue to order
-createLargeBasket| @object |
+createLargeBasket| @number | createLargeBasket() | capacity is increased so more could be ordered
+itemDoesNotExit | cannot remove item | itemDoesNotExit() | @string returned and conditional statement added into remove function
+
