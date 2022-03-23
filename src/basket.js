@@ -27,10 +27,11 @@ class Basket {
     return 'Your basket is full'
   }
 
-  //  better to return a basket in all sucessful cases
-  //  consider the case that adds lots of bagels at the same time
   remove (name) {
-    if (this.basket.includes(name)) this.basket = this.basket.filter(bagel => bagel !== name)
+    if (this.basket.includes(name)) {
+      this.basket.splice(this.basket.indexOf(name), 1)
+      return this.basket
+    }
     return 'You have not order this bagel'
   }
 
@@ -50,6 +51,3 @@ class Basket {
 module.exports = Basket
 
 /* try to apply the discount in the basket */
-
-const basket = new Basket()
-console.log(basket.add('poppy'))

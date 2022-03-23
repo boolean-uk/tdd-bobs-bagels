@@ -52,18 +52,18 @@ describe ('basket', () => {
     expect(result).toEqual(expected)
   })
 
-  it ('remove a specific bagel and returns the basket without that bagel', () => {
+  fit ('remove a specific bagel and returns the basket without that bagel', () => {
     // setup
     const basket = new Basket()
     basket.add('poppy')
     basket.add('sesame')
     basket.add('plain')
     basket.add('cheese')
-    basket.remove('plain')
+    basket.add('plain')
 
-    const expected = ['poppy', 'sesame', 'cheese']
+    const expected = ['poppy', 'sesame', 'cheese', 'plain']
     // execute
-    const result = basket.check()
+    const result = basket.remove('plain')
     // verify
     expect(result).toEqual(expected)
   })
