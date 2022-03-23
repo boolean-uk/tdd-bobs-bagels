@@ -113,7 +113,7 @@ describe("Basket for Bob's Bagel", () => {
     //verify
     expect(result).toEqual(expected);
   });
-  it("Add multiple favorite to cart", () => {
+  it("Get total amount of cart", () => {
     // setUp
     const basket = new Basket();
     // basket.addItemToBasket("bagel");
@@ -126,7 +126,7 @@ describe("Basket for Bob's Bagel", () => {
     //verify
     expect(result).toEqual(expected);
   });
-  it("Add multiple favorite to cart", () => {
+  it("Get total amount of cart", () => {
     // setUp
     const basket = new Basket();
     basket.addItemToBasket("bagel");

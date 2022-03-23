@@ -1,4 +1,5 @@
 const Manager = require("../src/manager");
+const Item = require("../src/item");
 // const Costumer = require("../src/costumer");
 // var readlineSync = require("readline-sync");
 
@@ -9,13 +10,9 @@ class Basket {
   manager = new Manager();
 
   addItemToBasket(name) {
-    const item = {
-      name,
-      id: this.currentId,
-      price: name.length * 10,
-    };
+    const price = name.length * 10;
+    const { ...item } = new Item(name, this.currentId, price);
     this.currentId++;
-    this.checkForPriceBeforeAddToCart(item);
     this.itemsArr.push(item);
 
     return this.isBasketFull() ? "Your basket is full!" : this.itemsArr;
