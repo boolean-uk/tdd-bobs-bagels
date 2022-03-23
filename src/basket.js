@@ -5,8 +5,10 @@ class Basket {
     }
 
     add (item) {
-        if (!this._hasCapacity()) return 'Sorry, your basket is already full.'
+        if (!this._hasCapacity(item.quantity)) return 'Sorry, your basket is already full.'
         this.items.push(item)
+        this.capacity -= item.quantity
+
         return this.items
     }
 
@@ -22,8 +24,8 @@ class Basket {
         return this.capacity
     }
 
-    _hasCapacity () {
-        return this.items.length < this.capacity
+    _hasCapacity (num) {
+        return num <= this.capacity
     }
 
     _itemExists (id) {
