@@ -1,15 +1,9 @@
+const Item = require('item.js')
+
 class Basket {
   constructor () {
     this.basket = []
     this.capacity = 5
-    this.priceList = {
-      plain: 2,
-      cheese: 3,
-      cinnamon: 3,
-      raisin: 3,
-      poppy: 4,
-      sesame: 4
-    }
   }
 
   add (name, num = 1) {
