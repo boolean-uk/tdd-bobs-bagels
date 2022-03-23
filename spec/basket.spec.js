@@ -96,19 +96,16 @@ describe("Bob's Bagels", function () {
     expect(result).toEqual(expected);
   });
 
-  // it("returns the total sum of the basket items", () => {
-  //   // set up
-  //   const bobsBagels = new BobsBagels();
-  //   const expected = ///sum here
-  //   // execute
-  //   bobsBagels.addBagel("Plain", 3)
-  //   const result = bobsBagels.totalSum()
-  //   // verify
-  //   expect(result).toEqual(expected);
-  // });
-
-
+  it("returns the total sum of the basket items", () => {
+    // set up
+    const bobsBagels = new BobsBagels();
+    const expected = 6;
+    // execute
+    bobsBagels.addBagel("Plain", 2);
+    bobsBagels.addBagel("Not So Plain", 1);
+    bobsBagels.addBagel("Very Tasty", 3);
+    const result = bobsBagels.totalSum();
+    // verify
+    expect(result).toEqual(expected);
+  });
 });
-
-
-

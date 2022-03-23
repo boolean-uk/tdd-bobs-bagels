@@ -15,6 +15,14 @@ class BobsBagels {
         description: "Very Tasty",
         price: 2,
       },
+      {
+        description: "Bagel Extra",
+        price: 2.5,
+      },
+      {
+        description: "Bagel Special",
+        price: 3,
+      },
     ];
   }
 
@@ -68,6 +76,10 @@ class BobsBagels {
         return this.menu[i].price;
       }
     }
+  }
+
+  totalSum() {
+    return this.basket.length;
   }
 }
 
