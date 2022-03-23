@@ -9,8 +9,15 @@ class Basket {
     return this.basketList;
   }
 
-  removeFromBasket(bagel) {
-    this.basketList.shift(bagel);
+  removeFromBasket(bagelName) {
+    for (let i = 0; i < this.basketList.length; i++) {
+      // console.log(i, bagelName, this.basketList[i].name);
+      if (this.basketList[i].name === bagelName) {
+        this.basketList.splice(i, 1);
+        // console.log(this.basketList);
+        break;
+      }
+    }
     return this.basketList;
   }
 
