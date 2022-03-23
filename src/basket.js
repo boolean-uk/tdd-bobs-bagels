@@ -12,7 +12,7 @@ class Basket {
 
     remove (id) {
         if (!this._itemExists(id)) return 'Sorry, that item is not in the basket'
-        
+
         this.items = this.items.filter((item) => item.id !== id)
         return this.items
     }
@@ -33,13 +33,5 @@ class Basket {
         return false
     }
 }
-
-const Item = require("../src/item")
-const basket = new Basket()
-const item = new Item(1, 'bagel')
-const item2 = new Item(2, 'bagel')
-basket.add(item)
-basket.add(item2)
-console.log(basket.items)
 
 module.exports = Basket

@@ -49,4 +49,14 @@ describe('Basket', () => {
         const result = basket.remove(2)
         expect(result).toEqual(expected)
     })
+
+})
+
+describe('Item', () => {
+    it('should get the price of the item', () => {
+        const item = new Item(1, 'bagel')
+        const expected = 2
+        const result = item.getPrice()
+        expect(result).toEqual(expected)
+    })
 })
