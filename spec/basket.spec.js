@@ -1,5 +1,4 @@
 const Basket = require("../src/basket.js");
-const Item = require("../src/item.js");
 
 describe("Basket", () => {
   it("check bagel menu", () => {

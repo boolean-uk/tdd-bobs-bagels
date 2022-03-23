@@ -4,9 +4,18 @@ class Basket {
     { id: 1, name: "Philli", price: 2.89 },
     { id: 2, name: "Mexicano", price: 6.99 }
   ];
-  basket = [];
+
   counter = 3;
+
+  createNewBagel(newBagelName, price) {
+    const newBagel = { id: this.counter, name: newBagelName, price: price };
+    this.bagelMenu.push(newBagel);
+    this.counter += 1;
+    return this.bagelMenu;
+  }
+
   #basketCapacity;
+  basket = [];
 
   constructor() {
     this.#basketCapacity = 5;
@@ -18,13 +27,6 @@ class Basket {
 
   set basketCapacity(newCapacity) {
     return (this.#basketCapacity = newCapacity);
-  }
-
-  createNewBagel(newBagelName, price) {
-    const newBagel = { id: this.counter, name: newBagelName, price: price };
-    this.bagelMenu.push(newBagel);
-    this.counter += 1;
-    return this.bagelMenu;
   }
 
   addItemToBasketByName(nameOfBagel) {
@@ -40,8 +42,6 @@ class Basket {
     console.log("Sorry we do not have your selection");
     return this.basket;
   }
-
-  noSuchItemToRemove(nameOfItemToRemove) {}
 
   removeItemByName(nameItemToRemove) {
     const itemInBasket = [];

@@ -23,3 +23,16 @@
 | Price of each item             | @array  | {name, price}     | pricePerItem()     | @string                          |
 | Add same type                  | @array  | {name}            | addToBasket()      | [{} {}]                          |
 | Total for basket               | @array  | {price: price}    | totalForBasket()   | @string                          |
+
+---
+
+---
+
+> Bob's Bagels
+
+### Extension one
+
+| Psuedo                        | Objects | Properties             | Messages / Methods     | Output                                           |
+| ----------------------------- | ------- | ---------------------- | ---------------------- | ------------------------------------------------ |
+| create SKU code               | @string | @string                | createSkuCode()        | @string                                          |
+| Create new bagel, update menu | @array  | {SKU, id, price, name} | createItemUpdateMenu() | {SKU: @str, id: @Int, price: @float, name: @str} |
