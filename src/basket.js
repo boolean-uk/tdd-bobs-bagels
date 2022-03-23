@@ -23,3 +23,34 @@ class Basket {
     }
     return this.contents;
   }
+
+  removeBagel(id) {
+    for (let i = 0; i < this.contents.length; i++) {
+      if (this.contents[i].id === id) {
+        this.contents.splice([i], 1);
+        return this.contents;
+      }
+    }
+    return "Bagel isn't in basket";
+  }
+
+  basketIsFull() {
+    console.log("capacity" + this.capacity);
+    if (this.contents.length >= this.capacity) {
+      return "basket is full";
+    }
+    return false;
+  }
+
+  getTotal() {
+    let total = 0;
+    for (let i = 0; i < this.contents.length; i++) {
+      total += this.contents[i].price;
+    }
+    return total;
+  }
+}
+
+module.exports = Basket;
+
+module.exports = Basket;

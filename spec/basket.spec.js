@@ -28,3 +28,19 @@ describe("Basket", () => {
 
     expect(result).toEqual(expected);
   });
+
+  it("remove item from basket", () => {
+    const expected = [];
+    basket.addBagel();
+    const result = basket.removeBagel(1);
+
+    expect(result).toEqual(expected);
+  });
+
+  it("add a second bagel to basket", () => {
+    const expected = [new Bagel(1, "blt"), new Bagel(2, "blt")];
+    basket.addBagel("blt");
+    const result = basket.addBagel("blt");
+
+    expect(result).toEqual(expected);
+  });
