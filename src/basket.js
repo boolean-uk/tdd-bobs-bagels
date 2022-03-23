@@ -6,16 +6,18 @@ class Bagel {
       plain: 2,
       cheese: 3,
       cinnamon: 3,
-      raisin: 3,
+      raisins: 3,
       poppy: 4,
       sesame: 4,
     };
+    console.log("Basket", this.priceList);
   }
 
   addToBasket(name, num = 1) {
     const bagelNameArr = Object.keys(this.priceList);
     if (!bagelNameArr.includes(name)) return "Please add bagels from the list";
 
+    console.log("Before Loop", this.basket);
     for (let i = 0; i < num; i++) {
       this.basket.push(name);
     }

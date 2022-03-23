@@ -1,4 +1,4 @@
-const Bagel = require("../src/Bagel.js");
+const Bagel = Require("../src/Bagel.js");
 
 describe("Bagel", () => {
   // Requirement 1
@@ -10,7 +10,7 @@ describe("Bagel", () => {
     expect(result).toEqual(expected);
   });
 
-  it("trys to add a bagel that is not in the list", () => {
+  it("tries to add a bagel that is not in the list", () => {
     const bagel = new Bagel();
 
     const expected = "Please add bagels from the list";
@@ -55,8 +55,8 @@ describe("Bagel", () => {
     bagel.addToBasket("sesame");
     bagel.addToBasket("plain");
     bagel.addToBasket("cheese");
-    bagel.addToBasket("raisin");
-    bagel.addToBasket("cinammon");
+    bagel.addToBasket("raisins");
+    bagel.addToBasket("cinnamon");
 
     const expected = "Your basket is full";
     const result = bagel.isFull();
@@ -80,7 +80,7 @@ describe("Bagel", () => {
     bagel.addToBasket("sesame");
     bagel.addToBasket("plain");
     bagel.addToBasket("cheese");
-    bagel.addToBasket("raisin");
+    bagel.addToBasket("raisins");
     bagel.createBigBasket();
 
     const expected = "Continue to order; 7 bagels left";
@@ -91,10 +91,10 @@ describe("Bagel", () => {
   it('tries to remove a non-existing bagel and returns "You have not order this bagel"', () => {
     const bagel = new Bagel();
     bagel.addToBasket("poppy");
-    bagel.removeFromBasket("raisin");
+    bagel.removeFromBasket("raisins");
 
     const expected = "You have not order this bagel";
-    const result = bagel.removeFromBasket("raisin");
+    const result = bagel.removeFromBasket("raisins");
     expect(result).toEqual(expected);
   });
 
