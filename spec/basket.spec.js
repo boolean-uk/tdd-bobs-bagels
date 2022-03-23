@@ -65,7 +65,7 @@ describe ('basket', () => {
   })
 
   /* --- REQUIREMENT PART 2 --- */
-  it ('returns "Your basket is full"', () => {
+  fit ('returns "Your basket is full"', () => {
     // setup
     const basket = new Basket()
     basket.add('poppy')
@@ -73,16 +73,16 @@ describe ('basket', () => {
     basket.add('plain')
     basket.add('cheese')
     basket.add('raisin')
-    basket.add('cinammon')
+    basket.add('cinnamon')
 
     const expected = 'Your basket is full'
     // execute
-    const result = basket.isFull()
+    const result = basket.add('plain')
     // verify
     expect(result).toEqual(expected)
   })
 
-  it ('returns "Continue to order; 3 bagels left"', () => {
+  fit ('returns "Continue to order; 3 bagels left"', () => {
     // setup
     const basket = new Basket()
     basket.add('poppy')
@@ -95,7 +95,7 @@ describe ('basket', () => {
     expect(result).toEqual(expected)
   })
 
-  it ('returns "Continue to order; 7 bagels left"', () => {
+  fit ('returns "Continue to order; 7 bagels left"', () => {
     // setup
     const basket = new Basket()
     basket.add('poppy')
