@@ -28,7 +28,7 @@ Verb: buy
 | Methods                               | Output                                |
 | ------------------------------------- | ------------------------------------- |
 | skuQuantity(basket)                   | skuQuantity @Array[[@String, @Number]]|
-| subPrice(@item)                       | subPrice @Array[@Number]              |
+| subPrice(@skuQuantity())              | subPrice @Array[@Number]              |
 | totalPrice(@subPrice())               | totalPrice @Number                    | 
-| receiptLine(@skuQuantity(), @subPrice())  | one line of receipt @String ${skuQuantity[i][1] x @skuQuantity[i][0] = @subPrice(@item)}
+| receiptLine(@skuQuantity(), @subPrice())  | one line of receipt @String ${skuQuantity[i][1]} x ${@skuQuantity[i][0]} = ${@subPrice()}
 | printReceipt(@receiptLine(), @totalPrice()) | @receiptLine() --- @totalPrice() |
