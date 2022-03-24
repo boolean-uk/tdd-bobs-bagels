@@ -22,7 +22,6 @@ Verb: buy
 ## Domain Model
 | Objects    | Properties                         |
 | ---------- | ---------------------------------- |
-| items      | item @String                       |
 | list       | item {name @String, price @Number} |
 
 | Methods                               | Output                                |
