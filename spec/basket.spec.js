@@ -99,7 +99,7 @@ describe('CashRegister', () => {
     it('should apply multiple special offers', () => {
         const basket = new Basket()
         const bagelE = new Item('BGLE', 6)
-        const bagelO = new Item('BGLE', 6)
+        const bagelO = new Item('BGLO', 6)
         const expected = 4.98
         basket.add(bagelE)
         basket.add(bagelO)
