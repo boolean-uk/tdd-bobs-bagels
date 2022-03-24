@@ -1,30 +1,22 @@
 const Menu = require("./menu.js");
 
 class Basket {
-  // create instance of menu
-  menu = new Menu();
-  bagelMenu = [
-    { id: 0, name: "New Yorker", price: 3.69 },
-    { id: 1, name: "Philli", price: 2.89 },
-    { id: 2, name: "Mexicano", price: 6.99 }
-  ];
-
-  counter = 3;
-
-  createNewBagel(newBagelName, price) {
-    const newBagel = { id: this.counter, name: newBagelName, price: price };
-    this.bagelMenu.push(newBagel);
-    this.counter += 1;
-    return this.bagelMenu;
+  initialiseMenu() {
+    let latestMenu = new Menu();
+    latestMenu.createItemUpdateMenu("Bagel Onion", 0.49);
+    latestMenu.createItemUpdateMenu("Bagel Plain", 0.39);
+    latestMenu.createItemUpdateMenu("Bagel Everything", 0.49);
+    this.latestMenu = latestMenu.createItemUpdateMenu("Coffee", 0.99);
   }
-
-  #basketCapacity;
-  basket = [];
 
   constructor() {
+    this.basket = [];
     this.#basketCapacity = 5;
-    this.cost = new Cost(this);
+    this.initialiseMenu();
   }
+  counter = 4;
+
+  #basketCapacity;
 
   get basketCapacity() {
     return this.#basketCapacity;
@@ -38,7 +30,7 @@ class Basket {
     if (this.basket.length === this.#basketCapacity) {
       return (this.str = `I'm afraid your basket is full`);
     }
-    for (let item of this.bagelMenu) {
+    for (let item of this.latestMenu) {
       if (item.name === nameOfBagel) {
         this.basket.push(item);
         return this.basket;
@@ -94,7 +86,7 @@ class Basket {
   pricePerItem() {
     let str = "";
     for (let item of this.basket) {
-      str += `Your ${item.name} will cost you $${item.price}.`;
+      str += `Your ${item.name} will cost you $${item.price}.` + `\n`;
     }
     return str;
   }
@@ -105,6 +97,20 @@ class Basket {
       total += item.price;
     }
     return `$${total.toFixed(2)}`;
+  }
+
+  isMyBasketFull() {
+    if (this.basket.length === this.#basketCapacity) {
+      return `I'm afraid your basket is full`;
+    }
+    if (this.basket.length < this.#basketCapacity) {
+      const spareCapacity = this.#basketCapacity - this.basket.length;
+      return `You can buy another ${spareCapacity} bagels`;
+    }
+    if (this.basket.length > this.#basketCapacity) {
+      const overCapacity = this.basket.length - this.#basketCapacity;
+      return `Sorry, you are over capacity, please return ${overCapacity} bagels`;
+    }
   }
 }
 module.exports = Basket;

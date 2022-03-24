@@ -1,19 +1,28 @@
 const Cost = require("../src/cost.js");
 
 describe("Cost", () => {
-  it("calculate cost of basket", () => {
+  it("cost without any discounts", () => {
     // set up
-    const newBasket = new Basket();
-    const expected = 3.73;
+    const newBasket = new Cost();
+    const expected = 3.35;
     // execute
-    newBasket.createItemUpdateMenu("Bagel Onion", 0.49);
-    newBasket.createItemUpdateMenu("Bagel Plain", 0.39);
-    newBasket.createItemUpdateMenu("Bagel Everything", 0.49);
-    newBasket.createItemUpdateMenu("Bagel Onion", 0.49);
-    newBasket.createItemUpdateMenu("Bagel Plain", 0.39);
-    newBasket.createItemUpdateMenu("Bagel Everything", 0.49);
 
-    const result = newBasket.createItemUpdateMenu("Coffee", 0.99);
+    const result = newBasket.totalCost();
+    console.log("11....", result);
+
+    // verify
+    expect(result).toEqual(expected);
+  });
+
+  it("cost with discounts", () => {
+    // set up
+    const newBasket = new Cost();
+    const expected = 1.37;
+    // execute
+
+    const result = newBasket.totalDiscountCost();
+    console.log("24....", result);
+
     // verify
     expect(result).toEqual(expected);
   });

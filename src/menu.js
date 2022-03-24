@@ -1,4 +1,7 @@
 class Menu {
+  counter = 0;
+  bagelMenu = [];
+
   createSkuCode(string) {
     let SKU = "";
     if (string.slice(0, 1) !== "B") {
@@ -17,9 +20,6 @@ class Menu {
     SKU += stringSplit[1].slice(0, 1);
     return SKU.toUpperCase();
   }
-
-  counter = 0;
-  bagelMenu = [];
 
   createItemUpdateMenu(newMenuItem, price) {
     const SKU = this.createSkuCode(newMenuItem);

@@ -32,7 +32,8 @@
 
 ### Extension one
 
-| Psuedo                        | Objects | Properties             | Messages / Methods     | Output                                           |
-| ----------------------------- | ------- | ---------------------- | ---------------------- | ------------------------------------------------ |
-| create SKU code               | @string | @string                | createSkuCode()        | @string                                          |
-| Create new bagel, update menu | @array  | {SKU, id, price, name} | createItemUpdateMenu() | {SKU: @str, id: @Int, price: @float, name: @str} |
+| Psuedo                        | Objects | Properties             | Messages / Methods              | Output                                           |
+| ----------------------------- | ------- | ---------------------- | ------------------------------- | ------------------------------------------------ |
+| create SKU code               | @string | @string                | createSkuCode()                 | @string                                          |
+| Create new bagel, update menu | @array  | {SKU, id, price, name} | createItemUpdateMenu()          | {SKU: @str, id: @Int, price: @float, name: @str} |
+| createCost class              | @class  | @methods, @attributes  | totalCost() totalDiscountCost() | @Integer                                         |

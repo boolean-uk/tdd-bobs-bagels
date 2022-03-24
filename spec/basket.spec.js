@@ -4,30 +4,15 @@ describe("Basket", () => {
   it("check bagel menu", () => {
     // set up
     const newBagel = new Basket();
-    newBagel.menu.createItemUpdateMenu("Bagel Onion", 0.49);
+    // newBagel.menu.createItemUpdateMenu("Bagel Onion", 0.49);
     const expected = [
-      { id: 0, name: "New Yorker", price: 3.69 },
-      { id: 1, name: "Philli", price: 2.89 },
-      { id: 2, name: "Mexicano", price: 6.99 }
+      { SKU: "BGLO", id: 0, name: "Bagel Onion", price: 0.49 },
+      { SKU: "BGLP", id: 1, name: "Bagel Plain", price: 0.39 },
+      { SKU: "BGLE", id: 2, name: "Bagel Everything", price: 0.49 },
+      { SKU: "COF", id: 3, name: "Coffee", price: 0.99 }
     ];
     // execute
-    const result = newBagel.bagelMenu;
-    // verify
-    expect(result).toEqual(expected);
-  });
-
-  it("creates new bagel, returns new bagel menu", () => {
-    // set up
-    const newBagel = new Basket();
-    const expected = [
-      { id: 0, name: "New Yorker", price: 3.69 },
-      { id: 1, name: "Philli", price: 2.89 },
-      { id: 2, name: "Mexicano", price: 6.99 },
-      { id: 3, name: "African", price: 5.99 }
-    ];
-    // execute
-    newBagel.createNewBagel("African", 5.99);
-    const result = newBagel.bagelMenu;
+    const result = newBagel.latestMenu;
     // verify
     expect(result).toEqual(expected);
   });
@@ -35,11 +20,10 @@ describe("Basket", () => {
   it("adds selected bagel to basket", () => {
     // set up
     const newBagel = new Basket();
-    const expected = [{ id: 3, name: "African", price: 5.99 }];
+    const expected = [{ SKU: "BGLO", id: 0, name: "Bagel Onion", price: 0.49 }];
     // execute
-    newBagel.createNewBagel("African", 5.99);
 
-    const result = newBagel.addItemToBasketByName("African");
+    const result = newBagel.addItemToBasketByName("Bagel Onion");
     // verify
     expect(result).toEqual(expected);
   });
@@ -48,14 +32,12 @@ describe("Basket", () => {
     // set up
     const newBagel = new Basket();
     const expected = [
-      { id: 3, name: "African", price: 5.99 },
-      { id: 2, name: "Mexicano", price: 6.99 }
+      { SKU: "BGLE", id: 2, name: "Bagel Everything", price: 0.49 },
+      { SKU: "COF", id: 3, name: "Coffee", price: 0.99 }
     ];
     // execute
-    newBagel.createNewBagel("African", 5.99);
-    newBagel.addItemToBasketByName("African");
-    const result = newBagel.addItemToBasketByName("Mexicano");
-
+    newBagel.addItemToBasketByName("Bagel Everything");
+    const result = newBagel.addItemToBasketByName("Coffee");
     // verify
     expect(result).toEqual(expected);
   });
@@ -65,8 +47,7 @@ describe("Basket", () => {
     const newBagel = new Basket();
     const expected = [];
     // execute
-    newBagel.createNewBagel("African", 5.99);
-    newBagel.addItemToBasketByName("AfricanSpice");
+
     const result = newBagel.addItemToBasketByName("MexicanoExtraHot");
 
     // verify
@@ -77,21 +58,19 @@ describe("Basket", () => {
     // set up
     const newBagel = new Basket();
     const expected = [
-      // { id: 0, name: "New Yorker", price: 3.69 },
-      { id: 1, name: "Philli", price: 2.89 },
-      { id: 2, name: "Mexicano", price: 6.99 },
-      { id: 3, name: "African", price: 5.99 }
+      { SKU: "BGLP", id: 1, name: "Bagel Plain", price: 0.39 },
+      { SKU: "BGLE", id: 2, name: "Bagel Everything", price: 0.49 },
+      { SKU: "COF", id: 3, name: "Coffee", price: 0.99 }
     ];
     // execute
-    newBagel.createNewBagel("African", 5.99);
 
-    newBagel.addItemToBasketByName("New Yorker");
-    newBagel.addItemToBasketByName("Philli");
-    newBagel.addItemToBasketByName("Mexicano");
-    newBagel.addItemToBasketByName("African");
+    newBagel.addItemToBasketByName("Bagel Onion");
+    newBagel.addItemToBasketByName("Bagel Plain");
+    newBagel.addItemToBasketByName("Bagel Everything");
+    newBagel.addItemToBasketByName("Coffee");
 
     // newBagel.removeItemByName("New Yorker");
-    const result = newBagel.removeItemByName("New Yorker");
+    const result = newBagel.removeItemByName("Bagel Onion");
 
     // verify
     expect(result).toEqual(expected);
@@ -102,15 +81,11 @@ describe("Basket", () => {
     const newBagel = new Basket();
     const expected = `No such item to remove. Get a grip !!!!`;
     // execute
-    newBagel.createNewBagel("African", 5.99);
+    newBagel.addItemToBasketByName("Bagel Onion");
+    newBagel.addItemToBasketByName("Bagel Plain");
+    newBagel.addItemToBasketByName("Bagel Everything");
 
-    newBagel.addItemToBasketByName("African");
-    newBagel.addItemToBasketByName("Philli");
-    newBagel.addItemToBasketByName("Mexicano");
-
-    newBagel.addItemToBasketByName("New Yorker");
-
-    const result = newBagel.removeItemByName("New Yorker Super Duper");
+    const result = newBagel.removeItemByName("New Yorker ");
 
     // verify
     expect(result).toEqual(expected);
@@ -142,13 +117,12 @@ describe("Basket", () => {
     const newBagel = new Basket();
     const expected = `I'm afraid your basket is full`;
     // execute
-    newBagel.createNewBagel("African", 5.99);
 
-    newBagel.addItemToBasketByName("African");
-    newBagel.addItemToBasketByName("Philli");
-    newBagel.addItemToBasketByName("Mexicano");
-    newBagel.addItemToBasketByName("Mexicano");
-    newBagel.addItemToBasketByName("New Yorker");
+    newBagel.addItemToBasketByName("Bagel Onion");
+    newBagel.addItemToBasketByName("Bagel Plain");
+    newBagel.addItemToBasketByName("Bagel Everything");
+    newBagel.addItemToBasketByName("Bagel Onion");
+    newBagel.addItemToBasketByName("Bagel Plain");
 
     const result = newBagel.isMyBasketFull();
 
@@ -161,11 +135,10 @@ describe("Basket", () => {
     const newBagel = new Basket();
     const expected = `You can buy another 2 bagels`;
     // execute
-    newBagel.createNewBagel("African", 5.99);
 
-    newBagel.addItemToBasketByName("Mexicano");
-    newBagel.addItemToBasketByName("Mexicano");
-    newBagel.addItemToBasketByName("New Yorker");
+    newBagel.addItemToBasketByName("Bagel Onion");
+    newBagel.addItemToBasketByName("Bagel Plain");
+    newBagel.addItemToBasketByName("Bagel Everything");
 
     const result = newBagel.isMyBasketFull();
 
@@ -178,16 +151,13 @@ describe("Basket", () => {
     const newBagel = new Basket();
     const expected = `I'm afraid your basket is full`;
     // execute
-    newBagel.createNewBagel("African", 5.99);
+    newBagel.addItemToBasketByName("Bagel Onion");
+    newBagel.addItemToBasketByName("Bagel Plain");
+    newBagel.addItemToBasketByName("Bagel Everything");
+    newBagel.addItemToBasketByName("Bagel Plain");
+    newBagel.addItemToBasketByName("Bagel Everything");
 
-    newBagel.addItemToBasketByName("African");
-    newBagel.addItemToBasketByName("Philli");
-    newBagel.addItemToBasketByName("Mexicano");
-    newBagel.addItemToBasketByName("Mexicano");
-    newBagel.addItemToBasketByName("New Yorker");
-    newBagel.addItemToBasketByName("New Yorker");
-
-    const result = newBagel.addItemToBasketByName("New Yorker");
+    const result = newBagel.addItemToBasketByName("Bagel Everything");
 
     // verify
     expect(result).toEqual(expected);
@@ -196,12 +166,13 @@ describe("Basket", () => {
   it("returns a string with each item and it's price", () => {
     // set up
     const newBagel = new Basket();
-    const expected = "Your African will cost you $5.99.";
+    const expected =
+      "Your Bagel Plain will cost you $0.39.\nYour Bagel Everything will cost you $0.49.\n";
+
     // execute
-    newBagel.createNewBagel("African", 5.99);
 
-    newBagel.addItemToBasketByName("African");
-
+    newBagel.addItemToBasketByName("Bagel Plain");
+    newBagel.addItemToBasketByName("Bagel Everything");
     const result = newBagel.pricePerItem();
 
     // verify
@@ -212,19 +183,18 @@ describe("Basket", () => {
     // set up
     const newBagel = new Basket();
     const expected = [
-      { id: 3, name: "African", price: 5.99 },
-      { id: 3, name: "African", price: 5.99 },
-      { id: 3, name: "African", price: 5.99 },
-      { id: 3, name: "African", price: 5.99 }
+      { SKU: "BGLE", id: 2, name: "Bagel Everything", price: 0.49 },
+      { SKU: "BGLP", id: 1, name: "Bagel Plain", price: 0.39 },
+      { SKU: "BGLE", id: 2, name: "Bagel Everything", price: 0.49 },
+      { SKU: "BGLE", id: 2, name: "Bagel Everything", price: 0.49 }
     ];
     // execute
-    newBagel.createNewBagel("African", 5.99);
 
-    newBagel.addItemToBasketByName("African");
-    newBagel.addItemToBasketByName("African");
-    newBagel.addItemToBasketByName("African");
+    newBagel.addItemToBasketByName("Bagel Everything");
+    newBagel.addItemToBasketByName("Bagel Plain");
+    newBagel.addItemToBasketByName("Bagel Everything");
 
-    const result = newBagel.addItemToBasketByName("African");
+    const result = newBagel.addItemToBasketByName("Bagel Everything");
     // verify
     expect(result).toEqual(expected);
   });
@@ -232,14 +202,11 @@ describe("Basket", () => {
   it("returns total for basket", () => {
     // set up
     const newBagel = new Basket();
-    const expected = "$19.56";
+    const expected = "$1.37";
     // execute
-    newBagel.createNewBagel("African", 5.99);
-
-    newBagel.addItemToBasketByName("African");
-    newBagel.addItemToBasketByName("Mexicano");
-    newBagel.addItemToBasketByName("New Yorker");
-    newBagel.addItemToBasketByName("Philli");
+    newBagel.addItemToBasketByName("Bagel Everything");
+    newBagel.addItemToBasketByName("Bagel Plain");
+    newBagel.addItemToBasketByName("Bagel Everything");
 
     const result = newBagel.totalForBasket();
 
