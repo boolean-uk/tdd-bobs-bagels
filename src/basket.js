@@ -20,12 +20,13 @@ class Basket {
       }
       return `Your Basket: ${this.basket} ${this.isFull()}`
     }
+    return this.isFull()
   }
 
   remove (bagel) {
     if (this.basket.includes(bagel)) {
       this.basket.splice(this.basket.indexOf(bagel), 1)
-      return this.basket
+      return `Your Basket: ${this.basket} ${this.isFull()}`
     }
     return 'You have not order this bagel'
   }
