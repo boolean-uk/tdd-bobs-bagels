@@ -1,5 +1,6 @@
 const Basket = require('../src/basket')
 const Item = require("../src/item")
+const CashRegister = require("../src/cashRegister")
 
 describe('Basket', () => {
     it('should add an item to basket', () => {
@@ -21,7 +22,7 @@ describe('Basket', () => {
 
     it('should tell the user when basket is full', () => {
         const basket = new Basket()
-        const item1 = new Item('BGLP', 6)
+        const item1 = new Item('BGLP', 16)
         const expected = 'Sorry, your basket is already full.'
         const result = basket.add(item1)
         expect(result).toEqual(expected)
@@ -53,15 +54,6 @@ describe('Basket', () => {
         const result = basket.setCapacity(20)
         expect(result).toEqual(expected)
     })
-
-    it('should get the total price of the item in the basket', () => {
-        const basket = new Basket()
-        const item = new Item('BGLP', 3)
-        const expected = 1.17
-        basket.add(item)
-        const result = basket.getTotalPrice()
-        expect(result).toEqual(expected)
-    })
 })
 
 describe('Item', () => {
@@ -69,6 +61,31 @@ describe('Item', () => {
         const item = new Item('BGLP')
         const expected = 0.39
         const result = item.getPrice()
+        expect(result).toEqual(expected)
+    })
+})
+
+describe('CashRegister', () => {
+    // it('should apply special offer for coffee and plain bagel', () => {
+    //     const basket = new Basket()
+    //     const bagel = new Item('BGLP')
+    //     const coffee = new Item('COF')
+    //     const expected = 1.25
+    //     basket.add(bagel)
+    //     basket.add(coffee)
+    //     const cashRegister = new CashRegister(basket.items)
+    //     cashRegister.applyOffers()
+    //     const result = cashRegister.getTotalPrice()
+    //     expect(result).toEqual(expected)
+    // })
+
+    it('should get the total price of the items in the basket', () => {
+        const basket = new Basket()
+        const item = new Item('BGLP', 3)
+        const expected = 1.17
+        basket.add(item)
+        const cashRegister = new CashRegister(basket.items)
+        const result = cashRegister.getTotalPrice()
         expect(result).toEqual(expected)
     })
 })

@@ -41,11 +41,11 @@ Start with extracting useful stories and a functional domain model that represen
 ```
 As a member of the public
 So I can save money
-I'd like to buy bagels at the special prices.
+I'd like to get a special offer on bagels.
 
 As a member of the public
 So I can save money
-I'd like to buy coffee and a plain bagel at the offered discount.
+I'd like to get a special offer for coffee & plain bagel.
 ```
 
 ---

@@ -43,3 +43,10 @@ Total                  £5.55
         Thank you
       for your order!
 ```
+
+## User Stories
+
+```
+As a member of the public
+So I can see my spending
+I'd like to get a receipt for my purchase.
