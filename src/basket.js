@@ -70,6 +70,7 @@ class Basket {
           obj.withoutDiscount += bagel.withoutDiscount;
           obj.price += bagel.price;
           obj.offer = bagel.offer;
+          obj.priceForOne = bagel.price / bagel.withoutDiscount;
 
           return obj;
         },
@@ -101,12 +102,18 @@ class Basket {
 
   applyDiscount() {
     let discountedBasket = this.billBeforeDiscount.map((bagel) => {
+      let discountApplied = 0;
       while (bagel.withoutDiscount >= bagel.offer[0]) {
-        bagel.price = bagel.offer[1];
+        discountApplied++;
+        console.log(discountApplied);
+
         bagel.withoutDiscount -= bagel.offer[0];
         bagel.discountedBagels = (bagel.discountedBagels || 0) + bagel.offer[0];
         bagel.totalQuantity = bagel.discountedBagels + bagel.withoutDiscount;
-        // return bagel;
+
+        bagel.price =
+          bagel.offer[1] * discountApplied +
+          bagel.withoutDiscount * bagel.priceForOne;
       }
       bagel.totalQuantity =
         bagel.totalQuantity || bagel.discountedBagels + bagel.withoutDiscount;
