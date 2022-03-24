@@ -7,17 +7,19 @@ class CashRegister {
     }
 
     getTotalPrice () {
-        return this.items.reduce((acc, cur) => acc += cur.price * cur.quantity, 0)
+        this.items = this._applyOffers()
+        const total = this.items.reduce((acc, cur) => acc += cur.price, 0).toFixed(2)
+        return Number(total)
     }
 
     printReceipt () {
         const items = this.items
-        const total = this.getTotalPrice().toFixed(2)
+        const total = this.getTotalPrice()
         let str = ``
         for (let i = 0; i < items.length; i++) {
             const [variant, name] = [items[i].variant, items[i].name]
             const qty = items[i].quantity
-            const price = (qty * items[i].price).toFixed(2)
+            const price = (items[i].price).toFixed(2)
 
             if (items[i].SKU === 'COF' || items[i].SKU === 'BGLE') {
                 str += `${variant} ${name}   ${qty} £${(price)}\n`
@@ -40,8 +42,14 @@ class CashRegister {
         return receipt
     }
 
-    applyOffers () {
-        
+    _applyOffers () {
+        const items = this.items
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].discount) {
+                items[i].price += items[i].discount * (Math.floor(items[i].quantity / items[i].bundleSize))
+            }
+        }
+        return items
     }
 
     _hasCoffeeAndBagel (items) {
@@ -53,43 +61,20 @@ class CashRegister {
         return coffee && bagel
     }
 
-    _applyPlainBagelsOffer (items) {
-        // INCOMPLETE
-        const initialArr = items
-        const finalArr = []
-        for (let i = 0; i < initialArr.length; i++) {
-            if (initialArr[i].SKU && initialArr[i].quantity === 12) {
-                finalArr.push(initialArr.splice(i, 1))
-                continue
-            }
-            if (initialArr[i].SKU) {
-                initialArr[i].quantity -= 12
-                finalArr.push(new Item('BGLP', 12))
-                continue
-            }
-        }
-        console.log('Initial:', initialArr)
-        console.log('Final:', finalArr)
-        return finalArr
-    }
-
-    _has12PlainBagels (items) {
-        let specialOffer = false
-        for (const item of items) {
-            if (item.SKU === 'BGLP' && item.quantity >= 12) specialOffer = true
-        }
-        return specialOffer
-    }
 }
+
+// TESTING
 const basket = new Basket()
-const item1 = new Item('BGLE', 5)
+const item1 = new Item('BGLE', 3)
+const item5 = new Item('BGLE', 3)
 const item2 = new Item('COF', 2)
 const item3 = new Item('BGLO', 1)
-const item4 = new Item('BGLP', 2)
+const item4 = new Item('BGLP', 5)
 basket.add(item1)
 basket.add(item2)
 basket.add(item3)
 basket.add(item4)
+basket.add(item5)
 const cashRegister = new CashRegister(basket.items)
 
 // console.table(cashRegister.items, ['variant', 'name', 'quantity', 'price'])

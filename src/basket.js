@@ -47,6 +47,7 @@ class Basket {
             )
             if (indexOfAlreadyExistingSKU !== -1) {
                 acc[indexOfAlreadyExistingSKU].quantity += cur.quantity
+                acc[indexOfAlreadyExistingSKU].price += cur.price
             } 
             else {
                 acc.push(cur)

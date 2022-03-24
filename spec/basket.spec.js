@@ -66,18 +66,57 @@ describe('Item', () => {
 })
 
 describe('CashRegister', () => {
-    // it('should apply special offer for coffee and plain bagel', () => {
-    //     const basket = new Basket()
-    //     const bagel = new Item('BGLP')
-    //     const coffee = new Item('COF')
-    //     const expected = 1.25
-    //     basket.add(bagel)
-    //     basket.add(coffee)
-    //     const cashRegister = new CashRegister(basket.items)
-    //     cashRegister.applyOffers()
-    //     const result = cashRegister.getTotalPrice()
-    //     expect(result).toEqual(expected)
-    // })
+    it('should apply special offer for 12 plain bagel', () => {
+        const basket = new Basket()
+        const bagel = new Item('BGLP', 12)
+        const expected = 3.99
+        basket.add(bagel)
+        const cashRegister = new CashRegister(basket.items)
+        const result = cashRegister.getTotalPrice()
+        expect(result).toEqual(expected)
+    })
+
+    it('should apply special offer for 6 onion bagel', () => {
+        const basket = new Basket()
+        const bagel = new Item('BGLO', 6)
+        const expected = 2.49
+        basket.add(bagel)
+        const cashRegister = new CashRegister(basket.items)
+        const result = cashRegister.getTotalPrice()
+        expect(result).toEqual(expected)
+    })
+
+    it('should apply special offer for 6 everything bagel', () => {
+        const basket = new Basket()
+        const bagel = new Item('BGLE', 6)
+        const expected = 2.49
+        basket.add(bagel)
+        const cashRegister = new CashRegister(basket.items)
+        const result = cashRegister.getTotalPrice()
+        expect(result).toEqual(expected)
+    })
+
+    it('should apply multiple special offers', () => {
+        const basket = new Basket()
+        const bagelE = new Item('BGLE', 6)
+        const bagelO = new Item('BGLE', 6)
+        const expected = 4.98
+        basket.add(bagelE)
+        basket.add(bagelO)
+        const cashRegister = new CashRegister(basket.items)
+        const result = cashRegister.getTotalPrice()
+        expect(result).toEqual(expected)
+    })
+
+    it('should discount only the bagels bundled in a special offer', () => {
+        const basket = new Basket()
+        const bagelE = new Item('BGLE', 9)
+        const expected = 3.96
+        basket.add(bagelE)
+        const cashRegister = new CashRegister(basket.items)
+        const result = cashRegister.getTotalPrice()
+        expect(result).toEqual(expected)
+    })
 
     it('should get the total price of the items in the basket', () => {
         const basket = new Basket()
