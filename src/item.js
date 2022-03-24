@@ -1,6 +1,6 @@
 class Item {
   constructor () {
-    this.itemList = {
+    this.list = {
       plain: 2,
       cheese: 3,
       cinnamon: 3,
@@ -30,23 +30,27 @@ class Item {
 
   totalPrice (basket) {
   // convert all bagels to its price, and then .reduce();
-    const bagelPriceArr = basket.map(bagel => this.itemList[bagel])
+    const bagelPriceArr = basket.map(bagel => this.list[bagel])
     const totalSum = bagelPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
     return `total: $${totalSum}`
   }
 
   receipt (basket) {
-    const quantity = {}
+    const itemAndQuantityObj = {}
+    let receipt = ''
     basket.forEach(item => {
-      quantity[item] ? quantity[item] += 1 : quantity[item] = 1
+      itemAndQuantityObj[item] ? itemAndQuantityObj[item] += 1 : itemAndQuantityObj[item] = 1
     })
-    return quantity
+    for (const itemAndQuantity in itemAndQuantityObj) {
+      // receipt += quantity x item = total
+      receipt += `${itemAndQuantityObj[itemAndQuantity]}x ${itemAndQuantity} = ${this.list[itemAndQuantity] * itemAndQuantityObj[itemAndQuantity]}\n`
+    }
+    return `${receipt}--------------`
   }
 }
-
 module.exports = Item
 
-const exBasket = ['poppy', 'poppy', 'plain', 'poppy', 'cinnamon']
+const exBasket = ['BGLO', 'BGLO']
 const item = new Item()
 
 console.log(item.receipt(exBasket))

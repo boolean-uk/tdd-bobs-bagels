@@ -31,4 +31,4 @@ Verb: buy
 | add(@item)              | basket @Array[@item] |
 | receipt()              | receipt @Object {items {quantity @Number, item @String, subPrice @Number}, totalPrice @Number}|
 
-- When checkOut(), include the special offers by using conditional
+- When receipt(), include the special offers by using conditional

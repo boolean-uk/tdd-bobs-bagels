@@ -9,7 +9,7 @@ class Basket {
   }
 
   add (bagel, num = 1) {
-    const bagelNameArr = Object.keys(this.item.itemList)
+    const bagelNameArr = Object.keys(this.item.list)
     // prevent adding bagels that are not in the list
     if (!bagelNameArr.includes(bagel)) return 'Please add bagels from the list'
 
@@ -54,3 +54,15 @@ class Basket {
 module.exports = Basket
 
 /* try to apply the discount in the basket */
+
+// item.addToList('plain', 2)
+// item.addToList('cheese', 3)
+// item.addToList('cinnamon', 3)
+// item.addToList('raisin', 3)
+// item.addToList('poppy', 4)
+// item.addToList('sesame', 4)
+
+// item.addToList('BGLO', 0.49)
+// item.addToList('BGLP', 0.39)
+// item.addToList('BGLE', 0.49)
+// item.addToList('COF', 0.99)
