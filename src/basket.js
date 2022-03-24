@@ -1,16 +1,27 @@
 /*
-OBJECTS      PROPERTIES            METHODS              Output
+OBJECTS |    PROPERTIES      |      METHODS       |       Output
 Item        id @Number
-Basket:     items @Array[Item]  add(item @Item)      item
-            remove(name)        remove(item by id)   item [new array]
-            Capacity            Is full()            Yes or no
-            Capacity            maxCapacity()         More Items
+Basket: |   items @Array[Item], |  add(item @Item) |     item
+        |   Price          |
+        |   remove(name)   |    remove(item by id) |    item [new array]
+        |   Capacity       |    Is full()          |    Yes or no
+        |   Capacity       |    maxCapacity()      |    More Items
+        |   quantity       |    quality(item)      !    no of items
 */
+const Item = require("./item.js")
+
+const Menu = [
+    new Item('chocolateBagel', 3),
+    new Item('jamBagel', 2)
+]
 
 class Basket {
     constructor() {
         this.items = []
         this.maxCapacity = 2
+        this.menu = Menu
+        this.quantity = quantity
+        // this.checkPrice = []
     }
 
     add(item) {
@@ -52,6 +63,22 @@ class Basket {
 
         return this.maxCapacity
     }
+
+    // checkPrice(price) {
+    checkPrice(itemName) {
+        for (let i = 0; i < this.menu.length; i++) {
+            let item = this.menu[i]
+            if (item.name === itemName) {
+                return item.price
+            }
+        }
+        return "item does not exist"
+    }
+
+    amountOfItem(itemName) {
+
+    }
 }
+
 
 module.exports = Basket

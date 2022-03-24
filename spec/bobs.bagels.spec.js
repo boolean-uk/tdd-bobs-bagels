@@ -1,5 +1,5 @@
 const Basket = require("../src/basket.js")
-const Item = require("../src/items.js")
+const Item = require("../src/item.js")
 
 
 describe("Basket", () => {
@@ -98,9 +98,36 @@ describe("Basket", () => {
     expect(newMaxCapacity).toEqual(5)
   })
 
-  xit("Cannot set capacity of Basket to zero")
-  xit("Cannot set capacity of Basket to < No of current items")
+  it("Check price of known item", () => {
+    // set up
+    const basket = new Basket()
+    const itemName = 'chocolateBagel'
+    const expectedPrice = 3
 
+    // execute
+    const itemPrice = basket.checkPrice(itemName)
 
+    // verify
+    expect(itemPrice).toEqual(expectedPrice)
+  })
 
+  it("quantity of items wanted when adding to Basket", () => {
+    // set up
+    const basket = new Basket()
+    const itemName = 'chocolateBagel'
+    const quantity = 3
+
+    // execute
+    const amountOfItem = basket.amountOfItem(itemName)
+
+    // verify
+    expect(amountOfItem).toEqual(quantity)
+  })
 })
+
+
+  // xit("Cannot set capacity of Basket to zero")
+  // xit("Cannot set capacity of Basket to < No of current items")
+
+
+
