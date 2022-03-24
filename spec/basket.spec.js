@@ -82,11 +82,11 @@ describe("Basket is full function", () => {
 describe("Basket max capacity function", () => {
   it("sets a new max capacity for the basket", () => {
     // set up
-    const basket = new Basket();
+    const basket = new Basket(10);
 
-    const expected = 10;
+    const expected = "youre trying to add too many bagels";
     // execute
-    const result = basket.setNewBasketMaxCapacity(10);
+    const result = basket.addBagelToBasket("blueberry", 11);
     // verify
     expect(result).toEqual(expected);
   });
@@ -97,7 +97,7 @@ describe("Item price check", () => {
     // set up
     const item = new Item();
 
-    const expected = "£2.99";
+    const expected = 2.99;
     // execute
     const result = item.checkPrice();
     // verify
@@ -109,108 +109,14 @@ describe("checkout", () => {
   it("returns the price of all the bagels added up", () => {
     // set up
     const basket = new Basket();
-    const item = new Item();
+    basket.addBagelToBasket("Chocolate Chip");
+    basket.addBagelToBasket("Chocolate Chip");
+    basket.addBagelToBasket("Chocolate Chip");
 
-    const expected = "£2.99";
+    const expected = 8.97;
     // execute
-    const result = item.checkPrice();
+    const result = basket.checkoutTotalPrice();
     // verify
     expect(result).toEqual(expected);
   });
 });
-
-// // ---------------------------------------- add() testing
-// describe("Basket add function", () => {
-//   it("adds an item to the basket", () => {
-//     // set up
-//     const basket = new Basket();
-//     const expected = [{ name: "Blueberry" }];
-//     // execute
-//     const result = basket.add("Blueberry");
-//     // verify
-//     expect(result).toEqual(expected);
-//   });
-
-//   it("cant add unknown bagel to basket", () => {
-//     // set up
-//     const basket = new Basket();
-//     const expected = "Bagel not found";
-//     // execute
-//     const result = basket.add("orange");
-//     // verify
-//     expect(result).toEqual(expected);
-//   });
-// });
-
-// describe("Basket remove function", () => {
-//   it("removes an item to the basket", () => {
-//     // set up
-//     const basket = new Basket();
-//     basket.add("Blueberry");
-//     basket.add("Chocolate Chip");
-
-//     const expected = [{ name: "Chocolate Chip" }];
-//     // execute
-//     const result = basket.remove("Blueberry");
-//     // verify
-//     expect(result).toEqual(expected);
-//   });
-
-// it("cant remove unknown bagel to basket", () => {
-//   // set up
-//   const basket = new Basket();
-//   const expected = "Bagel not found";
-//   // execute
-//   const result = basket.remove("Orange");
-//   // verify
-//   expect(result).toEqual(expected);
-// });
-
-//   it("removes all specified bagels from basket", () => {
-//     // set up
-//     const basket = new Basket();
-//     basket.add("Chocolate Chip");
-//     basket.add("Chocolate Chip");
-//     basket.add("Chocolate Chip");
-//     basket.add("Cinnamon Raisin");
-
-//     const expected = [{ name: "Cinnamon Raisin" }];
-//     // execute
-//     const result = basket.removeAll("Chocolate Chip");
-//     // verify
-//     expect(result).toEqual(expected);
-//   });
-// });
-
-// describe("Basket is full function", () => {
-//   it("returns an error message when you try to add more than 5 items", () => {
-//     // set up
-//     const basket = new Basket();
-//     basket.add("Blueberry");
-//     basket.add("Chocolate Chip");
-//     basket.add("Chocolate Chip");
-//     basket.add("Blueberry");
-//     basket.add("Blueberry");
-//     basket.add("Cinnamon Raisin");
-//     basket.add("Chocolate Chip");
-
-//     const expected = `you've reached the max number of items (5) allowed in your basket.`;
-//     // execute
-//     const result = basket.add("Blueberry");
-//     // verify
-//     expect(result).toEqual(expected);
-//   });
-// });
-
-// describe("Basket mac capacity function", () => {
-//   it("sets a new max capacity for the basket", () => {
-//     // set up
-//     const basket = new Basket();
-
-//     const expected = 10;
-//     // execute
-//     const result = basket.setNewBasketMaxCapacity(10);
-//     // verify
-//     expect(result).toEqual(expected);
-//   });
-// });
