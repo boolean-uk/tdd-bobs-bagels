@@ -10,6 +10,33 @@ class CashRegister {
         return this.items.reduce((acc, cur) => acc += cur.price * cur.quantity, 0)
     }
 
+    printReceipt () {
+        const items = this.items
+        let totalPrice = 0
+        let str = ``
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].SKU === 'COF' || items[i].SKU === 'BGLE') {
+                str += `${items[i].variant} ${items[i].name}   ${items[i].quantity} £${(items[i].quantity * items[i].price).toFixed(2)}\n`
+            }
+            else {
+                str += `${items[i].variant} ${items[i].name}        ${items[i].quantity} £${(items[i].quantity * items[i].price).toFixed(2)}\n`
+            }
+            totalPrice += items[i].quantity * items[i].price
+        }
+        const date = new Date()
+        const receipt = 
+        `    ~~~ Bob's Bagels ~~~\n
+    ${date.toLocaleDateString()} ${date.toLocaleTimeString()}\n
+----------------------------\n
+${str}
+----------------------------\n
+Total                £${totalPrice.toFixed(2)}
+         Thank you\n
+      for your order!`
+
+        return receipt
+    }
+
     applyOffers () {
         
     }
@@ -51,6 +78,18 @@ class CashRegister {
         return specialOffer
     }
 }
-const cashRegister = new CashRegister()
+const basket = new Basket()
+const item1 = new Item('BGLE', 5)
+const item2 = new Item('COF', 2)
+const item3 = new Item('BGLO', 1)
+const item4 = new Item('BGLP', 2)
+basket.add(item1)
+basket.add(item2)
+basket.add(item3)
+basket.add(item4)
+const cashRegister = new CashRegister(basket.items)
+
+// console.table(cashRegister.items, ['variant', 'name', 'quantity', 'price'])
 console.log(cashRegister.printReceipt())
+
 module.exports = CashRegister
