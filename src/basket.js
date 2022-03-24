@@ -9,7 +9,7 @@ class Basket {
 
   addItemToBasket(name) {
     const price = name.length * 10;
-    const { ...item } = new Item(name, this.currentId, price);
+    const { ...item } = new Item(name, this.currentId, price); //
     this.currentId++;
     this.itemsArr.push(item);
 
