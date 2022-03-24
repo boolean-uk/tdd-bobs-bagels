@@ -8,51 +8,53 @@ class Basket {
     this.price = new Price()
   }
 
-  check () {
-    return this.basket
-  }
-
-  add (name, num = 1) {
+  add (bagel, num = 1) {
     const bagelNameArr = Object.keys(this.price.priceList)
-    const SKUArr = Object.keys(this.price.itemList)
+    // const SKUArr = Object.keys(this.price.itemList)
     // prevent adding bagels that are not in the list
-    if (!bagelNameArr.includes(name) || !SKUArr.includes(name)) return 'Please add bagels from the list'
+    if (!bagelNameArr.includes(bagel)) return 'Please add bagels from the list'
 
     if (this.basket.length + num <= this.capacity) {
       for (let i = 0; i < num; i++) {
-        this.basket.push(name)
+        this.basket.push(bagel)
       }
-      const bagelsLeft = this.capacity - this.basket.length
-      return `Continue to order; ${bagelsLeft} bagels left`
+      return `Your Basket: ${this.basket} ${this.isFull()}`
     }
-    return 'Your basket is full'
   }
 
-  remove (name) {
-    if (this.basket.includes(name)) {
-      this.basket.splice(this.basket.indexOf(name), 1)
+  remove (bagel) {
+    if (this.basket.includes(bagel)) {
+      this.basket.splice(this.basket.indexOf(bagel), 1)
       return this.basket
     }
     return 'You have not order this bagel'
+  }
+
+  isFull () {
+    const bagelsLeft = this.capacity - this.basket.length
+    if (this.basket.length === this.capacity) return 'Your basket is full'
+    return `Continue to order; ${bagelsLeft} bagels left`
   }
 
   createBigBasket () {
     if (this.basket.length === this.capacity) this.capacity = 12
   }
 
-  checkPrice (name) {
-    return this.price.checkPrice(name)
+  checkPrice (bagel) {
+    return this.price.checkPrice(bagel)
   }
 
   totalPrice () {
     return this.price.checkOut(this.basket)
   }
 
-  createRecipe () {
-
-  }
+  // createReceipt () {}
 }
 
 module.exports = Basket
 
 /* try to apply the discount in the basket */
+
+// const basket = new Basket()
+// console.log(basket.add('poppy'))
+// console.log(basket.add('poppy'))
