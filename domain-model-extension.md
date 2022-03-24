@@ -4,7 +4,7 @@ In a normal supermarket, things are identified using Stock Keeping Units, or SKU
 
 In Bob's Bagels, we'll use the first 3 letters of the product with an extra letter for the variant. For example: an 'everything bagel' has a SKU of `BGLE`.
 
-Our goods are priced individually. In addition, some items are multi-priced: buy n of them, and they'll cost you y pounds.
+Our goods are ited individually. In addition, some items are multi-priced: buy n of them, and they'll cost you y pounds.
 
 ## Bob's Bagels Inventory
 |  SKU   |  Name  |  Variant   | Price | Special offers
@@ -23,12 +23,12 @@ Verb: buy
 | Objects    | Properties                         |
 | ---------- | ---------------------------------- |
 | items      | item @String                       |
-| itemList   | item {name @String, price @Number} |
-| basket     | basket @Array[@item]               |
+| list       | item {name @String, price @Number} |
 
-| Methods                 | Output               |
-| ----------------------- | -------------------- |
-| add(@item)              | basket @Array[@item] |
-| receipt()              | receipt @Object {items {quantity @Number, item @String, subPrice @Number}, totalPrice @Number}|
-
-- When receipt(), include the special offers by using conditional
+| Methods                               | Output                                |
+| ------------------------------------- | ------------------------------------- |
+| skuQuantity(basket)                   | skuQuantity @Array[[@String, @Number]]|
+| subPrice(@item)                       | subPrice @Array[@Number]              |
+| totalPrice(@subPrice())               | totalPrice @Number                    | 
+| receiptLine(@skuQuantity(), @subPrice())  | one line of receipt @String ${skuQuantity[i][1] x @skuQuantity[i][0] = @subPrice(@item)}
+| printReceipt(@receiptLine(), @totalPrice()) | @receiptLine() --- @totalPrice() |

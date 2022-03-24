@@ -36,21 +36,37 @@ class Item {
   }
 
   receipt (basket) {
-    const itemAndQuantityObj = {}
+    const skuQuantity = {}
     let receipt = ''
+    // Go through the basket, and create @Obj skuQuantity {item: quantity}
+    // if item exists in obj, add 1; else create a new property with value 1
     basket.forEach(item => {
-      itemAndQuantityObj[item] ? itemAndQuantityObj[item] += 1 : itemAndQuantityObj[item] = 1
+      skuQuantity[item] ? skuQuantity[item] += 1 : skuQuantity[item] = 1
     })
-    for (const itemAndQuantity in itemAndQuantityObj) {
+
+    for (const itemAndQuantity in skuQuantity) {
+      // declare and initialize these hard-reading variables to make it easier
+      // const quantity =  skuQuantity[itemAndQuantity]
+      // const item = itemAndQuantity
+      if ( skuQuantity[itemAndQuantity] % 6 === 0 && itemAndQuantity === 'BGLO') {
+        receipt += `${ skuQuantity[itemAndQuantity]}x ${itemAndQuantity} = ${2.49 * ( skuQuantity[itemAndQuantity] % 6) + this.list[itemAndQuantity] *  skuQuantity[itemAndQuantity] % 6}`
+      } else {
       // receipt += quantity x item = total
-      receipt += `${itemAndQuantityObj[itemAndQuantity]}x ${itemAndQuantity} = ${this.list[itemAndQuantity] * itemAndQuantityObj[itemAndQuantity]}\n`
+        receipt += `${ skuQuantity[itemAndQuantity]}x ${itemAndQuantity} = ${this.list[itemAndQuantity] *  skuQuantity[itemAndQuantity]}\n`
+      }
     }
     return `${receipt}--------------`
   }
 }
 module.exports = Item
 
-const exBasket = ['BGLO', 'BGLO']
+const exBasket = ['BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO']
 const item = new Item()
 
 console.log(item.receipt(exBasket))
+
+// console.log(2 % 6)
+
+// change variable to itemQuantity (or SKU and try to make is shorter!!)
+// receiptLine(quantity, name, price) and create smaller functions!
+// Create the variable first! and then merge it
