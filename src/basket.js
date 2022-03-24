@@ -1,16 +1,15 @@
-const Price = require('../src/price.js')
+const Item = require('./item.js')
 
 class Basket {
   // parameter the capacity for extension
   constructor () {
     this.basket = []
     this.capacity = 5
-    this.price = new Price()
+    this.item = new Item()
   }
 
   add (bagel, num = 1) {
-    const bagelNameArr = Object.keys(this.price.priceList)
-    // const SKUArr = Object.keys(this.price.itemList)
+    const bagelNameArr = Object.keys(this.item.itemList)
     // prevent adding bagels that are not in the list
     if (!bagelNameArr.includes(bagel)) return 'Please add bagels from the list'
 
@@ -42,11 +41,11 @@ class Basket {
   }
 
   checkPrice (bagel) {
-    return this.price.checkPrice(bagel)
+    return this.item.checkPrice(bagel)
   }
 
   totalPrice () {
-    return this.price.checkOut(this.basket)
+    return this.item.totalPrice(this.basket)
   }
 
   // createReceipt () {}
@@ -55,7 +54,3 @@ class Basket {
 module.exports = Basket
 
 /* try to apply the discount in the basket */
-
-// const basket = new Basket()
-// console.log(basket.add('poppy'))
-// console.log(basket.add('poppy'))
