@@ -121,23 +121,6 @@ describe('Basket', () => {
 
     })
 
-    // it('The price of the bagel is returned',() => {
-    //     // setup
-    //     const basket = new Basket();
-    //     const expectedBasket = ['onion','£1.50','plain','£0.99','peanut','£1.50','butter','£1.50']
-    //     // execute
-    //     const newBasket = basket.bagelPrice('onion','£1.50')
-    //     basket.bagelPrice('plain','£0.99')
-    //     basket.bagelPrice('peanut','£1.50')
-    //     basket.bagelPrice('butter','£1.50')
-
-
-    //     // verify
-    //     expect(newBasket).toEqual(expectedBasket)
-
-
-    // })
-
     it('The price of the bagel is returned',() => {
         // setup
         const basket = new Basket()
@@ -159,5 +142,17 @@ describe('Basket', () => {
         expect(price).toEqual(expectedPrice)
 
     })
+
+    it('Can add two same items to basket', () => {
+        //  setup
+        const expectedBasket = ['onion','onion']
+        const basket = new Basket();
+        // execute
+        basket.add('onion')
+    
+        const newBasket = basket.add('onion')
+        // verify
+        expect(newBasket).toEqual(expectedBasket)
+      });
 
 });
