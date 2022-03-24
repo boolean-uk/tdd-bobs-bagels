@@ -44,3 +44,28 @@ fullCapacity| @number | isFull() | @conditional flow with if true then its at fu
 createLargeBasket| @number | createLargeBasket() | capacity is increased so more could be ordered
 itemDoesNotExit | cannot remove item | itemDoesNotExit() | @string returned and conditional statement added into remove function
 
+# Part 3
+```
+As a member of the public,
+So that I can know how much my bagels are,
+I’d like to see the price of each item before I add it to my basket.
+```
+```
+As a member of the public
+So that I can buy many of my favorite bagel
+I'd like to be able to add the same type of bagel to my basket more than once
+```
+```
+As a member of the public,
+So that I can prepare to pay
+When I go to checkout I'd like to know the total sum of the bagels in my basket
+```
+
+Objects |Messages / Properties  | Methods | Output
+---- | ---- | ---- | ----
+bagel (class)| this.bagelMenu || @array of bagel names & prices
+bagelPrice | this.bagelMenu| bagelPrice(name,price) | a @string with the price pushed into the menu
+
+
+
+

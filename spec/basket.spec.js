@@ -121,4 +121,43 @@ describe('Basket', () => {
 
     })
 
+    // it('The price of the bagel is returned',() => {
+    //     // setup
+    //     const basket = new Basket();
+    //     const expectedBasket = ['onion','£1.50','plain','£0.99','peanut','£1.50','butter','£1.50']
+    //     // execute
+    //     const newBasket = basket.bagelPrice('onion','£1.50')
+    //     basket.bagelPrice('plain','£0.99')
+    //     basket.bagelPrice('peanut','£1.50')
+    //     basket.bagelPrice('butter','£1.50')
+
+
+    //     // verify
+    //     expect(newBasket).toEqual(expectedBasket)
+
+
+    // })
+
+    it('The price of the bagel is returned',() => {
+        // setup
+        const basket = new Basket()
+        const expectedPrice = 1.50
+        // execute
+        const price = basket.bagelPrice('onion')
+        // verify
+        expect(price).toEqual(expectedPrice)
+
+    })
+
+    it('The price of the bagel is not returned if it does not exist',() => {
+        // setup
+        const basket = new Basket()
+        const expectedPrice = "That item does not exist"
+        // execute
+        const price = basket.bagelPrice('jam')
+        // verify
+        expect(price).toEqual(expectedPrice)
+
+    })
+
 });
