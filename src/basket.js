@@ -1,7 +1,5 @@
 class Item {
-  constructor() {
-
-  }
+  constructor() {}
 }
 
 class BobsBagels {
@@ -9,13 +7,14 @@ class BobsBagels {
     this.basket = [];
     this.basketCapacity = 3;
     this.menu = [
-      { sku: "BGLP", type: "Bagel", description: "Plain", price: 1.00 },
-      { sku: "BGLN", type: "Bagel", description: "Not So Plain", price: 1.50 },
-      { sku: "BGLV", type: "Bagel", description: "Very Tasty", price: 2.00 },
-      { sku: "BGLE", type: "Bagel", description: "Bagel Extra", price: 2.50 },
-      { sku: "BGLS", type: "Bagel", description: "Bagel Special", price: 3.00 },
+      { sku: "BGLP", type: "Bagel", description: "Plain", price: 1.0 },
+      { sku: "BGLN", type: "Bagel", description: "Not So Plain", price: 1.5 },
+      { sku: "BGLV", type: "Bagel", description: "Very Tasty", price: 2.0 },
+      { sku: "BGLE", type: "Bagel", description: "Bagel Extra", price: 2.5 },
+      { sku: "BGLS", type: "Bagel", description: "Bagel Special", price: 3.0 },
       { sku: "COFL", type: "Coffee", description: "Latte", price: 2.75 },
     ];
+  
   }
 
   addBagel(description, quantity) {
@@ -77,43 +76,26 @@ class BobsBagels {
     }
   }
 
-  totalSum() {
+  totalQty() {
     return this.basket.length;
   }
 
   orderSum() {
-    console.log(this.basket)
-    let sum = 0
-    for (let i = 0; i < this.basket.length; i++) {
-      sum += this.basket[i].price
+    console.log("THIS IS THE BASKET: ", this.basket);
+    let sum = 0;
+      for (let i = 0; i < this.basket.length; i++) {
+        sum += this.basket[i].price;
+      }
+    if (this.checkForOffers === true) {
+      sum = sum - discount
     }
-    return sum
+
+    return sum;
   }
 
-  printReceipt() {
-    //find out how many of each???
-    
-
-
-
-
-    console.log("     ~~~ Bob's Bagels ~~~     ")
-    console.log()
-    console.log("      202-03-23 18:38:44      ")
-    console.log()
-    console.log("------------------------------")
-    console.log()
-    console.log(this.basket[0].description + " " + this.basket[0].type)
-    console.log("                   " + "£ " + this.basket[0].price)
-    console.log(this.basket[2].description + " " + this.basket[2].type)
-    console.log("                   " + "£ " + this.basket[2].price)
-    console.log(this.basket[3].description + " " + this.basket[3].type)
-    console.log("                   " + "£ " + this.basket[3].price)
-  
-
+  checkForOffers() {
+    return false;
   }
-
-
 }
 
 module.exports = BobsBagels;

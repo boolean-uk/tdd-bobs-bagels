@@ -117,7 +117,7 @@ describe("Bob's Bagels", function () {
     bobsBagels.addBagel("Plain", 2);
     bobsBagels.addBagel("Not So Plain", 1);
     bobsBagels.addBagel("Very Tasty", 3);
-    const result = bobsBagels.totalSum();
+    const result = bobsBagels.totalQty();
     // verify
     expect(result).toEqual(expected);
   });
@@ -127,7 +127,20 @@ describe("Bob's Bagels", function () {
   it("returns full order value", () => {
     // set up
     const bobsBagels = new BobsBagels();
-    const expected = 12.25;
+    const expected = 9.5;
+    // execute
+    bobsBagels.addBagel("BGLP", 2);
+    bobsBagels.addBagel("BGLV", 1);
+    bobsBagels.addBagel("COFL", 2);
+    const result = bobsBagels.orderSum();
+    // verify
+    expect(result).toEqual(expected);
+  });
+
+  it("returns full order value - with offer - 3 for 2", () => {
+    // set up
+    const bobsBagels = new BobsBagels();
+    const expected = 9.5;
     // execute
     bobsBagels.addBagel("BGLP", 2);
     bobsBagels.addBagel("BGLV", 1);
@@ -137,17 +150,5 @@ describe("Bob's Bagels", function () {
     expect(result).toEqual(expected);
   });
 
-    it("print receipt", () => {
-    // set up
-    const bobsBagels = new BobsBagels();
-    const expected = "receipt printed"
-    // execute
-    bobsBagels.addBagel("BGLP", 2);
-    bobsBagels.addBagel("BGLV", 1);
-    bobsBagels.addBagel("COFL", 3);
-    const result = bobsBagels.printReceipt();
-    // verify
-    expect(result).toEqual(expected);
-  });
 
 });
