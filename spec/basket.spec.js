@@ -25,11 +25,11 @@ describe("", () => {
     expect(result).toEqual(expected);
   });
 
-  it("is the basket full of bagels?", () => {
+  it("the basket is full of bagels", () => {
     //set up
     const basket = new Basket();
     const bagel = new Bagel();
-    const expected = "Your basket is full";
+
     //execute
     basket.addToBasket(bagel);
     basket.addToBasket(bagel);
@@ -37,20 +37,36 @@ describe("", () => {
     basket.addToBasket(bagel);
     const result = basket.fullBasket();
     //verify
-    expect(result).toEqual(expected);
+    expect(result).toEqual(true);
+  });
+
+  it("the basket is NOT full of bagels", () => {
+    //set up
+    const basket = new Basket();
+    const bagel = new Bagel();
+
+    //execute
+    const result = basket.fullBasket();
+    //verify
+    expect(result).toEqual(false);
   });
 
   it("create baskets with larger capacity", () => {
     //set up
-    const basket = new Basket();
-    const expected = {
-      basketOne: "Capacity 5",
-      basketTwo: "Capacity 8",
-      basketThree: "Capacity 10",
-    };
+    const basket = new Basket(4);
+    const bagel = new Bagel(1, "Bobs First Bagel");
+    const bagel2 = new Bagel(2, "Bobs Second Bagel");
+    const bagel3 = new Bagel(3, "Bobs Third Bagel");
+    const bagel4 = new Bagel(4, "Bobs Fourth Bagel");
     //execute
-    const result = basket.createBaskets();
+    basket.addToBasket(bagel);
+    basket.addToBasket(bagel2);
+    const result1 = basket.fullBasket();
+    basket.addToBasket(bagel3);
+    basket.addToBasket(bagel4);
+    const result2 = basket.fullBasket();
     //verify
-    expect(result).toEqual(expected);
+    expect(result1).toEqual(false);
+    expect(result2).toEqual(true);
   });
 });

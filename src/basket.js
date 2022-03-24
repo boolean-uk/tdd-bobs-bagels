@@ -1,7 +1,8 @@
 class Basket {
-  constructor() {
-    this.basketList = [];
-    this.capacity = 4;
+  basketList = [];
+
+  constructor(capacity = 2) {
+    this.capacity = capacity;
   }
 
   addToBasket(bagel) {
@@ -23,21 +24,10 @@ class Basket {
 
   fullBasket() {
     if (this.basketList.length >= this.capacity) {
-      return "Your basket is full";
+      return true;
     } else {
-      return "You can buy more bagels";
+      return false;
     }
-  }
-
-  createBaskets() {
-    const basketsHigherCapacity = {
-      basketOne: "Capacity 5",
-      basketTwo: "Capacity 8",
-      basketThree: "Capacity 10",
-    };
-    this.basketList.push(basketsHigherCapacity);
-    console.log(basketsHigherCapacity);
-    return basketsHigherCapacity;
   }
 }
 
