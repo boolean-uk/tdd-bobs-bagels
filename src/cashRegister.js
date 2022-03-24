@@ -12,27 +12,30 @@ class CashRegister {
 
     printReceipt () {
         const items = this.items
-        let totalPrice = 0
+        const total = this.getTotalPrice().toFixed(2)
         let str = ``
         for (let i = 0; i < items.length; i++) {
+            const [variant, name] = [items[i].variant, items[i].name]
+            const qty = items[i].quantity
+            const price = (qty * items[i].price).toFixed(2)
+
             if (items[i].SKU === 'COF' || items[i].SKU === 'BGLE') {
-                str += `${items[i].variant} ${items[i].name}   ${items[i].quantity} £${(items[i].quantity * items[i].price).toFixed(2)}\n`
+                str += `${variant} ${name}   ${qty} £${(price)}\n`
             }
             else {
-                str += `${items[i].variant} ${items[i].name}        ${items[i].quantity} £${(items[i].quantity * items[i].price).toFixed(2)}\n`
+                str += `${variant} ${name}        ${qty} £${(price)}\n`
             }
-            totalPrice += items[i].quantity * items[i].price
         }
+
         const date = new Date()
-        const receipt = 
-        `    ~~~ Bob's Bagels ~~~\n
-    ${date.toLocaleDateString()} ${date.toLocaleTimeString()}\n
-----------------------------\n
-${str}
-----------------------------\n
-Total                £${totalPrice.toFixed(2)}
-         Thank you\n
-      for your order!`
+        let receipt = `    ~~~ Bob's Bagels ~~~\n`
+        receipt += `    ${date.toLocaleDateString()} ${date.toLocaleTimeString()}\n`
+        receipt += `----------------------------\n`
+        receipt += `${str}`
+        receipt += `----------------------------\n`
+        receipt += `Total                £${total}\n`
+        receipt += `         Thank you\n`
+        receipt += `      for your order!`
 
         return receipt
     }
