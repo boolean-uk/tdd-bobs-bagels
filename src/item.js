@@ -38,7 +38,7 @@ class Item {
   createPrice() {
     let price;
     this.variant === undefined ? (price = 0.99) : (price = 0.49);
-    this.variant === "plain" ? (price = 0.39) : (price = price);
+    this.variant === "Plain" ? (price = 0.39) : (price = price);
     return (this.price = this.withoutDiscount * price).toFixed(2);
   }
 
@@ -47,11 +47,9 @@ class Item {
     this.variant === undefined
       ? (offer = ["COF & BGLP", 1.25])
       : (offer = [6, 2.49]);
-    this.variant === "plain" ? (offer = [12, 3.99]) : (offer = offer);
+    this.variant === "Plain" ? (offer = [12, 3.99]) : (offer = offer);
     this.offer = offer;
   }
-
-  //   calcDiscount()
 }
 
 module.exports = Item;

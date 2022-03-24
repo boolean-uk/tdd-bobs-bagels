@@ -8,10 +8,11 @@ describe("Basket for Bob's Bagel", () => {
       {
         name: "bagel",
         id: 1,
-        quantity: 1,
+        withoutDiscount: 1,
         variant: "plain",
         sku: "BGLP",
         price: 0.39,
+        offer: [12, 3.99],
       },
     ];
 
@@ -31,10 +32,11 @@ describe("Basket for Bob's Bagel", () => {
       {
         name: "bagel",
         id: 1,
-        quantity: 1,
+        withoutDiscount: 1,
         variant: "plain",
         sku: "BGLP",
         price: 0.39,
+        offer: [12, 3.99],
       },
     ];
 
@@ -113,10 +115,11 @@ describe("Basket for Bob's Bagel", () => {
       {
         name: "bagel",
         id: 1,
-        quantity: 4,
+        withoutDiscount: 4,
         variant: "plain",
         sku: "BGLP",
         price: 1.56,
+        offer: [12, 3.99],
       },
     ];
     // execute
