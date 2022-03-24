@@ -12,7 +12,13 @@ class Item {
       BGLE: 0.49,
       COF: 0.99
     }
+
+    // this.list = {}
   }
+
+  // addToList (item, price) {
+  //   this.list[item] = price
+  // }
 
   checkPrice (item) {
     // make an object into an array with Object.entries()
@@ -28,13 +34,19 @@ class Item {
     const totalSum = bagelPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
     return `total: $${totalSum}`
   }
+
+  receipt (basket) {
+    const quantity = {}
+    basket.forEach(item => {
+      quantity[item] ? quantity[item] += 1 : quantity[item] = 1
+    })
+    return quantity
+  }
 }
 
 module.exports = Item
 
-// const poppy = new Price('poppy', 2)
-// const plain = new Price('plain', 2)
-// console.log(poppy)
-// console.log(poppy)
-// console.log(plain)
-// console.log(Price())
+const exBasket = ['poppy', 'poppy', 'plain', 'poppy', 'cinnamon']
+const item = new Item()
+
+console.log(item.receipt(exBasket))

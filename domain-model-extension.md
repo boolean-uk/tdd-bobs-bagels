@@ -29,6 +29,6 @@ Verb: buy
 | Methods                 | Output               |
 | ----------------------- | -------------------- |
 | add(@item)              | basket @Array[@item] |
-| createReceipt()              | recipe @Object {items {quantity @Number, item @String, subPrice @Number}, totalPrice @Number}|
+| receipt()              | receipt @Object {items {quantity @Number, item @String, subPrice @Number}, totalPrice @Number}|
 
 - When checkOut(), include the special offers by using conditional
