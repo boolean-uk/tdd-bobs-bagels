@@ -36,21 +36,38 @@ class Item {
   }
 
   skuQuantity (basket) {
-    const skuObj = {}
+    const skuQuantityObj = {}
     // Go through the basket, and create @Obj {item: quantity}
     // if item exists in obj, add 1; else create a new property with value 1
     basket.forEach(item => {
-      skuObj[item] ? skuObj[item] += 1 : skuObj[item] = 1
+      skuQuantityObj[item] ? skuQuantityObj[item] += 1 : skuQuantityObj[item] = 1
     })
-    return Object.entries(skuObj)
+    return skuQuantityObj
+  }
+
+  subPrice (skuQuantityObj) {
+    const subPriceObj = {}
+
+    for (const skuQuantity in skuQuantityObj) {
+      const sku = skuQuantity
+      const quantity = skuQuantityObj[sku]
+      let subPrice = 0
+
+      if (sku === 'BGLO' || sku === 'BGLE') subPrice += (2.49 * (Math.floor(quantity / 6))) + (this.list[sku] * (quantity % 6))
+      if (sku === 'BGLP') subPrice += (3.99 * Math.floor(quantity / 12)) + (this.list[sku] * (quantity % 12))
+      subPriceObj[sku] = Number(Number.parseFloat(subPrice).toFixed(3))
+    }
+    return subPriceObj
   }
 }
+
 module.exports = Item
 
-const exBasket = ['BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO']
+const exBasket = ['BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO']
 const item = new Item()
 
 console.log(item.skuQuantity(exBasket))
+console.log(item.subPrice(item.skuQuantity(exBasket)))
 
 // console.log(2 % 6)
 
@@ -81,3 +98,4 @@ console.log(item.skuQuantity(exBasket))
   //     return `${receipt}--------------`
   //   }
   // }
+

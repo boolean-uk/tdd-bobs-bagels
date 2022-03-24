@@ -22,4 +22,29 @@ it ('returns bagel: cheese, price: $3', () => {
     // verify
     expect(result).toEqual(expected)
   })
+
+  /* --- Extension 1 --- */
+  it ('returns a array within array of item name and its quantity', () => {
+    // setup
+    const item = new Item()
+    const basket = ['BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO']
+
+    const expected = [['BGLO', 6]]
+    // execute
+    const result = item.skuQuantity(basket)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  fit ('returns a array within array of item name and its quantity', () => {
+    // setup
+    const item = new Item()
+    const basket = ['BGLO', 'BGLE', 'BGLE', 'BGLP', 'COF']
+
+    const expected = [['BGLO', 1], ['BGLE', 2], ['BGLP', 1], ['COF', 1]]
+    // execute
+    const result = item.skuQuantity(basket)
+    // verify
+    expect(result).toEqual(expected)
+  })
 })
