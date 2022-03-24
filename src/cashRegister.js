@@ -4,6 +4,11 @@ const Item = require("./item")
 class CashRegister {
     constructor (items) {
         this.items = items
+        this.discounts = {
+            BGLP: undefined,
+            BGLO: undefined,
+            BGLE: undefined
+        }
     }
 
     getTotalPrice () {
@@ -27,6 +32,9 @@ class CashRegister {
             else {
                 str += `${variant} ${name}        ${qty} £${(price)}\n`
             }
+            if (this.discounts[items[i].SKU] < 0) {
+                str += `                   (${this.discounts[items[i].SKU]})\n`
+            }
         }
 
         const date = new Date()
@@ -47,6 +55,7 @@ class CashRegister {
         for (let i = 0; i < items.length; i++) {
             if (items[i].discount) {
                 items[i].price += items[i].discount * (Math.floor(items[i].quantity / items[i].bundleSize))
+                this.discounts[items[i].SKU] = items[i].discount * (Math.floor(items[i].quantity / items[i].bundleSize))
             }
         }
         return items
@@ -68,8 +77,8 @@ const basket = new Basket()
 const item1 = new Item('BGLE', 3)
 const item5 = new Item('BGLE', 3)
 const item2 = new Item('COF', 2)
-const item3 = new Item('BGLO', 1)
-const item4 = new Item('BGLP', 5)
+const item3 = new Item('BGLO', 6)
+const item4 = new Item('BGLP', 1)
 basket.add(item1)
 basket.add(item2)
 basket.add(item3)

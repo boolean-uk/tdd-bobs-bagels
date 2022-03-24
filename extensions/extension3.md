@@ -52,3 +52,8 @@ You saved a total of £0.69
         Thank you
       for your order!
 ```
+
+```
+As a member of the public
+So I can see my savings
+I'd like to see the value of special offers in the receipt.
