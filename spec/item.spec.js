@@ -24,12 +24,12 @@ it ('returns bagel: cheese, price: $3', () => {
   })
 
   /* --- Extension 1 --- */
-  it ('returns a array within array of item name and its quantity', () => {
+  it ('returns an object of item name and its quantity', () => {
     // setup
     const item = new Item()
     const basket = ['BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO']
 
-    const expected = [['BGLO', 6]]
+    const expected = { BGLO: 6 }
     // execute
     const result = item.skuQuantity(basket)
     // verify
@@ -89,7 +89,7 @@ it ('returns bagel: cheese, price: $3', () => {
     expect(result).toEqual(expected)
   })
 
-  fit ('prints out the receipt', () => {
+  it ('prints out the receipt', () => {
     // setup
     const item = new Item()
     const basket = ['BGLO', 'BGLE', 'BGLE', 'BGLP']

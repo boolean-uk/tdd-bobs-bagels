@@ -1,3 +1,5 @@
+const Receipt = require('./receipt.js')
+
 class Item {
   constructor () {
     this.list = {
@@ -12,7 +14,7 @@ class Item {
       BGLE: 0.49,
       COF: 0.99
     }
-
+    this.receipt = new Receipt()
     // this.list = {}
   }
 
@@ -22,9 +24,9 @@ class Item {
 
   checkPrice (item) {
     // make an object into an array with Object.entries()
-    const itemListArr = Object.entries(this.itemList)
+    const itemListArr = Object.entries(this.list)
     // find the bagel item and price that matches to the argument
-    const itemAndPrice = itemListArr.find(itemList => itemList[0] === item)
+    const itemAndPrice = itemListArr.find(list => list[0] === item)
     return `bagel: ${itemAndPrice[0]}, price: $${itemAndPrice[1]}`
   }
 
@@ -68,39 +70,17 @@ class Item {
   }
 
   receiptLine (skuQuantity, subPrice) {
-    let receipt = ''
-    const receiptLength = Object.keys(subPrice).length
-
-    for (let i = 0; i < receiptLength; i++) {
-      const sku = Object.keys(skuQuantity)
-      const quantity = Object.values(skuQuantity)
-      const subTotal = Object.values(subPrice)
-      receipt += `${quantity[i]}x ${sku[i]} = ${subTotal[i]}\n`
-    }
-    return receipt
+    return this.receipt.receiptLine(skuQuantity, subPrice)
   }
 
   printReceipt (receiptLine, totalPrice) {
-    return `${receiptLine}          ----\n          ${totalPrice}`
+    return this.receipt.printReceipt(receiptLine, totalPrice)
   }
 }
 
 module.exports = Item
 
-const item = new Item()
-const basket = ['BGLO', 'BGLE', 'BGLE', 'BGLP']
-const skuQuantityObj = item.skuQuantity(basket)
-const subPrice = item.subPrice(skuQuantityObj)
-const totalPrice = item.totalPrice(subPrice)
-const receiptLine = item.receiptLine(skuQuantityObj, subPrice)
-console.log(item.printReceipt(receiptLine, totalPrice))
-
-
-// console.log(item.skuQuantity(exBasket))
-// console.log(item.subPrice(item.skuQuantity(exBasket)))
-
-
 // change variable to itemQuantity (or SKU and try to make is shorter!!)
-  // receiptLine(quantity, name, price) and create smaller functions!
-  // Create the variable first! and then merge it
+// receiptLine(quantity, name, price) and create smaller functions!
+// Create the variable first! and then merge it
 
