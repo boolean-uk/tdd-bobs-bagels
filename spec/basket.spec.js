@@ -1,14 +1,13 @@
 const BobsBagels = require("../src/basket.js");
+const Receipt = require("../src/receipt.js");
 
 describe("Bob's Bagels", function () {
   it("add a bagel to the basket", () => {
     // set up
     const bobsBagels = new BobsBagels();
-    const expected = [{ sku: "BGLP",
-        type: "Bagel",
-        description: "Plain",
-        price: 1,
-      }];
+    const expected = [
+      { sku: "BGLP", type: "Bagel", description: "Plain", price: 1 },
+    ];
     // execute
     const result = bobsBagels.addBagel("Plain", 1);
     // verify
@@ -89,22 +88,14 @@ describe("Bob's Bagels", function () {
     // set up
     const bobsBagels = new BobsBagels();
     const expected = [
-      { sku: "BGLP",
-        type: "Bagel",
-        description: "Plain",
-        price: 1,
-      }, { sku: "BGLP",
-        type: "Bagel",
-        description: "Plain",
-        price: 1,
-      }, { sku: "BGLP",
-        type: "Bagel",
-        description: "Plain",
-        price: 1,
-      }
+      { sku: "BGLP", type: "Bagel", description: "Plain", price: 1 },
+      { sku: "BGLP", type: "Bagel", description: "Plain", price: 1 },
+      { sku: "BGLP", type: "Bagel", description: "Plain", price: 1 },
+      { sku: "BGLP", type: "Bagel", description: "Plain", price: 1 },
+      { sku: "BGLP", type: "Bagel", description: "Plain", price: 1 },
     ];
     // execute
-    const result = bobsBagels.addBagel("Plain", 3);
+    const result = bobsBagels.addBagel("Plain", 5);
     // verify
     expect(result).toEqual(expected);
   });
@@ -122,13 +113,16 @@ describe("Bob's Bagels", function () {
     expect(result).toEqual(expected);
   });
 
-  // EXTENSION starts here ---------------------
+  // // EXTENSION starts here ---------------------
 
   it("returns full order value", () => {
     // set up
     const bobsBagels = new BobsBagels();
-    const expected = 9.5;
+    const expected = 19;
     // execute
+    bobsBagels.addBagel("BGLP", 2);
+    bobsBagels.addBagel("BGLV", 1);
+    bobsBagels.addBagel("COFL", 2);
     bobsBagels.addBagel("BGLP", 2);
     bobsBagels.addBagel("BGLV", 1);
     bobsBagels.addBagel("COFL", 2);
@@ -137,18 +131,31 @@ describe("Bob's Bagels", function () {
     expect(result).toEqual(expected);
   });
 
-  it("returns full order value - with offer - 3 for 2", () => {
+  it("checking the amount of each sku in the basket", () => {
     // set up
     const bobsBagels = new BobsBagels();
-    const expected = 9.5;
+    const expected = { BGLP: 24, BGLN: 19, BGLV: 3 };
     // execute
-    bobsBagels.addBagel("BGLP", 2);
-    bobsBagels.addBagel("BGLV", 1);
-    bobsBagels.addBagel("COFL", 3);
-    const result = bobsBagels.orderSum();
+    bobsBagels.addBagel("Plain", 12);
+    bobsBagels.addBagel("Not So Plain", 19);
+    bobsBagels.addBagel("Very Tasty", 3);
+    bobsBagels.addBagel("Plain", 12);
+    const result = bobsBagels.howManyOfEach();
     // verify
     expect(result).toEqual(expected);
   });
 
-
+  it("creating receipt line", () => {
+    // set up
+    const bobsBagels = new BobsBagels();
+    const expected = { BGLP: 24, BGLN: 19, BGLV: 3 };
+    // execute
+    bobsBagels.addBagel("Plain", 2);
+    bobsBagels.addBagel("Not So Plain", 4);
+    bobsBagels.addBagel("Very Tasty", 3);
+    bobsBagels.addBagel("Plain", 1);
+    const result = bobsBagels.receiptLine();
+    // verify
+    expect(result).toEqual(expected);
+  });
 });

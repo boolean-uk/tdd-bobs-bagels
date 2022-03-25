@@ -1,6 +1,4 @@
-class Item {
-  constructor() {}
-}
+const Receipt = require("./receipt");
 
 class BobsBagels {
   constructor() {
@@ -14,24 +12,29 @@ class BobsBagels {
       { sku: "BGLS", type: "Bagel", description: "Bagel Special", price: 3.0 },
       { sku: "COFL", type: "Coffee", description: "Latte", price: 2.75 },
     ];
-  
+    this.receipt = new Receipt(this.basket, this.menu);
   }
 
   addBagel(description, quantity) {
-    let newBagel;
+    let productToBeAdded = this.findPoduct(description);
+    for (let i = 0; i < quantity; i++) {
+      this.isBasketFull();
+      this.basket.push(productToBeAdded);
+    }
+    return this.basket;
+  }
+
+  findPoduct(description) {
+    let product;
     for (let i = 0; i < this.menu.length; i++) {
       if (
         this.menu[i].description === description ||
         this.menu[i].sku === description
       ) {
-        newBagel = this.menu[i];
+        product = this.menu[i];
       }
     }
-    for (let i = 0; i < quantity; i++) {
-      this.isBasketFull();
-      this.basket.push(newBagel);
-    }
-    return this.basket;
+    return product;
   }
 
   removeBagel(id) {
@@ -81,20 +84,19 @@ class BobsBagels {
   }
 
   orderSum() {
-    console.log("THIS IS THE BASKET: ", this.basket);
     let sum = 0;
-      for (let i = 0; i < this.basket.length; i++) {
-        sum += this.basket[i].price;
-      }
-    if (this.checkForOffers === true) {
-      sum = sum - discount
+    for (let i = 0; i < this.basket.length; i++) {
+      sum += this.basket[i].price;
     }
-
     return sum;
   }
 
-  checkForOffers() {
-    return false;
+  howManyOfEach() {
+    return this.receipt.howManyOfEach(this.basket);
+  }
+
+  receiptLine() {
+    return this.receipt.receiptLine(this.basket);
   }
 }
 
