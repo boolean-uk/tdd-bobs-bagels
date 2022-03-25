@@ -42,4 +42,16 @@ Update and extend your program to handle printing receipts.
 | -------------------------------------------------------------- | ------------------------------------- |
 | convertSKU()                                                   | skuQuantity @Obj {itemName @String: quantity @Number} |
 | today()                                                        | @Number yyyy-mm-dd h:m:s              |
-| printReceipt(@today(), @receiptLine(), @totalPrice())          | @receipt                              |
+| printItemReceipt(@receiptLine(), @totalPrice())                | @receipt                              |
+
+---
+
+## Extension Part 3
+Update and extend your program to handle showing savings to the customer.
+
+## Domain Model
+| Methods                                                        | Output                                |
+| -------------------------------------------------------------- | ------------------------------------- |
+| noDiscountPrice(@skuQuantityObj)                               | skuQuantity @Obj {sku @String: quantity @Number} |
+| savedPrice(@skuQuantityObj)                                    | skuQuantity @Obj {sku @String: quantity @Number} |
+| printItemReceipt(@receiptLine(), @totalPrice(), @discount())   | @receipt                              |

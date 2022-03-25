@@ -1,18 +1,25 @@
 class Receipt {
-  receiptLine (cofDeal, subPrice) {
+  receiptLine (cofDeal, subPrice, savedPrice = '') {
     let receipt = ''
     const receiptLength = Object.keys(subPrice).length
 
     for (let i = 0; i < receiptLength; i++) {
-      const sku = Object.keys(cofDeal)
+      const sku = Object.keys(subPrice)
       const quantity = Object.values(cofDeal)
       const subTotal = Object.values(subPrice)
+      const savedTotal = Object.values(savedPrice)
       const inSKU = sku[0].length <= 3
 
       if (inSKU) receipt += `${quantity[i]}x ${sku[i]} = ${subTotal[i]}\n`
-      if (!inSKU) receipt += `${sku[i]} ${quantity[i]} £${subTotal[i]}\n`
+      if (!inSKU && savedTotal[i] === 0) receipt += `${sku[i]} ${quantity[i]} £${subTotal[i]}\n`
+      if (!inSKU && savedTotal[i] !== 0) receipt += `${sku[i]} ${quantity[i]} £${subTotal[i]}\n       (-£${savedTotal[i]})\n`
     }
     return receipt
+  }
+
+  totalSavedPrice (totalSavedPrice) {
+    if (totalSavedPrice === 0) return ''
+    return `You saved a total of\n £${totalSavedPrice} on this shop`
   }
 
   today () {
@@ -34,11 +41,20 @@ class Receipt {
     return `${receiptLine}          ----\n          ${totalPrice}`
   }
 
-  printItemReceipt (receiptLine, totalPrice) {
-    return `~~~ Bob's Bagels ~~~\n${this.today()}\n\n--------------------\n\n${receiptLine}\n--------------------\nTotal          £${totalPrice}\n\n     Thank you\n   for your order!`
+  printItemReceipt (receiptLine, totalPrice, totalSavedPrice) {
+    return `~~~ Bob's Bagels ~~~\n\n${this.today()}\n\n--------------------\n\n${receiptLine}\n--------------------\nTotal          £${totalPrice}\n\n${totalSavedPrice}\n\n     Thank you\n   for your order!`
   }
 }
 
 module.exports = Receipt
 
-// const cofDeal = { COF: 1, BGLO: 1, 'BGLP x COF': 1 }
+// const receipt = new Receipt()
+// const obj = { BGLO: 7, BGLE: 2, BGLP: 1, COF: 1 }
+// const subPrice = { 'Onion Bagel': 2.98, 'Everything Bagel': 0.98, 'Plain Bagel': 0.39, Coffee: 0.99 }
+// const totalPrice = 5.34
+// const savedPrice = { BGLO: 0.45, BGLE: 0, BGLP: 0, COF: 0 }
+// const totalSavedPrice = receipt.totalSavedPrice(0.45)
+
+// const receiptLine = receipt.receiptLine(obj, subPrice, savedPrice)
+
+// console.log(receipt.printItemReceipt(receiptLine, totalPrice, totalSavedPrice))

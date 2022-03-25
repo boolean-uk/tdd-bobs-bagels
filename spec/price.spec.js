@@ -113,7 +113,7 @@ it ('returns bagel: cheese, price: $3', () => {
     expect(result).toEqual(expected)
   })
 
-  fit('converts SKU to item names', () => {
+  it('converts SKU to item names', () => {
     // setup
     const price = new Price()
     const basket = ['BGLP', 'COF', 'COF', 'BGLO']
@@ -124,6 +124,53 @@ it ('returns bagel: cheese, price: $3', () => {
     const expected = { Coffee: 0.99, 'Onion Bagel': 0.49, 'Coffee & Plain Bagel Combo': 1.25 }
     // execute
     const result = price.convertSKU(subPrice)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it ('returns an object of original sub total price of each items', () => {
+    // setup
+    const price = new Price()
+    const basket = ['BGLO', 'BGLE', 'BGLE', 'BGLP']
+    const skuQuantityObj = price.skuQuantity(basket)
+
+    const expected = { BGLO: 0.49, BGLE: 0.98, BGLP: 0.39 }
+    // execute
+    const result = price.noDiscountPrice(skuQuantityObj)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it ('returns an object of saved price of each items', () => {
+    // setup
+    const price = new Price()
+    const basket = ['BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLE', 'BGLE', 'BGLP', 'COF']
+    const skuQuantityObj = price.skuQuantity(basket)
+    const subPrice = price.subPrice(skuQuantityObj)
+    const noDiscountPrice = price.noDiscountPrice(skuQuantityObj)
+
+
+    const expected = { BGLO: 0.45, BGLE: 0, BGLP: 0, COF: 0 }
+    // execute
+    const result = price.savedPrice(subPrice, noDiscountPrice)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  fit ('returns the total saved price ', () => {
+    // setup
+    const price = new Price()
+    const basket = ['BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLE', 'BGLE', 'BGLP', 'COF']
+    const skuQuantityObj = price.skuQuantity(basket)
+    const subPrice = price.subPrice(skuQuantityObj)
+    const noDiscountPrice = price.noDiscountPrice(skuQuantityObj)
+    const savedPrice = price.savedPrice(subPrice, noDiscountPrice)
+
+
+    const expected = 0.45
+    // execute
+    const result = price.totalSavedPrice(savedPrice)
+
     // verify
     expect(result).toEqual(expected)
   })

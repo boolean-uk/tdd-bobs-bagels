@@ -21,7 +21,6 @@ class Price {
   checkPrice (item) {
     // make an object into an array with Object.entries()
     const itemListArr = Object.entries(this.list)
-    // find the bagel item and price that matches to the argument
     const itemAndPrice = itemListArr.find(list => list[0] === item)
     return `bagel: ${itemAndPrice[0]}, price: $${itemAndPrice[1]}`
   }
@@ -39,7 +38,6 @@ class Price {
   // A method to consider the BGLP and COF deal
   cofDeal (skuQuantityObj) {
     const skuArr = Object.keys(skuQuantityObj)
-
     const bglp = skuQuantityObj['BGLP']
     const cof = skuQuantityObj['COF']
 
@@ -80,8 +78,32 @@ class Price {
     return subPriceObj
   }
 
+  noDiscountPrice (skuQuantityObj) {
+    const noDiscountObj = {}
+
+    for (const skuQuantity in skuQuantityObj) {
+      const sku = skuQuantity
+      const quantity = skuQuantityObj[sku]
+      const nodiscountPrice = this.list[sku] * quantity
+      noDiscountObj[sku] = Number(Number.parseFloat(nodiscountPrice).toFixed(3))
+    }
+    return noDiscountObj
+  }
+
+  savedPrice (subPriceObj, noDiscountPriceObj) {
+    const savedPriceObj = {}
+    const item = Object.keys(subPriceObj)
+    const subPrice = Object.values(subPriceObj)
+    const noDiscountPrice = Object.values(noDiscountPriceObj)
+
+    for (let i = 0; i < subPrice.length; i++) {
+      savedPriceObj[item[i]] = Number(Number.parseFloat(noDiscountPrice[i] - subPrice[i]).toFixed(3))
+    }
+    return savedPriceObj
+  }
+
   convertSKU (subPrice) {
-    const skuObj = {}
+    const itemObj = {}
 
     for (const skuQuantity in subPrice) {
       let sku = skuQuantity
@@ -92,9 +114,15 @@ class Price {
       if (sku === 'BGLE') sku = 'Everything Bagel'
       if (sku === 'COF') sku = 'Coffee'
       if (sku === 'BGLP x COF') sku = 'Coffee & Plain Bagel Combo'
-      skuObj[sku] = quantity
+      itemObj[sku] = quantity
     }
-    return skuObj
+    return itemObj
+  }
+
+  totalSavedPrice (savedPrice) {
+    const savedPriceArr = Object.values(savedPrice)
+    const totalSavedPrice = savedPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
+    return Number(Number.parseFloat(totalSavedPrice).toFixed(3))
   }
 
   totalPrice (basket) {
@@ -106,6 +134,7 @@ class Price {
       totalPrice = bagelPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
       return `total: $${totalPrice}`
     }
+
     const subPriceArr = Object.values(basket)
     totalPrice = subPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
     return Number(Number.parseFloat(totalPrice).toFixed(3))
@@ -124,11 +153,3 @@ module.exports = Price
 
 // Create the variable first! and then merge it
 
-const price = new Price()
-const basket = ['BGLP', 'COF', 'COF', 'BGLO']
-const skuQuantity = price.skuQuantity(basket)
-const cofDeal = price.cofDeal(skuQuantity)
-const subPrice = price.subPrice(cofDeal)
-const totalPrice = price.totalPrice(subPrice)
-
-console.log(price.convertSKU(subPrice))
