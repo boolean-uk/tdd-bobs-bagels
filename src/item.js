@@ -30,9 +30,15 @@ class Item {
 
   totalPrice (basket) {
   // convert all bagels to its price, and then .reduce();
-    const bagelPriceArr = basket.map(bagel => this.list[bagel])
-    const totalSum = bagelPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
-    return `total: $${totalSum}`
+    let totalPrice
+    if (Array.isArray(basket)) {
+      const bagelPriceArr = basket.map(bagel => this.list[bagel])
+      totalPrice = bagelPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
+      return `total: $${totalPrice}`
+    }
+    const subPriceArr = Object.values(basket)
+    totalPrice = subPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
+    return Number(Number.parseFloat(totalPrice).toFixed(3))
   }
 
   skuQuantity (basket) {
@@ -55,47 +61,47 @@ class Item {
 
       if (sku === 'BGLO' || sku === 'BGLE') subPrice += (2.49 * (Math.floor(quantity / 6))) + (this.list[sku] * (quantity % 6))
       if (sku === 'BGLP') subPrice += (3.99 * Math.floor(quantity / 12)) + (this.list[sku] * (quantity % 12))
+      if (sku === 'COF') subPrice += this.list[sku] * (quantity)
       subPriceObj[sku] = Number(Number.parseFloat(subPrice).toFixed(3))
     }
     return subPriceObj
+  }
+
+  receiptLine (skuQuantity, subPrice) {
+    let receipt = ''
+    const receiptLength = Object.keys(subPrice).length
+
+    for (let i = 0; i < receiptLength; i++) {
+      const sku = Object.keys(skuQuantity)
+      const quantity = Object.values(skuQuantity)
+      const subTotal = Object.values(subPrice)
+      receipt += `${quantity[i]}x ${sku[i]} = ${subTotal[i]}\n`
+    }
+    return receipt
+  }
+
+  printReceipt (receiptLine, totalPrice) {
+    return `${receiptLine}          ----\n          ${totalPrice}`
   }
 }
 
 module.exports = Item
 
-const exBasket = ['BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO', 'BGLO']
 const item = new Item()
+const basket = ['BGLO', 'BGLE', 'BGLE', 'BGLP']
+const skuQuantityObj = item.skuQuantity(basket)
+const subPrice = item.subPrice(skuQuantityObj)
+const totalPrice = item.totalPrice(subPrice)
+const receiptLine = item.receiptLine(skuQuantityObj, subPrice)
+console.log(item.printReceipt(receiptLine, totalPrice))
 
-console.log(item.skuQuantity(exBasket))
-console.log(item.subPrice(item.skuQuantity(exBasket)))
+
+// console.log(item.skuQuantity(exBasket))
+// console.log(item.subPrice(item.skuQuantity(exBasket)))
 
 // console.log(2 % 6)
 
 // change variable to itemQuantity (or SKU and try to make is shorter!!)
   // receiptLine(quantity, name, price) and create smaller functions!
   // Create the variable first! and then merge it
-  
-  //   receipt (basket) {
-  //     const skuQuantity = {}
-  //     let receipt = ''
-  //     // Go through the basket, and create @Obj skuQuantity {item: quantity}
-  //     // if item exists in obj, add 1; else create a new property with value 1
-  //     basket.forEach(item => {
-  //       skuQuantity[item] ? skuQuantity[item] += 1 : skuQuantity[item] = 1
-  //     })
-  
-  //     for (const itemAndQuantity in skuQuantity) {
-  //       // declare and initialize these hard-reading variables to make it easier
-  //       // const quantity =  skuQuantity[itemAndQuantity]
-  //       // const item = itemAndQuantity
-  //       if ( skuQuantity[itemAndQuantity] % 6 === 0 && itemAndQuantity === 'BGLO') {
-  //         receipt += `${ skuQuantity[itemAndQuantity]}x ${itemAndQuantity} = ${2.49 * ( skuQuantity[itemAndQuantity] % 6) + this.list[itemAndQuantity] *  skuQuantity[itemAndQuantity] % 6}`
-  //       } else {
-  //       // receipt += quantity x item = total
-  //         receipt += `${ skuQuantity[itemAndQuantity]}x ${itemAndQuantity} = ${this.list[itemAndQuantity] *  skuQuantity[itemAndQuantity]}\n`
-  //       }
-  //     }
-  //     return `${receipt}--------------`
-  //   }
-  // }
 

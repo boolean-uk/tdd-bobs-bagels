@@ -36,14 +36,41 @@ it ('returns bagel: cheese, price: $3', () => {
     expect(result).toEqual(expected)
   })
 
-  fit ('returns a array within array of item name and its quantity', () => {
+  it ('returns an object of item name and its quantity', () => {
     // setup
     const item = new Item()
     const basket = ['BGLO', 'BGLE', 'BGLE', 'BGLP', 'COF']
 
-    const expected = [['BGLO', 1], ['BGLE', 2], ['BGLP', 1], ['COF', 1]]
+    const expected = { BGLO: 1, BGLE: 2, BGLP: 1, COF: 1 }
     // execute
     const result = item.skuQuantity(basket)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it ('returns an object of sub total price of each items', () => {
+    // setup
+    const item = new Item()
+    const basket = ['BGLO', 'BGLE', 'BGLE', 'BGLP']
+    const skuQuantityObj = item.skuQuantity(basket)
+
+    const expected = { BGLO: 0.49, BGLE: 0.98, BGLP: 0.39 }
+    // execute
+    const result = item.subPrice(skuQuantityObj)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  fit ('returns the total price', () => {
+    // setup
+    const item = new Item()
+    const basket = ['BGLO', 'BGLE', 'BGLE', 'BGLP']
+    const skuQuantityObj = item.skuQuantity(basket)
+    const subPrice = item.subPrice(skuQuantityObj)
+
+    const expected = 1.86
+    // execute
+    const result = item.totalPrice(subPrice)
     // verify
     expect(result).toEqual(expected)
   })
