@@ -31,3 +31,15 @@ Verb: buy
 | totalPrice(@subPrice())               | totalPrice @Number                    | 
 | receiptLine(@skuQuantity(), @subPrice())  | one line of receipt @String ${sku} x ${quantity} = ${@subPrice()}
 | printReceipt(@receiptLine(), @totalPrice()) | @receiptLine() --- @totalPrice() |
+
+---
+
+## Extension Part 2
+Update and extend your program to handle printing receipts.
+
+## Domain Model
+| Methods                                                        | Output                                |
+| -------------------------------------------------------------- | ------------------------------------- |
+| convertSKU()                                                   | skuQuantity @Obj {itemName @String: quantity @Number} |
+| today()                                                        | @Number yyyy-mm-dd h:m:s              |
+| printReceipt(@today(), @receiptLine(), @totalPrice())          | @receipt                              |

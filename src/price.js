@@ -36,6 +36,7 @@ class Price {
     return skuQuantityObj
   }
 
+  // A method to consider the BGLP and COF deal
   cofDeal (skuQuantityObj) {
     const skuArr = Object.keys(skuQuantityObj)
 
@@ -79,6 +80,23 @@ class Price {
     return subPriceObj
   }
 
+  convertSKU (subPrice) {
+    const skuObj = {}
+
+    for (const skuQuantity in subPrice) {
+      let sku = skuQuantity
+      const quantity = subPrice[sku]
+
+      if (sku === 'BGLO') sku = 'Onion Bagel'
+      if (sku === 'BFLP') sku = 'Plain Bagel'
+      if (sku === 'BGLE') sku = 'Everything Bagel'
+      if (sku === 'COF') sku = 'Coffee'
+      if (sku === 'BGLP x COF') sku = 'Coffee & Plain Bagel Combo'
+      skuObj[sku] = quantity
+    }
+    return skuObj
+  }
+
   totalPrice (basket) {
   // convert all bagels to its price, and then .reduce();
     let totalPrice
@@ -106,10 +124,11 @@ module.exports = Price
 
 // Create the variable first! and then merge it
 
-const basket = ['BGLP', 'COF', 'COF', 'BGLO']
 const price = new Price()
+const basket = ['BGLP', 'COF', 'COF', 'BGLO']
 const skuQuantity = price.skuQuantity(basket)
 const cofDeal = price.cofDeal(skuQuantity)
-console.log(skuQuantity)
-console.log(cofDeal)
-console.log(price.subPrice(cofDeal))
+const subPrice = price.subPrice(cofDeal)
+const totalPrice = price.totalPrice(subPrice)
+
+console.log(price.convertSKU(subPrice))

@@ -73,7 +73,7 @@ it ('returns bagel: cheese, price: $3', () => {
     expect(result).toEqual(expected)
   })
 
-  fit ('considers BGLP and COF deal and returns an object of price name and its quantity', () => {
+  it ('considers BGLP and COF deal and returns an object of price name and its quantity', () => {
     // setup
     const price = new Price()
     const basket = ['BGLP', 'COF', 'COF', 'BGLO']
@@ -109,6 +109,21 @@ it ('returns bagel: cheese, price: $3', () => {
     const expected = 1.86
     // execute
     const result = price.totalPrice(subPrice)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  fit('converts SKU to item names', () => {
+    // setup
+    const price = new Price()
+    const basket = ['BGLP', 'COF', 'COF', 'BGLO']
+    const skuQuantityObj = price.skuQuantity(basket)
+    const cofDeal = price.cofDeal(skuQuantityObj)
+    const subPrice = price.subPrice(cofDeal)
+
+    const expected = { Coffee: 0.99, 'Onion Bagel': 0.49, 'Coffee & Plain Bagel Combo': 1.25 }
+    // execute
+    const result = price.convertSKU(subPrice)
     // verify
     expect(result).toEqual(expected)
   })
