@@ -11,53 +11,16 @@ class Basket {
   }
 
   removeFromBasket(bagelName) {
-    for (let i = 0; i < this.basketList.length; i++) {
-      // console.log(i, bagelName, this.basketList[i].name);
-      if (this.basketList[i].name === bagelName) {
-        this.basketList.splice(i, 1);
-        // console.log(this.basketList);
-        break;
+    if (this.checkItemExists(bagelName)) {
+      for (let i = 0; i < this.basketList.length; i++) {
+        if (this.basketList[i].name === bagelName) {
+          this.basketList.splice(i, 1);
+          break;
+        }
       }
+      return this.basketList;
     }
-    return this.basketList;
   }
-
-  // Nathan's remove solution (part 1-2)
-  /* 
-  remove(id) {
-    const newItems = [];
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].id != id) {
-        newItems.push(this.items[i])
-      }
-    }
-    this.items = newItems;
-
-    return this.items
-  }
-  */
-
-  // Nathan's solution to part 2 - 3
-  /* 
-  remove(id) {
-    const newItems = [];
-    let foundItem = false;
-
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].id != id) {
-        newItems.push(this.items[i])
-        continue
-      }
-      fountItem = true
-    }
-    if (!founItem) {
-      return false;
-    }
-    this.items = newItems;
-
-    return this.items
-  }
-  */
 
   fullBasket() {
     if (this.basketList.length >= this.capacity) {
@@ -65,6 +28,19 @@ class Basket {
     } else {
       return false;
     }
+  }
+
+  checkItemExists(bagel) {
+    // loop over the array to check each item in the basket
+    // check if bagel name string matches with bagel name in the basket.
+    // if it does, return true.
+
+    for (let i = 0; i < this.basketList.length; i++) {
+      if (bagel === this.basketList[i].name) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 

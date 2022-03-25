@@ -69,4 +69,18 @@ describe("", () => {
     expect(result1).toEqual(false);
     expect(result2).toEqual(true);
   });
+
+  it("check if item exists", () => {
+    //set up
+    const basket = new Basket(4);
+    const bagel = new Bagel("Bobs First Bagel");
+    const bagel2 = new Bagel("Bobs Second Bagel");
+    //execute
+    basket.addToBasket(bagel);
+    basket.addToBasket(bagel2);
+    const result = basket.checkItemExists("Bobs First Bagel");
+
+    //verify
+    expect(result).toEqual(true);
+  });
 });
