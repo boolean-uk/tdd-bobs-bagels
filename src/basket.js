@@ -1,5 +1,3 @@
-const Item = require("./item")
-
 class Basket {
     constructor () {
         this.items = []
@@ -7,7 +5,7 @@ class Basket {
     }
 
     add (item) {
-        if (!this._hasCapacity(item.quantity)) return 'Sorry, your basket is already full.'
+        if (this._isFull(item.quantity)) return 'Sorry, your basket is already full.'
         this.items.push(item)
         this.capacity -= item.quantity
 
@@ -28,8 +26,8 @@ class Basket {
         return this.capacity
     }
 
-    _hasCapacity (num) {
-        return num <= this.capacity
+    _isFull (num) {
+        return num > this.capacity
     }
 
     _itemExists (SKU) {

@@ -89,38 +89,6 @@ class CashRegister {
         }
         return items
     }
-
-    _hasCoffeeAndBagel (items) {
-        let [coffee, bagel] = [false, false]
-        for (const item of items) {
-            if (item.SKU === 'BGLP' && item.quantity > 0) bagel = true
-            if (item.SKU === 'COF' && item.quantity > 0) coffee = true
-        }
-        return coffee && bagel
-    }
-
 }
-
-// TESTING
-const basket = new Basket()
-const item1 = new Item('BGLE', 3)
-const item5 = new Item('BGLE', 3)
-const item2 = new Item('COF', 2)
-const item3 = new Item('BGLO', 6)
-const item4 = new Item('BGLP', 1)
-basket.add(item1)
-basket.add(item2)
-basket.add(item3)
-basket.add(item4)
-basket.add(item5)
-const cashRegister = new CashRegister(basket.items)
-
-// console.table(cashRegister.items, ['variant', 'name', 'quantity', 'price'])
-// console.log(cashRegister.printReceipt())
-// console.log(cashRegister.createOrderConfirmation())
-const sms = new SMS(cashRegister.createOrderConfirmation())
-sms.sendSMS()
-
-
 
 module.exports = CashRegister
