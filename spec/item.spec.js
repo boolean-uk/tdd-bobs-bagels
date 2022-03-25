@@ -23,6 +23,31 @@ it ('returns bagel: cheese, price: $3', () => {
     expect(result).toEqual(expected)
   })
 
+  /* --- PART 3 - 3 --- */
+  it("returns total: $6", () => {
+    // setup
+    const item = new Item()
+    const basket = ['plain', 'poppy']
+
+    const expected = 'total: $6'
+    // execute
+    const result = item.totalPrice(basket)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('returns total: $13', () => {
+    // setup
+    const item = new Item()
+    const basket = ['plain', 'plain', 'cheese', 'cheese', 'cinnamon']
+
+    const expected = 'total: $13'
+    // execute
+    const result = item.totalPrice(basket)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
   /* --- Extension 1 --- */
   it ('returns an object of item name and its quantity', () => {
     // setup
@@ -74,36 +99,4 @@ it ('returns bagel: cheese, price: $3', () => {
     // verify
     expect(result).toEqual(expected)
   })
-
-  it ('returns the receipt details', () => {
-    // setup
-    const item = new Item()
-    const basket = ['BGLO', 'BGLE', 'BGLE', 'BGLP']
-    const skuQuantityObj = item.skuQuantity(basket)
-    const subPrice = item.subPrice(skuQuantityObj)
-
-    const expected = '1x BGLO = 0.49\n2x BGLE = 0.98\n1x BGLP = 0.39\n'
-    // execute
-    const result = item.receiptLine(skuQuantityObj, subPrice)
-    // verify
-    expect(result).toEqual(expected)
-  })
-
-  it ('prints out the receipt', () => {
-    // setup
-    const item = new Item()
-    const basket = ['BGLO', 'BGLE', 'BGLE', 'BGLP']
-    const skuQuantityObj = item.skuQuantity(basket)
-    const subPrice = item.subPrice(skuQuantityObj)
-    const receiptLine = item.receiptLine(skuQuantityObj, subPrice)
-    const totalPrice = item.totalPrice(subPrice)
-
-    const expected = '1x BGLO = 0.49\n2x BGLE = 0.98\n1x BGLP = 0.39\n          ----\n          1.86'
-    // execute
-    const result = item.printReceipt(receiptLine, totalPrice)
-    // verify
-    expect(result).toEqual(expected)
-  })
-
-
 })

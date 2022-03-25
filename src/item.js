@@ -2,6 +2,7 @@ const Receipt = require('./receipt.js')
 
 class Item {
   constructor () {
+    // FIGURE OUT NOT TO HARD CODE THESE PROPERTIES
     this.list = {
       plain: 2,
       cheese: 3,
@@ -15,12 +16,7 @@ class Item {
       COF: 0.99
     }
     this.receipt = new Receipt()
-    // this.list = {}
   }
-
-  // addToList (item, price) {
-  //   this.list[item] = price
-  // }
 
   checkPrice (item) {
     // make an object into an array with Object.entries()
@@ -33,6 +29,7 @@ class Item {
   totalPrice (basket) {
   // convert all bagels to its price, and then .reduce();
     let totalPrice
+    // conditional if basket type is array (for core criteria) or object (for extension)
     if (Array.isArray(basket)) {
       const bagelPriceArr = basket.map(bagel => this.list[bagel])
       totalPrice = bagelPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
