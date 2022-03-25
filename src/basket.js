@@ -42,6 +42,15 @@ class Basket {
     }
     return false;
   }
+
+  checkout() {
+    let sum = 0;
+    for (let i = 0; i < this.basketList.length; i++) {
+      const currentBagel = this.basketList[i];
+      sum += currentBagel.price;
+    }
+    return sum;
+  }
 }
 
 module.exports = Basket;

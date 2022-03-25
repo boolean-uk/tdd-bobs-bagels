@@ -5,4 +5,5 @@
 |         | basketCapacities @integer   | removeFromBasket (Bagel)         | basket @array   |
 |         |                             | fullBasket (@boolean)            | basket @boolean |
 |         |                             | checkItemExists (@string - name) | @boolean        |
+|         |                             | checkout                         | @integer        |
 | Bagel   | name (@string)
