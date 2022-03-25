@@ -17,3 +17,6 @@
 ||| getTotalPrice() | @Number
 ||| printReceipt() | @String
 ||| _hasCoffeeAndBagel(@Array[@item]) | @Boolean 
+| sms | text @string | sendSMS()
+|| from @String
+|| to @String

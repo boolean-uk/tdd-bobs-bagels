@@ -1,5 +1,6 @@
 const Basket = require("./basket")
 const Item = require("./item")
+const SMS = require("./sms")
 
 class CashRegister {
     constructor (items) {
@@ -27,10 +28,10 @@ class CashRegister {
             const price = (items[i].price).toFixed(2)
 
             if (items[i].SKU === 'COF' || items[i].SKU === 'BGLE') {
-                str += `${variant} ${name}   ${qty} £${(price)}\n`
+                str += `${variant} ${name}  ${qty}  £${(price)}\n`
             }
             else {
-                str += `${variant} ${name}        ${qty} £${(price)}\n`
+                str += `${variant} ${name}       ${qty}  £${(price)}\n`
             }
             if (this.discounts[items[i].SKU] < 0) {
                 str += `                   (${this.discounts[items[i].SKU]})\n`
@@ -48,6 +49,34 @@ class CashRegister {
         receipt += `      for your order!`
 
         return receipt
+    }
+
+    createOrderConfirmation () {
+        const items = this.items
+        const total = this.getTotalPrice()
+        let str = ``
+        for (let i = 0; i < items.length; i++) {
+            const SKU = items[i].SKU
+            const qty = items[i].quantity
+            const price = (items[i].price).toFixed(2)
+
+            if (items[i].SKU === 'COF') {
+                str += `${SKU}  x${qty}  £${(price)}\n`
+            }
+            else {
+                str += `${SKU} x${qty}  £${(price)}\n`
+            }
+        }
+
+        const date = new Date()
+        let order = `Your order:\n`
+        order += `${str}`
+        order += `Total    £${total}\n\n`
+        order += `Est. delivery time: 90 min\n`
+        order += `Thank you for your order!\n`
+        order += `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`
+
+        return order
     }
 
     _applyOffers () {
@@ -87,6 +116,11 @@ basket.add(item5)
 const cashRegister = new CashRegister(basket.items)
 
 // console.table(cashRegister.items, ['variant', 'name', 'quantity', 'price'])
-console.log(cashRegister.printReceipt())
+// console.log(cashRegister.printReceipt())
+// console.log(cashRegister.createOrderConfirmation())
+const sms = new SMS(cashRegister.createOrderConfirmation())
+sms.sendSMS()
+
+
 
 module.exports = CashRegister
