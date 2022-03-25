@@ -1,7 +1,8 @@
 const Manager = require("../src/manager");
 const Item = require("../src/item");
 const ApplyDiscount = require("../src/applyDiscount");
-// var readlineSync = require("readline-sync");
+const Checkout = require("../src/checkout");
+const SMS = require("../src/sms");
 
 class Basket {
   itemsArr = [];
@@ -112,57 +113,13 @@ class Basket {
   }
 
   checkout() {
-    let today = new Date();
+    let receipt = new Checkout(
+      this.discountedBasket,
+      this.getTotalSumOfCart()
+    ).checkout();
 
-    let date =
-      today.getFullYear() +
-      "-" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getDate();
-
-    let time =
-      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-
-    let dateTime = date + " " + time;
-    let totalSaving = 0;
-    let receipt = `
-    ~~~ Bob's Bagels ~~~  
-     
-    ${dateTime} 
-
-    --------------------- \n`;
-    for (let key of Object.keys(this.discountedBasket)) {
-      this.discountedBasket[key].forEach((item) => {
-        totalSaving += item.savings || 0;
-        if (item.variant) {
-          receipt += `   ${item.variant} ${item.name} ${item.totalQuantity} = £${item.price} \n`;
-          receipt +=
-            item.savings > 0
-              ? `                 (£-${item.savings > 0 ? item.savings : ""})\n`
-              : "";
-        } else if (!item.variant) {
-          receipt += `  ${item.name} ${item.totalQuantity} = £${item.price} \n`;
-          receipt +=
-            item.savings > 0
-              ? `                 (£-${item.savings > 0 ? item.savings : ""})\n`
-              : "";
-        }
-      });
-      receipt += `   
-   ----------------------- \n`;
-      break;
-    }
-    receipt += `   Total £${this.getTotalSumOfCart()}\n`;
-
-    receipt += `    
-  You saved a total of £${totalSaving}
-        on this shop
-
-        Thank you
-      for your order!
-       `;
-    console.log(receipt);
+    new SMS(receipt);
+    return receipt;
   }
 }
 
@@ -171,21 +128,16 @@ const basket = new Basket();
 
 basket.addItemToBasket("3x Onion-Bagel");
 basket.addItemToBasket("4x Plain-Bagel");
+basket.addItemToBasket("7x everything-Bagel");
+
+// basket.removeItemFromBasket(3);
 // basket.addItemToBasket("4x Plain-Bagel");
 // basket.addItemToBasket("4x Plain-Bagel");
-// basket.addItemToBasket("7x Rainbow-Bagel");
-// basket.addItemToBasket("2x plain-bagel");
-// basket.addItemToBasket("4x onion-bagel");
-// basket.addItemToBasket("4x onion-bagel");
-// basket.addItemToBasket("2x onion-bagel");
-// basket.addItemToBasket("2x onion-bagel");
-// basket.addItemToBasket("4x Coffee");
 basket.addItemToBasket("2x Coffee");
 basket.addItemToBasket("2x Coffee");
 basket.addItemToBasket("2x Coffee");
-basket.addItemToBasket("3x Finom-Bagel");
-// basket.removeItemFromBasket(1);
-// console.log(basket.getTotalSumOfCart());
+console.log(basket.addItemToBasket("3x Finom-Bagel"));
+
 basket.checkout();
 
 // basket.changeBasketLimit(8);
