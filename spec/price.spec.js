@@ -73,6 +73,19 @@ it ('returns bagel: cheese, price: $3', () => {
     expect(result).toEqual(expected)
   })
 
+  fit ('considers BGLP and COF deal and returns an object of price name and its quantity', () => {
+    // setup
+    const price = new Price()
+    const basket = ['BGLP', 'COF', 'COF', 'BGLO']
+    const skuQuantity = price.skuQuantity(basket)
+
+    const expected = { COF: 1, BGLO: 1, 'BGLP x COF': 1 }
+    // execute
+    const result = price.cofDeal(skuQuantity)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
   it ('returns an object of sub total price of each items', () => {
     // setup
     const price = new Price()

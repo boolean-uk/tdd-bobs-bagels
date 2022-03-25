@@ -2,7 +2,7 @@ const Receipt = require('./receipt.js')
 
 class Price {
   constructor () {
-    // FIGURE OUT NOT TO HARD CODE THESE PROPERTIES
+    // FIGURE OUT HOW NOT TO HARD CODE THESE PROPERTIES
     this.list = {
       plain: 2,
       cheese: 3,
@@ -36,14 +36,41 @@ class Price {
     return skuQuantityObj
   }
 
-  subPrice (skuQuantityObj) {
+  cofDeal (skuQuantityObj) {
+    const skuArr = Object.keys(skuQuantityObj)
+
+    const bglp = skuQuantityObj['BGLP']
+    const cof = skuQuantityObj['COF']
+
+    if (skuArr.includes('BGLP') && skuArr.includes('COF')) {
+      if (bglp === cof) {
+        skuQuantityObj['BGLP x COF'] = bglp
+        delete skuQuantityObj['BGLP']
+        delete skuQuantityObj['COF']
+      }
+      if (bglp > cof) {
+        skuQuantityObj['BGLP x COF'] = cof
+        delete skuQuantityObj['COF']
+        skuQuantityObj['BGLP'] = bglp - cof
+      }
+      if (bglp < cof) {
+        skuQuantityObj['BGLP x COF'] = bglp
+        delete skuQuantityObj['BGLP']
+        skuQuantityObj['COF'] = cof - bglp
+      }
+    }
+    return skuQuantityObj
+  }
+
+  subPrice (cofDeal) {
     const subPriceObj = {}
 
-    for (const skuQuantity in skuQuantityObj) {
+    for (const skuQuantity in cofDeal) {
       const sku = skuQuantity
-      const quantity = skuQuantityObj[sku]
+      const quantity = cofDeal[sku]
       let subPrice = 0
 
+      if (sku === 'BGLP x COF') subPrice += 1.25 * quantity
       if (sku === 'BGLO' || sku === 'BGLE') subPrice += (2.49 * (Math.floor(quantity / 6))) + (this.list[sku] * (quantity % 6))
       if (sku === 'BGLP') subPrice += (3.99 * Math.floor(quantity / 12)) + (this.list[sku] * (quantity % 12))
       if (sku === 'COF') subPrice += this.list[sku] * (quantity)
@@ -78,3 +105,11 @@ class Price {
 module.exports = Price
 
 // Create the variable first! and then merge it
+
+const basket = ['BGLP', 'COF', 'COF', 'BGLO']
+const price = new Price()
+const skuQuantity = price.skuQuantity(basket)
+const cofDeal = price.cofDeal(skuQuantity)
+console.log(skuQuantity)
+console.log(cofDeal)
+console.log(price.subPrice(cofDeal))
