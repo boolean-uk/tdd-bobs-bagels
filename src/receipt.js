@@ -7,7 +7,10 @@ class Receipt {
       const sku = Object.keys(cofDeal)
       const quantity = Object.values(cofDeal)
       const subTotal = Object.values(subPrice)
-      receipt += `${quantity[i]}x ${sku[i]} = ${subTotal[i]}\n`
+      const inSKU = sku[0].length <= 3
+
+      if (inSKU) receipt += `${quantity[i]}x ${sku[i]} = ${subTotal[i]}\n`
+      if (!inSKU) receipt += `${sku[i]} ${quantity[i]} £${subTotal[i]}\n`
     }
     return receipt
   }
@@ -27,17 +30,15 @@ class Receipt {
     return `${year}-${month}-${day} ${hour}:${minute}:${second}`
   }
 
-  printReceipt (today, receiptLine, totalPrice) {
-    return `   ~~~ Bob's Bagels ~~~\n\n${today}\n\n${receiptLine}          ----\n          ${totalPrice}`
+  printSKUReceipt (receiptLine, totalPrice) {
+    return `${receiptLine}          ----\n          ${totalPrice}`
+  }
+
+  printItemReceipt (receiptLine, totalPrice) {
+    return `~~~ Bob's Bagels ~~~\n${this.today()}\n\n--------------------\n\n${receiptLine}\n--------------------\nTotal          £${totalPrice}\n\n     Thank you\n   for your order!`
   }
 }
 
 module.exports = Receipt
 
 // const cofDeal = { COF: 1, BGLO: 1, 'BGLP x COF': 1 }
-// const subPrice = { COF: 0.99, BGLO: 0.49, 'BGLP x COF': 1.25 }
-// const totalPrice = 2.73
-
-// const receipt = new Receipt()
-// const receiptLine = receipt.receiptLine(cofDeal, subPrice)
-// console.log(receipt.printReceipt(receipt.today(), receiptLine, totalPrice))

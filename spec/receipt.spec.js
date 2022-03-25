@@ -14,7 +14,7 @@ describe ('Receipt class', () => {
     expect(result).toEqual(expected)
 })
 
-  it ('prints out the receipt', () => {
+  it ('prints out the SKU receipt', () => {
   // setup
     const receipt = new Receipt()
     const skuQuantityObj = { BGLO: 1, BGLE: 2, BGLP: 1 }
@@ -24,7 +24,7 @@ describe ('Receipt class', () => {
 
     const expected = '1x BGLO = 0.49\n2x BGLE = 0.98\n1x BGLP = 0.39\n          ----\n          1.86'
     // execute
-    const result = receipt.printReceipt(receiptLine, totalPrice)
+    const result = receipt.printSKUReceipt(receiptLine, totalPrice)
     // verify
     expect(result).toEqual(expected)
   })
