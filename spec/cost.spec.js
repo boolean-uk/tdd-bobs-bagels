@@ -8,7 +8,7 @@ describe("Cost", () => {
     // execute
 
     const result = newBasket.totalCost();
-    console.log("11....", result);
+    console.log("11....test....", result);
 
     // verify
     expect(result).toEqual(expected);
@@ -17,11 +17,11 @@ describe("Cost", () => {
   it("cost with discounts", () => {
     // set up
     const newBasket = new Cost();
-    const expected = 1.37;
+    const expected = 3.22;
     // execute
 
     const result = newBasket.totalDiscountCost();
-    console.log("24....", result);
+    console.log("24....test....", result);
 
     // verify
     expect(result).toEqual(expected);

@@ -37,3 +37,16 @@
 | create SKU code               | @string | @string                | createSkuCode()                 | @string                                          |
 | Create new bagel, update menu | @array  | {SKU, id, price, name} | createItemUpdateMenu()          | {SKU: @str, id: @Int, price: @float, name: @str} |
 | createCost class              | @class  | @methods, @attributes  | totalCost() totalDiscountCost() | @Integer                                         |
+
+> Bob's Bagels extension-one re-think
+
+| Psuedo            | Objects | Properties                    | Messages / Methods | Output              |
+| ----------------- | ------- | ----------------------------- | ------------------ | ------------------- |
+| bagel             | @object | [{SKU, price, name}]          |                    |                     |
+| bagel basket      | @array  | [{SKU, id, price, name}]      | add().....         |                     |
+| tally item by SKU | @array  | [{SKU: 'BGLO'}, .....]        | itemTally()        | [{'BGLO':4}, .....] |
+| cost above tally  | @array  | [{'BGLO':4, price: 5}, .....] | basketCost()       | @Number             |
+| receipt           | @array  | [{'BGLO':4, price: 5}, .....] | receipt()          | @string             |
+
+1. Input is my basket, which is an array of objects
+2. Count how many of each item in the basket. Iterate over array, keep count against SKU code. Return object.
