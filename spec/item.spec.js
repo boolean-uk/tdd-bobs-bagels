@@ -61,7 +61,7 @@ it ('returns bagel: cheese, price: $3', () => {
     expect(result).toEqual(expected)
   })
 
-  fit ('returns the total price', () => {
+  it ('returns the total price', () => {
     // setup
     const item = new Item()
     const basket = ['BGLO', 'BGLE', 'BGLE', 'BGLP']
@@ -74,4 +74,36 @@ it ('returns bagel: cheese, price: $3', () => {
     // verify
     expect(result).toEqual(expected)
   })
+
+  it ('returns the receipt details', () => {
+    // setup
+    const item = new Item()
+    const basket = ['BGLO', 'BGLE', 'BGLE', 'BGLP']
+    const skuQuantityObj = item.skuQuantity(basket)
+    const subPrice = item.subPrice(skuQuantityObj)
+
+    const expected = '1x BGLO = 0.49\n2x BGLE = 0.98\n1x BGLP = 0.39\n'
+    // execute
+    const result = item.receiptLine(skuQuantityObj, subPrice)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  fit ('prints out the receipt', () => {
+    // setup
+    const item = new Item()
+    const basket = ['BGLO', 'BGLE', 'BGLE', 'BGLP']
+    const skuQuantityObj = item.skuQuantity(basket)
+    const subPrice = item.subPrice(skuQuantityObj)
+    const receiptLine = item.receiptLine(skuQuantityObj, subPrice)
+    const totalPrice = item.totalPrice(subPrice)
+
+    const expected = '1x BGLO = 0.49\n2x BGLE = 0.98\n1x BGLP = 0.39\n          ----\n          1.86'
+    // execute
+    const result = item.printReceipt(receiptLine, totalPrice)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+
 })

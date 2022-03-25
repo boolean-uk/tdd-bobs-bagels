@@ -99,7 +99,6 @@ console.log(item.printReceipt(receiptLine, totalPrice))
 // console.log(item.skuQuantity(exBasket))
 // console.log(item.subPrice(item.skuQuantity(exBasket)))
 
-// console.log(2 % 6)
 
 // change variable to itemQuantity (or SKU and try to make is shorter!!)
   // receiptLine(quantity, name, price) and create smaller functions!
