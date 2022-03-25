@@ -1,6 +1,6 @@
 const Receipt = require('./receipt.js')
 
-class Item {
+class Price {
   constructor () {
     // FIGURE OUT NOT TO HARD CODE THESE PROPERTIES
     this.list = {
@@ -24,20 +24,6 @@ class Item {
     // find the bagel item and price that matches to the argument
     const itemAndPrice = itemListArr.find(list => list[0] === item)
     return `bagel: ${itemAndPrice[0]}, price: $${itemAndPrice[1]}`
-  }
-
-  totalPrice (basket) {
-  // convert all bagels to its price, and then .reduce();
-    let totalPrice
-    // conditional if basket type is array (for core criteria) or object (for extension)
-    if (Array.isArray(basket)) {
-      const bagelPriceArr = basket.map(bagel => this.list[bagel])
-      totalPrice = bagelPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
-      return `total: $${totalPrice}`
-    }
-    const subPriceArr = Object.values(basket)
-    totalPrice = subPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
-    return Number(Number.parseFloat(totalPrice).toFixed(3))
   }
 
   skuQuantity (basket) {
@@ -66,6 +52,20 @@ class Item {
     return subPriceObj
   }
 
+  totalPrice (basket) {
+  // convert all bagels to its price, and then .reduce();
+    let totalPrice
+    // conditional if basket type is array (for core criteria) or object (for extension)
+    if (Array.isArray(basket)) {
+      const bagelPriceArr = basket.map(bagel => this.list[bagel])
+      totalPrice = bagelPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
+      return `total: $${totalPrice}`
+    }
+    const subPriceArr = Object.values(basket)
+    totalPrice = subPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
+    return Number(Number.parseFloat(totalPrice).toFixed(3))
+  }
+
   receiptLine (skuQuantity, subPrice) {
     return this.receipt.receiptLine(skuQuantity, subPrice)
   }
@@ -75,9 +75,6 @@ class Item {
   }
 }
 
-module.exports = Item
+module.exports = Price
 
-// change variable to itemQuantity (or SKU and try to make is shorter!!)
-// receiptLine(quantity, name, price) and create smaller functions!
 // Create the variable first! and then merge it
-
