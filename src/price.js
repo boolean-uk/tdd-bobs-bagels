@@ -1,4 +1,3 @@
-const Receipt = require('./receipt.js')
 
 class Price {
   constructor () {
@@ -15,7 +14,6 @@ class Price {
       BGLE: 0.49,
       COF: 0.99
     }
-    this.receipt = new Receipt()
   }
 
   checkPrice (item) {
@@ -35,7 +33,7 @@ class Price {
     return skuQuantityObj
   }
 
-  // A method to consider the BGLP and COF deal
+  // IS THERE A BETTER WAY TO CREATE THIS METHOD???
   cofDeal (skuQuantityObj) {
     const skuArr = Object.keys(skuQuantityObj)
     const bglp = skuQuantityObj['BGLP']
@@ -43,19 +41,19 @@ class Price {
 
     if (skuArr.includes('BGLP') && skuArr.includes('COF')) {
       if (bglp === cof) {
-        skuQuantityObj['BGLP x COF'] = bglp
+        skuQuantityObj['COFP'] = bglp
         delete skuQuantityObj['BGLP']
         delete skuQuantityObj['COF']
       }
       if (bglp > cof) {
-        skuQuantityObj['BGLP x COF'] = cof
-        delete skuQuantityObj['COF']
+        skuQuantityObj['COFP'] = cof
         skuQuantityObj['BGLP'] = bglp - cof
+        delete skuQuantityObj['COF']
       }
       if (bglp < cof) {
-        skuQuantityObj['BGLP x COF'] = bglp
-        delete skuQuantityObj['BGLP']
+        skuQuantityObj['COFP'] = bglp
         skuQuantityObj['COF'] = cof - bglp
+        delete skuQuantityObj['BGLP']
       }
     }
     return skuQuantityObj
@@ -69,7 +67,7 @@ class Price {
       const quantity = cofDeal[sku]
       let subPrice = 0
 
-      if (sku === 'BGLP x COF') subPrice += 1.25 * quantity
+      if (sku === 'COFP') subPrice += 1.25 * quantity
       if (sku === 'BGLO' || sku === 'BGLE') subPrice += (2.49 * (Math.floor(quantity / 6))) + (this.list[sku] * (quantity % 6))
       if (sku === 'BGLP') subPrice += (3.99 * Math.floor(quantity / 12)) + (this.list[sku] * (quantity % 12))
       if (sku === 'COF') subPrice += this.list[sku] * (quantity)
@@ -113,7 +111,7 @@ class Price {
       if (sku === 'BFLP') sku = 'Plain Bagel'
       if (sku === 'BGLE') sku = 'Everything Bagel'
       if (sku === 'COF') sku = 'Coffee'
-      if (sku === 'BGLP x COF') sku = 'Coffee & Plain Bagel Combo'
+      if (sku === 'COFP') sku = 'Coffee & Plain Bagel Combo'
       itemObj[sku] = quantity
     }
     return itemObj
@@ -139,17 +137,6 @@ class Price {
     totalPrice = subPriceArr.reduce((firstPrice, nextPrice) => (firstPrice + nextPrice), 0)
     return Number(Number.parseFloat(totalPrice).toFixed(3))
   }
-
-  receiptLine (skuQuantity, subPrice) {
-    return this.receipt.receiptLine(skuQuantity, subPrice)
-  }
-
-  printReceipt (receiptLine, totalPrice) {
-    return this.receipt.printReceipt(receiptLine, totalPrice)
-  }
 }
 
 module.exports = Price
-
-// Create the variable first! and then merge it
-

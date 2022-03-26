@@ -2,14 +2,13 @@ class Receipt {
   receiptLine (cofDeal, subPrice, savedPrice = '') {
     let receipt = ''
     const receiptLength = Object.keys(subPrice).length
+    const sku = Object.keys(subPrice)
+    const quantity = Object.values(cofDeal)
+    const subTotal = Object.values(subPrice)
+    const savedTotal = Object.values(savedPrice)
+    const inSKU = sku[0].length <= 4
 
     for (let i = 0; i < receiptLength; i++) {
-      const sku = Object.keys(subPrice)
-      const quantity = Object.values(cofDeal)
-      const subTotal = Object.values(subPrice)
-      const savedTotal = Object.values(savedPrice)
-      const inSKU = sku[0].length <= 3
-
       if (inSKU) receipt += `${quantity[i]}x ${sku[i]} = ${subTotal[i]}\n`
       if (!inSKU && savedTotal[i] === 0) receipt += `${sku[i]} ${quantity[i]} £${subTotal[i]}\n`
       if (!inSKU && savedTotal[i] !== 0) receipt += `${sku[i]} ${quantity[i]} £${subTotal[i]}\n       (-£${savedTotal[i]})\n`
@@ -47,14 +46,3 @@ class Receipt {
 }
 
 module.exports = Receipt
-
-// const receipt = new Receipt()
-// const obj = { BGLO: 7, BGLE: 2, BGLP: 1, COF: 1 }
-// const subPrice = { 'Onion Bagel': 2.98, 'Everything Bagel': 0.98, 'Plain Bagel': 0.39, Coffee: 0.99 }
-// const totalPrice = 5.34
-// const savedPrice = { BGLO: 0.45, BGLE: 0, BGLP: 0, COF: 0 }
-// const totalSavedPrice = receipt.totalSavedPrice(0.45)
-
-// const receiptLine = receipt.receiptLine(obj, subPrice, savedPrice)
-
-// console.log(receipt.printItemReceipt(receiptLine, totalPrice, totalSavedPrice))

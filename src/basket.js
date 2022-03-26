@@ -4,7 +4,7 @@ class Basket {
   // parameter the capacity for extension
   constructor () {
     this.basket = []
-    this.capacity = 5
+    this.capacity = 12
     this.price = new Price()
   }
 
@@ -38,14 +38,6 @@ class Basket {
 
   createBigBasket () {
     if (this.basket.length === this.capacity) this.capacity = 12
-  }
-
-  checkPrice (bagel) {
-    return this.price.checkPrice(bagel)
-  }
-
-  totalPrice () {
-    return this.price.totalPrice(this.basket)
   }
 }
 
