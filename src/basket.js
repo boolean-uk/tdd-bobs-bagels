@@ -37,7 +37,7 @@ class Basket {
   }
 
   createBigBasket () {
-    if (this.basket.length === this.capacity) this.capacity = 12
+    if (this.basket.length === this.capacity) this.capacity = 20
   }
 }
 
