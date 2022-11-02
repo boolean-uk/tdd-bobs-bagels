@@ -52,6 +52,63 @@ describe('Basket', () => {
     expect(basket.items.length).toBe(2)
   })
 
+  it('should edit item by giving sku and key/value pairs to edit', () => {
+    basket.addItem('BGLE')
+    basket.addItem('BGLE')
+    expect(basket.editItem('BGLE', { price: '1' })).toEqual({
+      sku: 'BGLE',
+      price: '1',
+      name: 'Bagel',
+      variant: 'Everything',
+      quantity: 2
+    })
+  })
 
-  
+  it('should return false if item does not exist in basket', () => {
+    basket.addItem('BGLE')
+    expect(basket.editItem('COF', { price: '1' })).toBe(false)
+  })
+
+  it('should delete item if edit reduces quantity to 0', () => {
+    basket.addItem('BGLE')
+    expect(basket.editItem('BGLE', { quantity: 0 })).toEqual({
+      sku: 'BGLE',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Everything',
+      quantity: 0
+    })
+    expect(basket.items.length).toBe(0)
+  })
+
+  it('should tell you if the basket is full', () => {
+    const bagQuantity = 2
+    const fullBasket = new Basket(bagQuantity)
+    fullBasket.addItem('BGLE')
+    fullBasket.addItem('BGLE')
+    expect(fullBasket.isFull()).toBe(true)
+  })
+
+  it('should be able to search for a basket item', () => {
+    basket.addItem('BGLE')
+    basket.addItem('BGLE')
+    basket.addItem('COF')
+    expect(basket.searchBasket('BGLE')).toEqual({
+      sku: 'BGLE',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Everything',
+      quantity: 2
+    })
+    expect(basket.searchBasket('BGLO')).toBe(false)
+  })
+
+  it('should get the total price for the basket', () => {
+    basket.addItem('COF')
+    basket.addItem('COF')
+    basket.addItem('BGLE')
+    basket.addItem('BGLE')
+    expect(basket.getTotalPrice()).toBeCloseTo('2.96')
+  })
+
 })

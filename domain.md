@@ -1,0 +1,1 @@
+# Domain Model for the exercise below
