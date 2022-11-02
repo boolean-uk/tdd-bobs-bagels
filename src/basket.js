@@ -71,7 +71,6 @@ class Basket {
   }
 
   getTotalPrice() {
-    console.log(this.items)
     return this.items.reduce(
       (runningTotal, item) => item.price * item.quantity + runningTotal,
       0
@@ -80,7 +79,6 @@ class Basket {
 }
 
 const testBasket = new Basket()
-testBasket.addItem('BGLE')
-console.log(testBasket.editItem('BGLE', { quantity: 0 }))
+
 
 module.exports = Basket
