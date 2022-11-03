@@ -121,6 +121,17 @@ describe('Basket', () => {
     expect(basket.getTotalPrice()).toBeCloseTo('2.96')
   })
 
+  it('should get the correct total price for the basket if one or more deal is present', () => {
+    for (let i = 0; i < 16; i++) {
+      basket.addItem('BGLE')
+    }
+    for (let i = 0; i < 16; i++) {
+      basket.addItem('BGLO')
+    }
+    basket.checkForDeal()
+    expect(basket.getTotalPrice()).toBeCloseTo('13.88')
+  })
+
   it('should be able to see if the basket contains an item which warrants a deal', () => {
     for (let i = 0; i < 6; i++) {
       basket.addItem('BGLE')
@@ -142,5 +153,12 @@ describe('Basket', () => {
       noOfDeals: 2,
       quantity: 2
     })
+  })
+
+  it('should be able to see the current order', () => {
+    for (let i = 0; i < 14; i++) {
+      basket.addItem('BGLE')
+    }
+    expect(basket.seeCurrentOrder()).toBeDefined()
   })
 })

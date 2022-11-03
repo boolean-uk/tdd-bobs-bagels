@@ -9,7 +9,6 @@ class Basket {
   }
 
   addItem(sku) {
-    // const item = inventory.find((item) => item.sku === sku)
     const item = this.inventory.find((item) => item.sku === sku)
     if (item && this.items.length < this.basketQuantity) {
       if (this.items.includes(item)) {
@@ -69,10 +68,23 @@ class Basket {
   }
 
   getTotalPrice() {
-    return this.items.reduce(
-      (runningTotal, item) => item.price * item.quantity + runningTotal,
-      0
-    )
+    let totalPrice = '0'
+    if (this.items.find((item) => item.noOfDeals)) {
+      const dealItems = this.items.filter((item) => item.noOfDeals)
+      totalPrice = dealItems.reduce(
+        (runningTotal, item) => item.dealPrice * item.noOfDeals + runningTotal,
+        0
+      )
+    }
+
+    totalPrice =
+      totalPrice +
+      this.items.reduce(
+        (runningTotal, item) => item.price * item.quantity + runningTotal,
+        0
+      )
+
+    return totalPrice
   }
 
   checkForDeal() {
@@ -105,13 +117,21 @@ class Basket {
     })
     return hasDeal
   }
+
+  seeCurrentOrder() {
+    return {}
+  }
 }
 
 const testBasket = new Basket()
-testBasket.addItem('BGLO')
-for (let i = 0; i < 6; i++) {
-  testBasket.addItem('BGLE')
-}
-testBasket.checkForDeal()
+// for (let i = 0; i < 16; i++) {
+//   testBasket.addItem('BGLE')
+// }
+// for (let i = 0; i < 16; i++) {
+//   testBasket.addItem('BGLO')
+// }
+// testBasket.checkForDeal()
+// console.log(testBasket.getTotalPrice())
+// console.log(testBasket.items)
 
 module.exports = Basket
