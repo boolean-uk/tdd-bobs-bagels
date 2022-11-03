@@ -74,9 +74,44 @@ class Basket {
       0
     )
   }
+
+  checkForDeal() {
+    let hasDeal = false
+
+    const deals = {
+      BGLE: {
+        quantity: 6,
+        newPrice: '2.49'
+      },
+      BGLO: {
+        quantity: 6,
+        newPrice: '2.49'
+      },
+      BGLP: {
+        quantity: 12,
+        newPrice: '3.99'
+      }
+    }
+
+    this.items.forEach((item) => {
+      const noOfDeals = Math.floor(item.quantity / deals[item.sku].quantity)
+      const itemRemainder = item.quantity % deals[item.sku].quantity
+      if (item.quantity >= deals[item.sku].quantity) {
+        hasDeal = true
+        item.dealPrice = deals[item.sku].newPrice
+        item.noOfDeals = noOfDeals
+        item.quantity = itemRemainder
+      }
+    })
+    return hasDeal
+  }
 }
 
 const testBasket = new Basket()
-
+testBasket.addItem('BGLO')
+for (let i = 0; i < 6; i++) {
+  testBasket.addItem('BGLE')
+}
+testBasket.checkForDeal()
 
 module.exports = Basket

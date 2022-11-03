@@ -1,5 +1,4 @@
 const Basket = require('./basket.js')
-const importJsonInventory = require('../inventory.json')
 
 describe('Basket', () => {
   let basket
@@ -120,5 +119,28 @@ describe('Basket', () => {
     basket.addItem('BGLE')
     basket.addItem('BGLE')
     expect(basket.getTotalPrice()).toBeCloseTo('2.96')
+  })
+
+  it('should be able to see if the basket contains an item which warrants a deal', () => {
+    for (let i = 0; i < 6; i++) {
+      basket.addItem('BGLE')
+    }
+    expect(basket.checkForDeal()).toBe(true)
+  })
+
+  it('if a deal is found, it should add the deal price to the item in the basket and the number of deals obtained', () => {
+    for (let i = 0; i < 14; i++) {
+      basket.addItem('BGLE')
+    }
+    expect(basket.checkForDeal()).toBe(true)
+    expect(basket.searchBasket('BGLE')).toEqual({
+      sku: 'BGLE',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Everything',
+      dealPrice: '2.49',
+      noOfDeals: 2,
+      quantity: 2
+    })
   })
 })
