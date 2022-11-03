@@ -5,10 +5,12 @@ class Basket {
   constructor(basketQuantity = 10) {
     this.basketQuantity = basketQuantity
     this.items = []
+    this.inventory = JSON.parse(JSON.stringify(inventory))
   }
 
   addItem(sku) {
-    const item = inventory.find((item) => item.sku === sku)
+    // const item = inventory.find((item) => item.sku === sku)
+    const item = this.inventory.find((item) => item.sku === sku)
     if (item && this.items.length < this.basketQuantity) {
       if (this.items.includes(item)) {
         item.quantity++

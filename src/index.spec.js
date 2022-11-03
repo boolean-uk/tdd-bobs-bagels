@@ -1,6 +1,5 @@
 const Basket = require('./basket.js')
 const importJsonInventory = require('../inventory.json')
-const inventory = importJsonInventory.inventory
 
 describe('Basket', () => {
   let basket
@@ -16,7 +15,13 @@ describe('Basket', () => {
   })
 
   it('should add item from inventory to basket', () => {
-    expect(basket.addItem('BGLE')).toEqual(inventory[2])
+    expect(basket.addItem('BGLE')).toEqual({
+      sku: "BGLE",
+      price: "0.49",
+      name: "Bagel",
+      variant: "Everything",
+      quantity: 1
+    })
   })
 
   it('should return false if item does not exist in inventory', () => {
@@ -41,7 +46,13 @@ describe('Basket', () => {
     basket.addItem('BGLE')
     basket.addItem('COF')
     basket.addItem('BGLE')
-    expect(basket.deleteItem('BGLE')).toEqual(inventory[2])
+    expect(basket.deleteItem('BGLE')).toEqual({
+      sku: "BGLE",
+      price: "0.49",
+      name: "Bagel",
+      variant: "Everything",
+      quantity: 2
+    })
     expect(basket.items.length).toBe(1)
   })
 
