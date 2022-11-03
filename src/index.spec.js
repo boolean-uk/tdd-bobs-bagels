@@ -16,10 +16,10 @@ describe('Basket', () => {
 
   it('should add item from inventory to basket', () => {
     expect(basket.addItem('BGLE')).toEqual({
-      sku: "BGLE",
-      price: "0.49",
-      name: "Bagel",
-      variant: "Everything",
+      sku: 'BGLE',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Everything',
       quantity: 1
     })
   })
@@ -47,10 +47,10 @@ describe('Basket', () => {
     basket.addItem('COF')
     basket.addItem('BGLE')
     expect(basket.deleteItem('BGLE')).toEqual({
-      sku: "BGLE",
-      price: "0.49",
-      name: "Bagel",
-      variant: "Everything",
+      sku: 'BGLE',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Everything',
       quantity: 2
     })
     expect(basket.items.length).toBe(1)
@@ -121,5 +121,4 @@ describe('Basket', () => {
     basket.addItem('BGLE')
     expect(basket.getTotalPrice()).toBeCloseTo('2.96')
   })
-
 })

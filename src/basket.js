@@ -41,11 +41,7 @@ class Basket {
       const itemIndex = this.items.indexOf(item)
       this.items[itemIndex][objKey] = objValue
       if (this.items[itemIndex].quantity === 0) {
-        try {
-          return this.items[itemIndex]
-        } finally {
-          this.deleteItem('BGLE')
-        }
+        return this.deleteItem(item.sku)
       }
       return this.items[itemIndex]
     }
