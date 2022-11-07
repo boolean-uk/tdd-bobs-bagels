@@ -65,25 +65,6 @@ describe('Basket', () => {
     })
   })
 
-  describe('deleteitem', () => {
-    let basket
-    beforeEach(() => {
-      basket = new Basket(5)
-    })
-    it('should delete only the selected item', () => {
-      const result = basket.deleteItem('BGLS')
-      expect(basket).toBeInstanceOf(Basket)
-      expect(result).not.toEqual([
-        {
-          sku: 'BGLS',
-          price: '0.49',
-          name: 'Bagel',
-          variant: 'Sesame'
-        }
-      ])
-    })
-  })
-
   describe('searchItem', () => {
     let basket
     beforeEach(() => {
@@ -217,7 +198,7 @@ describe('Basket', () => {
         }
       ])
     })
-    it('should apply the discount for one COF and one BGLP', () => {
+    it('should apply the discount for two COF and one BGLP', () => {
       basket.addItem('COF', 2)
       basket.addItem('BGLP', 13)
       const result = basket.calculateDiscount()
@@ -239,6 +220,7 @@ describe('Basket', () => {
         }
       ])
     })
+
     it('should apply the discount for one COF and one BGLP', () => {
       basket.addItem('COF', 1)
       basket.addItem('BGLP', 1)

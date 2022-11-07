@@ -49,15 +49,6 @@ class Basket {
     return this.getTotal() + extraQuantity > this.capacity
   }
 
-  deleteItem(sku) {
-    this.items.forEach((item) => {
-      if (item.sku === sku) {
-        this.items.splice(this.items.indexOf(item), 1)
-      }
-    })
-    return this.items
-  }
-
   searchItem(serchedSku) {
     const item = this.items.find(({ sku }) => sku === serchedSku)
     return item || 'item not found'
