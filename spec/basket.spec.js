@@ -102,4 +102,27 @@ describe('bobs bagels', () => {
 
     expect(fail).toBe(false)
   })
+
+  it('displayPrices function should return a new array with only the sku, variant and price', () => {
+    const priceList = testBasket.displayPrices()
+
+    expect(priceList).toEqual([
+      { sku: 'BGLO', price: '0.49', variant: 'Onion' },
+      { sku: 'BGLP', price: '0.39', variant: 'Plain' },
+      { sku: 'BGLE', price: '0.49', variant: 'Everything' },
+      { sku: 'BGLS', price: '0.49', variant: 'Sesame' },
+      { sku: 'COF', price: '0.99', variant: '' },
+      { sku: 'BGSE', price: '2.99', variant: 'Everything' },
+      { sku: 'BGSS', price: '4.99', variant: 'Sesame' }
+    ])
+  })
+
+  it('displayTotal should calculate the basket total and return it as a string', () => {
+    testBasket.addBagel('BGSS')
+    testBasket.addBagel('COF')
+    testBasket.addBagel('BGLS')
+    const total = testBasket.displayTotal()
+
+    expect(total).toEqual('6.47')
+  })
 })

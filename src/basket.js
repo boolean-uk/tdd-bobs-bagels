@@ -32,6 +32,21 @@ class Basket {
 
     return found
   }
+
+  displayPrices() {
+    return inventory.map((bagel) => {
+      const { sku, price, variant } = bagel
+      return { sku, price, variant }
+    })
+  }
+
+  displayTotal() {
+    const total = this.basket.reduce((total, bagel) => {
+      return total + +bagel.price * bagel.quantity
+    }, 0)
+
+    return `${total.toFixed(2)}`
+  }
 }
 
 // const newBasket = new Basket(12)
