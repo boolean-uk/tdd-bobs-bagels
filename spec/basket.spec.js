@@ -1,5 +1,5 @@
 const Basket = require('../src/basket.js')
-const { inventory } = require('../inventory.json')
+// const { inventory } = require('../inventory.json')
 
 describe('Basket', () => {
   let basket
@@ -21,13 +21,25 @@ describe('Basket', () => {
   })
 
   it('should return an error when the basket is full and user tries adding more', () => {
-    const basketFull = ['BGLO', 'BGLP', 'BGLE', 'BGLS', 'COF', 'BGSE']
-    basketFull.forEach((bagel) => basket.addBagel(bagel))
+    const basketContents = ['BGLO', 'BGLP', 'BGLE']
+    basketContents.forEach((bagel) => basket.addBagel(bagel))
 
     const result = basket.addBagel('BGSS')
 
     expect(() => {
       basket.addBagel(result).toThrowError('Your basket is full')
     })
+  })
+
+  it('should allow the user to change the basket limit to a given number', () => {
+    const basketContents = ['BGLO', 'BGLP', 'BGLE']
+    const expected = basket.addBagel('BGSE')
+    basketContents.forEach((bagel) => basket.addBagel(bagel))
+
+    basket.basketSize = 6
+
+    const result = basket.addBagel('BGSE')
+
+    expect(result).toEqual(expected)
   })
 })
