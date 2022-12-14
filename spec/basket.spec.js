@@ -16,6 +16,6 @@ describe('Basket:', () => {
 
     const result = basket.addBagel('BGLO')
 
-    expected(result).toEqual(expected)
+    expect(result).toEqual([expected])
   })
 })
