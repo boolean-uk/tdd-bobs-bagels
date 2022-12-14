@@ -35,16 +35,17 @@ class Basket {
 
     // Check if in Basket
     const indexInBasket = this.isInBasket(sku)
-    if (indexInBasket) {
+    if (typeof indexInBasket === 'number') {
       // In Basket - Increase quantity
       const itemInBasket = this.basket[indexInBasket]
       const newQuantity = itemInBasket.quantity + 1
       const itemData = {
         ...itemInBasket,
         quantity: newQuantity,
-        stockPrice: newQuantity * itemInBasket.price
+        stackPrice: newQuantity * itemInBasket.price
       }
       this.basket[indexInBasket] = itemData
+      return this.basket
     } else {
       // Not in Basket - New
       const itemData = {
@@ -53,7 +54,7 @@ class Basket {
         name: item.name,
         variant: item.variant,
         quantity: 1,
-        stackPrice: item.price
+        stackPrice: Number(item.price)
       }
       this.basket.push(itemData)
       return this.basket
@@ -68,6 +69,13 @@ class Basket {
       const removedItem = this.basket.splice(indexInBasket, 1)[0]
       return removedItem
     } else return false
+  }
+
+  totalPrice() {
+    let total = 0
+    this.basket.forEach((item) => (total += Number(item.stackPrice)))
+
+    return total
   }
 }
 

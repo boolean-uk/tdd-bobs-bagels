@@ -41,6 +41,7 @@ describe('Basket Class', () => {
   })
   it('expects addBagel to sum repeated sku', () => {
     BasketClass.addBagel('BGLP')
+    BasketClass.addBagel('BGLP')
     BasketClass.addBagel('COF')
     BasketClass.addBagel('COF') // Must increase quantity only
     expect(BasketClass.basket).toHaveSize(2)
@@ -55,5 +56,17 @@ describe('Basket Class', () => {
     BasketClass.addBagel('BGLP')
     BasketClass.addBagel('COF')
     expect(BasketClass.removeBagel('BGLP').sku).toBe('BGLP')
+  })
+
+  // totalPrice
+  it('expects total os all item stackPrice to be returned', () => {
+    BasketClass.addBagel('COF')
+    BasketClass.addBagel('COF')
+    BasketClass.addBagel('COF')
+    BasketClass.addBagel('COF') // stackPrice: 3.96
+    BasketClass.addBagel('BGLP')
+    BasketClass.addBagel('BGLP') // stackPrice: 0.78
+    BasketClass.addBagel('BGSE') // stackPrice: 2.99
+    expect(BasketClass.totalPrice()).toBe(7.73)
   })
 })
