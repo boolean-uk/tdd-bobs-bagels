@@ -68,6 +68,15 @@ describe('bobs bagels', () => {
     ])
   })
 
+  it('if basket is at capacity, addBagel should return false', () => {
+    const tinyBasket = new Basket(2)
+    tinyBasket.addBagel('BGLO')
+    tinyBasket.addBagel('BGLP')
+    const oneTooMany = tinyBasket.addBagel('BGLS')
+
+    expect(oneTooMany).toBe(false)
+  })
+
   it('removeBagel function should successfully remove a bagel from the basket', () => {
     testBasket.addBagel('BGLO')
     testBasket.removeBagel('BGLO')

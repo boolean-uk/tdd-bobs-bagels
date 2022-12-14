@@ -13,9 +13,9 @@ class Basket {
 
     const exists = this.basket.find((bagel) => bagel.sku === found.sku)
 
-    if (exists) {
-      ++exists.quantity
-    } else {
+    if (exists) ++exists.quantity
+    else {
+      if (this.basket.length === this.basketCapacity) return false
       found.quantity = 1
       this.basket.push(found)
     }
