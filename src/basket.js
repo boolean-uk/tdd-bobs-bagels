@@ -59,6 +59,16 @@ class Basket {
       return this.basket
     }
   }
+
+  removeBagel(sku) {
+    // Check if in Basket
+    const indexInBasket = this.isInBasket(sku)
+    if (typeof indexInBasket === 'number') {
+      // Is in Basket
+      const removedItem = this.basket.splice(indexInBasket, 1)[0]
+      return removedItem
+    } else return false
+  }
 }
 
 module.exports = {

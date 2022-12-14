@@ -45,4 +45,15 @@ describe('Basket Class', () => {
     BasketClass.addBagel('COF') // Must increase quantity only
     expect(BasketClass.basket).toHaveSize(2)
   })
+
+  // removeBagel
+  it('expects return of false if sku does not exist in basket', () => {
+    BasketClass.addBagel('BGLP')
+    expect(BasketClass.removeBagel('POTATO')).toBeFalse()
+  })
+  it('expects the item removed to be returned', () => {
+    BasketClass.addBagel('BGLP')
+    BasketClass.addBagel('COF')
+    expect(BasketClass.removeBagel('BGLP').sku).toBe('BGLP')
+  })
 })
