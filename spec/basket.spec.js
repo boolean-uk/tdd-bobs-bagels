@@ -58,6 +58,35 @@ describe('Basket Class', () => {
     expect(BasketClass.removeBagel('BGLP').sku).toBe('BGLP')
   })
 
+  // checkForOffers
+  it('expects to update stackPrice of items in basket if the offer BGLO 6x per 2.49 is found', () => {
+    BasketClass.addBagel('BGLO') // 1x unit of offer
+    BasketClass.addBagel('BGLO') // 2x unit of offer
+    BasketClass.addBagel('BGLO') // 3x unit of offer
+    BasketClass.addBagel('BGLO') // 4x unit of offer
+    BasketClass.addBagel('BGLO') // 5x unit of offer
+    BasketClass.addBagel('BGLO') // priceOffer: 2.49
+    BasketClass.addBagel('BGLO') // 0.49 individual
+    BasketClass.addBagel('BGLO') // 0.49 individual
+    BasketClass.addBagel('COF') // 0.99
+    expect(BasketClass.totalPrice()).toBe(4.46)
+  })
+  it('expects to update stackPrice of items in this offer of 12x BGLP per 3.99', () => {
+    BasketClass.addBagel('BGLP') // 1x unit of offer
+    BasketClass.addBagel('BGLP') // 2x unit of offer
+    BasketClass.addBagel('BGLP') // 3x unit of offer
+    BasketClass.addBagel('BGLP') // 4x unit of offer
+    BasketClass.addBagel('BGLP') // 5x unit of offer
+    BasketClass.addBagel('BGLP') // 6x unit of offer
+    BasketClass.addBagel('BGLP') // 7x unit of offer
+    BasketClass.addBagel('BGLP') // 8x unit of offer
+    BasketClass.addBagel('BGLP') // 9x unit of offer
+    BasketClass.addBagel('BGLP') // 10x unit of offer
+    BasketClass.addBagel('BGLP') // 11x unit of offer
+    BasketClass.addBagel('BGLP') // 12x unit of offer
+    expect(BasketClass.totalPrice()).toBe(3.99)
+  })
+
   // totalPrice
   it('expects total os all item stackPrice to be returned', () => {
     BasketClass.addBagel('COF')

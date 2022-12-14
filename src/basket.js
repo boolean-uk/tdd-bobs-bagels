@@ -1,4 +1,5 @@
 const { inventory } = require('../inventory.json')
+const { specialOffers, buyTogetherOffers } = require('../specialOffers')
 
 class Basket {
   constructor() {
@@ -71,11 +72,28 @@ class Basket {
     } else return false
   }
 
+  checkForOffers() {
+    specialOffers.forEach((offer) => {
+      this.basket.forEach((item) => {
+        if (item.sku === offer.sku && item.quantity >= offer.amountToBeOffer) {
+          let quantityAfterOffer = item.quantity // 7 items
+          quantityAfterOffer -= offer.amountToBeOffer // 1 item
+
+          let newStackPrice = offer.priceOffer // 6 for 2.49
+          newStackPrice += Number((quantityAfterOffer * item.price).toFixed(2)) // 2.49 + (1 * 0.49)
+          newStackPrice = Number(newStackPrice.toFixed(2))
+
+          item.stackPrice = newStackPrice
+        }
+      })
+    })
+  }
+
   totalPrice() {
+    this.checkForOffers()
     let total = 0
     this.basket.forEach((item) => (total += Number(item.stackPrice)))
-
-    return total
+    return Number(total.toFixed(2))
   }
 }
 
