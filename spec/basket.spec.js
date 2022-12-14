@@ -6,6 +6,18 @@ describe('Basket Class', () => {
     BasketClass = new Basket()
   })
 
+  // isInInventory
+  it('expects sku to be a string', () => {
+    expect(BasketClass.isInInventory(92)).toBeFalse()
+    expect(BasketClass.isInInventory(null)).toBeFalse()
+  })
+
+  // isInBasket
+  it('expects sku to be a string', () => {
+    expect(BasketClass.isInBasket(92)).toBeFalse()
+    expect(BasketClass.isInBasket(null)).toBeFalse()
+  })
+
   // addBagel
   it('expects sku to be a string', () => {
     expect(BasketClass.addBagel(92)).toBeFalse()
@@ -23,5 +35,6 @@ describe('Basket Class', () => {
     BasketClass.addBagel('COF')
     BasketClass.addBagel('COF') // Must increase quantity only
     expect(BasketClass.basket).toHaveSize(2)
+    console.log(BasketClass.basket)
   })
 })

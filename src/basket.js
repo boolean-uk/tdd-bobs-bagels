@@ -5,24 +5,49 @@ class Basket {
     this.basket = []
   }
 
-  addBagel(sku) {
-    if (typeof sku !== 'string') return false
-
+  isInInventory(sku) {
     const item = inventory.filter((item) => item.sku === sku)[0]
     if (item === undefined) return false
-    // const itemIndex = inventory.indexOf(item)
+    else return item
+  }
 
-    const itemData = {
-      sku: item.sku,
-      price: item.price,
-      name: item.name,
-      variant: item.variant,
-      quantity: 0,
-      stackPrice: 0
+  isInBasket(sku) {
+    const item = this.basket.filter((item) => item.sku === sku)[0]
+    if (item === undefined) return false
+    else return this.basket.indexOf(item)
+  }
+
+  addBagel(sku) {
+    // Check if in Inventory
+    const item = this.isInInventory(sku)
+    if (!item) return false
+
+    // Check if in Basket
+    const indexInBasket = this.isInBasket(sku)
+    if (indexInBasket) {
+      // In Basket - Increase quantity
+      const itemInBasket = this.basket[indexInBasket]
+      const newQuantity = itemInBasket.quantity + 1
+      const itemData = {
+        ...itemInBasket,
+        quantity: newQuantity,
+        stockPrice: newQuantity * itemInBasket.price
+      }
+      this.basket[indexInBasket] = itemData
+    } else {
+      // Not in Basket - New
+      const itemData = {
+        sku: item.sku,
+        price: item.price,
+        name: item.name,
+        variant: item.variant,
+        quantity: 1,
+        stackPrice: item.price
+      }
+
+      this.basket.push(itemData)
+      return this.basket
     }
-
-    this.basket.push(itemData)
-    return this.basket
   }
 }
 
