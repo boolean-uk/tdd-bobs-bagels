@@ -1,5 +1,7 @@
 const { inventory } = require('../inventory.json')
 
+const basket = []
+
 function add() {
   const bagel = {
     sku: '',
@@ -7,10 +9,15 @@ function add() {
     name: '',
     variant: ''
   }
-  return bagel
+  basket.push(bagel)
+  return basket
+}
+
+function basketReset() {
+  basket.splice(0, basket.length)
 }
 
 module.exports = {
   add,
-  inventory
+  basketReset
 }
