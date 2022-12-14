@@ -67,4 +67,30 @@ describe('bobs bagels', () => {
       }
     ])
   })
+
+  it('removeBagel function should successfully remove a bagel from the basket', () => {
+    testBasket.addBagel('BGLO')
+    testBasket.removeBagel('BGLO')
+
+    expect(testBasket.basket).toEqual([])
+  })
+
+  it('removeBagel should return the item that has been removed from the basket', () => {
+    testBasket.addBagel('BGLO')
+    const removed = testBasket.removeBagel('BGLO')
+
+    expect(removed).toEqual({
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion',
+      quantity: 1
+    })
+  })
+
+  it('if the bagel isnt in the basket, removeBagel should return false', () => {
+    const fail = testBasket.removeBagel('Non-existent bagel')
+
+    expect(fail).toBe(false)
+  })
 })

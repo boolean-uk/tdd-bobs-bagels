@@ -22,9 +22,18 @@ class Basket {
 
     return found
   }
+
+  removeBagel(sku) {
+    const found = this.basket.find((bagel) => bagel.sku === sku)
+
+    if (!found) return false
+
+    this.basket = this.basket.filter((bagel) => bagel.sku !== found.sku)
+
+    return found
+  }
 }
 
 // const newBasket = new Basket(12)
-// const basket2 = new Basket()
 
 module.exports = { Basket }
