@@ -43,16 +43,19 @@ class Basket {
   displayTotal() {
     const { offersTotal, remaining } = this.applyOffers()
 
+    // Creating a copy of the basket and then using that to determine the total- this way the quantities in the original basket don't get edited
+    const basketCopy = JSON.parse(JSON.stringify(this.basket))
+
     // replace quantity with the reamining bagels after offer if an offer has been applied
     remaining.forEach((offerBagel) => {
-      this.basket.forEach((bagel) => {
+      basketCopy.forEach((bagel) => {
         if (offerBagel.sku === bagel.sku) {
           bagel.quantity = offerBagel.remainingAfterOffer
         }
       })
     })
 
-    const total = this.basket.reduce((total, bagel) => {
+    const total = basketCopy.reduce((total, bagel) => {
       return total + +bagel.price * bagel.quantity
     }, offersTotal)
 
