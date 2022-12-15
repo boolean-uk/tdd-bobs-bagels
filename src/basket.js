@@ -41,8 +41,8 @@ class Basket {
   }
 
   displayTotal() {
-    // const offerData = this.applyOffers()
-    // console.log(offerData)
+    const offerData = this.applyOffers()
+    console.log(offerData)
 
     const total = this.basket.reduce((total, bagel) => {
       return total + +bagel.price * bagel.quantity
@@ -53,12 +53,16 @@ class Basket {
 
   applyOffers() {
     let offersTotal = 0
+    const remaining = []
 
     specialOffers.forEach((offer) => {
       this.basket.forEach((bagel) => {
         if (bagel.sku === offer.sku && bagel.quantity >= offer.amountNeeded) {
-          console.log('there are eligible offers')
           const remainingAfterOffer = bagel.quantity % offer.amountNeeded
+
+          // Weird solution - push to a 'remaining' array with the remaining amount and which sku it belongs to- we need this info in the displayTotal function
+          const sku = bagel.sku
+          remaining.push({ sku, remainingAfterOffer })
           const offerAmount = bagel.quantity - remainingAfterOffer
 
           // work out offer totals
@@ -66,7 +70,7 @@ class Basket {
         }
       })
     })
-    return offersTotal.toFixed(2)
+    return { offersTotal, remaining }
   }
 }
 
@@ -100,7 +104,8 @@ newBasket.addBagel('BGLP')
 newBasket.addBagel('BGLP')
 
 // console.log(newBasket.displayTotal())
-const data = newBasket.applyOffers()
-console.log('returning from applyOffers:', data)
+newBasket.displayTotal()
+
+// console.log('returning from applyOffers:', data)
 
 module.exports = { Basket }
