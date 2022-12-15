@@ -1,5 +1,6 @@
 const { inventory } = require('../inventory.json')
 const { specialOffers } = require('../specialOffers')
+require('dotenv').config()
 
 class Basket {
   constructor(basketCapacity = 10) {
@@ -59,7 +60,7 @@ class Basket {
       return total + +bagel.price * bagel.quantity
     }, offersTotal)
 
-    console.log(this.printReceipt(total))
+    this.printReceipt(total)
 
     return total.toFixed(2)
   }
@@ -111,14 +112,47 @@ class Basket {
               for your order!
     `
   }
+
+  textDeliveryMessage(phoneNumber) {
+    const deliveryTime = new Date()
+    const timeWithoutSeconds = deliveryTime.toLocaleTimeString([], {
+      timeStyle: 'short'
+    })
+    const message = `
+Your order is on it's way and will be delivered at: ${timeWithoutSeconds}
+
+Incoming
+--------
+
+${this.basket
+  .map((bagel) => {
+    const { quantity, name, variant } = bagel
+    return `${variant} ${name} ---  ${quantity} \n`
+  })
+  .join('')}
+    `
+
+    const accountSid = process.env.TWILIO_ACCOUNT_SID
+    const authToken = process.env.TWILIO_AUTH_TOKEN
+    const client = require('twilio')(accountSid, authToken)
+
+    client.messages
+      .create({
+        body: message,
+        from: '+13393315088',
+        to: phoneNumber
+      })
+      .then((message) => console.log(message.sid))
+  }
 }
 
-// const testBasket = new Basket(12)
+const testBasket = new Basket(12)
+testBasket.addBagel('BGLP')
 // testBasket.addBagel('BGLP')
 // testBasket.addBagel('BGLP')
-// testBasket.addBagel('BGLP')
-// testBasket.addBagel('BGSE')
+testBasket.addBagel('BGSE')
 // testBasket.addBagel('COF')
 // testBasket.displayTotal()
+testBasket.textDeliveryMessage('+447856603869')
 
 module.exports = { Basket }

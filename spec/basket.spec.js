@@ -182,4 +182,10 @@ describe('bobs bagels', () => {
 
     expect(receipt).toBeTruthy()
   })
+
+  // it('textDeliveryMessage function takes in a phone number and returns a message', () => {
+  //   const message = testBasket.textDeliveryMessage()
+
+  //   expect(message).toEqual('Here is your order!')
+  // })
 })
