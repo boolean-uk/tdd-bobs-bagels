@@ -1,4 +1,4 @@
-const { add, basketReset, remove } = require('../../src/basket.js')
+const { add, basketReset, remove, changeOrder } = require('../../src/basket.js')
 
 describe('add ', () => {
   beforeEach(() => {
@@ -45,6 +45,10 @@ it('should remove bagel from basket', () => {
       variant: ''
     }
   ])
+  it('should remove bagel by sku and replace it with new bagel', () => {
+    const updatedBasket = changeOrder()
+    expect(updatedBasket).toBe()
+  })
 })
 
 // const { createToDo, getAll, setComplete } = require('../src/todolist')

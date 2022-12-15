@@ -29,6 +29,17 @@ function remove(sku) {
 //   { id: 300, name: 'brittany' }
 // [
 
+function changeOrder(sku) {
+  const newBagel = basket.indexOf(sku)
+  basket[newBagel] = 
+}
+
+// const arr = [1, 2, 3, 4, 5]
+// const index = arr.indexOf(2)
+// arr[index] = 0
+// arr
+// [1,0,3,4,5];
+
 function basketReset() {
   basket.splice(0, basket.length)
 }
@@ -36,5 +47,7 @@ function basketReset() {
 module.exports = {
   add,
   basketReset,
-  remove
+  remove,
+  changeOrder
 }
+console.log(changeOrder())
