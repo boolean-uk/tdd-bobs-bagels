@@ -1,5 +1,7 @@
 class Receipt {
-  robertTest = 0
+  constructor(data) {
+    this.data = data
+  }
 }
 
 module.exports = {

@@ -103,4 +103,11 @@ describe('Basket Class', () => {
     BasketClass.addBagel('BGSE') // stackPrice: 2.99
     expect(BasketClass.totalPrice()).toBe(7.73)
   })
+
+  // purchaseBasket
+  it('expects a receipt to be returned after a purchase', () => {
+    BasketClass.addBagel('COF')
+    BasketClass.addBagel('COF')
+    expect(BasketClass.purchaseBasket().total).toBe(1.98)
+  })
 })

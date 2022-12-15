@@ -80,8 +80,7 @@ class Basket {
     specialOffers.forEach((offer) => {
       this.basket.forEach((item) => {
         if (item.sku === offer.sku && item.quantity >= offer.amountToBeOffer) {
-          let quantityAfterOffer = item.quantity // 7 items
-          quantityAfterOffer -= offer.amountToBeOffer // 1 item
+          const quantityAfterOffer = item.quantity % offer.amountToBeOffer
 
           let newStackPrice = offer.priceOffer // 6 for 2.49
           newStackPrice += Number((quantityAfterOffer * item.price).toFixed(2)) // 2.49 + (1 * 0.49)
@@ -98,6 +97,17 @@ class Basket {
     let total = 0
     this.basket.forEach((item) => (total += Number(item.stackPrice)))
     return Number(total.toFixed(2))
+  }
+
+  purchaseBasket() {
+    // return receipt info
+    const receipt = {
+      date: new Date(),
+      basket: this.basket,
+      total: this.totalPrice()
+    }
+
+    return receipt
   }
 }
 
