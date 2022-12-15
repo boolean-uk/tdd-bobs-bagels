@@ -2,8 +2,8 @@ const { inventory } = require('../inventory.json')
 const { specialOffers } = require('../specialOffers')
 
 class Basket {
-  constructor() {
-    this.basketSize = 10
+  constructor(basketSize) {
+    this.basketSize = basketSize
     this.basket = []
   }
 
