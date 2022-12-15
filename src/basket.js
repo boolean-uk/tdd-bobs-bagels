@@ -113,12 +113,12 @@ class Basket {
   }
 }
 
-const testBasket = new Basket(12)
-testBasket.addBagel('BGLP')
-testBasket.addBagel('BGLP')
-testBasket.addBagel('BGLP')
-testBasket.addBagel('BGSE')
-testBasket.addBagel('COF')
-testBasket.displayTotal()
+// const testBasket = new Basket(12)
+// testBasket.addBagel('BGLP')
+// testBasket.addBagel('BGLP')
+// testBasket.addBagel('BGLP')
+// testBasket.addBagel('BGSE')
+// testBasket.addBagel('COF')
+// testBasket.displayTotal()
 
 module.exports = { Basket }
