@@ -1,4 +1,4 @@
-const { add, basketReset } = require('../../src/basket.js')
+const { add, basketReset, remove } = require('../../src/basket.js')
 
 describe('add ', () => {
   beforeEach(() => {
@@ -6,24 +6,45 @@ describe('add ', () => {
   })
 
   it('should add the bagel object', () => {
-    const result = add('bagel')
+    const result = add({
+      sku: 'BGLP',
+      price: '',
+      name: '',
+      variant: ''
+    })
     expect(result).toEqual([
       {
-        sku: '',
+        sku: 'BGLP',
         price: '',
         name: '',
         variant: ''
       }
     ])
   })
+})
 
-  // it('should remove bagel from basket', ()=>{
-  //   const result = remove({
-  //       expect(result).ToDo(
-
-  //       )
-  //   })
-  // })
+it('should remove bagel from basket', () => {
+  const result = add({
+    sku: 'BGLO',
+    price: '',
+    name: '',
+    variant: ''
+  })
+  const result2 = add({
+    sku: 'BGLP',
+    price: '',
+    name: '',
+    variant: ''
+  })
+  const bagelRemove = remove('BGLO')
+  expect(bagelRemove).toEqual([
+    {
+      sku: 'BGLP',
+      price: '',
+      name: '',
+      variant: ''
+    }
+  ])
 })
 
 // const { createToDo, getAll, setComplete } = require('../src/todolist')
