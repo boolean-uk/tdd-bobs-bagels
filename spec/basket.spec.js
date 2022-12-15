@@ -125,4 +125,48 @@ describe('bobs bagels', () => {
 
     expect(total).toEqual('6.47')
   })
+
+  it('applyOffers returns an object with the total sum of all offers (if they exist) and an array with the leftovers items', () => {
+    testBasket.addBagel('BGLO')
+    testBasket.addBagel('BGLO')
+    testBasket.addBagel('BGLO')
+    testBasket.addBagel('BGLO')
+    testBasket.addBagel('BGLO')
+    testBasket.addBagel('BGLO')
+    testBasket.addBagel('BGLO')
+
+    const data = testBasket.applyOffers()
+
+    expect(data).toEqual({
+      offersTotal: 2.49,
+      remaining: [{ sku: 'BGLO', remainingAfterOffer: 1 }]
+    })
+  })
+
+  it('total correctly calculated after offers are applied', () => {
+    testBasket.addBagel('BGLO')
+    testBasket.addBagel('BGLO')
+    testBasket.addBagel('BGLO')
+    testBasket.addBagel('BGLO')
+    testBasket.addBagel('BGLO')
+    testBasket.addBagel('BGLO')
+    testBasket.addBagel('BGLO')
+
+    testBasket.addBagel('BGLP')
+    testBasket.addBagel('BGLP')
+    testBasket.addBagel('BGLP')
+    testBasket.addBagel('BGLP')
+    testBasket.addBagel('BGLP')
+    testBasket.addBagel('BGLP')
+    testBasket.addBagel('BGLP')
+    testBasket.addBagel('BGLP')
+    testBasket.addBagel('BGLP')
+    testBasket.addBagel('BGLP')
+    testBasket.addBagel('BGLP')
+    testBasket.addBagel('BGLP')
+
+    const total = testBasket.displayTotal()
+
+    expect(total).toEqual('6.97')
+  })
 })

@@ -41,14 +41,22 @@ class Basket {
   }
 
   displayTotal() {
-    const offerData = this.applyOffers()
-    console.log(offerData)
+    const { offersTotal, remaining } = this.applyOffers()
+
+    // replace quantity with the reamining bagels after offer if an offer has been applied
+    remaining.forEach((offerBagel) => {
+      this.basket.forEach((bagel) => {
+        if (offerBagel.sku === bagel.sku) {
+          bagel.quantity = offerBagel.remainingAfterOffer
+        }
+      })
+    })
 
     const total = this.basket.reduce((total, bagel) => {
       return total + +bagel.price * bagel.quantity
-    }, 0)
+    }, offersTotal)
 
-    return `${total.toFixed(2)}`
+    return total.toFixed(2)
   }
 
   applyOffers() {
@@ -60,7 +68,7 @@ class Basket {
         if (bagel.sku === offer.sku && bagel.quantity >= offer.amountNeeded) {
           const remainingAfterOffer = bagel.quantity % offer.amountNeeded
 
-          // Weird solution - push to a 'remaining' array with the remaining amount and which sku it belongs to- we need this info in the displayTotal function
+          // push to a 'remaining' array with the remaining amount and which sku it belongs to- we need this info in the displayTotal function
           const sku = bagel.sku
           remaining.push({ sku, remainingAfterOffer })
           const offerAmount = bagel.quantity - remainingAfterOffer
@@ -74,38 +82,6 @@ class Basket {
   }
 }
 
-const newBasket = new Basket(12)
-newBasket.addBagel('BGLO')
-newBasket.addBagel('BGLO')
-newBasket.addBagel('BGLO')
-newBasket.addBagel('BGLO')
-newBasket.addBagel('BGLO')
-newBasket.addBagel('BGLO')
-newBasket.addBagel('BGLO')
-newBasket.addBagel('BGLO')
-newBasket.addBagel('BGLO')
-newBasket.addBagel('BGLO')
-newBasket.addBagel('BGLO')
-newBasket.addBagel('BGLO')
-newBasket.addBagel('BGLO')
-newBasket.addBagel('BGLO')
-
-newBasket.addBagel('BGLP')
-newBasket.addBagel('BGLP')
-newBasket.addBagel('BGLP')
-newBasket.addBagel('BGLP')
-newBasket.addBagel('BGLP')
-newBasket.addBagel('BGLP')
-newBasket.addBagel('BGLP')
-newBasket.addBagel('BGLP')
-newBasket.addBagel('BGLP')
-newBasket.addBagel('BGLP')
-newBasket.addBagel('BGLP')
-newBasket.addBagel('BGLP')
-
-// console.log(newBasket.displayTotal())
-newBasket.displayTotal()
-
-// console.log('returning from applyOffers:', data)
+// const newBasket = new Basket(12)
 
 module.exports = { Basket }
