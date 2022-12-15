@@ -47,6 +47,11 @@ describe('Basket Class', () => {
     expect(BasketClass.basket).toHaveSize(2)
   })
 
+  // getAllInventory
+  it('expects an array of objects to be returned', () => {
+    expect(BasketClass.getAllInventory()).toHaveSize(7)
+  })
+
   // removeBagel
   it('expects return of false if sku does not exist in basket', () => {
     BasketClass.addBagel('BGLP')

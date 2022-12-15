@@ -62,6 +62,10 @@ class Basket {
     }
   }
 
+  getAllInventory() {
+    return inventory
+  }
+
   removeBagel(sku) {
     // Check if in Basket
     const indexInBasket = this.isInBasket(sku)
