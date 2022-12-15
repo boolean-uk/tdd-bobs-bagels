@@ -169,4 +169,17 @@ describe('bobs bagels', () => {
 
     expect(total).toEqual('6.97')
   })
+
+  it('printReceipt function returns a false if the basket is empty', () => {
+    const receipt = testBasket.printReceipt()
+
+    expect(receipt).toBe(false)
+  })
+
+  it('printReceipt function returns a truthy value if there are any items in the basket', () => {
+    testBasket.addBagel('BGLP')
+    const receipt = testBasket.printReceipt()
+
+    expect(receipt).toBeTruthy()
+  })
 })

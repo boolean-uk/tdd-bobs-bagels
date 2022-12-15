@@ -59,6 +59,8 @@ class Basket {
       return total + +bagel.price * bagel.quantity
     }, offersTotal)
 
+    console.log(this.printReceipt(total))
+
     return total.toFixed(2)
   }
 
@@ -83,8 +85,40 @@ class Basket {
     })
     return { offersTotal, remaining }
   }
+
+  printReceipt(total) {
+    if (this.basket.length < 1) return false
+
+    return `
+            --- Bob's Bagels ---
+            ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}
+
+       --------------------------------
+
+    ${this.basket
+      .map((bagel) => {
+        const { name, variant, price, quantity } = bagel
+        return `    ${variant} ${name}        ${quantity}  £${
+          price * quantity
+        } \n`
+      })
+      .join('')}
+
+       --------------------------------
+        Total                 £${total}
+
+                 Thank you
+              for your order!
+    `
+  }
 }
 
-// const newBasket = new Basket(12)
+const testBasket = new Basket(12)
+testBasket.addBagel('BGLP')
+testBasket.addBagel('BGLP')
+testBasket.addBagel('BGLP')
+testBasket.addBagel('BGSE')
+testBasket.addBagel('COF')
+testBasket.displayTotal()
 
 module.exports = { Basket }
