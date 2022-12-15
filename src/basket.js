@@ -13,14 +13,14 @@ class Basket {
 
     const exists = this.basket.find((bagel) => bagel.sku === found.sku)
 
+    // fix this line
     if (exists) ++exists.quantity
     else {
       if (this.basket.length === this.basketCapacity) return false
-      found.quantity = 1
-      this.basket.push(found)
+      const foundCopy = { ...found, quantity: 1 }
+      this.basket.push(foundCopy)
+      return foundCopy
     }
-
-    return found
   }
 
   removeBagel(sku) {
@@ -49,6 +49,8 @@ class Basket {
   }
 }
 
-// const newBasket = new Basket(12)
+const newBasket = new Basket(12)
+newBasket.addBagel('BGLO')
+console.log(newBasket.basket)
 
 module.exports = { Basket }
