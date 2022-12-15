@@ -1,5 +1,5 @@
 const { inventory } = require('../inventory.json')
-const { specialOffers, buyTogetherOffers } = require('../specialOffers')
+const { specialOffers } = require('../specialOffers')
 
 class Basket {
   constructor() {

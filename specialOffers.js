@@ -15,10 +15,5 @@ module.exports = {
       amountToBeOffer: 6,
       priceOffer: 2.49
     }
-  ],
-  buyTogetherOffers: [
-    {
-      skus: ['COF', 'BGLP']
-    }
   ]
 }
