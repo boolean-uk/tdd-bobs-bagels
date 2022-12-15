@@ -7,7 +7,7 @@ describe('Basket', () => {
     basket = new Basket()
   })
 
-  it('should add a bagel/item to the basket', () => {
+  it('should add a bagel/item to the basket if it doesnt exist', () => {
     const expected = {
       sku: 'BGLO',
       price: '0.49',
@@ -41,5 +41,27 @@ describe('Basket', () => {
     const result = basket.addBagel('BGSE')
 
     expect(result).toEqual(expected)
+  })
+
+  it('should increase the quantity of a bagel if found', () => {
+    basket.addBagel('BGLO')
+    const anotherBagel = basket.addBagel('BGLO')
+    expect(anotherBagel).toEqual({
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion',
+      quantity: 2
+    })
+
+    expect(basket.items).toEqual([
+      {
+        sku: 'BGLO',
+        price: '0.49',
+        name: 'Bagel',
+        variant: 'Onion',
+        quantity: 2
+      }
+    ])
   })
 })
