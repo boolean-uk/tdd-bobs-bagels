@@ -109,9 +109,27 @@ class Basket {
 
     // return receipt info
     const receipt = new Receipt(data)
-    receipt.print()
+    this.sendBasketSMS(receipt.print())
 
     return receipt.info()
+  }
+
+  // Twilio
+  sendBasketSMS(messageToSend) {
+    // const accountSid = process.env.TWILIO_ACCOUNT_SID
+    const accountSid = 'ACa20cf00bf3db7922b7b1767ebc407cf0'
+    // const authToken = process.env.TWILIO_AUTH_TOKEN
+    const authToken = 'c14308c427379751741ae49779c358aa'
+    const client = require('twilio')(accountSid, authToken)
+
+    console.log('Message send')
+    client.messages
+      .create({
+        body: messageToSend,
+        from: '+19295817257',
+        to: '+447417438484'
+      })
+      .then((message) => console.log(message.sid))
   }
 }
 

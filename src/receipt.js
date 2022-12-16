@@ -10,54 +10,53 @@ class Receipt {
   }
 
   receiptItemsConstructor() {
-    let string = '\n      ' // Initial left space
-    const basketList = this.data.basket.map((item) => {
+    let string = '\n' // Initial left space
+    let basketList = this.data.basket.map((item) => {
       let string = ''
-      let nameSpaces = 19
-      let quantitySpaces = 4
+
+      // Quantity
+      string += `x${item.quantity} - `
+
+      // Price
+      string += `£${item.stackPrice} - `
 
       // Names
       string += item.variant ? item.variant + ' ' : ''
       string += item.name
-      nameSpaces -= string.length // Remove spaces ocupied
-      string += ' '.repeat(nameSpaces) // Add names space
 
-      // Quantity
-      string += item.quantity
-      quantitySpaces -= String(item.quantity).length
-      string += ' '.repeat(quantitySpaces) // Add quantity space
+      string += '\n' // Next line and Left space
 
-      // Price
-      string += `£${item.stackPrice}`
-      string += '\n      ' // Next line and Left space
-
-      // 21 left spaces then (-$0.00)
       const normalStackPrice = item.quantity * item.price
       if (normalStackPrice !== item.stackPrice) {
         this.withOffer = true
-        string += ' '.repeat(21)
         string += `(-£${(normalStackPrice - item.stackPrice).toFixed(2)})`
+        string += '\n' // Next line and Left space
         this.discountTotal += normalStackPrice - item.stackPrice
+        return string
       }
       return string
     })
-    string += String(basketList).replace(',', '')
+    basketList = String(basketList).replace(/,/g, '')
+    string += basketList
     return string
   }
 
   print() {
-    console.log(`
-        ~~~ 🥯 Bob's Bagels ~~~
-         ${this.data.date}
-      ----------------------------
-      ${this.receiptItemsConstructor()}
-      ----------------------------
-      Total                  £${this.data.total}
+    console.log('Receipt returned.')
+    return `
+🧙‍♂️
 
-      Total saved: £${this.discountTotal.toFixed(2)}
-      Thank you for your order!
-      ############################
-    `)
+
+🥯 Bob's Bagels 🥯
+ ${this.data.date}
+-----------------------
+${this.receiptItemsConstructor()}
+-----------------------
+Total                  £${this.data.total}
+
+Total saved: £${this.discountTotal.toFixed(2)}
+Thank you for your order!
+`
   }
 }
 

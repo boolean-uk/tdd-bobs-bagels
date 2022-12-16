@@ -114,10 +114,9 @@ describe('Basket Class', () => {
     BasketClass.addBagel('BGLO')
     BasketClass.addBagel('BGLO')
     BasketClass.addBagel('BGLO')
-    BasketClass.addBagel('BGLO')
-
+    BasketClass.addBagel('BGLP')
     BasketClass.addBagel('COF')
     const receipt = BasketClass.purchaseBasket()
-    expect(receipt.total).toBe(5.45)
+    expect(receipt.total).toBe(5.35)
   })
 })
