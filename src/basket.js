@@ -1,6 +1,7 @@
 const { inventory } = require('../inventory.json')
 const { specialOffers } = require('../specialOffers')
 const { Receipt } = require('./receipt')
+require('dotenv').config()
 
 class Basket {
   constructor(basketSize) {
@@ -116,10 +117,9 @@ class Basket {
 
   // Twilio
   sendBasketSMS(messageToSend) {
-    // const accountSid = process.env.TWILIO_ACCOUNT_SID
-    const accountSid = 'ACa20cf00bf3db7922b7b1767ebc407cf0'
-    // const authToken = process.env.TWILIO_AUTH_TOKEN
-    const authToken = 'c14308c427379751741ae49779c358aa'
+    const accountSid = process.env.TWILIO_ACCOUNT_SID
+    const authToken = process.env.TWILIO_AUTH_TOKEN
+
     const client = require('twilio')(accountSid, authToken)
 
     console.log('Message send')
@@ -130,6 +130,7 @@ class Basket {
         to: '+447417438484'
       })
       .then((message) => console.log(message.sid))
+      .catch((err) => console.error(err))
   }
 }
 
