@@ -27,8 +27,10 @@ class Receipt {
 
       // Price
       string += `£${item.stackPrice}`
-
       string += '\n      ' // Next line and Left space
+
+      // 21 left spaces then (-$0.00)
+
       return string
     })
     string += String(basketList).replace(',', '')
@@ -39,18 +41,15 @@ class Receipt {
     console.log(`
         ~~~ 🥯 Bob's Bagels ~~~
          ${this.data.date}
-      ----------------------------`)
-    console.log(this.receiptItemsConstructor())
-
-    console.log(
-      `      ----------------------------
-      Total                 £10.43
+      ----------------------------
+      ${this.receiptItemsConstructor()}
+      ----------------------------
+      Total                  £${this.data.total}
 
       Thank you
       for your order!
       ############################
-    `
-    )
+    `)
   }
 }
 
