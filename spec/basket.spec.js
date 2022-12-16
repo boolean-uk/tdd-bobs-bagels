@@ -107,9 +107,17 @@ describe('Basket Class', () => {
   // purchaseBasket
   it('expects a receipt to be returned after a purchase', () => {
     BasketClass.addBagel('COF')
-    BasketClass.addBagel('COF')
     BasketClass.addBagel('BGLO')
+    BasketClass.addBagel('BGLO')
+    BasketClass.addBagel('BGLO')
+    BasketClass.addBagel('BGLO')
+    BasketClass.addBagel('BGLO')
+    BasketClass.addBagel('BGLO')
+    BasketClass.addBagel('BGLO')
+    BasketClass.addBagel('BGLO')
+
+    BasketClass.addBagel('COF')
     const receipt = BasketClass.purchaseBasket()
-    expect(receipt.total).toBe(2.47)
+    expect(receipt.total).toBe(5.45)
   })
 })

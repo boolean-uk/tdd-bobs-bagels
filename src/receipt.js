@@ -1,6 +1,8 @@
 class Receipt {
   constructor(data) {
     this.data = data
+    this.withOffer = false
+    this.discountTotal = 0
   }
 
   info() {
@@ -30,7 +32,13 @@ class Receipt {
       string += '\n      ' // Next line and Left space
 
       // 21 left spaces then (-$0.00)
-
+      const normalStackPrice = item.quantity * item.price
+      if (normalStackPrice !== item.stackPrice) {
+        this.withOffer = true
+        string += ' '.repeat(21)
+        string += `(-£${(normalStackPrice - item.stackPrice).toFixed(2)})`
+        this.discountTotal += normalStackPrice - item.stackPrice
+      }
       return string
     })
     string += String(basketList).replace(',', '')
@@ -46,8 +54,8 @@ class Receipt {
       ----------------------------
       Total                  £${this.data.total}
 
-      Thank you
-      for your order!
+      Total saved: £${this.discountTotal.toFixed(2)}
+      Thank you for your order!
       ############################
     `)
   }
