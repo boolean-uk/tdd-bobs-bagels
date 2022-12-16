@@ -47,6 +47,11 @@ class Basket {
     // Creating a copy of the basket and then using that to determine the total- this way the quantities in the original basket don't get edited
     const basketCopy = JSON.parse(JSON.stringify(this.basket))
 
+    // getting what the total would have been without any offers in order to work out the total savings
+    const totalWithoutOffersApplied = basketCopy.reduce((total, bagel) => {
+      return total + +bagel.price * bagel.quantity
+    }, 0)
+
     // replace quantity with the reamining bagels after offer if an offer has been applied
     remaining.forEach((offerBagel) => {
       basketCopy.forEach((bagel) => {
@@ -56,13 +61,17 @@ class Basket {
       })
     })
 
-    const total = basketCopy.reduce((total, bagel) => {
-      return total + +bagel.price * bagel.quantity
-    }, offersTotal)
+    const total = basketCopy
+      .reduce((total, bagel) => {
+        return total + +bagel.price * bagel.quantity
+      }, offersTotal)
+      .toFixed(2)
 
-    this.printReceipt(total)
+    const savings = (totalWithoutOffersApplied - total).toFixed(2)
 
-    return total.toFixed(2)
+    console.log(this.printReceipt(total, savings))
+
+    return total
   }
 
   applyOffers() {
@@ -87,7 +96,7 @@ class Basket {
     return { offersTotal, remaining }
   }
 
-  printReceipt(total) {
+  printReceipt(total, savings) {
     if (this.basket.length < 1) return false
 
     return `
@@ -99,14 +108,20 @@ class Basket {
     ${this.basket
       .map((bagel) => {
         const { name, variant, price, quantity } = bagel
-        return `    ${variant} ${name}        ${quantity}  £${
+        return `    ${variant} ${name}        ${quantity}  £${(
           price * quantity
-        } \n`
+        ).toFixed(2)} \n`
       })
       .join('')}
 
        --------------------------------
         Total                 £${total}
+
+        ${
+          savings > 0
+            ? `You saved a total of £${savings} \n              on this shop`
+            : ''
+        }
 
                  Thank you
               for your order!
@@ -147,12 +162,16 @@ ${this.basket
 }
 
 const testBasket = new Basket(12)
-testBasket.addBagel('BGLP')
-// testBasket.addBagel('BGLP')
-// testBasket.addBagel('BGLP')
-testBasket.addBagel('BGSE')
-// testBasket.addBagel('COF')
-// testBasket.displayTotal()
-testBasket.textDeliveryMessage('+447856603869')
+testBasket.addBagel('BGLO')
+testBasket.addBagel('BGLO')
+testBasket.addBagel('BGLO')
+testBasket.addBagel('BGLO')
+testBasket.addBagel('BGLO')
+testBasket.addBagel('BGLO')
+testBasket.addBagel('BGLO')
+// const test = testBasket.printReceipt()
+testBasket.displayTotal()
+// console.log(test)
+// testBasket.textDeliveryMessage('+447856603869')
 
 module.exports = { Basket }

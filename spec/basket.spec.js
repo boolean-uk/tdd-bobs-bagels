@@ -127,13 +127,9 @@ describe('bobs bagels', () => {
   })
 
   it('applyOffers returns an object with the total sum of all offers (if they exist) and an array with the leftovers items', () => {
-    testBasket.addBagel('BGLO')
-    testBasket.addBagel('BGLO')
-    testBasket.addBagel('BGLO')
-    testBasket.addBagel('BGLO')
-    testBasket.addBagel('BGLO')
-    testBasket.addBagel('BGLO')
-    testBasket.addBagel('BGLO')
+    for (let i = 0; i <= 6; i++) {
+      testBasket.addBagel('BGLO')
+    }
 
     const data = testBasket.applyOffers()
 
@@ -144,26 +140,13 @@ describe('bobs bagels', () => {
   })
 
   it('total correctly calculated after offers are applied', () => {
-    testBasket.addBagel('BGLO')
-    testBasket.addBagel('BGLO')
-    testBasket.addBagel('BGLO')
-    testBasket.addBagel('BGLO')
-    testBasket.addBagel('BGLO')
-    testBasket.addBagel('BGLO')
-    testBasket.addBagel('BGLO')
+    for (let i = 0; i <= 6; i++) {
+      testBasket.addBagel('BGLO')
+    }
 
-    testBasket.addBagel('BGLP')
-    testBasket.addBagel('BGLP')
-    testBasket.addBagel('BGLP')
-    testBasket.addBagel('BGLP')
-    testBasket.addBagel('BGLP')
-    testBasket.addBagel('BGLP')
-    testBasket.addBagel('BGLP')
-    testBasket.addBagel('BGLP')
-    testBasket.addBagel('BGLP')
-    testBasket.addBagel('BGLP')
-    testBasket.addBagel('BGLP')
-    testBasket.addBagel('BGLP')
+    for (let i = 0; i <= 11; i++) {
+      testBasket.addBagel('BGLP')
+    }
 
     const total = testBasket.displayTotal()
 
