@@ -69,7 +69,7 @@ class Basket {
 
     const savings = (totalWithoutOffersApplied - total).toFixed(2)
 
-    console.log(this.printReceipt(total, savings))
+    this.printReceipt(total, savings)
 
     return total
   }
@@ -160,18 +160,5 @@ ${this.basket
       .then((message) => console.log(message.sid))
   }
 }
-
-const testBasket = new Basket(12)
-testBasket.addBagel('BGLO')
-testBasket.addBagel('BGLO')
-testBasket.addBagel('BGLO')
-testBasket.addBagel('BGLO')
-testBasket.addBagel('BGLO')
-testBasket.addBagel('BGLO')
-testBasket.addBagel('BGLO')
-// const test = testBasket.printReceipt()
-testBasket.displayTotal()
-// console.log(test)
-// testBasket.textDeliveryMessage('+447856603869')
 
 module.exports = { Basket }
