@@ -1,46 +1,54 @@
-const { inventory } = require('../inventory.json')
+const data = require('../inventory.json')
+
+const { inventory } = data
 
 const basket = []
+let basketCapacity = 10
 
-function add(bagel) {
-  basket.push(bagel)
-  return basket
+function add(sku) {
+  if (basket.length >= basketCapacity) {
+    return false
+  }
+  const findBagel = basket.find((bagel) => bagel.sku === sku)
+  if (findBagel) {
+    findBagel.quantity += 1
+    return findBagel
+  }
+
+  const bagelAdd = inventory.find((bagel) => bagel.sku === sku)
+  const copyBagel = { ...bagelAdd, quantity: 1 }
+  basket.push(copyBagel)
+  return copyBagel
+}
+
+function totalBagelPrice() {
+  return basket.reduce((total, bagel) => {
+    return total + Number(bagel.price) * bagel.quantity
+  }, 0)
 }
 
 function remove(sku) {
-  const skuToRemove = 'BGLO'
-  const filterBagels = basket.filter((bagel) => bagel.sku !== skuToRemove)
+  const findBagel = basket.find((bagel) => bagel.sku === sku)
 
-  return filterBagels
-}
-// const people = [
-//   { id: 1, name: 'serdar' },
-//   { id: 5, name: 'alex' },
-//   { id: 300, name: 'brittany' }
-// ]
+  if (!findBagel) {
+    return false
+  }
 
-// const idToRemove = 5
-
-// const filteredPeople = people.filter((item) => item.id !== idToRemove)
-
-// console.log(filteredPeople)
-// [
-//   { id: 1, name: 'serdar' },
-//   { id: 300, name: 'brittany' }
-// [
-
-function changeOrder(sku) {
-  const newBagel = basket.indexOf(sku)
-  basket[newBagel] = 
+  const index = basket.findIndex((bagel) => bagel.sku === sku)
+  basket.splice(index, 1)
+  return findBagel
 }
 
-// const arr = [1, 2, 3, 4, 5]
-// const index = arr.indexOf(2)
-// arr[index] = 0
-// arr
-// [1,0,3,4,5];
+function returnBasket() {
+  return [...basket]
+}
 
 function basketReset() {
+  basket.splice(0, basket.length)
+}
+
+function theCapacity(num) {
+  basketCapacity = num
   basket.splice(0, basket.length)
 }
 
@@ -48,6 +56,7 @@ module.exports = {
   add,
   basketReset,
   remove,
-  changeOrder
+  returnBasket,
+  totalBagelPrice,
+  theCapacity
 }
-console.log(changeOrder())
