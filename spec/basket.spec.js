@@ -108,6 +108,8 @@ describe('Basket Class', () => {
   it('expects a receipt to be returned after a purchase', () => {
     BasketClass.addBagel('COF')
     BasketClass.addBagel('COF')
-    expect(BasketClass.purchaseBasket().total).toBe(1.98)
+    BasketClass.addBagel('BGLO')
+    const receipt = BasketClass.purchaseBasket()
+    expect(receipt.total).toBe(2.47)
   })
 })

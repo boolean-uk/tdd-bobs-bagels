@@ -1,5 +1,6 @@
 const { inventory } = require('../inventory.json')
 const { specialOffers } = require('../specialOffers')
+const { Receipt } = require('./receipt')
 
 class Basket {
   constructor(basketSize) {
@@ -100,14 +101,17 @@ class Basket {
   }
 
   purchaseBasket() {
-    // return receipt info
-    const receipt = {
-      date: new Date(),
+    const data = {
+      date: new Date().toLocaleString(),
       basket: this.basket,
       total: this.totalPrice()
     }
 
-    return receipt
+    // return receipt info
+    const receipt = new Receipt(data)
+    receipt.print()
+
+    return receipt.info()
   }
 }
 
