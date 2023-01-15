@@ -45,6 +45,14 @@ class Basket {
     )
     return filtered[0]
   }
+
+  getPriceBySku(sku) {
+    const bagels = Inventory.filter((bagel) => bagel.sku === sku)
+    if (bagels.length === 0) {
+      return 'Bagel not found'
+    }
+    return bagels[0].price
+  }
 }
 
 module.exports = Basket
