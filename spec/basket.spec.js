@@ -46,17 +46,29 @@ describe('Basket', () => {
 
     expect(result).toEqual(expected)
   })
+
   it('should show a list of all items in the basket - empty basket', () => {
     const expected = 0
     const result = basket.getItemsInBasket()
 
     expect(result.length).toEqual(expected)
   })
+
   it('should show a list of all items in the basket - multiple items in basket', () => {
     const expected = ['BGLO', 'BGLP', 'BGLE']
     expected.forEach((bagel) => basket.addBagel(bagel))
     const result = basket.getItemsInBasket()
 
     expect(result.length).toEqual(expected.length)
+  })
+
+  it('should remove an item from the basket', () => {
+    const basketContents = ['BGLO', 'BGLP', 'BGLE']
+    basketContents.forEach((bagel) => basket.addBagel(bagel))
+
+    const expected = new Item(1, 1, getBagelBySku('BGLE'))
+    const result = basket.removeBagel('BGLE')
+
+    expect(result).toEqual(expected)
   })
 })
