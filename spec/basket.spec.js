@@ -92,4 +92,14 @@ describe('Basket', () => {
 
     expect(result).toEqual(expected)
   })
+
+  it('should get total of items in basket', () => {
+    const expected = 3.48
+    basket.addBagel('BGSE')
+    basket.addBagel('BGLS')
+
+    const result = basket.getTotal()
+
+    expect(result).toEqual(expected)
+  })
 })
