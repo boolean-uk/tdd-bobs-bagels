@@ -34,6 +34,17 @@ class Basket {
   getItemsInBasket() {
     return this.basketItems
   }
+
+  removeBagel(sku) {
+    const filtered = this.basketItems.filter((bagel) => bagel.item.sku === sku)
+    if (filtered.length === 0) {
+      return 'Item not found'
+    }
+    this.basketItems = this.basketItems.filter(
+      (bagel) => bagel.item.sku !== sku
+    )
+    return filtered[0]
+  }
 }
 
 module.exports = Basket

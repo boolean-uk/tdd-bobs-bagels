@@ -66,7 +66,7 @@ describe('Basket', () => {
     const basketContents = ['BGLO', 'BGLP', 'BGLE']
     basketContents.forEach((bagel) => basket.addBagel(bagel))
 
-    const expected = new Item(1, 1, getBagelBySku('BGLE'))
+    const expected = new Item(3, 1, getBagelBySku('BGLE'))
     const result = basket.removeBagel('BGLE')
 
     expect(result).toEqual(expected)
