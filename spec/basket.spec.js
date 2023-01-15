@@ -78,4 +78,18 @@ describe('Basket', () => {
 
     expect(result).toEqual(expected)
   })
+
+  it('should return an error when getting an undefined price', () => {
+    const expected = 'Bagel not found'
+    const result = basket.getPriceBySku('Not an item sku')
+
+    expect(result).toEqual(expected)
+  })
+
+  it('should get a bagel price by sku', () => {
+    const expected = '2.99'
+    const result = basket.getPriceBySku('BGSE')
+
+    expect(result).toEqual(expected)
+  })
 })
