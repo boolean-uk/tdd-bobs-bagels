@@ -71,4 +71,11 @@ describe('Basket', () => {
 
     expect(result).toEqual(expected)
   })
+
+  it('should give an error when trying to remove item from empty basket', () => {
+    const expected = 'Item not found'
+    const result = basket.removeBagel(3)
+
+    expect(result).toEqual(expected)
+  })
 })
