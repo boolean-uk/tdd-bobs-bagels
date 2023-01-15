@@ -53,6 +53,12 @@ class Basket {
     }
     return bagels[0].price
   }
+
+  getTotal() {
+    const totalCount = (total, bagel) =>
+      total + bagel.quantity * bagel.item.price
+    return this.basketItems.reduce(totalCount, 0)
+  }
 }
 
 module.exports = Basket
