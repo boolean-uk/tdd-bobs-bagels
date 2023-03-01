@@ -205,3 +205,34 @@ describe('The basket class', () => {
     expect(res).toEqual(expectedRes)
   })
 })
+
+describe('Extension 1: The total should', () => {
+  it('be reduced due to the special offer', () => {
+    //SETUP
+    const basket = new Basket()
+    basket.addMultipleItems('BGLO', 6)
+
+    //EXECUTE
+    const expectedRes = '2.49'
+    const res = basket.getTotal()
+
+    //VERIFY
+    expect(res).toEqual(expectedRes)
+  })
+
+  it('be reduced due to the special offer', () => {
+    //SETUP
+    const basket = new Basket(30)
+    basket.addMultipleItems('BGLO', 2)
+    basket.addMultipleItems('BGLP', 12)
+    basket.addMultipleItems('BGLE', 6)
+    basket.addMultipleItems('COF', 3)
+
+    //EXECUTE
+    const expectedRes = '10.43'
+    const res = basket.getTotal()
+
+    //VERIFY
+    expect(res).toEqual(expectedRes)
+  })
+})

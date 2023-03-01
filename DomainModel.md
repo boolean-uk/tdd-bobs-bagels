@@ -117,3 +117,46 @@ METHODS
 
 - getTotal(void)
   - OUTPUT: the total price of all items in basket
+
+# Extension 1
+
+As a member of the public
+So that I can save money
+Be able to make use of Special offers
+
+example of {item} - {
+"sku": "BGLO",
+"price": "0.49",
+"name": "Bagel",
+"variant": "Onion"
+}
+
+CLASS Basket(size = 12)
+PROPERTIES
+
+- basket: []
+- size: integer
+
+METHODS
+
+- displayPrice(sku)
+
+  - OUTPUT: return the price of the item
+
+- addItem(sku)
+
+  - INPUT: item you want to add to this.basket
+  - OUTPUT: if basket is full return message
+
+- addMultipleItems(sku, amount: integer)
+
+  - INPUT: item you want to add and the amount of it
+  - OUTPUT: message if amount > room in basket
+
+- removeItem(sku)
+
+  - INPUT: item you want to remove from this.basket
+  - OUTPUT: if item does not exist in basket return message
+
+- getTotal(void)
+  - OUTPUT: the total price of all items in basket after appling special discounts
