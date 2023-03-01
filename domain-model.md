@@ -2,33 +2,24 @@
 
 ## Part 1 Model
 
-class Bagel
+js object Bagel
 PROPERTIES
 
-- sku
-- price
-- name
-- variant
-  METHODS
-  constructor(sku, price, name variant) -> Sets the properties
+- sku: string
+- price: number
+- name: string
+- variant: string
 
 class Basket
 PROPERTIES
 
-- basket: Array[{}]
-  METHODS
-  addToBasket(bagelItem) -> Adds an item to the basket
-  INPUT: Item Object.
-  PROPERTIES:
-- sku
-- price
-- name
-- variant
-  OUTPUT: Adds to the basket array (Or increments if already exists)
+- basket: Array[Bagel js objects]
 
-removeFromBasket(sku) -> Removes an item by SKU from the basket
-INPUT: Item SKU
-PROPERTIES:
+METHODS
+addToBasket(bagelItem: Bagel js object) -> Adds an item to the basket
+INPUT: Bagel JS Object
+OUTPUT: True/false
 
-- sku
-  OUTPUT: Removes from the basket array (Or decrements if already exists)
+removeFromBasket(sku: string) -> Removes an item from the basket
+INPUT: sku string for a bagel object
+OUTPUT: True/false
