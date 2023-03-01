@@ -13,13 +13,24 @@ bagel = {sku: string, price: string, name: string, variant: string, fillings: [s
 basket CLASS
 PROPERTIES
 - basket: array [empty]
+- limit: number
 
 METHODS
-addBagel({bagel}) -> adds bagel into basket
-  INPUT: bagel you want to add to basket
+addBagel(sku) -> adds bagel into basket
+  INPUT: SKU of bagel
 
 removeBagel(bagel SKU) -> removes bagel from basket
   INPUT: SKU of bagel
+
+increaseBasketLimit(limitIncrease) -> increase the limit of the basket
+  INPUT: amount you want to increase the basket by
+
+bagelPrice(sku) -> view the price of a bagel
+  INPUT: SKU of bagel
+  OUTPUT: price of the bagel
+
+total() -> view total price of items in the basket
+  OUTPUT: number for sum of basket
 
 */
 
