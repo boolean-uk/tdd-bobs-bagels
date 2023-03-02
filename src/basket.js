@@ -6,14 +6,17 @@ class Basket {
         this.capacity = capacity
     }
 
-    addToBasket(sku) {
+    addToBasket(sku, quantity =  1) {
         const addedBagel = inventory.find(bagel => bagel.sku === sku)
-
+        const pushQuantity = quantity
+        
         if (addedBagel) {
             const basket = new Basket()
-
-            this.basket.push(addedBagel)
-            return addedBagel
+            for (let i = 0; i < pushQuantity; i++) {
+                this.basket.push(addedBagel)
+            }
+            return basket
+                // return addedBagel
         } else {
             return "this bagel does not exist"
         }
@@ -52,12 +55,12 @@ class Basket {
 }
 
 const basket = new Basket()
-basket.addToBasket('BGLO')
+basket.addToBasket('BGLO', 2)
 console.log("added item:", basket)
 
 // const newBasket = new Basket()
-basket.removeFromBasket('BGLO')
-console.log("should be empty:", basket)
+// basket.removeFromBasket('BGLO')
+// console.log("should be empty:", basket)
 
 module.exports = {
     Basket

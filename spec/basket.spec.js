@@ -5,18 +5,14 @@ describe("Basket contents:", () => {
         //setup
 
         const sku = 'BGSE';
-        const basket = new Basket()
+        const quantity = 1;
+        const newBasket = new Basket()
 
         //execute:
-        const expectedResult = {
-            sku: 'BGSE',
-            price: '2.99',
-            name: 'Bagel Sandwich',
-            variant: 'Everything',
-            fillings: ['Bacon', 'Egg', 'Cheese']
-        };
+        const expectedResult = 1
+        newBasket.addToBasket(sku, quantity)
+        const result = newBasket.basket.length
 
-        const result = basket.addToBasket(sku);
         //verify
         expect(result).toEqual(expectedResult)
     });
@@ -66,7 +62,7 @@ describe("Basket contents:", () => {
         //execute:
         const expectedResult = 'this bagel is not in your basket'
 
-        //verify
+        //verify:
         const result = newBasket.removeFromBasket(sku)
 
         expect(result).toEqual(expectedResult)
@@ -85,13 +81,28 @@ describe("Basket contents:", () => {
     it("(4) should have an increased basket size  > 10", () => {
         const newBasket = new Basket(15)
 
+        //execute:
         const expectedResult = 15
         newBasket.checkBasketCapacity()
         const result = newBasket.capacity
         //verify
         // eslint-disable-next-line no-undef
         expect(result).toEqual(expectedResult)
-    }) 
+    })
 
+    it("(5) should allow user to add multiple of same item to basket", () => {
+        //setup
+        const newBasket = new Basket()
+        const sku = 'BGLO'
+        const quantity = 2
+
+        //execute:
+        const expectedResult = 2
+        newBasket.addToBasket(sku, quantity)
+        const result = newBasket.basket.length
+
+        //verify: 
+        expect(result).toEqual(expectedResult)
+    })
 
 })

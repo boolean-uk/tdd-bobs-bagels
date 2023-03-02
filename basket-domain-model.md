@@ -63,9 +63,9 @@ CLASS Basket {
 
 METHOD:
 UPDATE: constructor to take the size/capacity: default= 10
-changeBasketSize(size: number)
- -INPUT: @size for this.basket
- -OPUTPUT: this.basket.size = number
+changeBasketCapacity(capacity: number)
+ -INPUT: @capacity for this.basket
+ -OPUTPUT: this.basket.capacity = number
 
 
 # 2.3
@@ -80,3 +80,64 @@ removeBagel(sku: string)
         -OPUTPUT= bagel-in-basket ?
         this.basket - removed bagel :
         error msg: string
+
+
+# Part 3
+
+## 3.1
+I’d like to see the price of each item before I add it to my basket.
+
+verbs: check-price
+noun: item
+
+Properties: 
+- basket.price: number
+
+CLASS Basket {
+    basket = []
+    capacity = number
+}
+
+METHOD:
+checkPrice(sku: string)
+ -INPUT:sku of bagel
+ -OPUTPUT: inventory.price = number
+
+## 3.2
+I'd like to be able to add the same type of bagel to my basket more than once
+
+verb: add-multiple
+noun: same-bagel-type
+
+CLASS Basket {
+    basket = [] 
+    capacity = number
+}
+
+METHOD
+<!-- UPDATE addBagel() = addBagel(sku: string, quantity: number) -->
+ <!-- INPUT- sku: string, quantity: number
+ OUTPUT- basket [{bagel}*quantity] 
+            ->(basket.length should change) -->
+
+<!-- Better way to write it: see below -->
+ UPDATE addBagel(sku: string, quantity: number)
+  adds quantity bagels to the basket
+  OUTPUT returns the updated basket array of bagel items           
+
+## 3.3
+I'd like to know the total sum of the bagels in my basket
+
+verb: calculate-sumTotal
+noun: price
+
+UPDATE: 
+CLASS Basket {
+    basket = [] 
+    capacity = number
+}
+
+METHOD
+calculateTotalPrice(void)
+ INPUT- @basket
+ OUTPUT- this.totalPrice
