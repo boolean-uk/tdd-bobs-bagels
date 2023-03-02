@@ -18,7 +18,8 @@ describe('The basket class', () => {
       sku: 'BGLO',
       price: '0.49',
       name: 'Bagel',
-      variant: 'Onion'
+      variant: 'Onion',
+      quantity: 1
     })
 
     //EXECUTE
@@ -35,7 +36,8 @@ describe('The basket class', () => {
       sku: 'BGLO',
       price: '0.49',
       name: 'Bagel',
-      variant: 'Onion'
+      variant: 'Onion',
+      quantity: 1
     })
 
     //EXECUTE
@@ -49,43 +51,23 @@ describe('The basket class', () => {
   it('should be able to remove an item from this.basket', () => {
     //SETUP
     const basket = new Basket()
-    basket.basket.push(
-      {
-        sku: 'BGLO',
-        price: '0.49',
-        name: 'Bagel',
-        variant: 'Onion'
-      },
-      {
-        sku: 'BGLO',
-        price: '0.49',
-        name: 'Bagel',
-        variant: 'Onion'
-      },
-      {
-        sku: 'BGLO',
-        price: '0.49',
-        name: 'Bagel',
-        variant: 'Onion'
-      }
-    )
+    basket.basket.push({
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion',
+      quantity: 3
+    })
 
     //EXECUTE
     const expectedRes = new Basket()
-    expectedRes.basket.push(
-      {
-        sku: 'BGLO',
-        price: '0.49',
-        name: 'Bagel',
-        variant: 'Onion'
-      },
-      {
-        sku: 'BGLO',
-        price: '0.49',
-        name: 'Bagel',
-        variant: 'Onion'
-      }
-    )
+    expectedRes.basket.push({
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion',
+      quantity: 2
+    })
     basket.removeItem('BGLO')
 
     //VERIFY
@@ -152,26 +134,13 @@ describe('The basket class', () => {
     const basket = new Basket()
 
     const expectedRes = new Basket()
-    expectedRes.basket.push(
-      {
-        sku: 'BGLO',
-        price: '0.49',
-        name: 'Bagel',
-        variant: 'Onion'
-      },
-      {
-        sku: 'BGLO',
-        price: '0.49',
-        name: 'Bagel',
-        variant: 'Onion'
-      },
-      {
-        sku: 'BGLO',
-        price: '0.49',
-        name: 'Bagel',
-        variant: 'Onion'
-      }
-    )
+    expectedRes.basket.push({
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion',
+      quantity: 3
+    })
 
     //EXECUTE
     basket.addMultipleItems('BGLO', 3)
@@ -213,7 +182,7 @@ describe('Extension 1: The total should', () => {
     basket.addMultipleItems('BGLO', 6)
 
     //EXECUTE
-    const expectedRes = '2.49'
+    const expectedRes = '2.49' // offer is 6 onions for 2.49
     const res = basket.getTotal()
 
     //VERIFY
@@ -224,15 +193,16 @@ describe('Extension 1: The total should', () => {
     //SETUP
     const basket = new Basket(30)
     basket.addMultipleItems('BGLO', 2)
-    basket.addMultipleItems('BGLP', 12)
-    basket.addMultipleItems('BGLE', 6)
+    basket.addMultipleItems('BGLP', 12) // 12 for 3.99
+    basket.addMultipleItems('BGLE', 6) // 6 for 2.49
     basket.addMultipleItems('COF', 3)
 
     //EXECUTE
-    const expectedRes = '10.43'
+    //const expectedRes = '10.43'
+    const expectedRes = 0.49 * 2 + 3.99 + 2.49 + 0.99 * 3
     const res = basket.getTotal()
 
     //VERIFY
-    expect(res).toEqual(expectedRes)
+    expect(res).toEqual(expectedRes.toFixed(2).toString())
   })
 })

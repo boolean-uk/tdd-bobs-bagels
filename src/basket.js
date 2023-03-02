@@ -3,8 +3,15 @@ const inventory = require('../inventory.json').inventory
 class Basket {
   constructor(size = 12) {
     this.basket = []
+    this.receipt = ''
     this.size = size
     this.total = 0
+  }
+
+  inBasket() {
+    let res = 0
+    this.basket.forEach((item) => (res += item.quantity))
+    return res
   }
 
   displayPrice(sku) {
@@ -13,11 +20,14 @@ class Basket {
   }
 
   addItem(sku) {
-    if (this.basket.length >= this.size) return 'Basket is full'
+    if (this.inBasket() >= this.size) return 'Basket is full'
 
     const itemToAdd = inventory.find((item) => item.sku === sku)
 
-    if (itemToAdd) {
+    if (itemToAdd && this.basket.find((item) => item.sku === sku)) {
+      this.basket.find((item) => item.sku === sku).quantity++
+    } else if (itemToAdd) {
+      itemToAdd.quantity = 1
       this.basket.push(itemToAdd)
     } else {
       return 'invalid selection'
@@ -25,72 +35,69 @@ class Basket {
   }
 
   addMultipleItems(sku, amount) {
-    if (this.basket.length >= this.size) return 'Basket is full'
-
-    if (this.size < this.basket.length + amount) {
+    if (this.size < this.inBasket() + amount) {
       return 'Not enough space in Basket'
     }
 
     const itemToAdd = inventory.find((item) => item.sku === sku)
 
-    for (let i = 0; i < amount; i++) {
+    if (itemToAdd && this.basket.find((item) => item.sku === sku)) {
+      this.basket.find((item) => item.sku === sku).quantity += amount
+    } else if (itemToAdd) {
+      itemToAdd.quantity = amount
       this.basket.push(itemToAdd)
+    } else {
+      return 'invalid selection'
     }
   }
 
   removeItem(sku) {
-    let removeIndex = undefined
-    this.basket.find((item, index) =>
-      item.sku === sku ? (removeIndex = index) : null
-    )
+    const itemToRemove = this.basket.find((item) => item.sku === sku)
 
-    if (removeIndex !== undefined) {
-      this.basket.splice(removeIndex, 1)
+    if (itemToRemove !== undefined) {
+      if (itemToRemove.quantity > 1) {
+        itemToRemove.quantity--
+      } else if (itemToRemove.quantity === 1) {
+        const removeIndex = this.basket.findIndex((item) => item.sku === sku)
+        this.basket.splice(removeIndex, 1)
+      }
     } else {
       return 'Not in Basket'
     }
   }
 
-  checkForSpecialOffer(basket) {
-    basket.forEach((item) => {
+  getTotal() {
+    this.total = 0
+    this.basket.forEach((item) => {
       if (item.sku === 'BGLP' && item.quantity >= 12) {
-        this.total += 3.99
-        item.quantity -= 12
-        this.checkForSpecialOffer(basket)
-      } else if (
-        item.sku === 'COF' &&
-        basket.find((e) => e.sku === 'BGLP')?.quantity > 0 &&
-        item.quantity > 0
-      ) {
-        this.total += 1.25
-        item.quantity--
-        basket.find((e) => e.sku === 'BGLP').quantity--
-        this.checkForSpecialOffer(basket)
+        const amount = Math.floor(item.quantity / 12)
+        this.total += 3.99 * amount
+        this.total += item.price * (item.quantity - 12 * amount)
       } else if (
         (item.sku === 'BGLO' && item.quantity >= 6) ||
         (item.sku === 'BGLE' && item.quantity >= 6)
       ) {
-        this.total += 2.49
-        item.quantity -= 6
-        this.checkForSpecialOffer(basket)
+        const amount = Math.floor(item.quantity / 6)
+        this.total += 2.49 * amount
+        this.total += item.price * (item.quantity - 6 * amount)
+      } else if (
+        item.sku === 'COF' &&
+        this.basket.find((item) => item.sku === 'BGLP')
+      ) {
+        const bglp = this.basket.find((item) => item.sku === 'BGLP')
+        this.total += item.price * item.quantity
+        if (bglp.quantity % 12 !== 0) {
+          const amount = Math.floor(bglp.quantity / 12)
+          const left = bglp.quantity - amount * 12
+          if (left > item.quantity) {
+            this.total -= 0.13 * item.quantity
+          } else {
+            this.total -= 0.13 * left
+          }
+        }
+      } else {
+        this.total += item.price * item.quantity
       }
-    })
-  }
-
-  getTotal() {
-    const tempBasket = inventory.map((item) => {
-      return { ...item, quantity: 0 }
-    })
-
-    this.basket.forEach((item) => {
-      tempBasket.find((tempItem) => tempItem.sku === item.sku).quantity++
-    })
-    const finalBasket = tempBasket.filter((item) => item.quantity != 0)
-
-    this.checkForSpecialOffer(finalBasket)
-
-    finalBasket.forEach((item) => {
-      this.total += item.price * item.quantity
     })
 
     return this.total.toFixed(2).toString()
