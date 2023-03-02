@@ -130,7 +130,7 @@ describe("Basket contents:", () => {
 
         const expectedResult = 1.27
 
-        const result = newBasket.calculateTotal()
+        const result = newBasket.calculateInitialTotal()
         //verify
         expect(result).toEqual(expectedResult)
     })

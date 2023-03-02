@@ -56,7 +56,7 @@ class Basket {
         }
     }
 
-    calculateTotal() {
+    calculateInitialTotal() {
         // const basket = new Basket()
 
         const priceList = []
