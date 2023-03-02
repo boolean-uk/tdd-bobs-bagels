@@ -16,7 +16,6 @@ describe("Basket contents:", () => {
             fillings: ['Bacon', 'Egg', 'Cheese']
         };
 
-
         const result = basket.addToBasket(sku);
         //verify
         expect(result).toEqual(expectedResult)
@@ -55,7 +54,45 @@ describe("Basket contents:", () => {
 
         const result = newBasket
         //verify
+        // eslint-disable-next-line no-undef
         expect(result).toEqual(expectedResult)
     });
+
+    it("(2.1) should inform user that item is not in basket", () => {
+        //setup
+        const sku = 'BGLO';
+        const newBasket = new Basket()
+
+        //execute:
+      
+        const expectedResult = 'this bagel is not in your basket'
+
+        //verify
+        const result = newBasket.removeFromBasket(sku)
+
+        expect(result).toEqual(expectedResult)
+    });
+
+    it("(3) should have default capacity 10", () => {
+        const newBasket = new Basket()
+
+        const expectedResult = 10
+        const result = newBasket.capacity
+        //verify
+        // eslint-disable-next-line no-undef
+        expect(result).toEqual(expectedResult)
+    })
+
+    it("(4) should have an increased basket size  > 10", () => {
+        const newBasket = new Basket(15)
+
+        const expectedResult = 15
+        newBasket.checkBasketCapacity()
+        const result = newBasket.capacity
+        //verify
+        // eslint-disable-next-line no-undef
+        expect(result).toEqual(expectedResult)
+    }) 
+
 
 })
