@@ -175,4 +175,31 @@ describe('basket', () => {
     const result = basket.totalCost()
     expect(result).toEqual(expectedResult)
   })
+  it('total cost of basket with offers applied', () => {
+    const startData = [
+      inventory[0],
+      inventory[0],
+      inventory[0],
+      inventory[0],
+      inventory[0],
+      inventory[0]
+    ]
+    const basket = new Basket(startData)
+    const expectedResult = '2.49'
+    const result = basket.totalCost()
+    expect(result).toEqual(expectedResult)
+  })
+  it('total cost of mix basket coffe and plain bagels', () => {
+    const startData = [
+      inventory[4],
+      inventory[1],
+      inventory[1],
+      inventory[4],
+      inventory[4]
+    ]
+    const basket = new Basket(startData)
+    const expectedResult = '3.49'
+    const result = basket.totalCost()
+    expect(result).toEqual(expectedResult)
+  })
 })

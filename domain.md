@@ -36,4 +36,8 @@ totalCost() ->
     input: view total cost
     output: number
 
+specialOffers() -> 
+    -input: checks skus and 
+    -output: modified total
+
 
