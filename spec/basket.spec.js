@@ -8,7 +8,7 @@ describe("Basket contents:", () => {
         const quantity = 1;
         const newBasket = new Basket()
 
-        //execute:
+        //execute
         const expectedResult = 1
         newBasket.addToBasket(sku, quantity)
         const result = newBasket.basket.length
@@ -54,21 +54,21 @@ describe("Basket contents:", () => {
         expect(result).toEqual(expectedResult)
     });
 
-    it("(2.1) should inform user that item is not in basket", () => {
+    it("(3) should inform user that item is not in basket", () => {
         //setup
         const sku = 'BGLO';
         const newBasket = new Basket()
 
-        //execute:
+        //execute
         const expectedResult = 'this bagel is not in your basket'
 
-        //verify:
+        //verify
         const result = newBasket.removeFromBasket(sku)
 
         expect(result).toEqual(expectedResult)
     });
 
-    it("(3) should have default capacity 10", () => {
+    it("(4) should have default capacity 10", () => {
         const newBasket = new Basket()
 
         const expectedResult = 10
@@ -78,10 +78,10 @@ describe("Basket contents:", () => {
         expect(result).toEqual(expectedResult)
     })
 
-    it("(4) should have an increased basket size  > 10", () => {
+    it("(5) should have an increased basket size  > 10", () => {
         const newBasket = new Basket(15)
 
-        //execute:
+        //execute
         const expectedResult = 15
         newBasket.checkBasketCapacity()
         const result = newBasket.capacity
@@ -90,18 +90,48 @@ describe("Basket contents:", () => {
         expect(result).toEqual(expectedResult)
     })
 
-    it("(5) should allow user to add multiple of same item to basket", () => {
+    it("(6) should allow user to add multiple of same item to basket", () => {
         //setup
         const newBasket = new Basket()
         const sku = 'BGLO'
         const quantity = 2
 
-        //execute:
+        //execute
         const expectedResult = 2
         newBasket.addToBasket(sku, quantity)
         const result = newBasket.basket.length
 
-        //verify: 
+        //verify 
+        expect(result).toEqual(expectedResult)
+    })
+
+    it("(7) should display the item price", () => {
+        //setup
+        const newBasket = new Basket()
+        const sku = 'BGLO'
+
+        //execute
+        const expectedResult = '0.49'
+        
+        const result = newBasket.displayPrice(sku)
+        //verify
+        expect(result).toEqual(expectedResult)
+    })
+
+    it("(8) should calculate the total basket cost", () => {
+        //setup
+        const newBasket = new Basket()
+        const skuOne = 'BGLO'
+        const skuTwo = 'BGLP'
+
+        //execute
+        newBasket.addToBasket(skuOne, 1)
+        newBasket.addToBasket(skuTwo, 2)
+
+        const expectedResult = 1.27
+
+        const result = newBasket.calculateTotal()
+        //verify
         expect(result).toEqual(expectedResult)
     })
 

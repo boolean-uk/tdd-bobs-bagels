@@ -6,17 +6,17 @@ class Basket {
         this.capacity = capacity
     }
 
-    addToBasket(sku, quantity =  1) {
+    addToBasket(sku, quantity) {
         const addedBagel = inventory.find(bagel => bagel.sku === sku)
         const pushQuantity = quantity
-        
+
         if (addedBagel) {
             const basket = new Basket()
             for (let i = 0; i < pushQuantity; i++) {
                 this.basket.push(addedBagel)
             }
             return basket
-                // return addedBagel
+            // return addedBagel
         } else {
             return "this bagel does not exist"
         }
@@ -46,21 +46,46 @@ class Basket {
         return basket.capacity
     }
 
-    //maybe will need to refactor this as function above allows increase of capacity
-    // increaseCapacity(newCapacity) {
-    //     const basket = new Basket(newCapacity)
-    //     return basket.capacity
-    // }
+    displayPrice(sku) {
+        //filter inventory
+        const bagelPrice = inventory.filter((bagel) => bagel.sku === sku)
+        //add to a basket to store it so that function can check the price
+        for (let i = 0; i < bagelPrice.length; i++) {
+            //should only have one: can only check one at a time
+            return bagelPrice[i].price
+        }
+    }
+
+    calculateTotal() {
+        // const basket = new Basket()
+
+        const priceList = []
+
+        this.basket.map((cost) => {
+             //convert string to number for calculations
+            priceList.push(Number(cost.price))
+        })
+
+        let total = 0
+        for (let i = 0; i < priceList.length; i++) {
+            total += priceList[i]
+        }
+
+        return total
+    }
 
 }
 
-const basket = new Basket()
-basket.addToBasket('BGLO', 2)
-console.log("added item:", basket)
+// const basket = new Basket()
+// basket.addToBasket('BGLO', 2)
+// console.log("added item:", basket)
 
-// const newBasket = new Basket()
+const newBasket = new Basket()
 // basket.removeFromBasket('BGLO')
 // console.log("should be empty:", basket)
+newBasket.displayPrice('BGLO')
+
+
 
 module.exports = {
     Basket
