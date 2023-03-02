@@ -20,15 +20,20 @@ class Basket {
     }
 
     removeFromBasket(sku) {
+
+        const removedBagelList = this.basket.filter((bagel) => bagel.sku !== sku)
         const removedBagel = (bagel) => bagel.sku === sku
 
         const index = this.basket.findIndex(removedBagel)
 
-        if (removedBagel) {
-            const basket = new Basket()
-            this.basket.splice(index, 1)
-        } else {
+        if (index === -1) {
             return 'this bagel is not in your basket'
+        }
+        else {
+            this.basket = removedBagelList
+            // const updatedBasket = new Basket()
+            // this.basket.splice(index, 1)
+            return removedBagelList
         }
     }
 
@@ -46,10 +51,13 @@ class Basket {
 
 }
 
-// const basket = new Basket()
-// removeFromBasket('BGLO')
-// // basket.addToBasket('BGLO')
-// console.log(basket)
+const basket = new Basket()
+basket.addToBasket('BGLO')
+console.log("added item:", basket)
+
+// const newBasket = new Basket()
+basket.removeFromBasket('BGLO')
+console.log("should be empty:", basket)
 
 module.exports = {
     Basket

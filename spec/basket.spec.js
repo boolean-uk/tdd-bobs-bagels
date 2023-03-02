@@ -64,7 +64,6 @@ describe("Basket contents:", () => {
         const newBasket = new Basket()
 
         //execute:
-      
         const expectedResult = 'this bagel is not in your basket'
 
         //verify
