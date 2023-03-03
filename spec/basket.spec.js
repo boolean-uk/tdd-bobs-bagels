@@ -124,14 +124,14 @@ describe('Basket contents:', () => {
     const newBasket = new Basket()
     const skuOne = 'BGLO'
     const skuTwo = 'BGLP'
-
+    
     //execute
     newBasket.addToBasket(skuOne, 1)
     newBasket.addToBasket(skuTwo, 2)
 
     const expectedResult = 1.27
 
-    const result = newBasket.calculateInitialTotal()
+    const result = newBasket.calculateTotal()
     //verify
     expect(result).toEqual(expectedResult)
   })
@@ -153,7 +153,7 @@ describe('Basket contents:', () => {
 
     const expectedResult = 10.43
 
-    const result = newBasket.calculateDiscountedTotal()
+    const result = newBasket.calculateTotal()
 
     //verify
     expect(result).toEqual(expectedResult)
@@ -170,7 +170,7 @@ describe('Basket contents:', () => {
 
     const expectedResult = 5.55
 
-    const result = newBasket.calculateDiscountedTotal()
+    const result = newBasket.calculateTotal()
 
     //verify
     expect(result).toEqual(expectedResult)
