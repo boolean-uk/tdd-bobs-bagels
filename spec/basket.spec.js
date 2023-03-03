@@ -176,8 +176,8 @@ describe('Basket contents:', () => {
     expect(result).toEqual(expectedResult)
   })
 
-  // TODO: a test for all discount applied?
-  it('(10) should calculate the total when both the plain bagel and coffee special is applied + one extra coffee', () => {
+
+  it('(11) should calculate the total when both the plain bagel and coffee special is applied + one extra coffee', () => {
     //setup
     const newBasket = new Basket()
     const skuOne = 'BGLP'
@@ -185,12 +185,11 @@ describe('Basket contents:', () => {
 
     //execute
     //from example order 2 in extension1.md
-    newBasket.addToBasket(skuOne, 7)
+    newBasket.addToBasket(skuOne, 13)
     newBasket.addToBasket(skuTwo, 2)
 
-
-
-    const expectedResult = '5.55'
+    const expectedResultNum = 3.99 + 1 + 0.99
+    const expectedResult = expectedResultNum.toString()
 
     const result = newBasket.calculateTotal()
 
