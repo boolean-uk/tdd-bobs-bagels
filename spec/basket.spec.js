@@ -176,7 +176,7 @@ describe('Basket contents:', () => {
     expect(result).toEqual(expectedResult)
   })
 
-
+//TODO: implement code for this
   it('(11) should calculate the total when both the plain bagel and coffee special is applied + one extra coffee', () => {
     //setup
     const newBasket = new Basket()
@@ -196,4 +196,5 @@ describe('Basket contents:', () => {
     //verify
     expect(result).toEqual(expectedResult)
   })
+
 })

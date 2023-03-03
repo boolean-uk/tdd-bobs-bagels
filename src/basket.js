@@ -57,11 +57,11 @@ class Basket {
   calculateFrequency() {
     // let frequency = new Frequency()
     let frequency = {
-              BGLO: 0,
-              BGLP: 0,
-              BGLE: 0,
-              COF:0
-            }
+      BGLO: 0,
+      BGLP: 0,
+      BGLE: 0,
+      COF: 0
+    }
 
     //Update frequency
     this.basket.forEach((item) => {
@@ -81,11 +81,9 @@ class Basket {
     })
 
     return frequency
-
   }
 
   calculateBGLODiscount() {
-    
     const frequency = this.calculateFrequency()
     const remainder = frequency.BGLO % 6
     const bundleItems = frequency.BGLO - remainder
@@ -112,7 +110,6 @@ class Basket {
 
     const totalBGLOCost = bundlePrice + individualPrice
     const fixedTotal = totalBGLOCost.toFixed(2)
- 
 
     console.log('fixedTotal: BGLE frewquency =6', fixedTotal)
     return fixedTotal
@@ -136,32 +133,42 @@ class Basket {
 
   calculateCOFDiscount() {
     const frequency = this.calculateFrequency()
-    return frequency.COF * 0.99
 
-    //TODO: get code to work. Implement logic for if quantity.cof > remainder and refactor
+    //this part might negate function for BGLP?
+    const remainderBGLP = frequency.BGLP % 12
+    const bundleItemsBGLP = frequency.BGLP - remainderBGLP
+    const numBundlesBGLP = bundleItemsBGLP / 12
 
-    // let coffeeDeal = 0
-    // const cofRemainder = frequency.COF % remainder
-    // const cofBundleItems = frequency.COF - cofRemainder
-    // const numCofBundles = bundleItems / remainder
+    const bundlePriceBGLP = 3.99 * numBundlesBGLP
+    const individualPriceBGLP = 0.39 * remainderBGLP
 
-    // //this.remainder: access from BGLP
-    // if (
-    //   cofRemainder === this.remainder ||
-    //   cofBundleItems === this.remainder ||
-    //   frequency.COF === this.remainder
-    // )
-    // {
-    //   coffeeDeal = 1 * this.remainder
-    //   console.log('coffeeDeal:', coffeeDeal)
-    // }
-    // //hopefully :)
-    // const totalCost = coffeeDeal + cofRemainder
-    // const fixedTotal = totalCost.toFixed(2)
-    //   console.log('totalCost:', fixedTotal)
-    //   return fixedTotal
+    //might need to rework though bec onve might be higher than the other but the discount could still apply?
+    const remainderCOF = frequency.COF % remainderBGLP
+
+    const bundleItemsCOF = frequency.COF - remainderCOF
+    const numBundlesCOF = bundleItemsCOF / remainderBGLP
+
+    const bundlePriceCOF = 1 * numBundlesCOF
+    const individualPriceCOF = 0.99 * remainderCOF
+
+    let coffeeDeal = 0
+
+    if (
+      remainderCOF === remainderBGLP ||
+      bundleItemsCOF === remainderBGLP ||
+      frequency.COF === remainderBGLP
+    ) {
+      coffeeDeal = bundlePriceCOF
+      console.log('coffeeDeal, remainderBGLP===remainderCOF:', coffeeDeal)
+    }
+    //hopefully :)
+    const totalCost = coffeeDeal + individualPriceCOF
+    const fixedTotal = totalCost.toFixed(2)
+    console.log('totalCost COffee:', fixedTotal)
+
+    return fixedTotal
   }
- 
+
   calculateTotal() {
     const frequency = this.calculateFrequency()
 
@@ -182,10 +189,151 @@ class Basket {
 
     return finalPrice.toFixed(2)
   }
-
 }
 
 module.exports = {
   Basket
 }
 
+// function calculateCOFDiscountMESSY() {
+//   const frequency = {
+//     BGLP: 13,
+//     COF: 2
+//   }
+
+//   //this part might negate function for BGLP?
+//   const remainderBGLP = frequency.BGLP % 12
+//   const bundleItemsBGLP = frequency.BGLP - remainderBGLP
+//   const numBundlesBGLP = bundleItemsBGLP / 12
+
+//   const bundlePriceBGLP = 3.99 * numBundlesBGLP
+//   const individualPriceBGLP = 0.39 * remainderBGLP
+
+//   //Similar to BGLP:
+//   //might need to rework though bec onve might be higher than the other but the discount could still apply?
+//   const remainderCOF = frequency.COF % remainderBGLP
+//   const bundleItemsCOF = frequency.COF - remainderCOF
+//   const numBundlesCOF = bundleItemsCOF / remainderBGLP
+
+//   const bundlePriceCOF = 1 * numBundlesCOF
+//   const individualPriceCOF = 0.99 * remainderCOF
+
+//   // const totalCost = bundlePrice + individualPrice
+//   // const fixedTotal = totalCost.toFixed(2)
+
+//   //TODO: get code to work. Implement logic for if quantity.cof > remainder and refactor
+
+//   let coffeeDeal = 0
+
+//   if (
+//     remainderCOF === remainderBGLP ||
+//     bundleItemsCOF === remainderBGLP ||
+//     frequency.COF === remainderBGLP
+//   ) {
+//     coffeeDeal = bundlePriceCOF
+//     console.log('coffeeDeal, remainderBGLP===remainderCOF:', coffeeDeal)
+//   }
+//   //hopefully :)
+//   const totalCost = coffeeDeal + individualPriceCOF
+//   const fixedTotal = totalCost.toFixed(2)
+
+//   console.log('totalCost COffee:', fixedTotal)
+//   console.log('should equal:', 3.99 + 1 + 0.99)
+//   return fixedTotal
+//   // const cofRemainder = frequency.COF % remainder
+//   // const cofBundleItems = frequency.COF - cofRemainder
+//   // const numCofBundles = bundleItems / remainder
+
+//   // //this.remainder: access from BGLP
+
+//   // return frequency.COF * 0.99
+// }
+
+// function calculateCOFDiscount() {
+//   const frequency = {
+//     BGLP: 13,
+//     COF: 2
+//   }
+
+//   //this part might negate function for BGLP?
+//   const remainderBGLP = frequency.BGLP % 12
+//   const bundleItemsBGLP = frequency.BGLP - remainderBGLP
+//   const numBundlesBGLP = bundleItemsBGLP / 12
+
+//   const bundlePriceBGLP = 3.99 * numBundlesBGLP
+//   const individualPriceBGLP = 0.39 * remainderBGLP
+
+//   //might need to rework though bec onve might be higher than the other but the discount could still apply?
+//   const remainderCOF =
+//     frequency.COF > frequency.BGLP
+//       ? frequency.COF % remainderBGLP
+//       : remainderBGLP % frequency.COF
+
+//   const bundleItemsCOF = frequency.COF - remainderCOF
+//   const numBundlesCOF = bundleItemsCOF / remainderBGLP
+
+//   const bundlePriceCOF = 1 * numBundlesCOF
+//   const individualPriceCOF = 0.99 * remainderCOF
+
+//   let coffeeDeal = 0
+
+//   if (
+//     remainderCOF === remainderBGLP ||
+//     bundleItemsCOF === remainderBGLP ||
+//     frequency.COF === remainderBGLP
+//   ) {
+//     coffeeDeal = bundlePriceCOF
+//     console.log('coffeeDeal, remainderBGLP===remainderCOF:', coffeeDeal)
+//   }
+//   //hopefully :)
+//   const totalCost = coffeeDeal + individualPriceCOF
+//   const fixedTotal = totalCost.toFixed(2)
+//   console.log('totalCost COffee:', fixedTotal)
+
+//   return fixedTotal
+// }
+
+// calculateCOFDiscount()
+
+//------------------------------------------------------------------------
+// //This version only returns 2 failures instead of 4
+// calculateCOFDiscount() {
+//     const frequency = this.calculateFrequency()
+
+//     //this part might negate function for BGLP?
+//     const remainderBGLP = frequency.BGLP % 12
+//     const bundleItemsBGLP = frequency.BGLP - remainderBGLP
+//     const numBundlesBGLP = bundleItemsBGLP / 12
+
+//     const bundlePriceBGLP = 3.99 * numBundlesBGLP
+//     const individualPriceBGLP = 0.39 * remainderBGLP
+
+//     //might need to rework though bec onve might be higher than the other but the discount could still apply?
+//     const remainderCOF =
+//       frequency.COF < frequency.BGLP
+//         ? frequency.COF % remainderBGLP
+//         : remainderBGLP % frequency.COF
+
+//     const bundleItemsCOF = frequency.COF - remainderCOF
+//     const numBundlesCOF = bundleItemsCOF / remainderBGLP
+
+//     const bundlePriceCOF = 1 * numBundlesCOF
+//     const individualPriceCOF = 0.99 * remainderCOF
+
+//     let coffeeDeal = 0
+
+//     if (
+//       remainderCOF === remainderBGLP ||
+//       bundleItemsCOF === remainderBGLP ||
+//       frequency.COF === remainderBGLP
+//     ) {
+//       coffeeDeal = bundlePriceCOF
+//       console.log('coffeeDeal, remainderBGLP===remainderCOF:', coffeeDeal)
+//     }
+//     //hopefully :)
+//     const totalCost = coffeeDeal + individualPriceCOF
+//     const fixedTotal = totalCost.toFixed(2)
+//     console.log('totalCost COffee:', fixedTotal)
+
+//     return fixedTotal
+//   }
