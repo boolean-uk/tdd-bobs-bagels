@@ -1,16 +1,5 @@
 const inventory = require('./inventory.js')
 
-class Frequency {
-  constructor() {
-    {
-      this.BGLO= 2
-      this.BGLP= 12
-      this.BGLE= 6
-      this.COF= 3
-    }
-  }
-}
-
 class Basket {
   constructor(capacity = 10) {
     this.basket = []
@@ -65,37 +54,39 @@ class Basket {
     }
   }
 
-  // calculateFrequency() {
+  calculateFrequency() {
+    // let frequency = new Frequency()
+    let frequency = {
+              BGLO: 0,
+              BGLP: 0,
+              BGLE: 0,
+              COF:0
+            }
 
-  // }
-  //   const aBasket = [
-  //     {
-  //       sku: 'BGLO',
-  //       price: '0.49',
-  //       name: 'Bagel',
-  //       variant: 'Onion'
-  //     },
-  //     {
-  //       sku: 'BGLP',
-  //       price: '0.39',
-  //       name: 'Bagel',
-  //       variant: 'Plain'
-  //     },
-  //     {
-  //       sku: 'BGLE',
-  //       price: '0.49',
-  //       name: 'Bagel',
-  //       variant: 'Everything'
-  //     },
-  //     {
-  //       sku: 'BGLE',
-  //       price: '0.49',
-  //       name: 'Bagel',
-  //       variant: 'Everything'
-  //     }
-  //   ]
+    //Update frequency
+    this.basket.forEach((item) => {
+      if (item.sku === 'BGLO') {
+        //increase count of item
+        frequency.BGLO += 1
+      } else if (item.sku === 'BGLP') {
+        //increase count of item
+        frequency.BGLP += 1
+      } else if (item.sku === 'BGLE') {
+        //increase count of item
+        frequency.BGLE += 1
+      } else if (item.sku === 'COF') {
+        //increase count of item
+        frequency.COF += 1
+      }
+    })
+
+    return frequency
+
+  }
 
   calculateBGLODiscount() {
+    
+    const frequency = this.calculateFrequency()
     const remainder = frequency.BGLO % 6
     const bundleItems = frequency.BGLO - remainder
     const numBundles = bundleItems / 6
@@ -105,12 +96,13 @@ class Basket {
 
     const totalBGLOCost = bundlePrice + individualPrice
     const fixedTotal = totalBGLOCost.toFixed(2)
-    //   console.log('totalBGLOCost:', fixedTotal)
 
     return fixedTotal
   }
 
   calculateBGLEDiscount() {
+    const frequency = this.calculateFrequency()
+
     const remainder = frequency.BGLE % 6
     const bundleItems = frequency.BGLE - remainder
     const numBundles = bundleItems / 6
@@ -120,14 +112,15 @@ class Basket {
 
     const totalBGLOCost = bundlePrice + individualPrice
     const fixedTotal = totalBGLOCost.toFixed(2)
-    //   console.log('totalBGLOCost:', fixedTotal)
+ 
 
     console.log('fixedTotal: BGLE frewquency =6', fixedTotal)
     return fixedTotal
   }
 
-  //will include coffee discount
   calculateBGLPDiscount() {
+    const frequency = this.calculateFrequency()
+
     const remainder = frequency.BGLP % 12
     const bundleItems = frequency.BGLP - remainder
     const numBundles = bundleItems / 12
@@ -142,9 +135,10 @@ class Basket {
   }
 
   calculateCOFDiscount() {
-    //TODO: get code to work. Implement logic for if quantity.cof > remainder and refactor
-
+    const frequency = this.calculateFrequency()
     return frequency.COF * 0.99
+
+    //TODO: get code to work. Implement logic for if quantity.cof > remainder and refactor
 
     // let coffeeDeal = 0
     // const cofRemainder = frequency.COF % remainder
@@ -167,34 +161,14 @@ class Basket {
     //   console.log('totalCost:', fixedTotal)
     //   return fixedTotal
   }
-
+ 
   calculateTotal() {
+    const frequency = this.calculateFrequency()
+
     let finalPrice = 0
 
     const priceTotals = []
-    const frequency = {
-      BGLO: 0,
-      BGLP: 0,
-      BGLE: 0,
-      COF: 0
-    }
 
-    //Update frequency
-    this.basket.forEach((item) => {
-      if (item.sku === 'BGLO') {
-        //increase count of item
-        frequency.BGLO += 1
-      } else if (item.sku === 'BGLP') {
-        //increase count of item
-        frequency.BGLP += 1
-      } else if (item.sku === 'BGLE') {
-        //increase count of item
-        frequency.BGLE += 1
-      } else if (item.sku === 'COF') {
-        //increase count of item
-        frequency.COF += 1
-      }
-    })
     priceTotals.push(Number(this.calculateBGLODiscount()))
     priceTotals.push(Number(this.calculateBGLEDiscount()))
     priceTotals.push(Number(this.calculateBGLPDiscount()))
@@ -209,103 +183,9 @@ class Basket {
     return finalPrice.toFixed(2)
   }
 
-  //   //Update to include discounts: Refactor names here and in .spec.js after tests pass
-  //   calculateInitialTotal() {
-  //     //refactor into helper function
-  //     //Discount Check:
-  //     //new object to check the frequency of each item
-  //     const frequency = {
-  //       BGLO: 0,
-  //       BGLP: 0,
-  //       BGLE: 0,
-  //       COF: 0
-  //     }
-
-  //     //Update frequency
-  //     this.basket.forEach((item) => {
-  //       if (item.sku === 'BGLO') {
-  //         //increase count of item
-  //         frequency.BGLO += 1
-  //       } else if (item.sku === 'BGLP') {
-  //         //increase count of item
-  //         frequency.BGLP += 1
-  //       } else if (item.sku === 'BGLE') {
-  //         //increase count of item
-  //         frequency.BGLE += 1
-  //       } else if (item.sku === 'COF') {
-  //         //increase count of item
-  //         frequency.COF += 1
-  //       }
-  //     })
-
-  //     //check for appropriate ammounts of each, the let total per bundle = x + totalOfRemainders
-  //     //notes: when one discount is appliued, the other is not. ie 12 bagles discoint > 1 bagel+1coffee discount
-  //     //do an "isEven" type function then figure out what to do with remainer items
-  //     //for each bundle: create frequency = 1 with cost of the relevant discount- maybe assign new 'item' with new price
-  //     const bundleBasket = [] //arr of objects [itemBundle]
-  //     const itemBundle = {
-  //       quantity: 0,
-  //       price: 0
-  //     }
-
-  //     //maybe use reduce
-  //     if (frequency.BGLO % 6 === 0) {
-  //       itemBundle.quantity += 1
-  //       itemBundle.price = 2.49 * itemBundle.quantity
-  //       bundleBasket.push(itemBundle)
-  //     }
-  //     //logic to handle remainders
-
-  //     //remove discounted bagels from list once discount has been applied
-
-  //     //OG function: if no discount to implement: might need some refactoring
-  //     const priceList = []
-
-  //     this.basket.map((cost) => {
-  //       //convert string to number for calculations
-  //       priceList.push(Number(cost.price))
-  //     })
-
-  //     let total = 0
-  //     for (let i = 0; i < priceList.length; i++) {
-  //       total += priceList[i]
-  //     }
-
-  //     return total
-  //   }
 }
-
-// const basket = new Basket()
-// basket.addToBasket('BGLO', 2)
-// console.log("added item:", basket)
-
-// const newBasket = new Basket()
-// basket.removeFromBasket('BGLO')
-// console.log("should be empty:", basket)
-// newBasket.displayPrice('BGLO')
 
 module.exports = {
   Basket
 }
 
-// // const basket = new Basket()
-// basket.removeFromBasket('BGLO')
-// console.log(basket)
-
-// function calculateTotal() {
-//   const priceTotals = []
-//   let finalPrice = 0
-//   priceTotals.push(Number(calculateBGLODiscount()))
-//   priceTotals.push(Number(calculateBGLEDiscount()))
-//   priceTotals.push(Number(calculateBGLPDiscount()))
-//   priceTotals.push(Number(calculateCOFDiscount()))
-
-//   for (let i = 0; i < priceTotals.length; i++) {
-//     finalPrice += priceTotals[i]
-//   }
-
-//   console.log('calculateTotal() finalPrice:', finalPrice.toFixed(2))
-
-//   return finalPrice.toFixed(2)
-// }
-// calculateTotal()

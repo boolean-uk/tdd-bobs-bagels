@@ -129,7 +129,7 @@ describe('Basket contents:', () => {
     newBasket.addToBasket(skuOne, 1)
     newBasket.addToBasket(skuTwo, 2)
 
-    const expectedResult = 1.27
+    const expectedResult = '1.27'
 
     const result = newBasket.calculateTotal()
     //verify
@@ -151,7 +151,7 @@ describe('Basket contents:', () => {
     newBasket.addToBasket(skuThr, 6)
     newBasket.addToBasket(cof, 3)
 
-    const expectedResult = 10.43
+    const expectedResult = '10.43'
 
     const result = newBasket.calculateTotal()
 
@@ -168,7 +168,7 @@ describe('Basket contents:', () => {
     //from example order 2 in extension1.md
     newBasket.addToBasket(sku, 16)
 
-    const expectedResult = 5.55
+    const expectedResult = '5.55'
 
     const result = newBasket.calculateTotal()
 
@@ -176,6 +176,25 @@ describe('Basket contents:', () => {
     expect(result).toEqual(expectedResult)
   })
 
-  // TODO: a test for each specific discount?
+  // TODO: a test for all discount applied?
+  it('(10) should calculate the total when both the plain bagel and coffee special is applied + one extra coffee', () => {
+    //setup
+    const newBasket = new Basket()
+    const skuOne = 'BGLP'
+    const skuTwo= 'COF'
 
+    //execute
+    //from example order 2 in extension1.md
+    newBasket.addToBasket(skuOne, 7)
+    newBasket.addToBasket(skuTwo, 2)
+
+
+
+    const expectedResult = '5.55'
+
+    const result = newBasket.calculateTotal()
+
+    //verify
+    expect(result).toEqual(expectedResult)
+  })
 })
