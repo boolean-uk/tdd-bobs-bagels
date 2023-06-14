@@ -1,32 +1,19 @@
 import inventory from '../inventory.js'
 
-const basket = []
+class Basket {
+  constructor() {
+    this.items = []
+  }
 
-class Item {
-  constructor(sku, price, name, variant,) {
-    this.sku = sku
-    this.price = price
-    this.name = name
-    this.variant = variant
+  addToBasket(whichBagel) {
+    const item = inventory.find((item) => item.sku === whichBagel)
+    if (item !== undefined) {
+      item.quantity = 1
+      this.items.push(item)
+      console.log('basket after add', this.items)
+      return item
+    }
   }
 }
 
-//add Onion bagel to basket
-  //find the Onion bagel in inventory
-  //new Item with that inventory data
-  //add the new Item to the basket []
-
-const addToBasket = (whichBagel) => {
-  inventory.filter((item) => {
-    if (item.sku === whichBagel) {
-      item.quantity = 1
-      basket.push(item)
-    }
-  })
-  console.log('basket after add', basket)
-}
-
-addToBasket('BGLP')
-
-
-export { basket, addToBasket }
+export default Basket
