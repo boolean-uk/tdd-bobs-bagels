@@ -41,16 +41,25 @@ describe('basket', () => {
     })
 
     describe('deleteBagel', () => {
-      fit('A bagel that is deleted', () => {
+      it('A bagel that is deleted', () => {
         // Given
-        const bagel = 'Everything bagel'
+        const bagel = 'Nothing Bagel'
 
         // When
         const newBasket = new Basket()
-        newBasket.createBagel(bagel)
+        newBasket.createBagel('Everything Bagel')
+        newBasket.createBagel('Nothing Bagel')
+        newBasket.createBagel('Nothing Bagel')
+        newBasket.createBagel('Nothing Bagel')
+        newBasket.createBagel('Plain Bagel')
 
         // Then
-        expect(newBasket.deleteBagel(bagel)).toEqual([])
+        expect(newBasket.deleteBagel(bagel)).toEqual([
+          { id: 1, price: 0.49, name: 'Everything Bagel' },
+          { id: 3, price: 0.49, name: 'Nothing Bagel' },
+          { id: 4, price: 0.49, name: 'Nothing Bagel' },
+          { id: 5, price: 0.49, name: 'Plain Bagel' }
+        ])
       })
     })
   })

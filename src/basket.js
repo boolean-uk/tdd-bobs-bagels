@@ -5,7 +5,10 @@ class Basket {
 
   createBagel(bagel) {
     const obj = {
-      id: this.bagelBasket.length + 1,
+      id:
+        this.bagelBasket.length === 0
+          ? 1
+          : this.bagelBasket[this.bagelBasket.length - 1].id + 1,
       price: 0.49,
       name: bagel
     }
@@ -19,15 +22,15 @@ class Basket {
   }
 
   deleteBagel(bagel) {
-    const newArr = this.bagelBasket.filter((object) => {
-      return object.bagel === bagel
+    this.bagelBasket.find((obj, index) => {
+      if (obj.name === bagel) {
+        this.bagelBasket.splice(index, 1)
+        return true
+      } else return false
     })
-    console.log(newArr)
-
-    this.bagelBasket.splice(this.bagelBasket.indexOf(newArr[0]), 1)
-
     return this.bagelBasket
   }
 }
+
 
 module.exports = Basket
