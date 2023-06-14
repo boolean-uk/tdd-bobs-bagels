@@ -3,7 +3,7 @@ import Basket from '../src/basket.js'
 describe('Basket', () => {
   // to be more descriptive, add another describe (useful when working with more than one class)
   describe('addItem', () => {
-    it('add item to basket', async () => {
+    it('add item to basket', () => {
       // SET UP
       const newBasket = new Basket()
       const expected = [
@@ -12,19 +12,33 @@ describe('Basket', () => {
 
       // EXECUTE
 
-      const result = await newBasket.addItem('BGLE')
+      const result = newBasket.addItem('BGLE')
       // VERIFY
       expect(result).toEqual(expected)
     })
   })
   describe('removeItem', () => {
-    fit('remove item from basket', async () => {
+    it('remove item from basket', () => {
       // SET UP
       const newBasket = new Basket()
-      await newBasket.addItem('BGLE')
+      newBasket.addItem('BGLE')
       const expected = []
       // EXECUTE
-      const result = await newBasket.removeItem('BGLE')
+      const result = newBasket.removeItem('BGLE')
+      // VERIFY
+      expect(result).toEqual(expected)
+    })
+  })
+  describe('addItem, capacity reached', () => {
+    fit('basket has reached maximum capacity', () => {
+      // SETUP
+      const newBasket = new Basket()
+      newBasket.addItem('BGLE')
+      const expected = 'basket full'
+
+      // EXECUTE
+      const result = newBasket.addItem('BGLE')
+
       // VERIFY
       expect(result).toEqual(expected)
     })

@@ -1,32 +1,30 @@
-// import inventory from '../inventory.json'
+import inventory from '../inventory.json' assert {type: 'json'}
+const inv = JSON.parse(JSON.stringify(inventory.inventory))
 
 class Basket {
   constructor() {
     this.basket = []
+    this.capacity = 1
   }
 
-  async addItem(sku) {
-    try {
-      const response = await fetch('http://localhost:4000/inventory')
-      const data = await response.json()
-
-      const bagel = data.find((item) => item.sku === sku)
-      if (bagel) {
-        //   console.log(bagel);
-        this.basket.push(bagel)
-        console.log('basket add', this.basket)
-        return this.basket
+addItem(sku) {
+      const bagel = inv.find((item) => item.sku === sku)
+      if(this.basket.length < this.capacity) {
+          if (bagel) {
+            //   console.log(bagel);
+            this.basket.push(bagel)
+            console.log('basket add', this.basket)
+            return this.basket
+          } else {
+            console.log('item not found, try again')
+          }
       } else {
-        console.log('item not found, try again')
+        console.log('basket full')
+        return 'basket full'
       }
-
-      // console.log("Bagels data:", data);
-    } catch (error) {
-      console.error('Error fetching inventory:', error)
-    }
   }
 
-  async removeItem(sku) {
+  removeItem(sku) {
     const bagelIndex = this.basket.findIndex((item) => item.sku === sku)
 
     if (bagelIndex !== -1) {
@@ -38,6 +36,11 @@ class Basket {
     }
 
     return this.basket
+  }
+
+  increaseCapacity(quantity) {
+    this.capacity = quantity
+    console.log('maximum basket capacity changed to', quantity)
   }
 }
 
