@@ -33,14 +33,15 @@ addItem(sku) {
       console.log('basket after remove', this.basket)
     } else {
       console.log('item not in basket')
+      return 'item not in basket'
     }
-
     return this.basket
   }
 
   increaseCapacity(quantity) {
     this.capacity = quantity
     console.log('maximum basket capacity changed to', quantity)
+    return `maximum basket capacity changed to ${quantity}`
   }
 }
 

@@ -30,7 +30,7 @@ describe('Basket', () => {
     })
   })
   describe('addItem, capacity reached', () => {
-    fit('basket has reached maximum capacity', () => {
+    it('basket has reached maximum capacity', () => {
       // SETUP
       const newBasket = new Basket()
       newBasket.addItem('BGLE')
@@ -38,6 +38,34 @@ describe('Basket', () => {
 
       // EXECUTE
       const result = newBasket.addItem('BGLE')
+
+      // VERIFY
+      expect(result).toEqual(expected)
+    })
+  })
+  describe('increaseCapacity', () => {
+    it('change the maximum capacity of a basket', () => {
+      // SETUP
+      const newBasket = new Basket()
+      const expected = 'maximum basket capacity changed to 3'
+
+      //  EXECUTE
+      const result = newBasket.increaseCapacity(3)
+
+      // VERIFY
+      expect(result).toEqual(expected)
+    })
+  })
+
+  describe('removeItem, item not in basket', () => {
+    fit('trying to remove an item that is not in the basket', () => {
+      // SETUP
+      const newBasket = new Basket()
+      newBasket.addItem('BGLE')
+      const expected = 'item not in basket'
+
+      // EXECUTE
+      const result = newBasket.removeItem('BGLS')
 
       // VERIFY
       expect(result).toEqual(expected)
