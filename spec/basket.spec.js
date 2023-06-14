@@ -46,6 +46,40 @@ describe('Testing addItem', () => {
     // Check
     expect(response).toBe('No SKU Entered')
   })
+
+  it('Creating a basket with a custom size', () => {
+    // Setup
+    const basket = new Basket(8)
+    // Execution
+    const response = basket.size
+    // Check
+    expect(response).toBe(8)
+  })
+
+  it('Gives an error if size is < 0, non-integer or NaN. Creates basket with default size.', () => {
+    // Setup
+    const basketNonInteger = new Basket(8.5)
+    const basketNegative = new Basket(-1)
+    const basketNonNumber = new Basket('string')
+    // Execution
+    const responseNonInteger = basketNonInteger.size
+    const responseNegative = basketNegative.size
+    const responseNonNumber = basketNonNumber.size
+    // Check
+    expect(responseNonInteger).toBe(5)
+    expect(responseNegative).toBe(5)
+    expect(responseNonNumber).toBe(5)
+  })
+
+  it('Basket is full', () => {
+    // Setup
+    const basket = new Basket(1)
+    basket.addItem('BGLO')
+    // Execution
+    const response = basket.addItem('BGLP')
+    // Check
+    expect(response).toBe('Basket is full. Item was not added.')
+  })
 })
 
 describe('Testing removeItem', () => {

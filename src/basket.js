@@ -1,17 +1,28 @@
 const inventory = require('../inventory.json').inventory
 
 class Basket {
-  constructor() {
+  constructor(size = 5) {
+    if (!Number.isInteger(size) || size < 1 || typeof size !== 'number') {
+      console.error(
+        'Invalid size entered, basket size has been set to default (5)'
+      )
+      size = 5
+    }
     this.basket = []
+    this.size = size
   }
 
   addItem(sku) {
     if (sku === undefined) {
+      console.error('No SKU Entered')
       return 'No SKU Entered'
+    } else if (this.basket.length === this.size) {
+      return 'Basket is full. Item was not added.'
     } else {
       const addedItem = inventory.find((item) => item.sku === sku)
       if (addedItem) {
         this.basket.push(addedItem)
+        return this.basket
       } else {
         return 'Chosen item not found'
       }
