@@ -13,7 +13,22 @@ class Basket {
       if (addedItem) {
         this.basket.push(addedItem)
       } else {
-        return 'Added item not found'
+        return 'Chosen item not found'
+      }
+    }
+  }
+
+  removeItem(sku) {
+    if (sku === undefined) {
+      return 'No SKU entered'
+    } else {
+      const itemToRemove = this.basket.find((item) => item.sku === sku)
+      if (itemToRemove) {
+        const deletionIndex = this.basket.indexOf(itemToRemove)
+        this.basket.splice(deletionIndex, 1)
+        return this.basket
+      } else {
+        return 'Chosen item not found'
       }
     }
   }
