@@ -15,7 +15,6 @@ A **User Story** describes one thing a program is expected to do, from the persp
 
 ## User Stories
 
-```
 # Part 1
 As a member of the public
 So I can order a bagel when I want to
