@@ -1,5 +1,5 @@
 class Basket {
-  constructor(capacity) {
+  constructor(capcity) {
     this.products = [
       {
         itemName: 'Plain Bagel',
@@ -27,7 +27,7 @@ class Basket {
         SKU: 'SFB'
       }
     ]
-    this.basketCapacity = capacity
+    this.basketVolume = [3]
     this.basketContent = []
     this.itemQty = 1
   }
@@ -36,10 +36,14 @@ class Basket {
     return this.basketContent
   }
 
-  addItemToBasket(itemName, itemQty) {
-    const product = { itemName, itemQty }
-    this.basketContent.push(product)
-    return this.basketContent
+  addItemToBasket(itemName, itemQty = 1) {
+    if (this.basketContent.length >= this.basketVolume[0]) {
+      return 'Basket full. Get a bigger basket'
+    } else {
+      const product = { itemName, itemQty }
+      this.basketContent.push(product)
+      return this.basketContent
+    }
   }
 
   removeItemFromBasket(itemName) {
@@ -50,16 +54,20 @@ class Basket {
       this.basketContent.splice(index, 1)
       return true
     } else {
-      return false
+      return 'You have not added this item'
     }
+  }
+
+  createNewBasket(newSize) {
+    return this.basketVolume.push(newSize)
   }
 }
 
-const basket1 = new Basket()
-basket1.addItemToBasket('Plain Bagel', 1)
-basket1.addItemToBasket('Rice Bagel', 2)
-// console.log(basket1.getAllProductsInBasket())
-basket1.removeItemFromBasket('Plain Bagel')
-// console.log(basket1.getAllProductsInBasket())
+const newCustomer = new Basket(3)
+const bobOwner = new Basket(5)
+
+newCustomer.addItemToBasket('Plain Bagel', 1)
+newCustomer.addItemToBasket('Rice Bagel', 2)
+bobOwner.createNewBasket(5)
 
 export default Basket
