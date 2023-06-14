@@ -1,11 +1,21 @@
-const basket = []
+import inventory from '../inventory.js'
 
 class Item {
-  constructor(name, price, quantity) {
-    this.name = name;
-    this.price = price;
-    this.quantity = quantity;
+  constructor(sku, price, name, variant) {
+    this.sku = sku
+    this.price = price
+    this.name = name
+    this.variant = variant
   }
 }
 
-export { basket }
+console.log(inventory)
+
+class Basket {
+  constructor(item) {
+    this.item = item
+  }
+
+}
+
+export { Item, Basket }
