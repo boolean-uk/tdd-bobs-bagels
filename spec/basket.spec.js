@@ -1,15 +1,16 @@
-import { Item, Basket } from "../src/basket.js";
+import { basket, addToBasket } from "../src/basket.js";
 
 describe("add to basket", () => {
   it('adds the given item to the basket if not already in the basket', () => {
     //GIVEN
-    Basket
+    let itemSKU
+    const item = {}
 
     //WHEN
-    const res = addToBasket(item)
+    const res = addToBasket(itemSKU)
 
     //THEN
-    expect(res).toEqual(Basket[item])
+    expect(res).toEqual(basket[item])
 
   })
 })
