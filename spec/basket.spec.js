@@ -73,22 +73,17 @@ describe('Create big basket', () => {
 
   it('remove bagel from basket', () => {
     testBasketTwo.addBagel('BGLP')
-    expect(testBasketTwo.removeBagel('BGLP')).toEqual([])
+    expect(testBasketTwo.removeBagel('BGLP')).toBeTrue()
   })
   it('remove bagel from basket with more than 1 item', () => {
     testBasketTwo.addBagel('BGLO')
     testBasketTwo.addBagel('BGLP')
-    expect(testBasketTwo.removeBagel('BGLP')).toEqual([
-      { sku: 'BGLO', price: '0.49', name: 'Bagel', variant: 'Onion' }
-    ])
+    expect(testBasketTwo.removeBagel('BGLP')).toBeTrue()
   })
   it('remove bagel type is not in the cart', () => {
     testBasketTwo.addBagel('BGLO')
     testBasketTwo.addBagel('BGLP')
-    expect(testBasketTwo.removeBagel('Ham')).toEqual([
-      { sku: 'BGLO', price: '0.49', name: 'Bagel', variant: 'Onion' },
-      { sku: 'BGLP', price: '0.39', name: 'Bagel', variant: 'Plain' }
-    ])
+    expect(testBasketTwo.removeBagel('COF')).toBeFalse()
   })
 
   it('try to add a bagel when we have 4 bagels in cart', () => {
@@ -96,8 +91,6 @@ describe('Create big basket', () => {
     testBasketTwo.addBagel('COF')
     testBasketTwo.addBagel('COF')
     testBasketTwo.addBagel('COF')
-
-    // const cart = [...testBasketTwo.bigBasket]
     expect(testBasketTwo.addBagel('COF')).toEqual([
       { sku: 'COF', price: '0.99', name: 'Bagel', variant: '' },
       { sku: 'COF', price: '0.99', name: 'Bagel', variant: '' },
@@ -105,5 +98,19 @@ describe('Create big basket', () => {
       { sku: 'COF', price: '0.99', name: 'Bagel', variant: '' },
       { sku: 'COF', price: '0.99', name: 'Bagel', variant: '' }
     ])
+  })
+
+  it('if item does not exist in basket', () => {
+    testBasketTwo.addBagel('BGLO')
+    testBasketTwo.addBagel('BGLO')
+    testBasketTwo.addBagel('BGLO')
+    expect(testBasketTwo.removeBagel('BGLP')).toBeFalse()
+  })
+
+  it('if item does exist in basket', () => {
+    testBasketTwo.addBagel('BGLO')
+    testBasketTwo.addBagel('BGLO')
+    testBasketTwo.addBagel('BGLO')
+    expect(testBasketTwo.removeBagel('BGLO')).toBeTrue()
   })
 })

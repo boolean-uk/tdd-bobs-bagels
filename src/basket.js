@@ -34,7 +34,11 @@ class BigBasket {
   }
 
   removeBagel(sku) {
-    return (this.bigBasket = this.bigBasket.filter((item) => item.sku !== sku))
+    if (this.bigBasket.find((item) => item.sku === sku)) {
+      this.bigBasket = this.bigBasket.filter((item) => item.sku !== sku)
+      return true
+    }
+    return false
   }
 }
 
