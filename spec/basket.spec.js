@@ -47,6 +47,7 @@ describe('Create the basket', () => {
     name: "Bagel",
     variant: ""}])
   })
+  it('')
 })
 
 describe("Create big basket", () => {

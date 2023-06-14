@@ -19,6 +19,7 @@ class Basket {
   removeBagel(sku) {
     return this.basket = this.basket.filter((item)=> item.sku !== sku)
   }
+
 }
 
 class BigBasket {
