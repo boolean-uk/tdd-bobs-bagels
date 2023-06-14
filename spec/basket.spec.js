@@ -4,7 +4,7 @@ describe("add to basket", () => {
   let basket
   beforeEach(() => { basket = new Basket })
 
-  it('adds the given item to the basket if not already in the basket', () => {
+  it('adds the given item to the basket', () => {
     //GIVEN
     const item = {
       "sku": "BGLO",
@@ -23,7 +23,7 @@ describe("add to basket", () => {
 
   })
 
-  it('adds a different given item to the basket if not already in the basket', () => {
+  it('adds a different given item to the basket', () => {
     //GIVEN
     const item = {
       "sku": "BGLP",
@@ -51,6 +51,26 @@ describe("add to basket", () => {
     //THEN
     expect(res).toEqual(undefined)
     expect(basket.items.length).toEqual(0)
+
+  })
+
+  it('if already in basket, increase quantity by 1', () => {
+    //GIVEN
+    const item = {
+      "sku": "BGLP",
+      "price": "0.39",
+      "name": "Bagel",
+      "variant": "Plain",
+      "quantity": 2
+    }
+
+    //WHEN
+    basket.addToBasket('BGLP')
+    const res = basket.addToBasket('BGLP')
+    
+    //THEN
+    expect(res).toEqual(item)
+    expect(basket.items.length).toEqual(1)
 
   })
 
