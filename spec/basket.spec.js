@@ -1,15 +1,15 @@
 const BasketList = require('../src/basket.js')
 
-describe('add items to basket', () => {
-  let bb
-  beforeEach(() => {
-    bb = new BasketList()
-  })
-  it('add a new item', () => {
-    expect(bb.addToBasket('bagel')).toEqual([
-      {
-        quantity: 1
-      }
-    ])
+describe('basketList', () => {
+  it('add a new item1', () => {
+    const input = {
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion'
+    }
+    const basket = new BasketList()
+    const result = basket.addToBasket(input)
+    expect(result).toEqual(true)
   })
 })
