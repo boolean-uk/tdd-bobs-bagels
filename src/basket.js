@@ -5,7 +5,8 @@ const store = inventory.inventory
 
 class Basket {
     constructor() {
-        this.basket = []
+        this.basket = [],
+        this.capacity = 5
     }
 
     addToBasket(item) {        
@@ -20,11 +21,29 @@ class Basket {
         if (target.length === 0){
             return 'ERROR: Item not found'
         }
+
+        // if statement for finding total items in basket, including quantities
+        // find total items with quantities
+        function basketTotal(arr) {
+            let itemTotal = 0
+            for(let i = 0; i < arr.length; i++) {
+                itemTotal += arr[i].quantity
+            }
+        }
+
+        const baskAmount = basketTotal(this.basket)
+        if(baskAmount === this.capacity){
+            return "Basket is full"
+        }
+        
         const targObj = target[0]
         const baskCheck = this.basket.find(({sku}) => sku === targObj.sku)
         if(baskCheck !== undefined) {
-            
+            const baskIndex = this.basket.indexOf((obj) => obj.sku === item)
+            this.basket[baskIndex].quantity += 1
+            return this.basket
         }
+        targObj.quantity = 1
         this.basket.push(targObj)
         return this.basket
     }

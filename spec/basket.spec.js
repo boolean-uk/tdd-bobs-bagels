@@ -18,7 +18,8 @@ describe('Basket', () => {
         sku: "BGLO",
         price: "0.49",
         name: "Bagel",
-        variant: "Onion"
+        variant: "Onion",
+        quantity: 1
       }])
   })
 
@@ -69,7 +70,7 @@ describe('Basket', () => {
     expect(result).toEqual('ERROR: Item not in basket')
   })
 
-  it('Add invalid item to basket', () => {
+  it('Remove invalid item to basket', () => {
     // Given
     const basket = new Basket()
     const item1 = ""
@@ -77,10 +78,10 @@ describe('Basket', () => {
     const item3 = undefined
     const item4 = "abc"
     // When
-    const result1 = basket.addToBasket(item1)
-    const result2 = basket.addToBasket(item2)
-    const result3 = basket.addToBasket(item3)
-    const result4 = basket.addToBasket(item4)
+    const result1 = basket.removeBasket(item1)
+    const result2 = basket.removeBasket(item2)
+    const result3 = basket.removeBasket(item3)
+    const result4 = basket.removeBasket(item4)
 
     // Then
     expect(result1).toEqual('ERROR: Please type in an item')
@@ -88,5 +89,22 @@ describe('Basket', () => {
     expect(result3).toEqual('ERROR: Please type in an item')
     expect(result4).toEqual('ERROR: Item not found')
 
+  })
+
+  it('Add item but basket is full', () => {
+    // Given
+    const basket = new Basket()
+    const item = "BGLO"
+
+    // When
+    basket.addToBasket(item)
+    basket.addToBasket(item)
+    basket.addToBasket(item)
+    basket.addToBasket(item)
+    basket.addToBasket(item)
+    const result = basket.addToBasket(item)
+    
+    // Then
+    expect(result).toEqual("Basket is full")
   })
 })
