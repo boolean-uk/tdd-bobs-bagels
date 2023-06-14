@@ -1,6 +1,7 @@
 class Basket {
-  constructor() {
+  constructor(basketSize) {
     this.bagelBasket = []
+    this.basketSize = basketSize || 6
   }
 
   createBagel(bagel) {
@@ -12,9 +13,12 @@ class Basket {
       price: 0.49,
       name: bagel
     }
-
-    this.bagelBasket.push(obj)
-    return obj
+    if (this.bagelBasket.length < this.basketSize) {
+      this.bagelBasket.push(obj)
+      return obj
+    } else {
+      return 'You have reached your limit'
+    }
   }
 
   getBasket() {
@@ -31,6 +35,16 @@ class Basket {
     return this.bagelBasket
   }
 }
+const newBasket = new Basket()
+newBasket.createBagel('Bagel1')
+newBasket.createBagel('Bagel2')
+newBasket.createBagel('Bagel3')
+newBasket.createBagel('Bagel4')
+newBasket.createBagel('Bagel5')
+newBasket.createBagel('Bagel6')
+newBasket.createBagel('Bagel7')
 
+
+console.log(newBasket.basketSize)
 
 module.exports = Basket
