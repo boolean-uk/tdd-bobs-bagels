@@ -14,6 +14,15 @@ class Basket {
       return item
     }
   }
+  removeFromBasket() {
+    const removeItem = this.items.find((item) => item.sku === sku)
+
+    if (removeItem !== undefined) {
+      if (removeItem.quantity > 1) {
+        removeItem.quantity
+      }
+    }
+  }
 }
 
 export default Basket
