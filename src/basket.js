@@ -26,13 +26,18 @@ class Basket {
   }
 
   deleteBagel(bagel) {
+    let message
     this.bagelBasket.find((obj, index) => {
       if (obj.name === bagel) {
         this.bagelBasket.splice(index, 1)
+        message = 'Bagel deleted'
         return true
-      } else return false
+      } else {
+        message = 'Item doesn`t exist in the basket'
+        return false
+      }
     })
-    return this.bagelBasket
+    return message
   }
 }
 const newBasket = new Basket()
@@ -43,7 +48,6 @@ newBasket.createBagel('Bagel4')
 newBasket.createBagel('Bagel5')
 newBasket.createBagel('Bagel6')
 newBasket.createBagel('Bagel7')
-
 
 console.log(newBasket.basketSize)
 
