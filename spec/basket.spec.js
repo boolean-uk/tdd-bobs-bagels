@@ -7,7 +7,7 @@ describe('Create the basket', () => {
   })
 
   it('add the new bagel', () => {
-    expect(testBasket.addBagel('Sprinkle')).toEqual([{ type: 'Sprinkle' }])
+    expect(testBasket.addBagel('BGLO')).toEqual([{ sku: "BGLO", price: "0.49", name: "Bagel", variant: "Onion" }])
   })
 
   it('bagel type has not been added', () => {
@@ -18,14 +18,14 @@ describe('Create the basket', () => {
     testBasket.addBagel('Sprinkle')
     expect(testBasket.removeBagel('Sprinkle')).toEqual([])
   })
-  it('remove bagel from basket with more', ()=> {
-    testBasket.addBagel('Sprinkle')
-    testBasket.addBagel('Cream Cheese')
-    expect(testBasket.removeBagel('Sprinkle')).toEqual([{ type: 'Cream Cheese' }])
+  it('remove bagel from basket with more than 1 item', ()=> {
+    testBasket.addBagel('BGLO')
+    testBasket.addBagel('BGLP')
+    expect(testBasket.removeBagel('BGLP')).toEqual([{ sku: "BGLO", price: "0.49", name: "Bagel", variant: "Onion" }])
   })
   it('remove bagel type is not in the cart', () => {
-    testBasket.addBagel('Sprinkle')
-    testBasket.addBagel('Cream Cheese')
-    expect(testBasket.removeBagel('Ham')).toEqual([{ type: 'Sprinkle' },{ type: 'Cream Cheese' }])
+    testBasket.addBagel('BGLO')
+    testBasket.addBagel('BGLP')
+    expect(testBasket.removeBagel('Ham')).toEqual([{ sku: "BGLO", price: "0.49", name: "Bagel", variant: "Onion" }, { sku: "BGLP", price: "0.39", name: "Bagel", variant: "Plain" }])
   })
 })
