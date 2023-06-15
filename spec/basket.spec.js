@@ -71,7 +71,7 @@ describe('remove from basket', () => {
     basket = new Basket()
   })
 
-  it('should be able to remove items from basket', () => {
+  it('should be able to remove item from basket', () => {
     //GIVEN
     const basket = new Basket()
     const item = {
@@ -87,5 +87,26 @@ describe('remove from basket', () => {
     const expectRes = undefined
     //THEN
     expect(newRes).toEqual(expectRes)
+    expect(basket.items.length).toEqual(0)
   })
+
+  it('should be able to decrease quantity in basket', () => {
+    //GIVEN
+    const basket = new Basket()
+    const item = {
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion',
+      quantity: 1
+    }
+    //WHEN
+    basket.addToBasket('BGLO')
+    basket.addToBasket('BGLO')
+    const newRes = basket.removeFromBasket('BGLO')
+    //THEN
+    expect(newRes).toEqual(item)
+    expect(basket.items.length).toEqual(1)
+  })
+
 })

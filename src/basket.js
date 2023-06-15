@@ -24,15 +24,21 @@ class Basket {
     this.items.push(item)
     return item
   }
-  removeFromBasket() {
-    const removeItem = this.items.find((item) => item.sku === sku)
 
-    if (removeItem !== undefined) {
-      if (removeItem.quantity > 1) {
-        removeItem.quantity
-      }
+  removeFromBasket(sku) {
+    const removeItem = this.items.find((item) => item.sku === sku)
+    if (!removeItem) {
+      return
     }
+    const existingItem = this.getItemFromBasket(sku)
+    if (existingItem) {
+      existingItem.quantity--
+      return existingItem
+    }
+    this.items.pop()
+    return removeItem
   }
+  
 }
 
 export default Basket
