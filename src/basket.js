@@ -16,10 +16,9 @@ class Basket {
     if (this.totalBasketQuantity === this.basketCapacity) {
       return 'basket is full'
     }
-
     const item = inventory.find((item) => item.sku === whichBagel)
     if (!item) {
-      return 
+      return
     }
     const existingItem = this.getItemFromBasket(whichBagel)
     if (existingItem) {
@@ -36,7 +35,7 @@ class Basket {
   removeFromBasket(sku) {
     const removeItem = this.items.find((item) => item.sku === sku)
     if (!removeItem) {
-      return  'item does not exist in basket'
+      return 'item does not exist in basket'
     }
     const existingItem = this.getItemFromBasket(sku)
     if (existingItem) {
@@ -54,16 +53,24 @@ class Basket {
     this.basketCapacity = newCapacity
     return this.basketCapacity
   }
+
   checkPrice(whichBagel) {
-    // console.log(whichBagel)
     const item = inventory.find((item) => item.sku === whichBagel)
     if (!item) {
       return 'not available'
     }
-    // console.log(item.price)
     return item.price
   }
+
+  basketTotal() {
+    let totalForBasket = 0
+    let totalForItem = 0
+    this.items.forEach((item) => {
+      totalForItem = item.price * item.quantity
+      totalForBasket += totalForItem
+    })
+    return totalForBasket
+  }
 }
-const basket = new Basket() 
-console.log(basket.checkPrice('XXXX'))
+
 export default Basket
