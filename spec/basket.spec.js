@@ -2,9 +2,10 @@ const Basket = require('../src/basket.js')
 
 describe('basket', () => {
   describe('createBagel', () => {
+    // Happy Path
     it('A bagel that is ordered', () => {
       // Given
-      const bagel = 'Everything bagel'
+      const bagel = 'Everything Bagel'
 
       // When
       const newBasket = new Basket()
@@ -12,20 +13,36 @@ describe('basket', () => {
       // Then
       expect(newBasket.createBagel(bagel)).toEqual({
         id: 1,
-        price: 0.49,
+        price: 4.99,
         name: bagel
       })
     })
+
+    // First Unhappy Path
     it('You have reached your Limit', () => {
       const newBasket = new Basket()
-      newBasket.createBagel('Bagel1')
-      newBasket.createBagel('Bagel2')
-      newBasket.createBagel('Bagel3')
-      newBasket.createBagel('Bagel4')
-      newBasket.createBagel('Bagel5')
-      newBasket.createBagel('Bagel6')
-      expect(newBasket.createBagel('Bagel7')).toEqual(
+      newBasket.createBagel('Everything Bagel')
+      newBasket.createBagel('Plain Bagel')
+      newBasket.createBagel('Bagel Sandwich')
+      newBasket.createBagel('Bagel Bagel')
+      newBasket.createBagel('Sesame Bagel')
+      newBasket.createBagel('Poppy Bagel')
+      expect(newBasket.createBagel('Garlic Bagel')).toEqual(
         'You have reached your limit'
+      )
+    })
+
+    // Second Unhappy Path
+    it('The bagel does not exist on the menu', () => {
+      // Given
+      const bagel = 'Fake Bagel'
+
+      // When
+      const newBasket = new Basket()
+
+      // Then
+      expect(newBasket.createBagel(bagel)).toEqual(
+        'The bagel does not exist on the menu'
       )
     })
   })
@@ -50,7 +67,7 @@ describe('basket', () => {
       expect(newBasket.getBasket()).toEqual([
         {
           id: 1,
-          price: 0.49,
+          price: 4.99,
           name: 'Everything Bagel'
         },
         {
@@ -62,21 +79,24 @@ describe('basket', () => {
     })
   })
   describe('deleteBagel', () => {
+    // Happy Path
     it('A bagel that is deleted', () => {
       // Given
-      const bagel = 'Nothing Bagel'
+      const bagel = 'Bagel Bagel'
 
       // When
       const newBasket = new Basket()
       newBasket.createBagel('Everything Bagel')
-      newBasket.createBagel('Nothing Bagel')
-      newBasket.createBagel('Nothing Bagel')
-      newBasket.createBagel('Nothing Bagel')
+      newBasket.createBagel('Bagel Bagel')
+      newBasket.createBagel('Bagel Bagel')
+      newBasket.createBagel('Bagel Bagel')
       newBasket.createBagel('Plain Bagel')
 
       // Then
       expect(newBasket.deleteBagel(bagel)).toEqual('Bagel deleted')
     })
+
+    // Unhappy Path
     it('If an item does not exist return error', () => {
       // Given
       const bagel = 'Fake Bagel'
@@ -84,15 +104,54 @@ describe('basket', () => {
       // When
       const newBasket = new Basket()
       newBasket.createBagel('Everything Bagel')
-      newBasket.createBagel('Nothing Bagel')
-      newBasket.createBagel('Nothing Bagel')
-      newBasket.createBagel('Nothing Bagel')
+      newBasket.createBagel('Bagel Bagel')
+      newBasket.createBagel('Bagel Bagel')
+      newBasket.createBagel('Bagel Bagel')
       newBasket.createBagel('Plain Bagel')
 
       // Then
       expect(newBasket.deleteBagel(bagel)).toEqual(
         'Item doesn`t exist in the basket'
       )
+    })
+  })
+  describe('bagelPrice', () => {
+    // Happy path
+    it('Loop through the menu and return the price of a searched bagel', () => {
+      // Given
+      const bagelName = 'Bagel Bagel'
+
+      // When
+      const newBasket = new Basket()
+
+      // Then
+      expect(newBasket.bagelPrice(bagelName)).toEqual(20.99)
+    })
+
+    // Unhappy path
+    it('Will return an error message if the bagel is not included on the menu', () => {
+      // Given
+      const bagelName = 'Fake bagel'
+      // When
+      const newBasket = new Basket()
+
+      // Then
+      expect(newBasket.bagelPrice(bagelName)).toEqual(
+        'The bagel does not exist on the menu.'
+      )
+    })
+  })
+
+  describe('totalPrice', () => {
+    it('Iterate through the basket of bagels and return the total price', () => {
+      // When
+      const newBasket = new Basket()
+      newBasket.createBagel('Everything Bagel')
+      newBasket.createBagel('Bagel Bagel')
+      newBasket.createBagel('Garlic Bagel')
+
+      // Then
+      expect(newBasket.totalPrice()).toEqual(28.97)
     })
   })
 })
