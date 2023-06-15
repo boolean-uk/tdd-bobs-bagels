@@ -13,8 +13,8 @@ class Basket {
   }
 
   addToBasket(whichBagel) {
-    console.log(this.totalBasketQuantity)
-    if (this.totalBasketQuantity = this.amount) {
+    console.log('A2B start:', this.totalBasketQuantity)
+    if (this.totalBasketQuantity === this.amount) {
       return 'basket is full'
     }
 
@@ -24,17 +24,13 @@ class Basket {
     }
     const existingItem = this.getItemFromBasket(whichBagel)
     if (existingItem) {
-      console.log(this.totalBasketQuantity, "before")
       existingItem.quantity++
-      this.totalBasketQuantity.quantity++
-      console.log(this.totalBasketQuantity, "after")
+      this.totalBasketQuantity++
       return existingItem
     }
     item.quantity = 1
     this.items.push(item)
-    console.log(this.totalBasketQuantity, "before")
     this.totalBasketQuantity++
-    console.log(this.totalBasketQuantity, "after")
     return item
   }
 
@@ -54,10 +50,5 @@ class Basket {
     return removeItem
   }
 }
-const basket = new Basket()
-
-console.log(basket.addToBasket('BGLO'))
-console.log(basket.addToBasket('BGLO'))
-console.log(basket.addToBasket('BGLO'))
 
 export default Basket
