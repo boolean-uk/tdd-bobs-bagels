@@ -1,7 +1,7 @@
 // import here
 import Basket from '../src/basket.js';
 // eslint-disable-next-line no-use-before-define
-import inventory from '../inventory.json' assert { type: 'json' }; 
+import inventory from '../inventory.json' assert { type: 'json' };
 
 const store = inventory.inventory
 
@@ -15,12 +15,12 @@ describe('Basket', () => {
 
     // Then
     expect(result).toEqual([{
-        sku: "BGLO",
-        price: "0.49",
-        name: "Bagel",
-        variant: "Onion",
-        quantity: 1
-      }])
+      sku: "BGLO",
+      price: "0.49",
+      name: "Bagel",
+      variant: "Onion",
+      quantity: 1
+    }])
   })
 
   it('Add valid item to basket that is already in', () => {
@@ -33,12 +33,12 @@ describe('Basket', () => {
 
     // Then
     expect(result).toEqual([{
-        sku: "BGLO",
-        price: "0.49",
-        name: "Bagel",
-        variant: "Onion",
-        quantity: 2
-      }])
+      sku: "BGLO",
+      price: "0.49",
+      name: "Bagel",
+      variant: "Onion",
+      quantity: 2
+    }])
   })
 
   it('Add invalid item to basket', () => {
@@ -141,8 +141,18 @@ describe('Basket', () => {
     basket.addToBasket(item)
     basket.addToBasket(item)
     basket.addToBasket(item)
+    basket.addToBasket(item)
+    basket.addToBasket(item)
+    basket.addToBasket(item)
+    basket.addToBasket(item)
+    basket.addToBasket(item)
+    basket.addToBasket(item)
+    basket.addToBasket(item)
+    basket.addToBasket(item)
+    basket.addToBasket(item)
+    basket.addToBasket(item)
     const result = basket.addToBasket(item)
-    
+
     // Then
     expect(result).toEqual("Basket is full")
   })
@@ -234,4 +244,78 @@ describe('Basket', () => {
     // Then
     expect(result).toEqual('The price of your basket is £1.37')
   })
+
+  it('Check 6 onion for 2.49', () => {
+    // Given
+    const basket = new Basket()
+    const item = "BGLO"    
+
+    // When
+    // 6 for 2.49
+    for (let i = 0; i < 6; i++) {
+      const res = basket.addToBasket(item)
+      expect(res[0].quantity).toEqual(i + 1)
+    }
+
+    const result = basket.checkBasketPrice()
+
+    // Then
+    expect(result).toEqual('The price of your basket is £2.49')
+  })
+
+  it('Check for 12 plain for 3.99', () => {
+    // Given
+    // 12 for 3.99
+
+    const basket = new Basket()
+    const item = "BGLP"
+    // When
+    for (let i = 0; i < 12; i++) {
+      const res = basket.addToBasket(item)
+      expect(res[0].quantity).toEqual(i + 1)
+    }
+
+    const result = basket.checkBasketPrice()
+
+    // Then
+    expect(result).toEqual('The price of your basket is £3.99')
+  })
+
+  it('Check for 6 everything for 2.49', () => {
+    // Given
+    // 6 for 2.49
+    const basket = new Basket()
+    const item = "BGLE"
+
+    // When
+    for (let i = 0; i < 6; i++) {
+      const res = basket.addToBasket(item)
+      expect(res[0].quantity).toEqual(i + 1)
+    }
+
+    const result = basket.checkBasketPrice()
+
+    // Then
+    expect(result).toEqual('The price of your basket is £2.49')
+  })
+
+  xit('Check for coffee and plain for 1.25', () => {
+    // Given
+    // 6 for 2.49
+    const basket = new Basket()
+    const item1 = "BGLP"
+    const item2 = "COF"
+
+    // When
+    basket.addToBasket(item1)
+    basket.addToBasket(item2)
+
+    const result = basket.checkBasketPrice()
+
+    // Then
+    expect(result).toEqual('The price of your basket is £1.25')
+
+  })
+
+
 })
