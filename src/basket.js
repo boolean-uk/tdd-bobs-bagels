@@ -53,21 +53,6 @@ class Basket {
     return totalItemInBasket
   }
 
-  // addItemToBasket(itemName, itemQty) {
-  //   const totalInBasket = this.totalUnitsOfItemsInBasket()
-  //   const itemExist = this.checkItemExistInBasket(itemName)
-
-  //   if (itemExist) {
-  //     return this.updateProduct(itemName, itemQty)
-  //   }
-
-  //   if (totalInBasket >= this.basketVolume[0]) {
-  //     return console.log('Basket can take 3 items')
-  //   } else {
-  //     return this.basketContent.push({ itemName, itemQty })
-  //   }
-  // }
-
   addItemToBasket(itemName, itemQty = 1) {
     const itemExist = this.checkItemExistInBasket(itemName)
 
