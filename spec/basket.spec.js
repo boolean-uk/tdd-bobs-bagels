@@ -41,7 +41,7 @@ describe('addToBasket', () => {
   it('does not add to basket if the given sku does not match an inventory item', () => {
     //GIVEN
     //WHEN
-    const res = basket.addToBasket('HWLD')
+    const res = basket.addToBasket('XXXX')
     //THEN
     expect(res).toEqual(undefined)
     expect(basket.items.length).toEqual(0)
@@ -71,23 +71,31 @@ describe('remove from basket', () => {
     basket = new Basket()
   })
 
+  it('should check that item exists in basket', () => {
+    //GIVEN
+    //WHEN
+    const res = basket.removeFromBasket('XXXX')
+    //THEN
+    expect(res).toEqual( 'item does not exist in basket')
+  })
+
   it('should be able to remove item from basket', () => {
     //GIVEN
-    const basket = new Basket()
+    // const basket = new Basket()
     const item = {
       sku: 'BGLO',
       price: '0.49',
       name: 'Bagel',
       variant: 'Onion',
-      quantity: 1
+      quantity: 0
     }
     //WHEN
-    basket.addToBasket(item)
-    const newRes = basket.removeFromBasket('BGLO')
-    const expectRes = undefined
+    basket.addToBasket('BGLO')
+    const res = basket.removeFromBasket('BGLO')
+    
     //THEN
-    expect(newRes).toEqual(expectRes)
-    expect(basket.items.length).toEqual(0)
+    expect(res).toEqual(item)
+    expect(basket.items.length).toEqual(1)
   })
 
   it('should be able to decrease quantity in basket', () => {
@@ -135,13 +143,12 @@ describe('changeBasketCapacity', () => {
   beforeEach(() => {
     basket = new Basket()
   })
-  it('should incease the basket capacity ',
-    () => {
-      //GIVEN
-      const basket = new Basket()
-      //WHEN
-      const res = basket.changeBasketCapacity(3)
-      //THEN
-      expect(res).toEqual(3)
-    })
+  it('should incease the basket capacity ', () => {
+    //GIVEN
+    const basket = new Basket()
+    //WHEN
+    const res = basket.changeBasketCapacity(3)
+    //THEN
+    expect(res).toEqual(3)
+  })
 })

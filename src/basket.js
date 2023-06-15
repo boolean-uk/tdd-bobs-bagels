@@ -19,7 +19,7 @@ class Basket {
 
     const item = inventory.find((item) => item.sku === whichBagel)
     if (!item) {
-      return
+      return 
     }
     const existingItem = this.getItemFromBasket(whichBagel)
     if (existingItem) {
@@ -36,7 +36,7 @@ class Basket {
   removeFromBasket(sku) {
     const removeItem = this.items.find((item) => item.sku === sku)
     if (!removeItem) {
-      return
+      return  'item does not exist in basket'
     }
     const existingItem = this.getItemFromBasket(sku)
     if (existingItem) {
@@ -46,6 +46,7 @@ class Basket {
     }
     this.items.pop()
     this.totalBasketQuantity--
+    console.log('rem item', removeItem)
     return removeItem
   }
 
