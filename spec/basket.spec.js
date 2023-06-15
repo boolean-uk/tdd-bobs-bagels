@@ -12,6 +12,23 @@ describe('basketList', () => {
     const result = basket.addToBasket(input)
     expect(result).toEqual(true)
   })
+  it('Add same type', () => {
+    const input1 = {
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion'
+    }
+    const input2 = {
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion'
+    }
+    const basket = new BasketList()
+    const result = basket.compareItems(basket)
+    expect(result).toEqual(true)
+  })
   it('Remove item', () => {
     const basket = new BasketList()
     basket.addToBasket({
@@ -38,10 +55,10 @@ describe('basketList', () => {
       variant: 'Onion'
     })
     basket.addToBasket({
-      sku: 'BGLO',
+      sku: 'BGLE',
       price: '0.49',
       name: 'Bagel',
-      variant: 'Onion'
+      variant: 'Everything'
     })
     basket.addToBasket({
       sku: 'BGLO',

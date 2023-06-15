@@ -15,6 +15,13 @@ class BasketList {
     }
   }
 
+  compareItems(item) {
+    if (this.basket.sku === item.sku) {
+      console.log('bagelllll', item.sku) // getting back undefined
+      return true
+    }
+  }
+
   RemoveFromBasket(itemSku) {
     const filteredBasket = this.basket.filter(
       (basketItems) => basketItems.sku !== itemSku.sku
