@@ -59,6 +59,12 @@ describe('Create the basket', () => {
   it('check bagel price if bagel does not exist in inventory', () => {
     expect(testBasket.checkPrice('COFI')).toEqual("the bagel does not exist")
   })
+  it('add more bagels if the bagel exist', () => {
+    expect(testBasket.addManyBagels('COF')).toBeTrue()
+  })
+  it('try to add more bagels if the bagel does not exist', () => {
+    expect(testBasket.addManyBagels('NOT')).toBeFalse()
+  })
 })
 
 describe('Create big basket', () => {
@@ -125,5 +131,19 @@ describe('Create big basket', () => {
   })
   it('check bagel price if bagel does not exist in inventory', () => {
     expect(testBasketTwo.checkPrice('COFI')).toEqual("the bagel does not exist")
+  })
+
+  it('add more bagels if the bagel exist', () => {
+    expect(testBasketTwo.addManyBagels('COF')).toBeTrue()
+  })
+  it('try to add more bagels if the bagel does not exist', () => {
+    expect(testBasketTwo.addManyBagels('NOT')).toBeFalse()
+  })
+  it('check total sum of the bagels if the bagels in the basket', () => {
+    testBasketTwo.addBagel('COF')
+    testBasketTwo.addBagel('COF')
+    testBasketTwo.addBagel('COF')
+    testBasketTwo.addBagel('COF')
+    expect(testBasketTwo.getTotal()).toEqual("total: 3.96")
   })
 })
