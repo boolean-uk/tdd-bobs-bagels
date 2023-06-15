@@ -43,6 +43,25 @@ addItem(sku) {
     console.log('maximum basket capacity changed to', quantity)
     return `maximum basket capacity changed to ${quantity}`
   }
+
+showPrice(sku){
+    const bagel = inv.find((item) => item.sku === sku)
+        if (bagel) {
+          console.log('show price', bagel.price)
+          return  `price for ${bagel.variant} ${bagel.name} is £${bagel.price}`
+        } else {
+          console.log('item not found, try again')
+          return 'item not found, try again'
+        }
+}
+
 }
 
 export default Basket
+
+
+// you can't call a function within a class without initialising a variable first
+// for example const newBasket = new Basket()
+// this now allows you to use any of the functions within the class
+// you then need to call the variable to use one of the functions
+// newBasket.showPrice('BGLO')

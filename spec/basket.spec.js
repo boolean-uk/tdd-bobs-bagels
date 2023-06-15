@@ -58,7 +58,7 @@ describe('Basket', () => {
   })
 
   describe('removeItem, item not in basket', () => {
-    fit('trying to remove an item that is not in the basket', () => {
+    it('trying to remove an item that is not in the basket', () => {
       // SETUP
       const newBasket = new Basket()
       newBasket.addItem('BGLE')
@@ -71,4 +71,19 @@ describe('Basket', () => {
       expect(result).toEqual(expected)
     })
   })
+
+describe('showPrice', () => {
+    fit("want to see price appear next to bagel", () =>{
+        // SET UP
+        const newBasket = new Basket()
+        const expected = 'price for Onion Bagel is £0.49'
+
+        // EXECUTE
+        const result = newBasket.showPrice('BGLO')
+
+        // VERIFY
+        expect(result).toEqual(expected)
+    })
+})
+
 })
