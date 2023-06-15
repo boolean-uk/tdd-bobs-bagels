@@ -14,11 +14,18 @@ class BasketList {
     }
   }
 
-  // RemoveFromBasket(itemSku) {
-  //   const itemSku = this.basket.filter(
-  //   (basketItems) => basketItems.sku !== itemSku.sku
-  // )
-  // }
+  RemoveFromBasket(itemSku) {
+    const filteredBasket = this.basket.filter(
+      (basketItems) => basketItems.sku !== itemSku.sku
+    )
+    this.basket = filteredBasket
+    filteredBasket.forEach((basketItems) => {
+      if (basketItems.sku === itemSku.sku) {
+        return false
+      }
+    })
+    return true
+  }
 }
 
 const basket = new BasketList()

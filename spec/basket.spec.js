@@ -19,14 +19,8 @@ describe('basketList', () => {
       name: 'Bagel',
       variant: 'Onion'
     }
-    const input2 = {
-      sku: 'BGLP',
-      price: '0.39',
-      name: 'Bagel',
-      variant: 'Plain'
-    }
     const basket = new BasketList()
-    const result = basket.RemoveFromBasket(input, input2)
+    const result = basket.RemoveFromBasket(input)
     expect(result).toEqual(true)
   })
 })
