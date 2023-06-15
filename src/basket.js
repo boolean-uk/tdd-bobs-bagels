@@ -146,7 +146,7 @@ class BigBasket {
     for (const key in this.quantity) {
       const sku = this.quantity.key
       const itemQuantity = this.quantity[sku]
-      const nameBit = `${data.find((item) => item.sku === key).variant} ${data.find((item) => item.sku === key).name}        `.substring(0,19)
+      const nameBit = `${data.find((item) => item.sku === key).variant} ${data.find((item) => item.sku === key).name}        `.substring(0,19)      
       body += `${nameBit}${this.quantity[key]}  £${data.find((item) => item.sku === key).price * this.quantity[key]}\n`
     }
 
