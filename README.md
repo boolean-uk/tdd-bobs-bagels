@@ -1,5 +1,7 @@
 # Bob's Bagels
 
+![](./_images/domain.jpg)
+
 ![](./_images/bagels.jpg)
 
 ### Bob needs you!
