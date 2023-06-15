@@ -21,11 +21,10 @@ class Basket {
 
   checkPrice(sku) {
     const getPrice = data.find((item) => item.sku === sku)?.price
-    if(!getPrice){
-      return "the bagel does not exist"
+    if (!getPrice) {
+      return 'the bagel does not exist'
     }
     return `price: ${getPrice}`
-
   }
 
   addManyBagels(sku, quantity) {
@@ -39,6 +38,13 @@ class Basket {
     }
   }
 
+  getTotal() {
+    let total = 0
+    for (let i = 0; i < this.basket.length; i++) {
+      total += Number(this.basket[i].price)
+    }
+    return `total: ${total}`
+  }
 }
 
 class BigBasket {
@@ -64,11 +70,10 @@ class BigBasket {
 
   checkPrice(sku) {
     const getPrice = data.find((item) => item.sku === sku)?.price
-    if(!getPrice){
-      return "the bagel does not exist"
+    if (!getPrice) {
+      return 'the bagel does not exist'
     }
     return `price: ${getPrice}`
-
   }
 
   addManyBagels(sku, quantity) {
@@ -83,14 +88,12 @@ class BigBasket {
   }
 
   getTotal() {
-    let Total = 0
-    for(let i = 0; i < this.bigBasket.length; i++){
-      `total: ${Total}`
+    let total = 0
+    for (let i = 0; i < this.bigBasket.length; i++) {
+      total += Number(this.bigBasket[i].price)
     }
-
+    return `total: ${total}`
   }
-
-
 }
 
 // const newTestBasket = new BigBasket()

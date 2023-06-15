@@ -1,4 +1,4 @@
-const { Basket, BigBasket  }= require('../src/basket')
+const { Basket, BigBasket } = require('../src/basket')
 
 describe('Create the basket', () => {
   let testBasket
@@ -54,16 +54,24 @@ describe('Create the basket', () => {
     ])
   })
   it('check bagel price if bagel exists in inventory', () => {
-    expect(testBasket.checkPrice('COF')).toEqual("price: 0.99")
+    expect(testBasket.checkPrice('COF')).toEqual('price: 0.99')
   })
   it('check bagel price if bagel does not exist in inventory', () => {
-    expect(testBasket.checkPrice('COFI')).toEqual("the bagel does not exist")
+    expect(testBasket.checkPrice('COFI')).toEqual('the bagel does not exist')
   })
   it('add more bagels if the bagel exist', () => {
     expect(testBasket.addManyBagels('COF')).toBeTrue()
   })
   it('try to add more bagels if the bagel does not exist', () => {
     expect(testBasket.addManyBagels('NOT')).toBeFalse()
+  })
+
+  it('check total sum of the bagels if the bagels in the basket', () => {
+    testBasket.addBagel('COF')
+    testBasket.addBagel('COF')
+    testBasket.addBagel('COF')
+    testBasket.addBagel('COF')
+    expect(testBasket.getTotal()).toEqual('total: 3.96')
   })
 })
 
@@ -127,10 +135,10 @@ describe('Create big basket', () => {
   })
 
   it('check bagel price if bagel exists in inventory', () => {
-    expect(testBasketTwo.checkPrice('COF')).toEqual("price: 0.99")
+    expect(testBasketTwo.checkPrice('COF')).toEqual('price: 0.99')
   })
   it('check bagel price if bagel does not exist in inventory', () => {
-    expect(testBasketTwo.checkPrice('COFI')).toEqual("the bagel does not exist")
+    expect(testBasketTwo.checkPrice('COFI')).toEqual('the bagel does not exist')
   })
 
   it('add more bagels if the bagel exist', () => {
@@ -144,6 +152,6 @@ describe('Create big basket', () => {
     testBasketTwo.addBagel('COF')
     testBasketTwo.addBagel('COF')
     testBasketTwo.addBagel('COF')
-    expect(testBasketTwo.getTotal()).toEqual("total: 3.96")
+    expect(testBasketTwo.getTotal()).toEqual('total: 3.96')
   })
 })
