@@ -10,4 +10,12 @@ describe('discounts', () => {
     testBasketTwo.addManyBagels('BGLO', 6)
     expect(testBasketTwo.getTotal()).toEqual('total: 2.49')
   })
+  it('if there is a BGLP discount, apply it to the price', () => {
+    testBasketTwo.addManyBagels('BGLP', 12)
+    expect(testBasketTwo.getTotal()).toEqual('total: 3.99')
+  })
+  it('if there is a BGLE discount, apply it to the price', () => {
+    testBasketTwo.addManyBagels('BGLE', 6)
+    expect(testBasketTwo.getTotal()).toEqual('total: 2.49')
+  })
 })

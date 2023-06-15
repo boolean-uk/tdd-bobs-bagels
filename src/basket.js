@@ -105,13 +105,27 @@ class BigBasket {
       if (this.bigBasket[i].sku === 'BGLO') {
         bgloCount += 1
       }
+      if(this.bigBasket[i].sku === 'BGLP') {
+        bglpCount +=1
+      }
+      if(this.bigBasket[i].sku === 'BGLE') {
+        bgleCount +=1
+      }
       total += Number(this.bigBasket[i].price)
       while (bgloCount >= 6) {
         total -= 0.45
         bgloCount -= 6
       }
+      while (bglpCount >= 12) {
+        total -= 0.69
+        bglpCount -=12
+      }
+      while(bgleCount >= 6) {
+        total -= 0.45
+        bgleCount -= 6
+      }
     }
-    return `total: ${total}`
+    return `total: ${total.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]}`
   }
 }
 
