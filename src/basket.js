@@ -4,7 +4,6 @@ class BasketList {
   constructor(capacity = 3) {
     this.basket = []
     this.maxcapacity = capacity
-    
   }
 
   addToBasket(item) {
@@ -37,16 +36,26 @@ class BasketList {
     }
   }
 
-  itemCheck(itemSku){
-    for(const item of this.basket){
-    if(item.sku === itemSku.sku ){
-      return true
-    }}
-    return false;
+  itemCheck(itemSku) {
+    for (const item of this.basket) {
+      if (item.sku === itemSku.sku) {
+        return true
+      }
+    }
+    return false
+  }
+
+  itemPrice(itemPrice) {
+    for (const item of this.basket) {
+      if (item.price === itemPrice.price) {
+        return false
+      }
+    }
+    console.log('bagel', itemPrice.price)
+    return true
   }
 }
 
 const basket = new BasketList()
-
 
 module.exports = BasketList
