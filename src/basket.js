@@ -10,7 +10,6 @@ class Basket {
     if (bagelItem && this.basket.length < 4) {
       this.basket.push(bagelItem)
     } else {
-      // console.log('Your basket is full, please use a bigger basket!')
     }
     return this.basket
   }
@@ -146,7 +145,6 @@ class BigBasket {
 
     for (const key in this.quantity) {
       const sku = this.quantity.key
-      console.log(key)
       const itemQuantity = this.quantity[sku]
       const nameBit = `${data.find((item) => item.sku === key).variant} ${data.find((item) => item.sku === key).name}        `.substring(0,19)
       body += `${nameBit}${this.quantity[key]}  £${data.find((item) => item.sku === key).price * this.quantity[key]}\n`

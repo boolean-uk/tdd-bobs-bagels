@@ -65,7 +65,7 @@ Total                 £1.27
 Everything Bagel   6  £2.94
 
 ----------------------------
-Total                 £2.49
+Total                 £2.94
 
         Thank you
       for your order!
