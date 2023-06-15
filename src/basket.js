@@ -28,6 +28,17 @@ class Basket {
 
   }
 
+  addManyBagels(sku, quantity) {
+    if (data.find((item) => item.sku === sku)) {
+      for (let i = 0; i < quantity; i++) {
+        this.addBagel(sku)
+      }
+      return true
+    } else {
+      return false
+    }
+  }
+
 }
 
 class BigBasket {
@@ -59,6 +70,27 @@ class BigBasket {
     return `price: ${getPrice}`
 
   }
+
+  addManyBagels(sku, quantity) {
+    if (data.find((item) => item.sku === sku)) {
+      for (let i = 0; i < quantity; i++) {
+        this.addBagel(sku)
+      }
+      return true
+    } else {
+      return false
+    }
+  }
+
+  getTotal() {
+    let Total = 0
+    for(let i = 0; i < this.bigBasket.length; i++){
+      `total: ${Total}`
+    }
+
+  }
+
+
 }
 
 // const newTestBasket = new BigBasket()
