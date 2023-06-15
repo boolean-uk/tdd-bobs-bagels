@@ -95,6 +95,47 @@ class Basket {
     }
   }
 
+  // showTotal() {
+  //   if (this.basket.length === 0 || this.basket === undefined) {
+  //     return 'Basket is currently empty'
+  //   }
+
+  //   const basket = this.basket
+
+  //   let runningTotal = 0
+
+  //   basket.forEach((item) => {
+  //     if (
+  //       (item.sku === 'BGLO' && item.quantity >= 6) ||
+  //       (item.sku === 'BGLE' && item.quantity >= 6)
+  //     ) {
+  //       const offerNumber = Math.floor(item.quantity / 6)
+  //       runningTotal += offerNumber * 2.49
+  //       item.quantity -= offerNumber * 6
+  //     }
+  //     if (item.sku === 'BGLP' && item.quantity >= 12) {
+  //       const offerNumber = Math.floor(item.quantity / 12)
+  //       runningTotal += offerNumber * 3.99
+  //       item.quantity -= offerNumber * 12
+  //     }
+  //     if (item.sku === 'COF') {
+  //       const numCOF = item.quantity
+  //       let offerNumber = 0
+  //       basket.forEach((item) => {
+  //         if (item.sku === 'BGLP') {
+  //           const numBGLP = item.quantity
+  //           offerNumber = Math.min(numCOF, numBGLP)
+  //           runningTotal += offerNumber * 1.25
+  //           item.quantity -= offerNumber
+  //         }
+  //       })
+  //       item.quantity -= offerNumber
+  //     }
+  //   })
+  //   basket.forEach((item) => (runningTotal += item.quantity * item.price))
+  //   return runningTotal.toFixed(2)
+  // }
+
   showTotal() {
     if (this.basket.length === 0 || this.basket === undefined) {
       return 'Basket is currently empty'
@@ -123,7 +164,7 @@ class Basket {
         let offerNumber = 0
         basket.forEach((item) => {
           if (item.sku === 'BGLP') {
-            const numBGLP = item.quantity
+            const numBGLP = item.quantity % 12
             offerNumber = Math.min(numCOF, numBGLP)
             runningTotal += offerNumber * 1.25
             item.quantity -= offerNumber

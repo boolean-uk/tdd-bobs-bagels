@@ -300,6 +300,19 @@ describe('Testing showTotal()', () => {
     expect(result2).toBe('5.55')
     expect(result3).toBe('1.25')
   })
+
+  it('The combination of offers that provides the biggest discount should be returned', () => {
+    // Setup
+    const basket = new Basket(23)
+    basket.addMultipleItems('BGLO', 2)
+    basket.addMultipleItems('COF', 3)
+    basket.addMultipleItems('BGLP', 12)
+    basket.addMultipleItems('BGLE', 6)
+    // Execution
+    const result = basket.showTotal()
+    // Check
+    expect(result).toBe('10.43')
+  })
 })
 
 // eslint-disable-next-line prettier/prettier
@@ -315,35 +328,3 @@ describe('', () => {
 })
 */
 
-/*
-[
-  {
-    sku: 'BGLO',
-    price: '0.49',
-    name: 'Bagel',
-    variant: 'Onion',
-    quantity: 2
-  },
-  {
-    sku: 'BGLP',
-    price: '0.39',
-    name: 'Bagel',
-    variant: 'Plain',
-    quantity: 12
-  },
-  {
-    sku: 'BGLE',
-    price: '0.49',
-    name: 'Bagel',
-    variant: 'Everything',
-    quantity: 6
-  },
-  {
-    sku: 'COF',
-    price: '0.99',
-    name: 'Bagel',
-    variant: '',
-    quantity: 3
-  }
-]
-*/
