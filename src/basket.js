@@ -131,7 +131,7 @@ class BigBasket {
   }
 
   getReceipt() {
-    let body
+    let body = ''
     let total = 0
 
     for (let i = 0; i < this.bigBasket.length; i++) {
@@ -144,10 +144,11 @@ class BigBasket {
       total += Number(this.bigBasket[i].price)
     }
 
-    for (let i = 0; i < this.bigBasket.length; i++) {
-      const sku = this.quantity.sku
-      console.log(sku)
-      body = `${this.bigBasket[i].variant} ${this.bigBasket[i].name} ${this.quantity[sku]} ${this.bigBasket[i].price }`
+    for (const key in this.quantity) {
+      const sku = this.quantity.key
+      console.log(key)
+      const itemQuantity = this.quantity[sku]
+      body += `${data.find((item) => item.sku === key).variant} ${data.find((item) => item.sku === key).name}        ${this.quantity[key]}  £${data.find((item) => item.sku === key).price * this.quantity[key]}\n`
     }
 
       while (this.quantity.bglo >= 6) {
@@ -167,7 +168,7 @@ class BigBasket {
         bglpCount -= 1
         cofCount -= 1
       }
-    const start = `\n ~~~ Bob's Bagels ~~~ \n`
+    const start = `\n    ~~~ Bob's Bagels ~~~\n`
 
     let middle = `
 ----------------------------
@@ -175,7 +176,6 @@ class BigBasket {
 ${body}
 ----------------------------
 Total                 £${total}
-
 `
 
     const end = `
