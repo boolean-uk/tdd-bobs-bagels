@@ -53,7 +53,12 @@ describe('Create the basket', () => {
       { sku: 'COF', price: '0.99', name: 'Bagel', variant: '' }
     ])
   })
-  it('')
+  it('check bagel price if bagel exists in inventory', () => {
+    expect(testBasket.checkPrice('COF')).toEqual("price: 0.99")
+  })
+  it('check bagel price if bagel does not exist in inventory', () => {
+    expect(testBasket.checkPrice('COFI')).toEqual("the bagel does not exist")
+  })
 })
 
 describe('Create big basket', () => {
@@ -113,5 +118,12 @@ describe('Create big basket', () => {
     testBasketTwo.addBagel('BGLO')
     testBasketTwo.addBagel('BGLO')
     expect(testBasketTwo.removeBagel('BGLO')).toBeTrue()
+  })
+
+  it('check bagel price if bagel exists in inventory', () => {
+    expect(testBasketTwo.checkPrice('COF')).toEqual("price: 0.99")
+  })
+  it('check bagel price if bagel does not exist in inventory', () => {
+    expect(testBasketTwo.checkPrice('COFI')).toEqual("the bagel does not exist")
   })
 })

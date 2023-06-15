@@ -19,6 +19,15 @@ class Basket {
     return (this.basket = this.basket.filter((item) => item.sku !== sku))
   }
 
+  checkPrice(sku) {
+    const getPrice = data.find((item) => item.sku === sku)?.price
+    if(!getPrice){
+      return "the bagel does not exist"
+    }
+    return `price: ${getPrice}`
+
+  }
+
 }
 
 class BigBasket {
@@ -40,6 +49,15 @@ class BigBasket {
       return true
     }
     return false
+  }
+
+  checkPrice(sku) {
+    const getPrice = data.find((item) => item.sku === sku)?.price
+    if(!getPrice){
+      return "the bagel does not exist"
+    }
+    return `price: ${getPrice}`
+
   }
 }
 
