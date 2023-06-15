@@ -34,8 +34,11 @@ describe('get receipt', () => {
     testBasketTwo.addBagel('BGLP')
     testBasketTwo.addBagel('BGLP')
     testBasketTwo.addBagel('BGLO')
-    expect(testBasketTwo.getReceipt()).toEqual(`
+    expect(testBasketTwo.getReceipt()).toEqual(
+      `
     ~~~ Bob's Bagels ~~~
+    
+    ${new Date().toISOString().slice(0,10)} ${new Date().toISOString().slice(11, 19)}
 
 ----------------------------
 
@@ -44,6 +47,25 @@ Onion Bagel        1  £0.49
 
 ----------------------------
 Total                 £1.27
+
+        Thank you
+      for your order!
+`)
+  })
+  it('there are items in the cart with discount', () => {
+    testBasketTwo.addManyBagels('BGLE', 6)
+    expect(testBasketTwo.getReceipt()).toEqual(
+      `
+    ~~~ Bob's Bagels ~~~
+    
+    ${new Date().toISOString().slice(0,10)} ${new Date().toISOString().slice(11, 19)}
+
+----------------------------
+
+Everything Bagel   6  £2.94
+
+----------------------------
+Total                 £2.49
 
         Thank you
       for your order!

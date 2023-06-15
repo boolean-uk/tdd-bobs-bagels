@@ -148,7 +148,8 @@ class BigBasket {
       const sku = this.quantity.key
       console.log(key)
       const itemQuantity = this.quantity[sku]
-      body += `${data.find((item) => item.sku === key).variant} ${data.find((item) => item.sku === key).name}        ${this.quantity[key]}  £${data.find((item) => item.sku === key).price * this.quantity[key]}\n`
+      const nameBit = `${data.find((item) => item.sku === key).variant} ${data.find((item) => item.sku === key).name}        `.substring(0,19)
+      body += `${nameBit}${this.quantity[key]}  £${data.find((item) => item.sku === key).price * this.quantity[key]}\n`
     }
 
       while (this.quantity.bglo >= 6) {
@@ -168,14 +169,18 @@ class BigBasket {
         bglpCount -= 1
         cofCount -= 1
       }
-    const start = `\n    ~~~ Bob's Bagels ~~~\n`
+    const start = `
+    ~~~ Bob's Bagels ~~~
+    
+    ${new Date().toISOString().slice(0,10)} ${new Date().toISOString().slice(11, 19)}
+`
 
     let middle = `
 ----------------------------
 
 ${body}
 ----------------------------
-Total                 £${total}
+Total                 £${total.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]}
 `
 
     const end = `
@@ -186,12 +191,5 @@ Total                 £${total}
   }
 }
 
-// const newTestBasket = new BigBasket()
-//
-// console.log(newTestBasket)
-// console.log(newTestBasket.addBagel('COF'))
-// console.log(newTestBasket.addBagel('COF'))
-// console.log(newTestBasket.addBagel('COF'))
-// console.log(newTestBasket.addBagel('COF'))
-// console.log(newTestBasket.addBagel('COF'))
+
 module.exports = { Basket, BigBasket }
