@@ -13,26 +13,63 @@ describe('basketList', () => {
     expect(result).toEqual(true)
   })
   it('Remove item', () => {
-    const input = {
+    const basket = new BasketList()
+    basket.addToBasket({
       sku: 'BGLO',
       price: '0.49',
       name: 'Bagel',
       variant: 'Onion'
-    }
-    const basket = new BasketList()
-    const result = basket.RemoveFromBasket(input)
+    })
+    basket.addToBasket({
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion'
+    })
+    const result = basket.RemoveFromBasket(basket)
     expect(result).toEqual(true)
   })
   it('Full cart', () => {
-    const maxCapacity = 3
-    const input = {
+    
+    const basket = new BasketList()
+    basket.addToBasket({
       sku: 'BGLO',
       price: '0.49',
       name: 'Bagel',
       variant: 'Onion'
-    }
-    const basket = new BasketList()
-    const result = basket.isBasketFull(maxCapacity, input)
+    })
+    basket.addToBasket({
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion'
+    })
+    basket.addToBasket({
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion'
+    }) 
+     
+    const result = basket.isBasketFull()
     expect(result).toEqual(true)
+  })
+  it('itemCheck', () => {
+      const basket = new BasketList()
+      basket.addToBasket({
+        sku: 'BGLO',
+        price: '0.49',
+        name: 'Bagel',
+        variant: 'Onion'
+      })
+      basket.addToBasket( {
+        "sku": "DEF",
+        "price": "0.99",
+        "name": "Bagel",
+        "variant": ""
+      })
+      const results = basket.itemCheck({ sku: "DEF" })
+      expect(results).toEqual(true)
+      
   })
 })

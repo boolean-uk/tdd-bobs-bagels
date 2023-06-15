@@ -1,9 +1,10 @@
 require('./../inventory.json')
 
 class BasketList {
-  constructor() {
+  constructor(capacity = 3) {
     this.basket = []
-    this.maxcapacity = 3
+    this.maxcapacity = capacity
+    
   }
 
   addToBasket(item) {
@@ -28,17 +29,24 @@ class BasketList {
     return true
   }
 
-  isBasketFull(item) {
+  isBasketFull() {
     if (this.basket.length <= this.maxcapacity) {
       return true
     } else {
       return false
     }
   }
+
+  itemCheck(itemSku){
+    for(const item of this.basket){
+    if(item.sku === itemSku.sku ){
+      return true
+    }}
+    return false;
+  }
 }
 
 const basket = new BasketList()
-console.log('bagel1', basket)
-console.log('..', this.basket)
+
 
 module.exports = BasketList
