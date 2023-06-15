@@ -152,3 +152,22 @@ describe('changeBasketCapacity', () => {
     expect(res).toEqual(3)
   })
 })
+ describe('price of items', () => {
+  let basket
+  beforeEach(() => {
+    basket = new Basket()
+  })
+
+  it('should return price of each item before adding to basket', () => {
+    const basket = new Basket()
+
+    const res = basket.checkPrice('BGLO')
+    expect(res).toEqual('0.49')
+  })
+
+it('if not in inventory return not available', () => { 
+    const basket = new Basket()
+    const res = basket.checkPrice('XXXX')
+    expect(res).toEqual('not available')
+ })
+})

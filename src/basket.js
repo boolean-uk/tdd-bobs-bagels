@@ -54,6 +54,16 @@ class Basket {
     this.basketCapacity = newCapacity
     return this.basketCapacity
   }
+  checkPrice(whichBagel) {
+    // console.log(whichBagel)
+    const item = inventory.find((item) => item.sku === whichBagel)
+    if (!item) {
+      return 'not available'
+    }
+    // console.log(item.price)
+    return item.price
+  }
 }
-
+const basket = new Basket() 
+console.log(basket.checkPrice('XXXX'))
 export default Basket
