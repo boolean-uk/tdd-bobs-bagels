@@ -50,6 +50,7 @@ class Basket {
 class BigBasket {
   constructor() {
     this.bigBasket = []
+    this.quantity = {}
   }
 
   addBagel(SKU) {
@@ -98,14 +99,14 @@ class BigBasket {
       if (this.bigBasket[i].sku === 'BGLO') {
         bgloCount += 1
       }
-      if(this.bigBasket[i].sku === 'BGLP') {
-        bglpCount +=1
+      if (this.bigBasket[i].sku === 'BGLP') {
+        bglpCount += 1
       }
-      if(this.bigBasket[i].sku === 'BGLE') {
-        bgleCount +=1
+      if (this.bigBasket[i].sku === 'BGLE') {
+        bgleCount += 1
       }
-      if(this.bigBasket[i].sku === 'COF') {
-        cofCount +=1
+      if (this.bigBasket[i].sku === 'COF') {
+        cofCount += 1
       }
       total += Number(this.bigBasket[i].price)
       while (bgloCount >= 6) {
@@ -114,19 +115,74 @@ class BigBasket {
       }
       while (bglpCount >= 12) {
         total -= 0.69
-        bglpCount -=12
+        bglpCount -= 12
       }
-      while(bgleCount >= 6) {
+      while (bgleCount >= 6) {
         total -= 0.45
         bgleCount -= 6
       }
-      while(bglpCount >= 1 && cofCount >= 1) {
+      while (bglpCount >= 1 && cofCount >= 1) {
         total -= 0.13
         bglpCount -= 1
         cofCount -= 1
       }
     }
     return `total: ${total.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]}`
+  }
+
+  getReceipt() {
+    let body
+    let total = 0
+
+    for (let i = 0; i < this.bigBasket.length; i++) {
+      for (let j = 0; j < data.length; j++) {
+        let sku = data[j].sku
+        if (this.bigBasket[i].sku === `${sku}`) {
+          (this.quantity[sku] !== undefined) ?  this.quantity[sku] += 1  :  this.quantity[sku] = 1 
+        }
+      }
+      total += Number(this.bigBasket[i].price)
+    }
+
+    for (let i = 0; i < this.bigBasket.length; i++) {
+      const sku = this.quantity.sku
+      console.log(sku)
+      body = `${this.bigBasket[i].variant} ${this.bigBasket[i].name} ${this.quantity[sku]} ${this.bigBasket[i].price }`
+    }
+
+      while (this.quantity.bglo >= 6) {
+        total -= 0.45
+        bgloCount -= 6
+      }
+      while (this.quantity.bglp >= 12) {
+        total -= 0.69
+        bglpCount -= 12
+      }
+      while (this.quantity.bgle >= 6) {
+        total -= 0.45
+        bgleCount -= 6
+      }
+      while (this.quantity.bglp >= 1 && cofCount >= 1) {
+        total -= 0.13
+        bglpCount -= 1
+        cofCount -= 1
+      }
+    const start = `\n ~~~ Bob's Bagels ~~~ \n`
+
+    let middle = `
+----------------------------
+
+${body}
+----------------------------
+Total                 £${total}
+
+`
+
+    const end = `
+        Thank you
+      for your order!
+`
+    return start + middle + end
   }
 }
 
