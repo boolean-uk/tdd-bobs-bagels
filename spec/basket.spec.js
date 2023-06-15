@@ -108,5 +108,23 @@ describe('remove from basket', () => {
     expect(newRes).toEqual(item)
     expect(basket.items.length).toEqual(1)
   })
+describe('basket is full', () => {
+  let basket 
+  beforeEach(() => {
+    basket = new Basket()
+  })
+  it('basket is full, cannot add bagel types beyound basket size', () => {
+//GIVEN
+const basket = new Basket()
 
+//WHEN
+basket.addToBasket('BGLP')
+basket.addToBasket('BGLE')
+const res = basket.addToBasket('BGLO')
+
+const expectRes = 'basket is full'
+  //THEN
+  expect(res).toEqual(expectRes)
+  })
+})
 })
