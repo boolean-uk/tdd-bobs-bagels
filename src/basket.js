@@ -22,7 +22,6 @@ class Basket {
     }
     item.quantity = 1
     this.items.push(item)
-    console.log('basket after add', this.items)
     return item
   }
 }
