@@ -14,13 +14,13 @@ class BasketList {
     }
   }
 
-  // RemoveFromBasket() {
-  //   const item = {
-  //     quantity: this.quantity--
-  //   }
-  //    this.basket.shift(item)
-  //   return this.basket
+  // RemoveFromBasket(itemSku) {
+  //   const itemSku = this.basket.filter(
+  //   (basketItems) => basketItems.sku !== itemSku.sku
+  // )
+  // }
 }
+
 const basket = new BasketList()
 console.log('bagel1', basket)
 
