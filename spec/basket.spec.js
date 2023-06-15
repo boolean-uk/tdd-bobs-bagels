@@ -72,18 +72,51 @@ describe('Basket', () => {
     })
   })
 
-describe('showPrice', () => {
-    fit("want to see price appear next to bagel", () =>{
-        // SET UP
-        const newBasket = new Basket()
-        const expected = 'price for Onion Bagel is £0.49'
+  describe('showPrice', () => {
+    it('want to see price appear next to bagel', () => {
+      // SET UP
+      const newBasket = new Basket()
+      const expected = 'price for Onion Bagel is £0.49'
 
-        // EXECUTE
-        const result = newBasket.showPrice('BGLO')
+      // EXECUTE
+      const result = newBasket.showPrice('BGLO')
 
-        // VERIFY
-        expect(result).toEqual(expected)
+      // VERIFY
+      expect(result).toEqual(expected)
     })
-})
+  })
 
+  describe('addBagel, duplicate bagels', () => {
+    it('add multiple of the same type of bagel to basket', () => {
+      // SETUP
+      const newBasket = new Basket()
+      newBasket.increaseCapacity(3)
+      newBasket.addItem('BGLO')
+      const expected = [{ sku: 'BGLO', price: '0.49', name: 'Bagel', variant: 'Onion' },{ sku: 'BGLO', price: '0.49', name: 'Bagel', variant: 'Onion' }]
+
+      // EXECUTE
+      const result = newBasket.addItem('BGLO')
+
+      // VERIFY
+      expect(result).toEqual(expected)
+    })
+  })
+
+  describe('totalSum', () => {
+    it('get the total sum of all items within the basket', () => {
+      // SETUP
+      const newBasket = new Basket()
+      newBasket.increaseCapacity(3)
+      newBasket.addItem('BGLO')
+      newBasket.addItem('BGLS')
+      newBasket.addItem('BGLP')
+      const expected = 'total price for all items in the basket is £1.37'
+
+      // EXECUTE
+      const result = newBasket.totalSum()
+
+      // VERIFY
+      expect(result).toEqual(expected)
+    })
+  })
 })
