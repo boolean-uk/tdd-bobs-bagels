@@ -18,4 +18,9 @@ describe('discounts', () => {
     testBasketTwo.addManyBagels('BGLE', 6)
     expect(testBasketTwo.getTotal()).toEqual('total: 2.49')
   })
+    it('if there is a COF discount, apply it to the price', () => {
+    testBasketTwo.addManyBagels('BGLP', 1)
+    testBasketTwo.addManyBagels('COF', 1)
+    expect(testBasketTwo.getTotal()).toEqual('total: 1.25')
+  })
 })

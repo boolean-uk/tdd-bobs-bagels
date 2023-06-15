@@ -94,13 +94,6 @@ class BigBasket {
     let bgleCount = 0
     let cofCount = 0
 
-    // count bglo, bglp, bgle, cof
-
-    // if bgloCount >= 6, total -= 0.45 and bgloCount -= 6
-    // if bglpCount >= 12, total -= 0.69 and bglpCount -= 12
-    // if bgleCount >= 6, total -= 0.45 and bglpCount -= 6
-    // if bgloCount >= 1 && cofCount >=1, total -= 0.13 and bgloCount -= 1 and cofCount -= 1
-
     for (let i = 0; i < this.bigBasket.length; i++) {
       if (this.bigBasket[i].sku === 'BGLO') {
         bgloCount += 1
@@ -110,6 +103,9 @@ class BigBasket {
       }
       if(this.bigBasket[i].sku === 'BGLE') {
         bgleCount +=1
+      }
+      if(this.bigBasket[i].sku === 'COF') {
+        cofCount +=1
       }
       total += Number(this.bigBasket[i].price)
       while (bgloCount >= 6) {
@@ -123,6 +119,11 @@ class BigBasket {
       while(bgleCount >= 6) {
         total -= 0.45
         bgleCount -= 6
+      }
+      while(bglpCount >= 1 && cofCount >= 1) {
+        total -= 0.13
+        bglpCount -= 1
+        cofCount -= 1
       }
     }
     return `total: ${total.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]}`
