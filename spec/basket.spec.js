@@ -266,7 +266,7 @@ describe('Testing showTotal()', () => {
     // Execution
     const result = basket.showTotal()
     // Check
-    expect(result).toBe(3.46)
+    expect(result).toBe('3.46')
   })
 
   it('Returns an error if basket is empty', () => {
@@ -276,6 +276,29 @@ describe('Testing showTotal()', () => {
     const result = basket.showTotal()
     // Check
     expect(result).toBe('Basket is currently empty')
+  })
+
+  it('Testing offers are correctly calculated', () => {
+    // Setup
+    const basket1 = new Basket(23)
+    const basket2 = new Basket(16)
+    const basket3 = new Basket()
+    basket1.addMultipleItems('BGLO', 2)
+    basket1.addMultipleItems('BGLP', 12)
+    basket1.addMultipleItems('BGLE', 6)
+    basket1.addMultipleItems('COF', 3)
+    basket2.addMultipleItems('BGLP', 16)
+    basket3.addItem('COF')
+    basket3.addItem('BGLP')
+    console.log('basket3', basket3)
+    // Execution
+    const result1 = basket1.showTotal()
+    const result2 = basket2.showTotal()
+    const result3 = basket3.showTotal()
+    // Check
+    expect(result1).toBe('10.43')
+    expect(result2).toBe('5.55')
+    expect(result3).toBe('1.25')
   })
 })
 
@@ -290,4 +313,37 @@ describe('', () => {
     // Check
   })
 })
+*/
+
+/*
+[
+  {
+    sku: 'BGLO',
+    price: '0.49',
+    name: 'Bagel',
+    variant: 'Onion',
+    quantity: 2
+  },
+  {
+    sku: 'BGLP',
+    price: '0.39',
+    name: 'Bagel',
+    variant: 'Plain',
+    quantity: 12
+  },
+  {
+    sku: 'BGLE',
+    price: '0.49',
+    name: 'Bagel',
+    variant: 'Everything',
+    quantity: 6
+  },
+  {
+    sku: 'COF',
+    price: '0.99',
+    name: 'Bagel',
+    variant: '',
+    quantity: 3
+  }
+]
 */
