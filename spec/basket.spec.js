@@ -23,4 +23,16 @@ describe('basketList', () => {
     const result = basket.RemoveFromBasket(input)
     expect(result).toEqual(true)
   })
+  it('Full cart', () => {
+    const maxCapacity = 3
+    const input = {
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion'
+    }
+    const basket = new BasketList()
+    const result = basket.isBasketFull(maxCapacity, input)
+    expect(result).toEqual(true)
+  })
 })
