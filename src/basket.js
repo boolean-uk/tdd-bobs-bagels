@@ -89,8 +89,27 @@ class BigBasket {
 
   getTotal() {
     let total = 0
+    let bgloCount = 0
+    let bglpCount = 0
+    let bgleCount = 0
+    let cofCount = 0
+
+    // count bglo, bglp, bgle, cof
+
+    // if bgloCount >= 6, total -= 0.45 and bgloCount -= 6
+    // if bglpCount >= 12, total -= 0.69 and bglpCount -= 12
+    // if bgleCount >= 6, total -= 0.45 and bglpCount -= 6
+    // if bgloCount >= 1 && cofCount >=1, total -= 0.13 and bgloCount -= 1 and cofCount -= 1
+
     for (let i = 0; i < this.bigBasket.length; i++) {
+      if (this.bigBasket[i].sku === 'BGLO') {
+        bgloCount += 1
+      }
       total += Number(this.bigBasket[i].price)
+      while (bgloCount >= 6) {
+        total -= 0.45
+        bgloCount -= 6
+      }
     }
     return `total: ${total}`
   }
