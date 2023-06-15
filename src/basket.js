@@ -3,7 +3,7 @@ import inventory from '../inventory.js'
 class Basket {
   constructor() {
     this.items = []
-    this.amount = 2
+    this.basketCapacity = 2
     this.totalBasketQuantity = 0
   }
 
@@ -13,8 +13,7 @@ class Basket {
   }
 
   addToBasket(whichBagel) {
-    console.log('A2B start:', this.totalBasketQuantity)
-    if (this.totalBasketQuantity === this.amount) {
+    if (this.totalBasketQuantity === this.basketCapacity) {
       return 'basket is full'
     }
 
@@ -48,6 +47,11 @@ class Basket {
     this.items.pop()
     this.totalBasketQuantity--
     return removeItem
+  }
+
+  changeBasketCapacity(newCapacity) {
+    this.basketCapacity = newCapacity
+    return this.basketCapacity
   }
 }
 

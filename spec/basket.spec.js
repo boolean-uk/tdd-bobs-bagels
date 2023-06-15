@@ -21,7 +21,7 @@ describe('addToBasket', () => {
     expect(res).toEqual(item)
     expect(basket.items.length).toEqual(1)
   })
-  
+
   it('adds a different given item to the basket', () => {
     //GIVEN
     const item = {
@@ -108,23 +108,40 @@ describe('remove from basket', () => {
     expect(newRes).toEqual(item)
     expect(basket.items.length).toEqual(1)
   })
+})
+
 describe('basket is full', () => {
-  let basket 
+  let basket
   beforeEach(() => {
     basket = new Basket()
   })
   it('basket is full, cannot add bagel types beyound basket size', () => {
-//GIVEN
-const basket = new Basket()
+    //GIVEN
+    const basket = new Basket()
 
-//WHEN
-basket.addToBasket('BGLP')
-basket.addToBasket('BGLE')
-const res = basket.addToBasket('BGLO')
+    //WHEN
+    basket.addToBasket('BGLP')
+    basket.addToBasket('BGLE')
+    const res = basket.addToBasket('BGLO')
 
-const expectRes = 'basket is full'
-  //THEN
-  expect(res).toEqual(expectRes)
+    const expectRes = 'basket is full'
+    //THEN
+    expect(res).toEqual(expectRes)
   })
 })
+
+describe('changeBasketCapacity', () => {
+  let basket
+  beforeEach(() => {
+    basket = new Basket()
+  })
+  it('should incease the basket capacity ',
+    () => {
+      //GIVEN
+      const basket = new Basket()
+      //WHEN
+      const res = basket.changeBasketCapacity(3)
+      //THEN
+      expect(res).toEqual(3)
+    })
 })
