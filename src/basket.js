@@ -41,15 +41,21 @@ class Basket {
   removeItem(sku) {
     if (sku === undefined) {
       return 'No SKU entered'
+    }
+    const itemToRemove = this.basket.find((item) => item.sku === sku)
+    let currentQuantity
+    if (itemToRemove) {
+      currentQuantity = itemToRemove.quantity
     } else {
-      const itemToRemove = this.basket.find((item) => item.sku === sku)
-      if (itemToRemove) {
-        const deletionIndex = this.basket.indexOf(itemToRemove)
-        this.basket.splice(deletionIndex, 1)
-        return this.basket
-      } else {
-        return 'Chosen item not found'
-      }
+      return 'Chosen item not found'
+    }
+    if (currentQuantity > 1) {
+      itemToRemove.quantity--
+      return this.basket
+    } else {
+      const deletionIndex = this.basket.indexOf(itemToRemove)
+      this.basket.splice(deletionIndex, 1)
+      return this.basket
     }
   }
 
@@ -68,7 +74,7 @@ class Basket {
 
   addMultipleItems(sku, quantity) {
     if (sku === undefined || isNaN(quantity)) {
-      return 'Incorrect SKU. Item not found'
+      return 'Item not found or quantity not specified.'
     } else if (this.totalItems() >= this.size) {
       return 'Basket is full. Item was not added.'
     } else if (this.totalItems() + quantity > this.size) {
@@ -88,35 +94,18 @@ class Basket {
       }
     }
   }
-}
 
-/*
-  addItem(sku) {
-    if (sku === undefined) {
-      return 'No SKU Entered'
-    } else if (this.totalItems() >= this.size) {
-      return 'Basket is full. Item was not added.'
+  showTotal() {
+    if (this.basket.length === 0 || this.basket === undefined) {
+      return 'Basket is currently empty'
     } else {
-      const addedItem = inventory.find((item) => item.sku === sku)
-      const alreadyInBasket = this.basket.find((item) => item.sku === sku)
-      if (addedItem && !alreadyInBasket) {
-        this.basket.push({ ...addedItem, quantity: 1 })
-        return this.basket
-      } else if (addedItem && alreadyInBasket) {
-        alreadyInBasket.quantity++
-        return this.basket
-      } else {
-        return 'Chosen item not found'
-      }
+      let runningTotal = 0
+      this.basket.forEach(
+        (item) => (runningTotal += item.quantity * item.price)
+      )
+      return runningTotal
     }
   }
-*/
+}
 
 module.exports = Basket
-
-/*
-BASKET FORMAT
-Basket {
-  basket: [ { sku: 'BGLO', price: '0.49', name: 'Bagel', variant: 'Onion' } ]     
-}
-*/

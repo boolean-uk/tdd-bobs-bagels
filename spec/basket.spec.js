@@ -5,9 +5,9 @@ describe('Testing Basket constructor', () => {
     // Setup
     const basket = new Basket()
     // Execution
-    const expectedResponse = []
+    const expectedResult = []
     // Check
-    expect(basket.basket).toEqual(expectedResponse)
+    expect(basket.basket).toEqual(expectedResult)
   })
 })
 
@@ -23,11 +23,11 @@ describe('Testing addItem', () => {
       quantity: 1
     }
     // Execution
-    const expectedResponse = new Basket()
-    expectedResponse.basket.push(testItem)
+    const expectedResult = new Basket()
+    expectedResult.basket.push(testItem)
     basket.addItem('BGLO')
     // Check
-    expect(basket).toEqual(expectedResponse)
+    expect(basket).toEqual(expectedResult)
   })
 
   it('Item already exists in basket', () => {
@@ -41,39 +41,51 @@ describe('Testing addItem', () => {
       quantity: 2
     }
     // Execution
-    const expectedResponse = new Basket()
-    expectedResponse.basket.push(testItem)
+    const expectedResult = new Basket()
+    expectedResult.basket.push(testItem)
     basket.addItem('BGLO')
     basket.addItem('BGLO')
     // Check
-    expect(basket).toEqual(expectedResponse)
+    expect(basket).toEqual(expectedResult)
   })
 
   it('Entered SKU not found', () => {
     // Setup
     const basket = new Basket()
     // Execution
-    const response = basket.addItem('WRONG')
+    const result = basket.addItem('WRONG')
     // Check
-    expect(response).toBe('Chosen item not found')
+    expect(result).toBe('Chosen item not found')
   })
 
   it('No SKU Entered', () => {
     // Setup
     const basket = new Basket()
     // Execution
-    const response = basket.addItem()
+    const result = basket.addItem()
     // Check
-    expect(response).toBe('No SKU Entered')
+    expect(result).toBe('No SKU Entered')
   })
 
+  it('Basket is full', () => {
+    // Setup
+    const basket = new Basket(1)
+    basket.addItem('BGLO')
+    // Execution
+    const result = basket.addItem('BGLP')
+    // Check
+    expect(result).toBe('Basket is full. Item was not added.')
+  })
+})
+
+describe('Creating baskets with custom size', () => {
   it('Creating a basket with a custom size', () => {
     // Setup
     const basket = new Basket(15)
     // Execution
-    const response = basket.size
+    const result = basket.size
     // Check
-    expect(response).toBe(15)
+    expect(result).toBe(15)
   })
 
   it('Gives an error if size is < 0, non-integer or NaN. Creates basket with default size.', () => {
@@ -90,30 +102,31 @@ describe('Testing addItem', () => {
     expect(responseNegative).toBe(10)
     expect(responseNonNumber).toBe(10)
   })
-
-  it('Basket is full', () => {
-    // Setup
-    const basket = new Basket(1)
-    basket.addItem('BGLO')
-    // Execution
-    const response = basket.addItem('BGLP')
-    // Check
-    expect(response).toBe('Basket is full. Item was not added.')
-  })
 })
 
 describe('Testing removeItem', () => {
-  it('Item removed successfully', () => {
+  it('Reduces item quantity by 1', () => {
     // Setup
     const basket = new Basket()
     basket.addItem('BGLO')
-    basket.addItem('BGLP')
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
     // Execution
-    const expectedResponse = new Basket()
-    expectedResponse.addItem('BGLP')
+    basket.removeItem('BGLO')
+    const result = basket.basket[0].quantity
+    // Check
+    expect(result).toBe(2)
+  })
+
+  it('Removes item from basket if quantity is zero', () => {
+    // Setup
+    const basket = new Basket()
+    basket.addItem('BGLO')
+    // Execution
+    const expectedResult = new Basket()
     basket.removeItem('BGLO')
     // Check
-    expect(basket).toEqual(expectedResponse)
+    expect(basket).toEqual(expectedResult)
   })
 
   it('Entered SKU not found', () => {
@@ -121,18 +134,18 @@ describe('Testing removeItem', () => {
     const basket = new Basket()
     basket.addItem('BGLO')
     // Execution
-    const response = basket.removeItem('WRONG')
+    const result = basket.removeItem('WRONG')
     // Check
-    expect(response).toBe('Chosen item not found')
+    expect(result).toBe('Chosen item not found')
   })
 
   it('No SKU entered', () => {
     // Setup
     const basket = new Basket()
     // Execution
-    const response = basket.removeItem()
+    const result = basket.removeItem()
     // Check
-    expect(response).toBe('No SKU entered')
+    expect(result).toBe('No SKU entered')
   })
 })
 
@@ -141,19 +154,19 @@ describe('Testing checkPrice', () => {
     // Setup
     const basket = new Basket()
     // Execution
-    const expectedResponse = '0.99'
-    const response = basket.checkPrice('COF')
+    const expectedResult = '0.99'
+    const result = basket.checkPrice('COF')
     // Check
-    expect(response).toBe(expectedResponse)
+    expect(result).toBe(expectedResult)
   })
 
   it('SKU is not correct or no SKU is given', () => {
     // Setup
     const basket = new Basket()
     // Execution
-    const response = basket.checkPrice()
+    const result = basket.checkPrice()
     // Check
-    expect(response).toBe('Incorrect SKU. Item not found')
+    expect(result).toBe('Incorrect SKU. Item not found')
   })
 })
 
@@ -169,11 +182,11 @@ describe('Testing addMultipleItems', () => {
       quantity: 3
     }
     // Execution
-    const expectedResponse = new Basket()
-    expectedResponse.basket.push(testItem)
-    const response = basket.addMultipleItems('BGLO', 3)
+    const expectedResult = new Basket()
+    expectedResult.basket.push(testItem)
+    const result = basket.addMultipleItems('BGLO', 3)
     // Check
-    expect(response).toEqual(expectedResponse.basket)
+    expect(result).toEqual(expectedResult.basket)
   })
 
   it('Item already in basket', () => {
@@ -188,20 +201,20 @@ describe('Testing addMultipleItems', () => {
       quantity: 4
     }
     // Execution
-    const expectedResponse = new Basket()
-    expectedResponse.basket.push(testItem)
-    const response = basket.addMultipleItems('BGLO', 3)
+    const expectedResult = new Basket()
+    expectedResult.basket.push(testItem)
+    const result = basket.addMultipleItems('BGLO', 3)
     // Check
-    expect(response).toEqual(expectedResponse.basket)
+    expect(result).toEqual(expectedResult.basket)
   })
 
   it('SKU is not correct or no SKU is given or quantity not given', () => {
     // Setup
     const basket = new Basket()
     // Execution
-    const response = basket.addMultipleItems()
+    const result = basket.addMultipleItems()
     // Check
-    expect(response).toBe('Incorrect SKU. Item not found')
+    expect(result).toBe('Item not found or quantity not specified.')
   })
 
   it('If item will take basket above size, tell user what max they can add is', () => {
@@ -238,9 +251,31 @@ describe('Testing totalItems', () => {
     // Execution
     basket.basket.push(testItem1)
     basket.basket.push(testItem2)
-    const response = basket.totalItems()
+    const result = basket.totalItems()
     // Check
-    expect(response).toBe(7)
+    expect(result).toBe(7)
+  })
+})
+
+describe('Testing showTotal()', () => {
+  it('Shows total price of items in basket', () => {
+    // Setup
+    const basket = new Basket()
+    basket.addItem('BGLO')
+    basket.addMultipleItems('COF', 3)
+    // Execution
+    const result = basket.showTotal()
+    // Check
+    expect(result).toBe(3.46)
+  })
+
+  it('Returns an error if basket is empty', () => {
+    // Setup
+    const basket = new Basket()
+    // Execution
+    const result = basket.showTotal()
+    // Check
+    expect(result).toBe('Basket is currently empty')
   })
 })
 
