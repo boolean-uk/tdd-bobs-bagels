@@ -290,7 +290,6 @@ describe('Testing showTotal()', () => {
     basket2.addMultipleItems('BGLP', 16)
     basket3.addItem('COF')
     basket3.addItem('BGLP')
-    console.log('basket3', basket3)
     // Execution
     const result1 = basket1.showTotal()
     const result2 = basket2.showTotal()
@@ -313,6 +312,38 @@ describe('Testing showTotal()', () => {
     // Check
     expect(result).toBe('10.43')
   })
+
+  describe('Testing printReceipt', () => {
+    it('prints receipt if basket is not empty - 1 item', () => {
+      // Setup
+      const basket = new Basket()
+      basket.addItem('BGLO')
+      // Execution
+      const result = basket.printReceipt()
+      // Check
+      expect(result).toBe(true)
+    })
+
+    it('prints receipt if basket is not empty - multiple items', () => {
+      // Setup
+      const basket = new Basket()
+      basket.addItem('BGLO')
+      basket.addMultipleItems('BGLP', 4)
+      // Execution
+      const result = basket.printReceipt()
+      // Check
+      expect(result).toBe(true)
+    })
+
+    it('gives an error if basket is empty', () => {
+      // Setup
+      const basket = new Basket()
+      // Execution
+      const result = basket.printReceipt()
+      // Check
+      expect(result).toBe('Basket is empty, no receipt printed')
+    })
+  })
 })
 
 // eslint-disable-next-line prettier/prettier
@@ -320,9 +351,7 @@ describe('Testing showTotal()', () => {
 describe('', () => {
   it('', () => {
     // Setup
-
     // Execution
-
     // Check
   })
 })
