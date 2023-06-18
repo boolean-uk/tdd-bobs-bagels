@@ -1,7 +1,7 @@
 const BasketList = require('../src/basket.js')
 
 describe('basketList', () => {
-  it('Add a new item1', () => {
+  it('Should add a new item into the basket', () => {
     const input = {
       sku: 'BGLO',
       price: '0.49',
@@ -9,44 +9,67 @@ describe('basketList', () => {
       variant: 'Onion'
     }
     const basket = new BasketList()
-    const result = basket.addToBasket(input)
+    basket.addToBasket(input)
+    const result = basket.basket.includes(input)
     expect(result).toEqual(true)
   })
-  it('Add same type', () => {
-    const input1 = {
-      sku: 'BGLO',
-      price: '0.49',
-      name: 'Bagel',
-      variant: 'Onion'
-    }
-    const input2 = {
+  it('Should be able to add two of the same type', () => {
+    const onionBagel = {
       sku: 'BGLO',
       price: '0.49',
       name: 'Bagel',
       variant: 'Onion'
     }
     const basket = new BasketList()
-    const result = basket.compareItems(basket)
-    expect(result).toEqual(true)
+    basket.addToBasket(onionBagel)
+    basket.addToBasket(onionBagel)
+    // I expect that there are two bagel of the same type in the basket list
+    const result = basket.basket.filter((x) => {
+      return x.sku === onionBagel.sku
+    })
+    expect(result.length).toEqual(2)
   })
-  it('Remove item', () => {
+  it('Should remove an item from the basket', () => {
     const basket = new BasketList()
-    basket.addToBasket({
+    const bagel1 = {
       sku: 'BGLO',
       price: '0.49',
       name: 'Bagel',
       variant: 'Onion'
-    })
-    basket.addToBasket({
-      sku: 'BGLO',
+    }
+    basket.addToBasket(bagel1)
+    const bagel2 = {
+      sku: 'BGLE',
       price: '0.49',
       name: 'Bagel',
-      variant: 'Onion'
+      variant: 'Everything'
+    }
+    basket.addToBasket(bagel2)
+    basket.RemoveFromBasket(bagel2)
+    const result = basket.basket.filter((x) => {
+      return x.sku === bagel2.sku
     })
-    const result = basket.RemoveFromBasket(basket)
-    expect(result).toEqual(true)
+    expect(result.length).toEqual(0)
   })
-  it('Full cart', () => {
+  it('Should warn when an item is not in the basket', () => {
+    const basket = new BasketList()
+    const bagel1 = {
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion'
+    }
+    basket.addToBasket(bagel1)
+    const bagel2 = {
+      sku: 'BGLE',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Everything'
+    }
+    basket.RemoveFromBasket(bagel2)
+    expect(basket.itemCheck(bagel2)).toEqual(false)
+  })
+  it('Should tell me if the basket is full', () => {
     const basket = new BasketList()
     basket.addToBasket({
       sku: 'BGLO',
@@ -59,6 +82,12 @@ describe('basketList', () => {
       price: '0.49',
       name: 'Bagel',
       variant: 'Everything'
+    })
+    basket.addToBasket({
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion'
     })
     basket.addToBasket({
       sku: 'BGLO',
@@ -86,7 +115,7 @@ describe('basketList', () => {
     const results = basket.itemCheck({ sku: 'DEF' })
     expect(results).toEqual(true)
   })
-  it('Price of items', () => {
+  it('Should return the price of a given item', () => {
     const basket = new BasketList()
     const item = {
       sku: 'DEF',
@@ -95,7 +124,23 @@ describe('basketList', () => {
       variant: ''
     }
 
-    const priceBeforeAdding = basket.itemPrice(item)
-    expect(priceBeforeAdding).toEqual(true)
+    const price = basket.itemPrice(item)
+    expect(price).toEqual(item.price)
+  })
+  it('Should return the total price of the basket', () => {
+    const basket = new BasketList()
+    const item = {
+      sku: 'DEF',
+      price: '0.99',
+      name: 'Bagel',
+      variant: ''
+    }
+    basket.addToBasket(item)
+    const total = basket.calculateSum()
+    expect(total).toEqual(0.99)
+  })
+  it('Should be possible to create a larger basket', () => {
+    const basket = new BasketList(5)
+    expect(basket.maxcapacity).toEqual(5)
   })
 })

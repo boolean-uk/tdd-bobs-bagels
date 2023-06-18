@@ -7,62 +7,58 @@ class BasketList {
   }
 
   addToBasket(item) {
-    this.basket.push(item)
-    if (this.basket.includes(item)) {
-      return true
+    if (!this.isBasketFull()) {
+      this.basket.push(item)
     } else {
-      return false
+      console.log('Basket is full!')
     }
   }
 
   compareItems(item) {
     if (this.basket.sku === item.sku) {
-      console.log('bagelllll', item.sku) // getting back undefined
-      return true
+      console.log('bagelllll', item.sku)
     }
   }
 
-  RemoveFromBasket(itemSku) {
-    const filteredBasket = this.basket.filter(
-      (basketItems) => basketItems.sku !== itemSku.sku
-    )
-    this.basket = filteredBasket
-    filteredBasket.forEach((basketItems) => {
-      if (basketItems.sku === itemSku.sku) {
-        return false
-      }
-    })
-    return true
+  RemoveFromBasket(item) {
+    if (this.itemCheck(item)) {
+      const filteredBasket = this.basket.filter(
+        (basketItems) => basketItems.sku !== item.sku
+      )
+      this.basket = filteredBasket
+    } else {
+      console.log('Item is not in the basket!')
+    }
   }
 
   isBasketFull() {
-    if (this.basket.length <= this.maxcapacity) {
+    if (this.basket.length >= this.maxcapacity) {
       return true
     } else {
       return false
     }
   }
 
-  itemCheck(itemSku) {
-    for (const item of this.basket) {
-      if (item.sku === itemSku.sku) {
+  itemCheck(item) {
+    for (const basketItem of this.basket) {
+      if (basketItem.sku === item.sku) {
         return true
       }
     }
     return false
   }
 
-  itemPrice(itemPrice) {
+  itemPrice(item) {
+    return item.price
+  }
+
+  calculateSum() {
+    let total = 0
     for (const item of this.basket) {
-      if (item.price === itemPrice.price) {
-        return false
-      }
+      total += Number(item.price)
     }
-    console.log('bagel', itemPrice.price)
-    return true
+    return total
   }
 }
-
-const basket = new BasketList()
 
 module.exports = BasketList
