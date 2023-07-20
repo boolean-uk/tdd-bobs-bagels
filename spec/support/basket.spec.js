@@ -3,7 +3,7 @@ const { Basket } = require('../../src/basket.js')
 describe('basket tests', () => {
   let basket
   beforeEach(() => {
-    basket = new Basket()
+    basket = new Basket(10)
   })
 
   it('bagel added to array', () => {
@@ -28,5 +28,13 @@ describe('basket tests', () => {
   })
   it('bagel not existing', () => {
     expect(basket.remove('NONEXISTING')).toEqual('item doesnt exist in basket')
+  })
+  it('capacity changed', () => {
+    expect(basket.changeCapacity(15)).toEqual(basket.capacity)
+  })
+  it('capacity changed', () => {
+    basket.add('BGLP')
+    basket.add('BGLP')
+    expect(basket.changeCapacity(1)).toEqual('cannot change capacity')
   })
 })
