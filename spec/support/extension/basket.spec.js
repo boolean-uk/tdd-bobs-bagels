@@ -1,22 +1,24 @@
 const Basket = require("../../../src/extension/Basket");
-const Product = require("../../../src/extension/Product");
+const Inventory = require("../../../src/extension/Inventory");
 
 describe("basket class tests", () => {
-    it("should return total price with discounts", () => {
-        const onionBagel = new Product("BGLO");
-        const plainBagel = new Product("BGLP");
-        const everythingBagel = new Product("BGLE");
-        const coffee = new Product("COFB");
-        
-        const basket = new Basket();
-    
-        basket.add(onionBagel, 2);
-        basket.add(plainBagel, 12);
-        basket.add(everythingBagel, 6);
-        basket.add(coffee, 3);
+  it("should return total price with discounts", () => {
+    const inventory = new Inventory();
 
-        const result = basket.total();
-    
-        expect(result).toEqual(10.43);
-      });
-})
+    const onionBagel = inventory.getProduct("BGLO");
+    const plainBagel = inventory.getProduct("BGLP");
+    const everythingBagel = inventory.getProduct("BGLE");
+    const coffee = inventory.getProduct("COFB");
+
+    const basket = new Basket(10);
+
+    basket.add(onionBagel, 2);
+    basket.add(plainBagel, 12);
+    basket.add(everythingBagel, 6);
+    basket.add(coffee, 3);
+
+    const result = basket.total();
+
+    expect(result).toEqual(10.43);
+  });
+});
