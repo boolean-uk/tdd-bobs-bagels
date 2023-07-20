@@ -4,14 +4,14 @@ describe('Basket', () => {
     let basket;
     const product1 = {
         sku: 'BGLO',
-        price: 0.49,
+        price: '0.49',
         name: 'Bagel',
         variant: 'Onion'
     }
 
     const product2 = {
         sku: 'BGLP',
-        price: 0.39,
+        price: '0.39',
         name: 'Bagel',
         variant: 'Plain'
     }
@@ -51,6 +51,35 @@ describe('Basket', () => {
         expect(() => {
             basket.addItem(product2, 1)
         }).toThrowError("Basket is full!!!")
+    })
+
+    it('should not add an item if the quantity is negative', () => {
+        // Verify
+        expect(() => {
+            basket.addItem(product1, -1)
+        }).toThrowError("Can't add negative amount of products to basket")
+    })
+
+    it('should not add an item if the quantity is greater than the capacity', () => {
+        // Verify
+        expect(() => {
+            basket.addItem(product1, 11)
+        }).toThrowError("Can't add as more than 10 items to basket")
+    })
+
+    it('should not add an item if it is not in the inventory', () => {
+        // Setup
+        const product3 = {
+            sku: 'OOOO',
+            price: '0.99',
+            name: 'Onion',
+            variant: 'Onion'
+        }
+
+        // Verify
+        expect(() => {
+            basket.addItem(product3, 1)
+        }).toThrowError("Can't add an item that is not in the inventory")
     })
 
     it('should return true if the basket is full', () => {

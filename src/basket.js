@@ -1,3 +1,8 @@
+// read inventory from file inventory.json
+
+let data = require('../inventory.json')
+let inventory = data.inventory;
+
 class Basket {
     constructor(capacity) {
         this.capacity = capacity
@@ -25,6 +30,9 @@ class Basket {
     }
 
     addItem(product, quantity) {
+        if (inventory.findIndex(item => item.sku === product.sku) === -1) {
+            throw new Error("Can't add an item that is not in the inventory")
+        }
         if (quantity < 0) {
             throw new Error("Can't add negative amount of products to basket")
         }
@@ -32,7 +40,7 @@ class Basket {
             throw new Error("Basket is full!!!")
         }
         if (this._getLeftCapacity() - quantity < 0) {
-            throw new Error(`Can't add as more than ${this._getLeftCapacity} items to basket`)
+            throw new Error(`Can't add as more than ${this._getLeftCapacity()} items to basket`)
         }
 
         for (let i = 0; i < quantity; i++) {
