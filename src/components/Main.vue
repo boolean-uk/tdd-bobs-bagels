@@ -1,14 +1,17 @@
 <script>
 import Basket from "@/components/Basket.vue"
+import OrderModal from "@/components/modals/OrderModal.vue";
+import RemoveModal from "@/components/modals/RemoveModal.vue";
+import BasketModal from "@/components/modals/BasketModal.vue";
+import SettingsModal from "@/components/modals/SettingsModal.vue";
 
 export default {
-  components: { Basket },
+  components: { SettingsModal, BasketModal, RemoveModal, OrderModal, Basket },
   data() {
     return {
-      bagelData: null,
-      coffeeData: null,
-      fillingData: null,
-      basketItems: []
+      inventoryData: null,
+      basketItems: [],
+      basketCapacity: 3
     };
   },
   created() {
@@ -20,25 +23,32 @@ export default {
         const response = await fetch("inventory-modified.json");
         const data = await response.json();
 
-        this.bagelData = data.bagel;
-        this.coffeeData = data.coffee;
-        this.fillingData = data.filling;
+        this.inventoryData = data.inventory;
       } catch (error) {
         console.error(error);
       }
     },
-    addToBasket() {
-      this.basketItems.push(this.bagelData[0]);
+    handleOrderData(payload) {
+      this.basketItems.push(payload)
+    },
+    handleRemoveData(payload) {
+      this.basketItems.splice(payload, 1);
+    },
+    handleSizeSelected(payload) {
+      this.basketCapacity = payload;
     }
   }
 };
 </script>
 
 <template>
-<!--  <button @click="addToBasket(item)" class="btn">Add to Basket</button>-->
-<!--  <Basket :items="basketItems" />-->
-  <div class="flex">
-    <div class="flex-auto">
+  <OrderModal :items="inventoryData" :basketCapacity="basketCapacity" :basketItems="basketItems.length" @orderData="handleOrderData"></OrderModal>
+  <RemoveModal :items="basketItems" @removeData="handleRemoveData"></RemoveModal>
+  <BasketModal :items="basketItems"></BasketModal>
+  <SettingsModal :basketItems="basketItems.length" @sizeSelected="handleSizeSelected"></SettingsModal>
+  <button class="btn m-5 shadow-xl" onclick="settings_modal.showModal()">Basket Settings</button>
+  <div class="flex justify-between">
+    <div class="">
       <div class="card card-compact w-96 h-96 bg-base-100 shadow-xl">
         <figure><img src="bagel.png" alt="Order" /></figure>
         <div class="card-body">
@@ -50,73 +60,31 @@ export default {
         </div>
       </div>
     </div>
-    <div class="flex-auto">
+    <div class="">
       <div class="card card-compact w-96 h-96 bg-base-100 shadow-xl">
         <figure><img src="coffee.png" alt="Remove" /></figure>
         <div class="card-body">
           <h2 class="card-title">Remove a product</h2>
           <p>Seconds guesses? Get rid of it.</p>
           <div class="card-actions justify-end">
-            <button class="btn">Remove</button>
+            <button class="btn" onclick="remove_modal.showModal()">Remove</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="flex-auto">
+    <div class="">
       <div class="card card-compact w-96 h-96 bg-base-100 shadow-xl">
         <figure><img src="basket.png" alt="basket" /></figure>
         <div class="card-body">
           <h2 class="card-title">Check your basket</h2>
           <p>Be careful not to spend too much!</p>
           <div class="card-actions justify-end">
-            <button class="btn">Basket</button>
+            <button class="btn" onclick="basket_modal.showModal()">Basket</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <dialog id="order_modal" class="modal">
-    <form method="dialog" class="modal-box">
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-      <h3 class="font-bold text-2xl">Choose your order</h3>
-      <div class="overflow-x-auto">
-        <table class="table">
-          <!-- head -->
-          <thead>
-          <tr>
-            <th></th>
-            <th>SKU</th>
-            <th>Price</th>
-            <th>Variant</th>
-          </tr>
-          </thead>
-          <tbody>
-          <!-- row 1 -->
-          <tr>
-            <th>1</th>
-            <td>Cy Ganderton</td>
-            <td>Quality Control Specialist</td>
-            <td>Blue</td>
-          </tr>
-          <!-- row 2 -->
-          <tr>
-            <th>2</th>
-            <td>Hart Hagerty</td>
-            <td>Desktop Support Technician</td>
-            <td>Purple</td>
-          </tr>
-          <!-- row 3 -->
-          <tr>
-            <th>3</th>
-            <td>Brice Swyre</td>
-            <td>Tax Accountant</td>
-            <td>Red</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </form>
-  </dialog>
 </template>
 
 <style scoped>
