@@ -66,7 +66,20 @@ class Basket {
   totalCost() {
     let total = 0
     for (const position of this.items) {
-      total += position.item.price * position.quantity
+      if (
+        (position.sku === 'BGLO' || position.sku === 'BGLE') &&
+        position.quantity >= 6
+      ) {
+        const quantityOfSpecialPrice = position.quantity / 6
+        const rest = position.quantity % 6
+        total += quantityOfSpecialPrice * 2.49
+        total += rest * position.item.price
+      } else if (position.sku === 'BGLP' && position.quantity >= 12) {
+        const quantityOfSpecialPrice = position.quantity / 12
+        const rest = position.quantity % 12
+        total += quantityOfSpecialPrice * 3.99
+        total += rest * position.item.price
+      } else total += position.item.price * position.quantity
     }
     return total.toFixed(2)
   }
