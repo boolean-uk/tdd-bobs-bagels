@@ -12,7 +12,7 @@ class Basket {
   }
 
   add(bagel, quantity) {
-    if (this.basketQuantity + quantity <= this.basketCapacity) {
+    if (this.basketQuantity + quantity <= this.basketCapacity && quantity > 0) {
       const findResult = this.find(bagel);
 
       //if bagel is already in the basket

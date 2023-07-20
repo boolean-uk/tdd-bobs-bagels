@@ -52,11 +52,11 @@ describe("basket class tests", () => {
 
     const result = basket.add(newBagel, -4);
 
-    const resultQuantity = basket.bagels.filter(
+    const resultLength = basket.bagels.filter(
       (item) => item.bagel.name === "Plain"
-    )[0].quantity;
+    ).length;
 
     expect(result).toEqual(false);
-    expect(resultQuantity).toEqual(0);
+    expect(resultLength).toEqual(0);
   });
 });
