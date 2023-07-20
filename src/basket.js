@@ -15,6 +15,9 @@ class Basket {
   }
 
   removeBagel(bagel) {
+    if (this.products.findIndex((item) => item === bagel) === -1) {
+      throw new Error('Item is not in basket')
+    }
     this.products = this.products.filter((prod) => prod !== bagel)
   }
 
