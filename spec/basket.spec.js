@@ -25,8 +25,11 @@ describe('constructor', () => {
   
 
 describe('addBagel', () => {
-    const basket = new Basket(3)
-    const bagel = new Bagel("test", 1)
+    let basket, bagel
+    beforeEach(() => {
+        basket = new Basket(3)
+        bagel = new Bagel("test", 1)
+    })
 
     it('should add bagel', function () {
         expect(() => basket.addBagel(bagel)).not.toThrow()
@@ -37,11 +40,11 @@ describe('addBagel', () => {
     it('should add two bagels', function () {
         expect(() => basket.addBagel(bagel, 2)).not.toThrow()
         expect([...basket.bagels.entries()].length).toEqual(1)
-        expect(basket.bagels.get(bagel)).toEqual(3)
+        expect(basket.bagels.get(bagel)).toEqual(2)
     })
 
     it('should not add bagel if basket is full', function () {
-        expect(() => basket.addBagel(bagel)).toThrow()
+        expect(() => basket.addBagel(bagel, 4)).toThrow()
     })
   })
   
