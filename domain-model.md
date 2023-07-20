@@ -52,11 +52,27 @@ So that I can prepare to pay
 When I go to checkout I'd like to know the total sum of the bagels in my basket
 ```
 
+### Extension 1
+```
+As a Bob's Bagels manager,
+So that I can control using SKU what products are being offered and purchesed
+I'd like shopping operations be done using SKU
+
+As a member of the public,
+So that I can buy cheper in bulk
+I'd like Bob's Bagels to introduce discounts for bagels like 6 for 2.49, 12 for 3.99, Coffee & Bagel for 1.25
+
+As a member of the public,
+So I know how much I saved
+I'd like to know the total discounted price
+```
+
 ### Extension 2
+```
 As a Bob's Bagels manager,
 So that I can meet legal requirement to run my business
 I'd like to print for my customers receipts with the store's name, order date and time, and price for each item and in total, ending with a thank-you
-
+```
 ## Domain model
 
 
