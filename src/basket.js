@@ -1,6 +1,10 @@
 class Basket {
   constructor(capacity) {
-    this.capacity = capacity
+    if (capacity <= 0) {
+      this.capacity = 5
+    } else {
+      this.capacity = capacity
+    }
     this.products = []
   }
 
@@ -14,7 +18,11 @@ class Basket {
     this.products = this.products.filter((prod) => prod !== bagel)
   }
 
-  extendBasket(newCapacity) {
+  changeCapacity(newCapacity) {
+    if (newCapacity < this.products.length)
+      throw new Error('You capacity cannot be smaller than products amount')
+    if (newCapacity <= 0)
+      throw new Error('Your capacity cannot be smaller or equal 0')
     this.capacity = newCapacity
   }
 }
