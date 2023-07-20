@@ -83,7 +83,7 @@ class Basket {
     this.capacity = capacity
   }
 
-  generateReceipt() {
+  _generateItemCount() {
     const itemsCount = {}
     this.contents.forEach((item) => {
       if (itemsCount[item.sku]) {
@@ -92,24 +92,37 @@ class Basket {
         itemsCount[item.sku] = 1
       }
     })
-    let receipt = "    ~~~ Bob's Bagels ~~~" + os.EOL.repeat(2)
+    return itemsCount
+  }
+
+  _generateDate() {
     const date = new Date()
     const timezoneOffsetHours = date.getTimezoneOffset() / 60
     date.setHours(date.getHours() - timezoneOffsetHours)
+    return date.toISOString().replace('T', ' ').slice(0, -5)
+  }
 
-    const dateStr = date.toISOString().replace('T', ' ').slice(0, -5)
-    receipt += '    ' + dateStr + os.EOL.repeat(2)
+  _generateItemReceipt(sku, quantity) {
+    const product = inventory.find((item) => item.sku === sku)
+    const price = parseFloat(product.price)
+    const total = parseFloat((quantity * price).toFixed(2))
+    return `${product.variant} ${
+      product.name
+    }        ${quantity}   ${POUND_SIGN}${total.toFixed(2)}${os.EOL}`
+  }
+
+  generateReceipt() {
+    const itemsCount = this._generateItemCount()
+
+    let receipt = "    ~~~ Bob's Bagels ~~~" + os.EOL.repeat(2)
+    receipt += '    ' + this._generateDate() + os.EOL.repeat(2)
     receipt += '-'.repeat(28) + os.EOL.repeat(2)
 
     Object.keys(itemsCount).forEach((sku) => {
-      const product = inventory.find((item) => item.sku === sku)
       const quantity = itemsCount[sku]
-      const price = parseFloat(product.price)
-      const total = parseFloat((quantity * price).toFixed(2))
-      receipt += `${product.variant} ${
-        product.name
-      }        ${quantity}   ${POUND_SIGN}${total.toFixed(2)}${os.EOL}`
+      receipt += this._generateItemReceipt(sku, quantity)
     })
+
     receipt += os.EOL + '-'.repeat(28) + os.EOL
     receipt +=
       `Total                  ${POUND_SIGN}${this.getTotalPrice()}` +
