@@ -1,4 +1,11 @@
-const { clearBasket, add, remove, changeCapacity } = require('../src/basket')
+const {
+  clearBasket,
+  add,
+  remove,
+  changeCapacity,
+  total,
+  checkBagelPrice
+} = require('../src/basket')
 
 afterEach(() => {
   clearBasket()
@@ -72,5 +79,27 @@ describe('Basket', () => {
     const result = add('BGLO', 11)
 
     expect(result).toEqual(true)
+  })
+
+  it('testing price checking', () => {
+    const result = checkBagelPrice('BGLO')
+
+    expect(result).toEqual('0.49')
+  })
+
+  it('checking price of not existing bagel should return flase', () => {
+    const result = checkBagelPrice('BddGLO')
+
+    expect(result).toEqual(0)
+  })
+
+  it('cost of bagels in basket should return ', () => {
+    add('BGLO', 5)
+    add('BGLP', 3)
+    add('COF', 1)
+    add('BGSS', 1)
+    const result = total()
+
+    expect(result).toEqual(9.6)
   })
 })

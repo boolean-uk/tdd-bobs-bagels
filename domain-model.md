@@ -49,4 +49,4 @@ When I go to checkout I'd like to know the total sum of the bagels in my basket
 |        |                         | totalCost()                 | always                                                                                 | total cost of bagels in basket |
 |        |                         |                             |                                                                                        |                                |
 |        |                         | checkBagelPrice(bagelSKU)   | if the bagel of this sku exists                                                        | bagel cost                     |
-|        |                         |                             | if the bagel doesn't exist                                                             | false                          |
+|        |                         |                             | if the bagel doesn't exist                                                             | 0                              |
