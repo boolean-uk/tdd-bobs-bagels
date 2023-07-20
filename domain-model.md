@@ -52,6 +52,11 @@ So that I can prepare to pay
 When I go to checkout I'd like to know the total sum of the bagels in my basket
 ```
 
+### Extension 2
+As a Bob's Bagels manager,
+So that I can meet legal requirement to run my business
+I'd like to print for my customers receipts with the store's name, order date and time, and price for each item and in total, ending with a thank-you
+
 ## Domain model
 
 
@@ -66,8 +71,9 @@ When I go to checkout I'd like to know the total sum of the bagels in my basket
 |        |           |                       | If it is possible to remove an item from the basket.         | true                                    |
 |        |           |                       | If it is not possible to remove an item from the basket.     | false                                   |
 |        |           | checkIfBasketIsFull() | Throw exception is basket is full                            | void                                    |
-|        |           | isInBasket(item)      | Called when customer tries to remove a bagel from his basket. |                                        |
+|        |           | isInBasket(item)      | Called when customer tries to remove a bagel from his basket. |                                         |
 |        |           |                       | If item is in the basket.                                    | true                                    |
 |        |           |                       | If item is not in the basket.                                | false                                   |
-|        |           | getTotalPrice()       | If customer wants to know how much he'll pay. (including promos)                | The price of items in the basket        |
+|        |           | getTotalPrice()       | If customer wants to know how much he'll pay.                | The price of items in the basket        |
 |        |           | checkPrice(item)      | If customer wants to know the cost of a specific item.       | The price of a bagel of the given type. |
+|        |           | placeOrder()          | If customer wants to place order and receive printed receipt | String with receipt                     |
