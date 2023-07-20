@@ -162,23 +162,25 @@ describe('Basket', () => {
     add('BGLP', 12)
     add('BGLE', 6)
     add('COF', 3)
+    const expected = []
+    expected.push("    ~~~ Bob's Bagels ~~~\n\n")
+    let now = Date.now()
+    now = new Date(now)
+    expected.push(now.toLocaleDateString().padStart(19) + '\n\n')
+    expected.push('-'.repeat(28) + '\n')
 
-    const expected = `    ~~~ Bob's Bagels ~~~
+    expected.push('Onion Bagel       2    $0.98\n')
+    expected.push('Plain Bagel       12   $4.68\n')
+    expected.push('Everything Bagel  6    $2.94\n')
+    expected.push('Coffee            3    $2.97\n')
 
-              7/20/2023
-
-    ----------------------------
-    Onion Bagel       2    $0.98
-    Plain Bagel       12   $4.68
-    Everything Bagel  6    $2.94
-    Coffee            3    $2.97
-
-    ----------------------------
-    Total                 $11.57
-            Thank you
-          for your order!`
+    expected.push('\n' + '-'.repeat(28) + '\n')
+    expected.push('Total                 $11.57\n')
+    expected.push('        Thank you\n')
+    expected.push('      for your order!')
 
     const result = getReceipt()
-    expect(result).toEqual(expected)
+
+    expect(result).toEqual(expected.join(''))
   })
 })
