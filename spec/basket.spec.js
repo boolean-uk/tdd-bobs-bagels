@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-const { addItem, removeItem, isFull, containsItem, setCapacity } = require("../src/basket")
+const { addItem, removeItem, isFull, containsItem, setCapacity, getItemPrice } = require("../src/basket")
 
 describe('Simple basket operations', () => {
     
@@ -112,5 +112,27 @@ describe('Conditional basket operations', () => {
         setCapacity(basket, 5)
 
         expect(() => addItem(basket, inventory[3])).not.toThrow('Basket is full')
+    })
+})
+
+describe('Other item and basket operations', () => {
+    let basket
+    let inventory
+
+    beforeAll(() => {
+        let inventoryFile = fs.readFileSync('inventory.json')
+        inventory = JSON.parse(inventoryFile)["inventory"]
+    })
+
+    beforeEach(() => {
+        basket = {
+            items: [],
+            capacity: 3
+        }
+    })
+
+    it('should return price of the item', () => {
+        expect(getItemPrice(inventory[0])).toEqual(0.49)
+        expect(getItemPrice(inventory[1])).toEqual(0.39)
     })
 })
