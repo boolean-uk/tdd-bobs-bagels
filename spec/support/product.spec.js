@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 // const { Basket } = require("../../Basket")
-const { Product } = require("../../Product")
+const { Product } = require("../../src/Product")
 
 
 describe('Testing class product', () => {
