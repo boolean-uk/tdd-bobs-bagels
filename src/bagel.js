@@ -8,6 +8,10 @@ class Bagel {
   getPrice() {
     return this.price;
   }
+
+  getSku() {
+    return this.sku;
+  }
 }
 
 module.exports = Bagel;

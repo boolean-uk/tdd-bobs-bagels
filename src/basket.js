@@ -1,25 +1,25 @@
 class Basket {
   constructor(capacity) {
     this.capacity = capacity
-    this.products =[]
+    this.products = []
   }
 
   isFull() {
     return this.products.length === this.capacity
   }
 
-  add(bagel) {
+  add(product) {
     if(!this.isFull())
-    this.products.push(bagel)
+    this.products.push(product)
   }
 
   doesBagelExist(bagel) {
-    if(this.products.includes(bagel)) return true
-    return false
+    const Bagel = require('../src/bagel.js')
+    return bagel instanceof Bagel && this.products.includes(bagel);
   }
 
-  remove(bagel) {
-    if(this.doesBagelExist(bagel)) this.products.splice(bagel, 1)
+  remove(product) {
+    if(this.doesBagelExist(product)) this.products.splice(product, 1)
   }
 
   totalCost() {
@@ -30,73 +30,69 @@ class Basket {
   return cost
 }
 
-calculateDiscounts() {
-  let quantities = this.getProductQuantities();
-  let discounts = {};
-
-  let discountedProducts = this.products.reduce((acc, product) => {
-      let sku = product.sku;
-      if (!acc[sku]) {
-          acc[sku] = [];
-      }
-      acc[sku].push(product);
+  calculateDiscounts() {
+    const quantities = this.getProductQuantities();
+    const discounts = new Map();
+    const discountedBagels = this.getBagels().reduce((acc, bagel) => {
+      acc[bagel.getSku()] = acc[bagel.getSku()] || [];
+      acc[bagel.getSku()].push(bagel);
       return acc;
-  }, {});
-
-  for (let sku in quantities) {
-      let quantity = quantities[sku];
-      let discounted;
-      switch(sku) {
-          case "BGLO":
-          case "BGLE": 
-              discounted = Math.floor(quantity / 6);
-              if(discounted > 0) {
-                discounts[sku] = (discounted * 6 * 0.49) - (discounted * 2.49);
-                discountedProducts[sku].splice(0, discounted * 6);
-              }
-              break;
-          case "BGLP": 
-              discounted = Math.floor(quantity / 12);
-              if(discounted > 0) {
-                discounts[sku] = (discounted * 12 * 0.39) - (discounted * 3.99);
-                discountedProducts[sku].splice(0, discounted * 12);
-              }
-              break;
-      }
-  }
-
-  if(quantities["COFB"]) {
-    let remainingProducts = [].concat(...Object.values(discountedProducts)).sort((a, b) => a.getPrice() - b.getPrice());
-    let coffeePrice = this.products.find(p => p.sku === "COFB").getPrice();
-    let coffeeQuantity = quantities["COFB"];
-    let discount = 0;
-          
-    for(let i = 0; i < coffeeQuantity; i++) {
-        if(remainingProducts[i]) {
-          let productPrice = remainingProducts[i].getPrice();
-          discount += (coffeePrice + productPrice) - 1.25;
-        } else {
-          discount += coffeePrice;
+    }, {});
+    for (const [product, quantity] of quantities.entries()) {
+      switch (product.getSku()) {
+        case 'BGLO':
+        case 'BGLE': {
+          const discounted = Math.floor(quantity / 6);
+          discounts.set(product, discounted * 0.45);
+          if(!discountedBagels===undefined)
+          discountedBagels[product.getSku()].splice(0, discounted * 6);
+          break;
         }
+        case 'BGLP': {
+          const discounted = Math.floor(quantity / 12);
+          discounts.set(product, discounted * 0.69);
+          if(!discountedBagels===undefined)
+          discountedBagels[product.getSku()].splice(0, discounted * 12);
+          break;
+        }
+      }
     }
-    discounts["COFB"] = discount;
+    for (const [product, quantity] of quantities.entries()) {
+      if (product.getSku() === 'COFB') {
+        const bagels = Object.values(discountedBagels).flatMap((bagelList) => bagelList)
+          .sort((a, b) => a.getPrice() - b.getPrice());
+        //const bagels = Object.values(discountedBagels)
+
+        let discount = 0;
+        const coffeePrice = product.getPrice();
+        let coffeeQuantity = quantity;
+
+        for (const bagel of bagels) {
+          if (coffeeQuantity === 0) {
+            break;
+          }
+
+          const bagelPrice = bagel.getPrice();
+          discount += coffeePrice + bagelPrice - 1.25
+          coffeeQuantity--;
+        }
+
+        discounts.set(product, discount);
+      }
+    }
+
+    return discounts;
   }
 
-  return discounts;
-}
+  getProductQuantities() {
+    return this.products.reduce((acc, product) => {
+      acc.set(product, (acc.get(product) || 0) + 1);
+      return acc;
+    }, new Map());
+  }
 
-
-
-getProductQuantities() {
-  return this.products.reduce((quantities, product) => {
-    if (!quantities[product.sku]) {
-      quantities[product.sku] = 0;
-    }
-    quantities[product.sku]++;
-    return quantities;
-  }, {});
-}
-
-
+  getBagels() {
+    return this.products.filter((p) => p.name === 'Bagel');
+  }
 }
 module.exports = Basket
