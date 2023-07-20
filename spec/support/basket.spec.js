@@ -101,4 +101,9 @@ describe('Testing class basket', () => {
         basket.addProduct(product1)
         expect(basket.getPriceOfFillings()).toEqual(3 * 0.12)
     })
+    it('should return price of coffees without discount', () => {
+        basket3.addProduct(product1, 2)
+        basket3.addProduct(product2, 3)
+        expect(basket3.getPriceOfProductsWithoutDiscount()).toEqual(0.99)
+    })
 })

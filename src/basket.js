@@ -25,19 +25,23 @@ class Basket {
     }
 
     getPriceOfProductsWithoutDiscount = () => {
-        const numberOfBagelsWithoutDiscount = Object.entries(this.basketList)
-            .filter(([product, quantity]) => product.sku[0] === 'B')
-            .map(([product, quantity]) => quantity % 6 * this.inventory.getProductBySKU(product).getPrice())
+        const bagelsWithoutDiscount = Object.entries(this.basketList)
+            .filter(([product, quantity]) => product[0] === 'B')
+            .flatMap(([product, quantity]) => Array((quantity % 6)).fill(this.inventory.getProductBySKU(product).getPrice()))
             
-        
-        const numberOfCoffees = Object.entries(this.basketList)
-            .filter(([product, quantity]) => product.sku[0] === 'C')
-            .map(([product, quantity]) => quantity * this.inventory.getProductBySKU(product).getPrice())
-            
-        if (numberOfBagelsWithoutDiscount.length > numberOfCoffees) {
-            numberOfBagelsWithoutDiscount.slice(numberOfCoffees.length)
+        console.log(bagelsWithoutDiscount)
+        const coffees = Object.entries(this.basketList)
+            .filter(([product, quantity]) => product[0] === 'C')
+            .flatMap(([product, quantity]) => Array(quantity).fill(this.inventory.getProductBySKU(product).getPrice()))
+        console.log(coffees)   
+        if (bagelsWithoutDiscount.length > coffees) {
+            return bagelsWithoutDiscount
+                .slice(coffees.length)
+                .reduce((x,y) => x + y, 0)
         } else {
-            numberOfCoffees.slice(numberOfBagelsWithoutDiscount.length)
+            return coffees
+                .slice(bagelsWithoutDiscount.length)
+                .reduce((x,y) => x + y, 0)
         }
     }
 
