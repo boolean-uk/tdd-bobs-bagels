@@ -1,0 +1,78 @@
+{
+  "bagle": [
+    {
+      "sku": "BGLO",
+      "price": "0.49",
+      "variant": "Onion"
+    },
+    {
+      "sku": "BGLP",
+      "price": "0.39",
+      "variant": "Plain"
+    },
+    {
+      "sku": "BGLE",
+      "price": "0.49",
+      "variant": "Everything"
+    },
+    {
+      "sku": "BGLS",
+      "price": "0.49",
+      "variant": "Sesame"
+    }
+  ],
+  "coffee": [
+    {
+      "sku": "COFB",
+      "price": "0.99",
+      "variant": "Black"
+    },
+    {
+      "sku": "COFW",
+      "price": "1.19",
+      "variant": "White"
+    },
+    {
+      "sku": "COFC",
+      "price": "1.29",
+      "variant": "Capuccino"
+    },
+    {
+      "sku": "COFL",
+      "price": "1.29",
+      "variant": "Latte"
+    }
+  ],
+  "filling": [
+    {
+      "sku": "FILB",
+      "price": "0.12",
+      "variant": "Bacon"
+    },
+    {
+      "sku": "FILB",
+      "price": "0.12",
+      "variant": "Egg"
+    },
+    {
+      "sku": "FILB",
+      "price": "0.12",
+      "variant": "Cheese"
+    },
+    {
+      "sku": "FILB",
+      "price": "0.12",
+      "variant": "Cream Cheese"
+    },
+    {
+      "sku": "FILB",
+      "price": "0.12",
+      "variant": "Smoked Salmon"
+    },
+    {
+      "sku": "FILB",
+      "price": "0.12",
+      "variant": "Ham"
+    }
+  ]
+}

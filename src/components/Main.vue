@@ -2,7 +2,7 @@
 export default {
   data() {
     return {
-      inventoryData: []
+      inventoryData: null
     };
   },
   created() {
@@ -11,36 +11,35 @@ export default {
   methods: {
     async loadInventoryData() {
       try {
-        const data = await fetch('inventory.txt')
-        const text = await data.text();
-        const lines = text.split('\n')
-        this.inventoryData = lines.map((line) => {
-          const [code, name, price, variant] = line.split(':');
-          return {
-            code,
-            name,
-            price: parseFloat(price),
-            variant
-          };
-        });
+        const response = await fetch("inventory.json");
+        const data = await response.json();
+        console.log(data);
+
+        this.inventoryData = data.inventory;
       } catch (error) {
         console.error(error);
       }
     }
   }
-}
+};
 </script>
 
 <template>
-  <h1 class="text-5xl">BOB'S BAGELS<br></h1>
+  <h1 class="text-xl">BOB'S BAGELS<br></h1>
+  <button class="btn">CLICK ME</button>
   <div>
     <div v-if="inventoryData">
       <h2>Inventory Data:</h2>
       <p v-for="(item, index) in inventoryData" :key="index">
-        <strong>Code:</strong> {{ item.code }}<br />
+        <strong>SKU:</strong> {{ item.sku }}<br />
         <strong>Name:</strong> {{ item.name }}<br />
         <strong>Price:</strong> {{ item.price }}<br />
         <strong>Variant:</strong> {{ item.variant }}
+        <br />
+        <strong v-if="item.fillings">Fillings:</strong>
+        <ul v-if="item.fillings">
+          <li v-for="(filling, index) in item.fillings" :key="index">{{ filling }}</li>
+        </ul>
       </p>
     </div>
   </div>
