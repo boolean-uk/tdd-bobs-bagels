@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-const { addItem, removeItem, isFull, containsItem } = require("../src/basket")
+const { addItem, removeItem, isFull, containsItem, setCapacity } = require("../src/basket")
 
 describe('Simple basket operations', () => {
     
@@ -95,5 +95,22 @@ describe('Conditional basket operations', () => {
 
     it('should throw an error if trying to remove nonexisting item from the basket', () => {
         expect(() => removeItem(basket, inventory[0])).toThrow('Item does not exist in the basket')
+    })
+
+    it('should set basket capacity to 5', () => {
+        setCapacity(basket, 5)
+        expect(basket.capacity).toEqual(5)
+    })
+
+    it('should not throw error about full basket when adding item after changing basket capacity', () => {        
+        addItem(basket, inventory[0])
+        addItem(basket, inventory[1])
+        addItem(basket, inventory[2])
+        
+        expect(() => addItem(basket, inventory[3])).toThrow('Basket is full')
+
+        setCapacity(basket, 5)
+
+        expect(() => addItem(basket, inventory[3])).not.toThrow('Basket is full')
     })
 })
