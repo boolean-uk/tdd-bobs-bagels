@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 const bagelsInBasket = {}
-let capacity = 10
 let currentAmount = 0
+let capacity = 10
 const json = require('../inventory.json')
 const inventory = json.inventory
 
