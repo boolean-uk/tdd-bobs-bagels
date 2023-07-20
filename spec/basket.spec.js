@@ -25,9 +25,13 @@ describe('constructor', () => {
 
 describe('addBagel', () => {
   let basket, bagel
+
+  beforeAll(() => {
+    bagel = new Bagel('test', 1)
+  })
+
   beforeEach(() => {
     basket = new Basket(3)
-    bagel = new Bagel('test', 1)
   })
 
   it('should add bagel', function () {
@@ -44,5 +48,72 @@ describe('addBagel', () => {
 
   it('should not add bagel if basket is full', function () {
     expect(() => basket.addBagel(bagel, 4)).toThrow()
+  })
+})
+
+describe('removeBagel', () => {
+  let basket, bagel
+
+  beforeAll(() => {
+    bagel = new Bagel('test', 1)
+  })
+
+  beforeEach(() => {
+    basket = new Basket()
+  })
+
+  it('should remove bagel', () => {
+    basket.addBagel(bagel, 10)
+    expect(() => basket.removeBagel(bagel)).not.toThrow()
+    expect([...basket.bagels.entries()].length).toEqual(1)
+    expect(basket.bagels.get(bagel)).toEqual(9)
+    expect(() => basket.removeBagel(bagel, 9)).not.toThrow()
+    expect([...basket.bagels.entries()].length).toEqual(1)
+    expect(basket.bagels.get(bagel)).toEqual(0)
+  })
+
+  it('should throw when trying to remove more bagels than present in basket', () => {
+    expect(() => basket.removeBagel(new Bagel('test', 2))).toThrow()
+    expect(() => basket.removeBagel(bagel, 11)).toThrow()
+  })
+})
+
+describe('bagelAmount', () => {
+  let basket, bagel
+
+  beforeAll(() => {
+    bagel = new Bagel('test', 1)
+  })
+
+  beforeEach(() => {
+    basket = new Basket()
+  })
+
+  it('should correctly calculate amount of bagels in basket', () => {
+    expect(basket.bagelAmount()).toEqual(0)
+    basket.addBagel(bagel, 5)
+    expect(basket.bagelAmount()).toEqual(5)
+    basket.addBagel(new Bagel('test', 2), 3)
+    expect(basket.bagelAmount()).toEqual(8)
+  })
+})
+
+describe('totalCost', () => {
+  let basket, bagel
+
+  beforeAll(() => {
+    bagel = new Bagel('test', 1.25)
+  })
+
+  beforeEach(() => {
+    basket = new Basket()
+  })
+
+  it('should correctly calculate price', () => {
+    expect(new Basket().totalCost()).toEqual(0)
+    basket.addBagel(new Bagel('test', 1.25), 5)
+    expect(basket.totalCost()).toEqual(5 * 1.25)
+    basket.addBagel(new Bagel('test', 3.2), 3)
+    expect(basket.totalCost()).toEqual(5 * 1.25 + 3 * 3.2)
   })
 })

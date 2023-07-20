@@ -9,7 +9,7 @@ class Basket {
 
   addBagel(bagel, amount = 1) {
     validateBagel(bagel)
-    if (this.bagelAmount() + amount >= this.capacity) {
+    if (this.bagelAmount() + amount > this.capacity) {
       throw new Error('Cannot add bagel - basket is full')
     }
     const currentAmount = this.bagels.get(bagel)
