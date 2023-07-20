@@ -7,8 +7,8 @@ class Basket {
     this.capacity = capacity
   }
 
-  addItem(name, quantity = 1) {
-    const isFull = this.items.length + quantity >= this.capacity
+  addItem(name) {
+    const isFull = this.items.length + 1 > this.capacity
     if (isFull) {
       return 'You can not add an item'
     }
@@ -17,9 +17,7 @@ class Basket {
     if (!invItem) {
       return 'Not in stock'
     }
-    for (let i = 0; i < quantity; i++) {
-      this.items.push(name)
-    }
+    this.items.push(name)
 
     return this.items
   }
@@ -37,6 +35,17 @@ class Basket {
   checkPrice(name) {
     const item = inv.find((item) => item.sku === name)
     return item.price
+  }
+
+  calculateTotalPrice() {
+    let total = 0
+    this.items.forEach((itemSku) => {
+      const item = inv.find((invItem) => invItem.sku === itemSku)
+      if (item) {
+        total += Number(item.price)
+      }
+    })
+    return total
   }
 }
 module.exports = Basket
