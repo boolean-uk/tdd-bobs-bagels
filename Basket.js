@@ -19,6 +19,9 @@ class Basket {
     getCapacity = () => {
         return this.capacity
     }
+    setCapacity = (newCapacity) => {
+        this.capacity = newCapacity
+    }
     getBasketList = () => {
         return this.basketList
     }
