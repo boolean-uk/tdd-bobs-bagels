@@ -71,11 +71,42 @@ function changeCapacity(newCapacity) {
   return true
 }
 
+function getReceipt() {
+  let receipt = []
+  receipt.push("    ~~~ Bob's Bagels ~~~\n\n")
+  let now = Date.now()
+  now = new Date(now)
+  receipt.push(now.toLocaleDateString().padStart(19) + '\n\n')
+  receipt.push('-'.repeat(28) + '\n')
+
+  for (const i in bagelsInBasket) {
+    if (bagelsInBasket[i] === 0) continue
+    const bagel = find(i)
+    const bagelPrice = Math.floor(bagelsInBasket[i] * bagel.price * 100) / 100
+    receipt.push(
+      (bagel.variant ? bagel.variant + ' ' + bagel.name : bagel.name).padEnd(
+        18
+      ) +
+        String(bagelsInBasket[i]).padEnd(4) +
+        ' $' +
+        bagelPrice +
+        '\n'
+    )
+  }
+  receipt.push('\n' + '-'.repeat(28) + '\n')
+  receipt.push('Total                 $' + total() + '\n')
+  receipt.push('        Thank you\n')
+  receipt.push('      for your order!')
+
+  return receipt.join('')
+}
+
 module.exports = {
   clearBasket,
   add,
   remove,
   changeCapacity,
   total,
-  checkBagelPrice
+  checkBagelPrice,
+  getReceipt
 }

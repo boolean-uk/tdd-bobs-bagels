@@ -4,7 +4,8 @@ const {
   remove,
   changeCapacity,
   total,
-  checkBagelPrice
+  checkBagelPrice,
+  getReceipt
 } = require('../src/basket')
 
 afterEach(() => {
@@ -153,5 +154,31 @@ describe('Basket', () => {
     const result = total()
 
     expect(result).toEqual(9.6)
+  })
+
+  it('getReceipt should return receipt', () => {
+    changeCapacity(40)
+    add('BGLO', 2)
+    add('BGLP', 12)
+    add('BGLE', 6)
+    add('COF', 3)
+
+    const expected = `    ~~~ Bob's Bagels ~~~
+
+              7/20/2023
+
+    ----------------------------
+    Onion Bagel       2    $0.98
+    Plain Bagel       12   $4.68
+    Everything Bagel  6    $2.94
+    Coffee            3    $2.97
+
+    ----------------------------
+    Total                 $11.57
+            Thank you
+          for your order!`
+
+    const result = getReceipt()
+    expect(result).toEqual(expected)
   })
 })
