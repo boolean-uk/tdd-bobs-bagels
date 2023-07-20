@@ -1,5 +1,4 @@
-const Product = require('./product')
-
+const Inventory = require('./inventory')
 class Basket {
   constructor(capacity) {
     if (capacity <= 0) {
@@ -14,6 +13,10 @@ class Basket {
     if (this.products.length === this.capacity)
       throw new Error('Capacity exceeded')
     this.products.push(bagel)
+  }
+
+  addProducts(bagel, num) {
+    for (let i = 0; i < num; i++) this.addProduct(bagel)
   }
 
   removeBagel(bagel) {
@@ -32,12 +35,37 @@ class Basket {
   }
 
   getTotal() {
-    return this.products.reduce((total, prod) => {
-      if (prod instanceof Product) {
-        return total + prod.price
+    const inventory = new Inventory().getAvailableItems()
+
+    const summary = {}
+    this.products.forEach((prod) => {
+      if (!summary[prod.sku]) {
+        summary[prod.sku] = {
+          price: prod.price,
+          quantity: 1
+        }
+      } else {
+        summary[prod.sku].quantity++
       }
-      return total
-    }, 0)
+    })
+
+    let total = 0
+    for (const sku in summary) {
+      const product = inventory.find((p) => p.sku === sku)
+      const { price, quantity } = summary[sku]
+
+      if (product && product.specialOffer) {
+        const { quantity: offerQuantity, price: offerPrice } =
+          product.specialOffer
+        const offerSets = Math.floor(quantity / offerQuantity)
+        const remainingItems = quantity % offerQuantity
+        total += offerSets * offerPrice + remainingItems * price
+      } else {
+        total += quantity * price
+      }
+    }
+
+    return Math.round(total * 100) / 100
   }
 }
 
