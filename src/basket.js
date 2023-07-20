@@ -28,11 +28,15 @@ const setCapacity = (basket, capacity) =>
 
 const getItemPrice = (item) => Number(item.price)
 
+const totalPrice = (basket) => 
+    basket.items.reduce((acc, item) => acc += getItemPrice(item), 0)
+
 module.exports = {
     addItem,
     removeItem,
     isFull,
     containsItem,
     setCapacity,
-    getItemPrice
+    getItemPrice,
+    totalPrice
 }
