@@ -1,13 +1,23 @@
-const { Basket } = require("../src/basket.js")
+const { Basket }= require('../src/basket.js')
 
 describe("Basket tests", () => {
+  let basket;
+
+  beforeEach(() => {
+    basket = new Basket(2)
+  })
 
   it('should create a Basket class object', () => {
-    // Setup
-    const basket = new Basket(10);
-
-    // Test
     expect(basket).toBeDefined
   })
-  
+
+  it('shoud add item to basket', () => {
+    // Setup
+    const item = {name: 'item', price: 19.99}
+    basket.addItem(item)
+
+    // Test
+    expect(basket.items.length).toEqual(1)
+  })
+
 }) 
