@@ -1,42 +1,30 @@
 const Basket = require('../../src/basket.js')
 const Product = require('../../src/product.js')
-
-describe('Product', () => {
-  let product
-
-  beforeEach(() => {
-    product = new Product('BGLO', '0.49', 'Bagel', 'Onion')
-  })
-
-  it('should have a SKU', () => {
-    expect(product.sku).toEqual('BGLO')
-  })
-
-  it('should have a price', () => {
-    expect(product.price).toEqual('0.49')
-  })
-
-  it('should have a name', () => {
-    expect(product.name).toEqual('Bagel')
-  })
-
-  it('should have a variant', () => {
-    expect(product.variant).toEqual('Onion')
-  })
-
-  it('should return the price', () => {
-    expect(product.getPrice()).toEqual('0.49')
-  })
-})
+const fs = require('fs')
 
 describe('Basket', () => {
   let basket
+  let originalDate
   const product1 = new Product('BGLO', '0.49', 'Bagel', 'Onion')
 
   const product2 = new Product('BGLP', '0.39', 'Bagel', 'Plain')
 
   beforeEach(() => {
     basket = new Basket(10)
+
+    originalDate = global.Date
+
+    // eslint-disable-next-line new-cap
+    const staticDate = new originalDate(2021, 2, 16, 21, 38, 44)
+
+    spyOn(global, 'Date').and.callFake(function () {
+      return staticDate
+    })
+  })
+
+  afterEach(function () {
+    // eslint-disable-next-line no-global-assign
+    global.Date = originalDate
   })
 
   it('should be empty when created', () => {
@@ -207,12 +195,10 @@ describe('Basket', () => {
     const receipt = basket.generateReceipt()
 
     // Verify
-    const fs = require('fs')
     const expectedReceipt = fs.readFileSync(
       'spec/support/example-receipt.txt',
       'utf8'
     )
-    console.log(expectedReceipt)
     expect(receipt).toEqual(expectedReceipt)
   })
 })

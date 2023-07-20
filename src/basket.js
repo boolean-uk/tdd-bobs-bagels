@@ -1,7 +1,10 @@
 const data = require('../inventory.json')
 const inventory = data.inventory
+const os = require('os')
+const POUND_SIGN = '£'
 
 class Basket {
+  // Constructor allows manager to set the capacity of the basket
   constructor(capacity) {
     this.capacity = capacity
     this.contents = []
@@ -78,6 +81,43 @@ class Basket {
 
   setCapacity(capacity) {
     this.capacity = capacity
+  }
+
+  generateReceipt() {
+    const itemsCount = {}
+    this.contents.forEach((item) => {
+      if (itemsCount[item.sku]) {
+        itemsCount[item.sku]++
+      } else {
+        itemsCount[item.sku] = 1
+      }
+    })
+    let receipt = "    ~~~ Bob's Bagels ~~~" + os.EOL.repeat(2)
+    const date = new Date()
+    const timezoneOffsetHours = date.getTimezoneOffset() / 60
+    date.setHours(date.getHours() - timezoneOffsetHours)
+
+    const dateStr = date.toISOString().replace('T', ' ').slice(0, -5)
+    receipt += '    ' + dateStr + os.EOL.repeat(2)
+    receipt += '-'.repeat(28) + os.EOL.repeat(2)
+
+    Object.keys(itemsCount).forEach((sku) => {
+      const product = inventory.find((item) => item.sku === sku)
+      const quantity = itemsCount[sku]
+      const price = parseFloat(product.price)
+      const total = parseFloat((quantity * price).toFixed(2))
+      receipt += `${product.variant} ${
+        product.name
+      }        ${quantity}   ${POUND_SIGN}${total.toFixed(2)}${os.EOL}`
+    })
+    receipt += os.EOL + '-'.repeat(28) + os.EOL
+    receipt +=
+      `Total                  ${POUND_SIGN}${this.getTotalPrice()}` +
+      os.EOL.repeat(2)
+    receipt += '        Thank you' + os.EOL
+    receipt += '      for your order!'
+
+    return receipt
   }
 }
 

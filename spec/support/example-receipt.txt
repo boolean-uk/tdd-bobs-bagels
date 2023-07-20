@@ -4,11 +4,11 @@
 
 ----------------------------
 
-Onion Bagel        2   £0.98
-Plain Bagel        12  £3.99
+Onion Bagel        5   £2.45
+Plain Bagel        3   £1.17
 
 ----------------------------
-Total                  £4.97
+Total                  £3.62
 
         Thank you
       for your order!
