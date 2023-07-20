@@ -12,6 +12,14 @@ function initializeBasket(inventory) {
   }
 }
 
+function find(inventory, sku) {
+  for (const i in inventory) {
+    if (inventory[i].sku === sku) return inventory[i]
+  }
+  return null
+}
+
+console.log(find(inventory, 'BGLE'))
 function add(bagelSku, amount) {
   if (
     amount <= 0 ||
