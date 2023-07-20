@@ -27,6 +27,7 @@ function find(inventory, sku) {
 
 function add(bagelSku, amount) {
   if (
+    !Number.isInteger(amount) ||
     amount <= 0 ||
     amount + currentAmount > capacity ||
     bagelsInBasket[bagelSku] === undefined
@@ -39,6 +40,7 @@ function add(bagelSku, amount) {
 
 function remove(bagelSku, amount) {
   if (
+    !Number.isInteger(amount) ||
     amount <= 0 ||
     bagelsInBasket[bagelSku] === undefined ||
     bagelsInBasket[bagelSku] < amount

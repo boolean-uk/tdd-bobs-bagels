@@ -18,6 +18,30 @@ describe('Basket', () => {
     expect(result).toEqual(true)
   })
 
+  it('adding with string as quantity should return false', () => {
+    const result = add('BGLO', 'x')
+
+    expect(result).toEqual(false)
+  })
+
+  it('adding with int as sku should return false', () => {
+    const result = add(1, 2)
+
+    expect(result).toEqual(false)
+  })
+
+  it('adding with boolean as quantity should return false', () => {
+    const result = add('BGLO', false)
+
+    expect(result).toEqual(false)
+  })
+
+  it('adding with boolean as sku should return false', () => {
+    const result = add(false, 2)
+
+    expect(result).toEqual(false)
+  })
+
   it('adding more bagels than capacity should return false', () => {
     const result = add('BGLO', 100)
 
@@ -40,6 +64,34 @@ describe('Basket', () => {
   it('removing bagels not existing in basket should return false', () => {
     add('BGLO', 5)
     const result = remove('BGLE', 4)
+
+    expect(result).toEqual(false)
+  })
+
+  it('removing with int as sku should return true', () => {
+    add('BGLO', 5)
+    const result = remove(1, 4)
+
+    expect(result).toEqual(false)
+  })
+
+  it('removing with boolean as sku should return true', () => {
+    add('BGLO', 5)
+    const result = remove(false, 4)
+
+    expect(result).toEqual(false)
+  })
+
+  it('removing with string as quantity should return true', () => {
+    add('BGLO', 5)
+    const result = remove('BGLE', 'x')
+
+    expect(result).toEqual(false)
+  })
+
+  it('removing with boolean as quantity should return true', () => {
+    add('BGLO', 5)
+    const result = remove('BGLE', false)
 
     expect(result).toEqual(false)
   })
