@@ -57,8 +57,19 @@ describe('Testing class basket', () => {
         expect(basket.removeProduct(product2, 1)).toEqual("Product not in basket")
     })
 
-    it('should check if basket is full', () => {
+    it('should tell when basket is full', () => {
         basket2.addProduct(product2, 2)
-        expect(basket2.isFull).toBeTruthy()
+        expect(basket2.isFull()).toBeTruthy()
+    })
+
+    it('should tell when basket is not full', () => {
+        basket2.addProduct(product1, 1)
+        expect(basket2.isFull()).toBeFalsy()
+    })
+
+    it('should change capacity', () => {
+        expect(basket2.getCapacity()).toEqual(2)
+        basket2.setCapacity(5)
+        expect(basket2.getCapacity()).toEqual(5)
     })
 })

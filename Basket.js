@@ -16,7 +16,9 @@ class Basket {
         } else return 'Product not in basket'
     }
 
-
+    getCapacity = () => {
+        return this.capacity
+    }
     getBasketList = () => {
         return this.basketList
     }
