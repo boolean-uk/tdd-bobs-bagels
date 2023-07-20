@@ -40,6 +40,14 @@ class Basket {
     if (item) return item.price
     else return 'item not found in inv'
   }
+
+  totalPrice() {
+    let totalprice = 0
+    this.shoppingList.forEach((element) => {
+      totalprice += element.price * element.quantity
+    })
+    return totalprice.toFixed(2)
+  }
 }
 
 module.exports = { Basket }
