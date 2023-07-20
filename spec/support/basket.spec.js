@@ -37,4 +37,10 @@ describe('basket tests', () => {
     basket.add('BGLP')
     expect(basket.changeCapacity(1)).toEqual('cannot change capacity')
   })
+  it('check price of existing item', () => {
+    expect(basket.checkPrice('BGLP')).toEqual('0.39')
+  })
+  it('check price of non existing item', () => {
+    expect(basket.checkPrice('Nonexisting')).toEqual('item not found in inv')
+  })
 })
