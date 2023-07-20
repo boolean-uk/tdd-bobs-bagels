@@ -3,12 +3,7 @@ describe('addItem', () => {
   const basket = new Basket(2)
   it('should add item to the basket', () => {
     const item = basket.addItem('BGLO')
-    expect(item).toEqual([
-      {
-        name: 'BGLO',
-        quantity: 1
-      }
-    ])
+    expect(item).toEqual(['BGLO'])
   })
 })
 
@@ -53,5 +48,14 @@ describe('checkPrice', () => {
   it('should return price', () => {
     const result = basket.checkPrice('BGLO')
     expect(result).toEqual('0.49')
+  })
+})
+
+describe('addItem', () => {
+  const basket = new Basket(3)
+  it('should add 2 items to the basket', () => {
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
+    expect(basket.items).toEqual(['BGLO', 'BGLO'])
   })
 })
