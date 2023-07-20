@@ -15,4 +15,19 @@ describe("basket class tests", () => {
     expect(resultAdd).toEqual(true);
     expect(resultQuantity).toEqual(1);
   });
+
+  it("should increase quantity of specfic bagel if it is already in the basket", () => {
+    const newBagel = new Bagel("Plain", 3.57);
+    const basket = new Basket();
+
+    basket.add(newBagel, 1);
+    const result = basket.add(newBagel, 3);
+
+    const resultQuantity = basket.bagels.filter(
+      (item) => item.bagel.name === "Plain"
+    )[0].quantity;
+
+    expect(result).toEqual(true);
+    expect(resultQuantity).toEqual(4);
+  });
 });
