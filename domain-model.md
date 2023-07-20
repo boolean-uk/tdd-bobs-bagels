@@ -65,3 +65,15 @@ When I go to checkout I'd like to know the total sum of the bagels in my basket
 |        |                      |                                 | If basket is full                            | throw an error |
 |        |                      |                                 | If there is no space left for items          | throw an error |
 |        | items[]              | totalPrice(basket)              | Calculate total price of items in the basket | number         |
+
+# Extension 1
+
+```
+As a member of the public,
+So that I can buy many of my favorite bagel in cheaper price
+I'd like to be able to get discounts
+
+As a member of the public,
+So that I can buy bagel and coffe in a set
+I'd like to be able to get discount for buying coffe and plain bagel
+```
