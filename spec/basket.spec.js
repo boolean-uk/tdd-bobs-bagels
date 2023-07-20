@@ -45,9 +45,21 @@ describe("Basket tests", () => {
   })
 
   it('should return it price', () => {
+    // Setup
     const item = {name: 'apple', price: 1.11}
 
+    // Test
     expect(basket.checkPrice(item)).toEqual(1.11)
+  })
+
+  it('should be able to add the same item to basket more than once', () => {
+    // Setup
+    const item = {name: 'apple', price: 1.11}
+    basket.addItem(item)
+    basket.addItem(item)
+
+    // Test
+    expect(basket.items.get(item)).toEqual(2)
   })
 
 }) 
