@@ -26,7 +26,7 @@ class Basket{
         const itemIndex = this.items.findIndex((basketItem) => basketItem.sku === item);
       
         if (itemIndex === -1) {
-          throw new Error("Item not found");
+          throw new Error("That iteam does not exist in our basket");
         }
       
         this.items.splice(itemIndex, 1);
