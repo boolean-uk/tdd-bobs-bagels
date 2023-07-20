@@ -14,4 +14,4 @@
 |           |                |                          | If bagel does not exist in the basket                                  | false                  |
 |           |                | totalCost()              |                                                                        | total cost of products |
 | Bagel     | let price      | getPrice()               |                                                                        | price of the bagel     |
-|           |                |                          |                                                                        |                        |
+|           | let name       |                          |                                                                        |                        |
