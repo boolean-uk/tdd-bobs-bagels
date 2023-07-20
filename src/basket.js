@@ -13,7 +13,7 @@ function initializeBasket(inventory) {
 }
 
 function clearBasket() {
-  caoacity = 10
+  capacity = 10
   currentAmount = 0
   for (const i in bagelsInBasket) bagelsInBasket[i] = 0
 }
@@ -49,6 +49,19 @@ function remove(bagelSku, amount) {
   return true
 }
 
+function total() {
+  let total = 0
+  for (const i in bagelsInBasket) {
+    total += bagelsInBasket[i] * find(inventory, i).price
+  }
+  return total
+}
+
+function checkBagelPrice(bagelSKU) {
+  const bagel = find(inventory, bagelSKU)
+  return bagel === null ? 0 : bagel.price
+}
+
 function changeCapacity(newCapacity) {
   if (newCapacity <= capacity || !Number.isInteger(newCapacity)) return false
   capacity = newCapacity
@@ -59,5 +72,7 @@ module.exports = {
   clearBasket,
   add,
   remove,
-  changeCapacity
+  changeCapacity,
+  total,
+  checkBagelPrice
 }
