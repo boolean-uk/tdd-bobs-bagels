@@ -1,4 +1,4 @@
-const { Bagel, validateBagel } = require('./bagel')
+const { validateBagel } = require('./bagel')
 
 class Basket {
   constructor(capacity = 10) {
