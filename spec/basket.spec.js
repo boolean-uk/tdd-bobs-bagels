@@ -13,8 +13,7 @@ describe("Basket tests", () => {
 
   it('shoud add item to basket', () => {
     // Setup
-    const item = {name: 'item', unitPrice: 19.99}
-    basket.addItem(item)
+    basket.addItem("BGLP")
 
     // Test
     expect(basket.items.size).toEqual(1)
@@ -22,41 +21,37 @@ describe("Basket tests", () => {
 
   it('should remove item from basket', () => {
     // Setup
-    const item = {name: 'item', price: 19.99}
-    basket.addItem(item)
-    basket.removeItem(item)
+    basket.addItem("BGLP")
+    basket.removeItem("BGLP")
 
     // Test
     expect(basket.items.size).toEqual(0)
   })
 
   it('should throw exception while trying to remove non-existent item from basket', () => {
-    expect(() => basket.removeItem({name: 'non-existent'})).toThrow()
+    expect(() => basket.removeItem("BGLP")).toThrow()
   })
 
   it('should throw exception when trying to add item over basket capacity', () => {
     // Setup
-    const item = {name: 'apple', price: 1.11}
-    basket.addItem(item)
-    basket.addItem(item)
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
 
     // Test
-    expect(() => basket.addItem(item)).toThrow()
+    expect(() => basket.addItem("BGLP")).toThrow()
   })
 
   it('should return it price', () => {
-    // Setup
-    const item = {name: 'apple', price: 1.11}
-
     // Test
-    expect(basket.checkPrice(item)).toEqual(1.11)
+    expect(basket.checkPrice("BGLS")).toEqual('0.49')
   })
 
   it('should be able to add the same item to basket more than once', () => {
     // Setup
-    const item = {name: 'apple', price: 1.11}
-    basket.addItem(item)
-    basket.addItem(item)
+    const item = basket.getItemBySku("BGLP");
+
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
 
     // Test
     expect(basket.items.get(item)).toEqual(2)
@@ -64,11 +59,10 @@ describe("Basket tests", () => {
 
   it('should calculate total price of items in basket', () => {
     // Setup
-    const item = {name: 'apple', price: 1.11}
-    basket.addItem(item)
-    basket.addItem(item)
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
 
-    expect(basket.getTotalPrice()).toEqual(2.22)
+    expect(basket.getTotalPrice()).toEqual(0.78)
   })
 
 }) 

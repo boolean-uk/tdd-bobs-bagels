@@ -1,10 +1,14 @@
+const inventory = require("../inventory.json")
+
 class Basket {
   #capacity
   #items
+  #inventory
 
   constructor(capacity) {
     this.#capacity = capacity
     this.#items = new Map()
+    this.#inventory = inventory.inventory
   }
 
   get capacity() {
@@ -15,8 +19,13 @@ class Basket {
     return this.#items
   }
 
-  addItem (item) {
+  getItemBySku(sku) {
+    return this.#inventory.filter((el) => el.sku === sku)[0]
+  }
+
+  addItem (sku) {
     this.checkIfBasketIsFull()
+    const item = this.getItemBySku(sku)
     if (this.items.has(item)) {
       this.items.set(item, this.items.get(item) + 1)
     } else {
@@ -24,7 +33,8 @@ class Basket {
     }
   }
 
-  removeItem (item) {
+  removeItem (sku) {
+    const item = this.getItemBySku(sku)
     if (this.items.has(item)) {
       this.items.set(item, this.items.get(item) - 1)
       if (this.items.get(item) <= 0) {
@@ -42,17 +52,28 @@ class Basket {
     }
   }
 
-  checkPrice(item) {
+  checkPrice(sku) {
+    const item = this.getItemBySku(sku)
     return item.price
   }
 
   getTotalPrice() {
-    let totalPrice = 0
-    for (let item of this.items.keys()) {
-      totalPrice += item.price * this.items.get(item)
+    // let totalPrice = 0
+    // for (let item of this.items.keys()) {
+    //   totalPrice += item.price * this.items.get(item)
+    // }
+    // return totalPrice
+
+    for (let [key, value] of this.items.entries()) {
+      let sixBagels = value / 6
+      // totalPrice +=   
     }
-    return totalPrice
+
+
+
   }
+
+
 }
 
 module.exports = {
