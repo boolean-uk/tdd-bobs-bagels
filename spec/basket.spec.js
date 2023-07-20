@@ -64,4 +64,12 @@ describe('Conditional basket operations', () => {
 
         expect(isFull(basket)).toBeTrue()
     })
+
+    it('should throw an error when adding items to full basket', () => {
+        addItem(basket, inventory[0])
+        addItem(basket, inventory[1])
+        addItem(basket, inventory[2])
+
+        expect(() => addItem(basket, inventory[3])).toThrow()
+    })
 })
