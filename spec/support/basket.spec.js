@@ -24,7 +24,7 @@ describe('Testing class basket', () => {
         basket.addProduct(product2, 1)
 
         //Test
-        expect(basket.getBasketList().length).toEqual(2)
+        expect(Object.keys(basket.getBasketList()).length).toEqual(2)
     })
 
     it('should not add product to basketList', () => {
@@ -34,7 +34,7 @@ describe('Testing class basket', () => {
         basket2.addProduct(product3, 1)
 
         //Test
-        expect(Object.keys(basket.getBasketList()).length).toEqual(2)
+        expect(Object.keys(basket2.getBasketList()).length).toEqual(2)
     })
 
     it('should remove product from basketList', () => {
@@ -46,5 +46,14 @@ describe('Testing class basket', () => {
         //Test
         expect(Object.keys(basket.getBasketList()).length).toEqual(1)
         expect(Object.keys(basket.getBasketList()).includes(product1)).toBeFalsy()
+    })
+
+    it('should not remove product from basketList', () => {
+        //Set up
+        basket.addProduct(product1, 1)
+
+        //Test
+        expect(Object.keys(basket.getBasketList()).length).toEqual(1)
+        expect(basket.removeProduct(product2, 1)).toEqual("Product not in basket")
     })
 })

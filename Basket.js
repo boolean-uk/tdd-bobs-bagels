@@ -5,13 +5,23 @@ class Basket {
     }
 
     addProduct = (product, amount) => {
-        if (this.capacity >= amount) {
-            this.basketList[product] = (this.basketList[product] || 0) + amount
+        if (this.capacity - this.getNumbersOfProduct() >= amount) {
+            this.basketList[product.sku] = (this.basketList[product.sku] || 0) + amount
         }
     }
 
+    removeProduct = (product, amount) => {
+        if (Object.keys(this.basketList).includes(product.sku)) {
+            delete this.basketList[product.sku]
+        } else return 'Product not in basket'
+    }
+
     getBasketList = () => {
-        Object.keys(this.getBasketList())
+        return this.basketList
+    }
+
+    getNumbersOfProduct = () => {
+        return Object.values(this.basketList).reduce((x, y) => x + y, 0)
     }
 
 }
