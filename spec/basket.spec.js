@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-const { addItem, removeItem, isFull } = require("../src/basket")
+const { addItem, removeItem, isFull, containsItem } = require("../src/basket")
 
 describe('Simple basket operations', () => {
     
@@ -71,5 +71,25 @@ describe('Conditional basket operations', () => {
         addItem(basket, inventory[2])
 
         expect(() => addItem(basket, inventory[3])).toThrow()
+    })
+
+    it('should return true if basket contains the item', () => {
+        const itemToCheck = inventory[1]
+
+        addItem(basket, inventory[0])
+        addItem(basket, inventory[1])
+        addItem(basket, inventory[2])
+
+        expect(containsItem(basket, itemToCheck)).toBeTrue()
+    })
+
+    it('should return false if basket does not contain the item', () => {
+        const itemToCheck = inventory[3]
+
+        addItem(basket, inventory[0])
+        addItem(basket, inventory[1])
+        addItem(basket, inventory[2])
+
+        expect(containsItem(basket, itemToCheck)).toBeFalse()
     })
 })
