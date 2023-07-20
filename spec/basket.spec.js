@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-const { addItem, removeItem } = require("../src/basket")
+const { addItem, removeItem, isFull } = require("../src/basket")
 
 describe('Simple basket operations', () => {
     
@@ -34,5 +34,34 @@ describe('Simple basket operations', () => {
         
         expect(basket.items.length).toEqual(2)
         expect(basket.items.indexOf(itemToRemove)).toEqual(-1)
+    })
+})
+
+describe('Conditional basket operations', () => {
+    let basket
+    let inventory
+
+    beforeAll(() => {
+        let inventoryFile = fs.readFileSync('inventory.json')
+        inventory = JSON.parse(inventoryFile)["inventory"]
+    })
+
+    beforeEach(() => {
+        basket = {
+            items: [],
+            capacity: 3
+        }
+    })
+
+    it('should return false when basket is not full', () => {
+        expect(isFull(basket)).toBeFalse()
+    })
+
+    it('should return true when basket is full', () => {
+        addItem(basket, inventory[0])
+        addItem(basket, inventory[1])
+        addItem(basket, inventory[2])
+
+        expect(isFull(basket)).toBeTrue()
     })
 })
