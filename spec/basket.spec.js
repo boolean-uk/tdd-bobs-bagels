@@ -69,9 +69,9 @@ describe('Basket test - core', () => {
 
   it('should calculate total of basket', function () {
     const basket = new Basket(5)
-    const bagel1 = new Product('plain', 0.49)
-    const bagel2 = new Product('plain', 0.39)
-    const bagel3 = new Product('plain', 0.49)
+    const bagel1 = new Product('BGLP', 'plain', 0.49)
+    const bagel2 = new Product('BGLP', 'plain', 0.39)
+    const bagel3 = new Product('BGLO', 'plain', 0.49)
     basket.addProduct(bagel1)
     basket.addProduct(bagel2)
     basket.addProduct(bagel3)
