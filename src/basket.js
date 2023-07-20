@@ -20,6 +20,7 @@ class Basket {
     }
     return this.shoppingList
   }
+
   remove(sku) {
     const itemToRemove = this.shoppingList.find((item) => item.sku === sku)
     if (!itemToRemove) return 'item doesnt exist in basket'
@@ -35,6 +36,7 @@ class Basket {
     else return 'cannot change capacity'
     return this.capacity
   }
+
   checkPrice(sku) {
     const item = inventory.find((item) => item.sku === sku)
     if (item) return item.price

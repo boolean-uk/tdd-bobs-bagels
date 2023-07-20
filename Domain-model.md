@@ -1,4 +1,5 @@
 # Domain model
+
 ## Bob's bagels
 
 | Classes | Attributes           | Methods                     | Scenario                                               | Outputs                    |
