@@ -43,4 +43,13 @@ describe('basket tests', () => {
   it('check price of non existing item', () => {
     expect(basket.checkPrice('Nonexisting')).toEqual('item not found in inv')
   })
+
+  it('totalprice', () => {
+    basket.add('BGLP')
+    basket.add('BGSE')
+    expect(basket.totalPrice()).toEqual('3.38')
+  })
+  it('totalprice for empty basket', () => {
+    expect(basket.totalPrice()).toEqual('0.00')
+  })
 })
