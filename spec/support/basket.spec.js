@@ -59,4 +59,21 @@ describe("basket class tests", () => {
     expect(result).toEqual(false);
     expect(resultLength).toEqual(0);
   });
+
+  it("should remove specific quantity of bagels from the basket", () => {
+    const newBagel = new Bagel("Plain", 3.57);
+    const basket = new Basket();
+
+    basket.add(newBagel, 4);
+    const result = basket.remove(newBagel, 2);
+
+    const resultQuantity= basket.bagels.filter(
+      (item) => item.bagel.name === "Plain"
+    )[0].quantity;
+
+    expect(result).toEqual(true);
+    expect(resultQuantity).toEqual(2);
+
+  })
+
 });
