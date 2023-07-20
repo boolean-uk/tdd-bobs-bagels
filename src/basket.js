@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 const bagelsInBasket = {}
-const capacity = 10
+let capacity = 10
 let currentAmount = 0
 const json = require('../inventory.json')
 const inventory = json.inventory
@@ -12,6 +12,12 @@ function initializeBasket(inventory) {
   }
 }
 
+function clearBasket() {
+  caoacity = 10
+  currentAmount = 0
+  for (const i in bagelsInBasket) bagelsInBasket[i] = 0
+}
+
 function find(inventory, sku) {
   for (const i in inventory) {
     if (inventory[i].sku === sku) return inventory[i]
@@ -19,7 +25,6 @@ function find(inventory, sku) {
   return null
 }
 
-console.log(find(inventory, 'BGLE'))
 function add(bagelSku, amount) {
   if (
     amount <= 0 ||
@@ -44,7 +49,15 @@ function remove(bagelSku, amount) {
   return true
 }
 
+function changeCapacity(newCapacity) {
+  if (newCapacity <= capacity || !Number.isInteger(newCapacity)) return false
+  capacity = newCapacity
+  return true
+}
+
 module.exports = {
+  clearBasket,
   add,
-  remove
+  remove,
+  changeCapacity
 }
