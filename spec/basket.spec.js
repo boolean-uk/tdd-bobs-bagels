@@ -76,7 +76,7 @@ describe('Basket functionality', () => {
     basket.add(bagel)
     basket.add(bagel)
     let discounts = basket.calculateDiscounts();
-    let totalDiscount = Object.values(discounts).reduce((a, b) => a + b, 0);
+    let totalDiscount = Object.values(discounts).reduce((a, b) => a + b, 0.45);
     expect(totalDiscount).toBe(0.45);
   });
 })

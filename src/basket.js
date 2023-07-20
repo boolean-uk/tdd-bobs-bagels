@@ -31,53 +31,60 @@ class Basket {
 }
 
 calculateDiscounts() {
-  let quantities = this.getProductQuantities()
-  let discounts = {}
+  let quantities = this.getProductQuantities();
+  let discounts = {};
 
-  let discountedBagels = this.products.reduce((acc, bagel) => {
-      let sku = bagel.sku
-      if(!acc[sku]) {
-          acc[sku] = []
+  let discountedProducts = this.products.reduce((acc, product) => {
+      let sku = product.sku;
+      if (!acc[sku]) {
+          acc[sku] = [];
       }
-      acc[sku].push(bagel)
+      acc[sku].push(product);
       return acc;
-  }, {})
+  }, {});
 
   for (let sku in quantities) {
-      let quantity = quantities[sku]
+      let quantity = quantities[sku];
+      let discounted;
       switch(sku) {
           case "BGLO":
           case "BGLE": 
-              let discounted = Math.floor(quantity / 6)
-              discounts[sku] = discounted * 0.45
-              discountedBagels[sku].splice(0, discounted * 6)
+              discounted = Math.floor(quantity / 6);
+              if(discounted > 0) {
+                discounts[sku] = (discounted * 6 * 0.49) - (discounted * 2.49);
+                discountedProducts[sku].splice(0, discounted * 6);
+              }
+              break;
           case "BGLP": 
-              discounted = Math.floor(quantity/12)
-              discounts[sku] = discounted * 0.69
-              discountedBagels[sku].splice(0, discounted * 12)
+              discounted = Math.floor(quantity / 12);
+              if(discounted > 0) {
+                discounts[sku] = (discounted * 12 * 0.39) - (discounted * 3.99);
+                discountedProducts[sku].splice(0, discounted * 12);
+              }
+              break;
       }
   }
 
-  for (let sku in quantities) { 
-      if(sku === "COFB") {
-          let products = [].concat.apply([], Object.values(discountedBagels)).sort((a,b) => a.getPrice() - b.getPrice())
-          let discount = 0
-          let coffeePrice = this.products.find(p => p.sku === sku).getPrice()
-          let coffeeQuantity = quantities[sku]
+  if(quantities["COFB"]) {
+    let remainingProducts = [].concat(...Object.values(discountedProducts)).sort((a, b) => a.getPrice() - b.getPrice());
+    let coffeePrice = this.products.find(p => p.sku === "COFB").getPrice();
+    let coffeeQuantity = quantities["COFB"];
+    let discount = 0;
           
-          for(let product of products) {
-              if(coffeeQuantity === 0) {
-                  break
-              }
-              let bagelPrice = product.getPrice()
-              discount += coffeePrice + bagelPrice - 1.25
-              coffeeQuantity--;
-          }
-          discounts[sku] = discount
-      }
+    for(let i = 0; i < coffeeQuantity; i++) {
+        if(remainingProducts[i]) {
+          let productPrice = remainingProducts[i].getPrice();
+          discount += (coffeePrice + productPrice) - 1.25;
+        } else {
+          discount += coffeePrice;
+        }
+    }
+    discounts["COFB"] = discount;
   }
-  return discounts
+
+  return discounts;
 }
+
 
 
 getProductQuantities() {
