@@ -1,11 +1,12 @@
-const changeBasketCappacity = require('../src/basket.js');
-const Basket = require('../src/basket.js');
+const { Basket, changeBasketCappacity } = require('../src/basket.js');
+
 
 describe("bobs-bagels", () => {
-    let basket = new Basket();
+    let basket
   
     beforeEach(() => {
       basket = new Basket();
+      changeBasketCappacity(2);
     })
 
     it("should add an item to the basket", () => {
@@ -34,10 +35,10 @@ describe("bobs-bagels", () => {
         expect(() => basket.removeItem("BGLS")).toThrowError("That iteam does not exist in our basket");
     })
 
-    it("should change capacity for new basket"), () => {
-        changeBasketCappacity(10);
+    it("should change capacity for new basket", () => {
+        changeBasketCappacity(3);
         const basket2 = new Basket();
-        expect(basket2.capacity).toBe(10);
-        expect(basket.capacity).toBe(2);
-    }
+        expect(basket2.cappacity).toBe(3);
+        expect(basket.cappacity).toBe(2);
+    })
 })

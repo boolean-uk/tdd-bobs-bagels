@@ -1,5 +1,5 @@
 const { ListOfProducts } = require("./product.js");
-let cappacity = 2;
+let cappacity = 40;
 
 class Basket{
     constructor(){
@@ -36,10 +36,114 @@ class Basket{
     getBasketPrice(){
         return this.items.reduce((total, item) => total + item.price, 0);
     }
+
+    groupItemsBySku() {
+        const skuInfoMap = {};
+
+        this.items.forEach(item => {
+            const sku = item.sku.toUpperCase();
+            if (skuInfoMap[sku]) {
+                skuInfoMap[sku].quantity++;
+            } else {
+                skuInfoMap[sku] = {
+                    quantity: 1,
+                    pricePerSku: item.price
+                };
+            }
+        });
+
+        return skuInfoMap;
+    }
+
+
+    discountForBGLEBGLO(quantity, pricePerSku){
+        let discountPrice = 0;
+        let counter = quantity
+        while(counter !== 0){
+            if(counter < 6){
+                discountPrice += counter * pricePerSku;
+                counter = 0;
+            }
+            else{
+                discountPrice += 2.49
+                counter -= 6;
+            }
+        }
+        return discountPrice;
+    }
+
+    discountForBGLP(quantity, pricePerSku){
+        let discountPrice = 0;
+        let counter = quantity
+        while(counter !== 0){
+            if(counter < 12){
+                discountPrice += counter * pricePerSku;
+                counter = 0;
+            }
+            else{
+                discountPrice += 3.99
+                counter -= 12;
+            }
+        }
+        return discountPrice;
+    }
+
+
+    getBasketPriceWithDiscounts() {
+        const skuInfoMap = this.groupItemsBySku();
+        let totalPrice = 0;
+        for (const sku in skuInfoMap) {
+            const item = skuInfoMap[sku];
+            if (sku === "BGLE" || sku === "BGLO") {
+                totalPrice += this.discountForBGLEBGLO(item.quantity, item.pricePerSku);
+            } 
+            else if (sku === "BGLP") {
+                totalPrice += this.discountForBGLP(item.quantity, item.pricePerSku);
+            }
+            else {
+                totalPrice += skuInfoMap[sku].quantity * skuInfoMap[sku].pricePerSku;
+            }
+        }
+
+        return totalPrice.toFixed(2);
+    }
 };
 
 function changeBasketCappacity(newCappacity){
     cappacity = newCappacity;
 }
 
-module.exports = Basket
+
+const basket = new Basket();
+basket.addItem("BGLP");
+basket.addItem("BGLP");
+basket.addItem("BGLP");
+basket.addItem("BGLP");
+basket.addItem("BGLP");
+basket.addItem("BGLP");
+basket.addItem("BGLP");
+basket.addItem("BGLP");
+basket.addItem("BGLP");
+basket.addItem("BGLP");
+basket.addItem("BGLP");
+basket.addItem("BGLP");
+basket.addItem("COF");
+// basket.addItem("BGLO");
+// basket.addItem("BGLO");
+// basket.addItem("BGLO");
+// basket.addItem("BGLO");
+// basket.addItem("BGLO");
+basket.addItem("BGLE");
+basket.addItem("BGLE");
+basket.addItem("BGLE");
+basket.addItem("BGLE");
+basket.addItem("BGLE");
+basket.addItem("BGLE");
+console.log(basket.getBasketPriceWithDiscounts())
+
+
+
+module.exports = {
+    Basket,
+    changeBasketCappacity,
+  };
