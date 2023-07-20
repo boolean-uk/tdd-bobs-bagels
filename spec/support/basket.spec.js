@@ -135,4 +135,16 @@ describe("basket class tests", () => {
 
     expect(result).toEqual(false);
   });
+
+  it("should return total price of products included in the basket", () => {
+    const newBagel1 = new Bagel("Plain", 3.56);
+    const newBagel2 = new Bagel("Onion", 1.02);
+    const basket = new Basket();
+
+    basket.add(newBagel1, 8);
+    basket.add(newBagel2, 8);
+    const result = basket.total();
+
+    expect(result).toEqual(5.6);
+  });
 });
