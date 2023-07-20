@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "![](./_images/bagels.jpg)",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "npx jasmine"
   },

@@ -1,7 +1,11 @@
-import { Product } from "./Product"
+const { Product } = require("./Product")
 
-export class Coffee extends Product {
+class Coffee extends Product {
     constructor (sku, price, name, variant) {
        super (sku, name, price, variant)
     }
+}
+
+module.exports = {
+    Coffee
 }

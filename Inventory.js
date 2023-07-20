@@ -1,4 +1,4 @@
-export class Inventory {
+class Inventory {
     constructor () {
         inventoryList = []
         //bagel
@@ -20,4 +20,8 @@ export class Inventory {
         inventoryList.push(new Product("FILH", 0.12, "Filling", "Ham"));
     }
 
+}
+
+module.exports = {
+    Inventory
 }

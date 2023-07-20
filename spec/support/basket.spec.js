@@ -1,20 +1,27 @@
-import { Basket } from "../../Basket"
-import { Product } from "../../Product"
+const { Basket } = require("../../Basket")
+const { Product } = require("../../Product")
+
 
 describe('Testing class basket', () => {
 
+    let basket
+    let basket2
+    let product1
+    let product2
+    let product3
+
     beforeEach(() => {
-        let basket = new Basket()
-        let basket2 = new Basket(2)
-        let product1 = new Product("BGLO", 0.49, "Bagel", "Onion")
-        let product2 = new Product("COFB", 0.99, "Coffee", "Black")
-        let product3 = new Product("BGLP", 0.39, "Bagel", "Plain")
+        basket = new Basket()
+        basket2 = new Basket(2)
+        product1 = new Product("BGLO", 0.49, "Bagel", "Onion")
+        product2 = new Product("COFB", 0.99, "Coffee", "Black")
+        product3 = new Product("BGLP", 0.39, "Bagel", "Plain")
     })
 
     it('should add product to basketList', () => {
         //Set up
-        basket.addProduct(product1)
-        basket.addProduct(product2)
+        basket.addProduct(product1, 1)
+        basket.addProduct(product2, 1)
 
         //Test
         expect(basket.getBasketList().length).toEqual(2)
@@ -22,9 +29,9 @@ describe('Testing class basket', () => {
 
     it('should not add product to basketList', () => {
         //Set up
-        basket2.addProduct(product1)
-        basket2.addProduct(product2)
-        basket2.addProduct(product3)
+        basket2.addProduct(product1, 1)
+        basket2.addProduct(product2, 1)
+        basket2.addProduct(product3, 1)
 
         //Test
         expect(Object.keys(basket.getBasketList()).length).toEqual(2)
@@ -32,9 +39,9 @@ describe('Testing class basket', () => {
 
     it('should remove product from basketList', () => {
         //Set up
-        basket.addProduct(product1)
-        basket.addProduct(product2)
-        basket.removeProduct(product1)
+        basket.addProduct(product1, 1)
+        basket.addProduct(product2, 1)
+        basket.removeProduct(product1, 1)
 
         //Test
         expect(Object.keys(basket.getBasketList()).length).toEqual(1)

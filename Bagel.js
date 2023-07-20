@@ -1,4 +1,4 @@
-import { Product } from "./Product"
+const { Product } = require("./Product")
 
 export class Bagel extends Product {
     constructor (sku, price, name, variant) {
