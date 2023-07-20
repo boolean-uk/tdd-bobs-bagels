@@ -6,16 +6,16 @@ class Basket {
     this.capacity = capacity
   }
 
-  add(sku) {
-    if (this.capacity > this.shoppingList.length) {
+  add(sku, amount = 1) {
+    if (this.capacity > this.shoppingList.length + amount) {
       const itemToAdd = inventory.find((item) => item.sku === sku)
       if (itemToAdd) {
         const inShoppingList = this.shoppingList.find(
           (item) => item.sku === sku
         )
         if (inShoppingList) {
-          inShoppingList.quantity++
-        } else this.shoppingList.push({ ...itemToAdd, quantity: 1 })
+          inShoppingList.quantity += amount
+        } else this.shoppingList.push({ ...itemToAdd, quantity: amount })
       }
     }
     return this.shoppingList
