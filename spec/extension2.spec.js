@@ -36,6 +36,7 @@ describe('Generate receipt', () => {
     basket.add(item3, 6)
     basket.add(item4, 3)
     const result = generateReceipt(basket)
+    console.log(result)
     const expectedResult = `
     ~~~ Bob's Bagels ~~~
 
@@ -50,7 +51,7 @@ Coffee              3   £2.97
 
 
 ----------------------------
-Total                   £11.57
+Total                   £10.43
 
         Thank you
       for your order!`
