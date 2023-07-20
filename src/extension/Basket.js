@@ -1,7 +1,6 @@
 const Receipt = require("./Receipt");
 const ReceiptLine = require("./ReceiptLine");
 const DiscountInventory = require("./DiscountInventory");
-const Inventory = require("./Inventory");
 
 class Basket {
   products;
@@ -37,8 +36,6 @@ class Basket {
   }
 
   find(product) {
-    const inventory = new Inventory();
-
     return this.products.filter((item) => item.product.sku === product.sku);
   }
 
