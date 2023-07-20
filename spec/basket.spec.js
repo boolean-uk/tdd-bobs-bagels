@@ -81,3 +81,12 @@ describe('calculateTotalPriceManySameBagels', () => {
     expect(result).toEqual(0.49 * 3)
   })
 })
+describe('printing receipe', () => {
+  const basket = new Basket(3)
+  basket.addItem('BGLO')
+  basket.addItem('BGLO')
+  basket.addItem('BGLE')
+
+  const receipt = basket.generateReceipt()
+  console.log(receipt)
+})
