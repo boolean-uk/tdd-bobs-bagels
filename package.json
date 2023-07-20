@@ -6,9 +6,6 @@
   "scripts": {
     "test": "npx jasmine"
   },
-  "jest": {
-    "testMatch": ["**/__tests__/**/*.spec.js"]
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/boolean-uk/js-bobs-bagels.git"
