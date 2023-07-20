@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-const { addItem, removeItem, isFull, containsItem, setCapacity, getItemPrice } = require("../src/basket")
+const { addItem, removeItem, isFull, containsItem, setCapacity, getItemPrice, totalPrice } = require("../src/basket")
 
 describe('Simple basket operations', () => {
     
@@ -144,5 +144,12 @@ describe('Other item and basket operations', () => {
     it('should throw an error when there is no space left in basket', () => {
         addItem(basket, inventory[0])
         expect(() => addItem(basket, inventory[0], 3)).toThrow('Basket can not containt that much items')
+    })
+
+    it('should return total cost for items in the basket', () => {
+        addItem(basket, inventory[0])
+        addItem(basket, inventory[1], 2)
+
+        expect(totalPrice(basket)).toEqual(1.27)
     })
 })
