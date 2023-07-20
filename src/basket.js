@@ -1,10 +1,4 @@
-const { Bagel } = require('./bagel')
-
-const validateBagel = (b) => {
-  if (!(b instanceof Bagel)) {
-    throw new Error(`${b} is not a bagel`)
-  }
-}
+const { Bagel, validateBagel } = require('./bagel')
 
 class Basket {
   constructor(capacity = 10) {

@@ -5,4 +5,10 @@ class Bagel {
   }
 }
 
-module.exports = { Bagel }
+const validateBagel = (b) => {
+  if (!(b instanceof Bagel)) {
+    throw new Error(`${b} is not a bagel`)
+  }
+}
+
+module.exports = { Bagel, validateBagel }
