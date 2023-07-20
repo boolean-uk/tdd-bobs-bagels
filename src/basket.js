@@ -22,10 +22,13 @@ const containsItem = (basket, item) =>
 const setCapacity = (basket, capacity) =>
     basket.capacity = capacity
 
+const getItemPrice = (item) => Number(item.price)
+
 module.exports = {
     addItem,
     removeItem,
     isFull,
     containsItem,
-    setCapacity
+    setCapacity,
+    getItemPrice
 }
