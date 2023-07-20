@@ -1,78 +1,88 @@
 {
-  "bagel": [
+  "inventory": [
     {
       "sku": "BGLO",
       "price": "0.49",
-      "variant": "Onion"
+      "variant": "Onion",
+      "name": "Bagel"
     },
     {
       "sku": "BGLP",
       "price": "0.39",
-      "variant": "Plain"
+      "variant": "Plain",
+      "name": "Bagel"
     },
     {
       "sku": "BGLE",
       "price": "0.49",
-      "variant": "Everything"
+      "variant": "Everything",
+      "name": "Bagel"
     },
     {
       "sku": "BGLS",
       "price": "0.49",
-      "variant": "Sesame"
-    }
-  ],
-  "coffee": [
+      "variant": "Sesame",
+      "name": "Bagel"
+    },
     {
       "sku": "COFB",
       "price": "0.99",
-      "variant": "Black"
+      "variant": "Black",
+      "name": "Coffee"
     },
     {
       "sku": "COFW",
       "price": "1.19",
-      "variant": "White"
+      "variant": "White",
+      "name": "Coffee"
     },
     {
       "sku": "COFC",
       "price": "1.29",
-      "variant": "Capuccino"
+      "variant": "Capuccino",
+      "name": "Coffee"
     },
     {
       "sku": "COFL",
       "price": "1.29",
-      "variant": "Latte"
-    }
-  ],
-  "filling": [
-    {
-      "sku": "FILB",
-      "price": "0.12",
-      "variant": "Bacon"
+      "variant": "Latte",
+      "name": "Coffee"
     },
     {
       "sku": "FILB",
       "price": "0.12",
-      "variant": "Egg"
+      "variant": "Bacon",
+      "name": "Filling"
     },
     {
       "sku": "FILB",
       "price": "0.12",
-      "variant": "Cheese"
+      "variant": "Egg",
+      "name": "Filling"
     },
     {
       "sku": "FILB",
       "price": "0.12",
-      "variant": "Cream Cheese"
+      "variant": "Cheese",
+      "name": "Filling"
     },
     {
       "sku": "FILB",
       "price": "0.12",
-      "variant": "Smoked Salmon"
+      "variant": "Cream Cheese",
+      "name": "Filling"
     },
     {
       "sku": "FILB",
       "price": "0.12",
-      "variant": "Ham"
+      "variant": "Smoked Salmon",
+      "name": "Filling"
+    },
+    {
+      "sku": "FILB",
+      "price": "0.12",
+      "variant": "Ham",
+      "name": "Filling"
     }
   ]
 }
