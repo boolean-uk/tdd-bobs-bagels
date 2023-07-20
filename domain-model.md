@@ -69,5 +69,5 @@ When I go to checkout I'd like to know the total sum of the bagels in my basket
 |        |           | isInBasket(item)      | Called when customer tries to remove a bagel from his basket. |                                        |
 |        |           |                       | If item is in the basket.                                    | true                                    |
 |        |           |                       | If item is not in the basket.                                | false                                   |
-|        |           | getTotalPrice()       | If customer wants to know how much he'll pay.                | The price of items in the basket        |
+|        |           | getTotalPrice()       | If customer wants to know how much he'll pay. (including promos)                | The price of items in the basket        |
 |        |           | checkPrice(item)      | If customer wants to know the cost of a specific item.       | The price of a bagel of the given type. |
