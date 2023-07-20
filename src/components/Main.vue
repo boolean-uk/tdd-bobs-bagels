@@ -32,7 +32,7 @@ export default {
 </script>
 
 <template>
-  <h1>BOB'S BAGELS<br></h1>
+  <h1 class="text-5xl">BOB'S BAGELS<br></h1>
   <div>
     <div v-if="inventoryData">
       <h2>Inventory Data:</h2>

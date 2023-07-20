@@ -6,7 +6,7 @@ module.exports = defineConfig({
       .test(/\.txt$/)
       .use('raw-loader')
       .loader('raw-loader')
-      .end();
+      .end()
   },
   transpileDependencies: true
 })
