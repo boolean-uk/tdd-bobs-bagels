@@ -52,4 +52,15 @@ describe('basket tests', () => {
   it('totalprice for empty basket', () => {
     expect(basket.totalPrice()).toEqual('0.00')
   })
+  it('add multiple of same item', () => {
+    expect(basket.add('BGLO', 5)).toEqual([
+      {
+        sku: 'BGLO',
+        price: '0.49',
+        name: 'Bagel',
+        variant: 'Onion',
+        quantity: 5
+      }
+    ])
+  })
 })
