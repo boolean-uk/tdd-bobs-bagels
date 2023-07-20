@@ -9,6 +9,10 @@ class Basket {
       throw new Error('Capacity exceeded')
     this.products.push(bagel)
   }
+
+  removeBagel(bagel) {
+    this.products = this.products.filter((prod) => prod !== bagel)
+  }
 }
 
 module.exports = Basket
