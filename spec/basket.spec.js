@@ -1,4 +1,8 @@
-const { add, remove } = require('../src/basket')
+const { clearBasket, add, remove, changeCapacity } = require('../src/basket')
+
+afterEach(() => {
+  clearBasket()
+})
 
 describe('Basket', () => {
   it('adding type of bagel existing in inventory should return true', () => {
@@ -31,5 +35,42 @@ describe('Basket', () => {
     const result = remove('BGLE', 4)
 
     expect(result).toEqual(false)
+  })
+
+  it('changing capacity to normal value, higher than previous capacity should return true', () => {
+    const result = changeCapacity(20)
+
+    expect(result).toEqual(true)
+  })
+
+  it('changing capacity to value less than previous capacity should return false', () => {
+    const result = changeCapacity(8)
+
+    expect(result).toEqual(false)
+  })
+
+  it('changing capacity without parameter should return false', () => {
+    const result = changeCapacity()
+
+    expect(result).toEqual(false)
+  })
+
+  it('changing capacity to string should return false', () => {
+    const result = changeCapacity('x')
+
+    expect(result).toEqual(false)
+  })
+
+  it('changing capacity to boolean should return false', () => {
+    const result = changeCapacity(false)
+
+    expect(result).toEqual(false)
+  })
+
+  it('testing changing capacity', () => {
+    changeCapacity(13)
+    const result = add('BGLO', 11)
+
+    expect(result).toEqual(true)
   })
 })
