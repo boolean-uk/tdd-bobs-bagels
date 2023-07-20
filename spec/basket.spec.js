@@ -66,4 +66,35 @@ describe('Basket', () => {
     const result = basket.isFull()
     expect(result).toEqual(false)
   })
+
+  it('should return 7', () => {
+    const result = basket.changeCapacity(7)
+    expect(result).toEqual(7)
+  })
+
+  it('should throw error', () => {
+    expect(() => basket.changeCapacity(3)).toThrowError()
+  })
+
+  it('should return equal to 0.39', () => {
+    basket.getPriceOfItem({ name: 'Bagel', variant: 'Plain', price: 0.39 })
+  })
+
+  it('should return equal to 0.49', () => {
+    basket.getPriceOfItem({ name: 'Bagel', variant: 'Onion', price: 0.49 })
+  })
+
+  it('should return equal 0.49', () => {
+    basket.addItem({ name: 'Bagel', variant: 'Onion', price: 0.49 })
+    const result = basket.totalPrice()
+    expect(result).toEqual(0.49)
+  })
+
+  it('should return equal 1.47', () => {
+    basket.addItem({ name: 'Bagel', variant: 'Onion', price: 0.49 })
+    basket.addItem({ name: 'Bagel', variant: 'Onion', price: 0.49 })
+    basket.addItem({ name: 'Bagel', variant: 'Onion', price: 0.49 })
+    const result = basket.totalPrice()
+    expect(result).toEqual(1.47)
+  })
 })
