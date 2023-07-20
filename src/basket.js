@@ -3,27 +3,34 @@ const Bagel = require("./bagel");
 class Basket {
   bagels;
   basketCapacity;
+  basketQuantity;
 
   constructor() {
     this.bagels = [];
     this.basketCapacity = 10;
+    this.basketQuantity = 0;
   }
 
   add(bagel, quantity) {
-    const findResult = this.find(bagel);
+    if (this.basketQuantity + quantity <= this.basketCapacity) {
+      const findResult = this.find(bagel);
 
-    if (findResult.length > 0) {
-      findResult[0].quantity += quantity;
+      //if bagel is already in the basket
+      if (findResult.length > 0) {
+        findResult[0].quantity += quantity;
+      } else {
+        //if it is a new bagel
+        this.bagels.push({
+          bagel,
+          quantity,
+        });
+      }
 
+      this.basketQuantity += quantity;
       return true;
     }
 
-    this.bagels.push({
-      bagel,
-      quantity,
-    });
-
-    return true;
+    return false;
   }
 
   find(bagel) {
