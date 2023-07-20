@@ -8,24 +8,27 @@ class Basket {
         this.totalPrice = 0
     }
 
-    addItem(Sku) {
+    addItem(sku) {
         if (this.isFull()) {
             console.log('Basket is full!')
             return false
         }
-        const item = this.items.find(({ sku }) => sku === Sku)
-        if (item) {
-            item.quantity++
-            item.price = (
-                Math.round(Number(item.price) * item * 100) / 100
-            )
+    
+        const existingItem = this.items.find((item) => item.sku === sku)
+        if (existingItem) {
+            existingItem.quantity++
+            existingItem.price = (
+                Math.round(Number(existingItem.price) * existingItem.quantity * 100) / 100
+            ).toFixed(2)
             return this.items
         }
-        const newItem = inventory.find(({ sku }) => sku === newSku)
+    
+        const newItem = inventory.find((item) => item.sku === sku)
         if (!newItem) {
             console.log('Item not in stock!')
             return false
         }
+    
         newItem.quantity = 1
         this.items.push({ ...newItem })
         return this.items
@@ -111,6 +114,7 @@ class Basket {
     }
 
     getTotalPrice() {
+        this.totalPrice = 0
         this.items.forEach((item) => {
             this.totalPrice += Number(item.price)
         })
