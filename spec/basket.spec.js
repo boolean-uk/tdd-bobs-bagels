@@ -9,4 +9,10 @@ describe('Basket test - core', () => {
 
     expect(basket.products.length).toEqual(1)
   })
+
+  it('should throw exception if basket capacity exceeded', function () {
+    const basket = new Basket(0)
+    const bagel = new Bagel('plain', 0.49)
+    expect(() => basket.addBagel(bagel)).toThrow(new Error('Capacity exceeded'))
+  })
 })
