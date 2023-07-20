@@ -45,4 +45,18 @@ describe("basket class tests", () => {
     expect(result).toEqual(false);
     expect(resultQuantity).toEqual(1);
   });
+
+  it("should not add bagel if given quantity is invalid", () => {
+    const newBagel = new Bagel("Plain", 3.57);
+    const basket = new Basket();
+
+    const result = basket.add(newBagel, -4);
+
+    const resultQuantity = basket.bagels.filter(
+      (item) => item.bagel.name === "Plain"
+    )[0].quantity;
+
+    expect(result).toEqual(false);
+    expect(resultQuantity).toEqual(0);
+  });
 });
