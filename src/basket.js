@@ -1,17 +1,22 @@
 const { inventory } = require('../inventory.json')
 
 class Basket {
-  constructor() {
+  constructor(capacity) {
     this.shoppingList = []
+    this.capacity = capacity
   }
 
   add(sku) {
-    const itemToAdd = inventory.find((item) => item.sku === sku)
-    if (itemToAdd) {
-      const inShoppingList = this.shoppingList.find((item) => item.sku === sku)
-      if (inShoppingList) {
-        inShoppingList.quantity++
-      } else this.shoppingList.push({ ...itemToAdd, quantity: 1 })
+    if (this.capacity > this.shoppingList.length) {
+      const itemToAdd = inventory.find((item) => item.sku === sku)
+      if (itemToAdd) {
+        const inShoppingList = this.shoppingList.find(
+          (item) => item.sku === sku
+        )
+        if (inShoppingList) {
+          inShoppingList.quantity++
+        } else this.shoppingList.push({ ...itemToAdd, quantity: 1 })
+      }
     }
     return this.shoppingList
   }
@@ -23,6 +28,12 @@ class Basket {
       this.shoppingList.splice(this.shoppingList.indexOf(itemToRemove), 1)
     }
     return this.shoppingList
+  }
+
+  changeCapacity(newCapacity) {
+    if (newCapacity > this.shoppingList.length) this.capacity = newCapacity
+    else return 'cannot change capacity'
+    return this.capacity
   }
 }
 
