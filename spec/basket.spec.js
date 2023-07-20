@@ -294,3 +294,52 @@ describe('Check price of item ', () => {
     expect(result).toEqual(0)
   })
 })
+
+describe('Count total cost of the basket with special offers', () => {
+  it('should return total cost of the basket with offer for Bagel Onion', () => {
+    // Set up
+    const basket = new Basket(10)
+    const item = {
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion'
+    }
+    basket.add(item, 6)
+    const result = basket.totalCost(item)
+
+    // Test
+    expect(Number(result)).toEqual(2.49)
+  })
+  it('should return total cost of the basket  with offer for Bagel Everything', () => {
+    // Set up
+    const basket = new Basket(10)
+    const item = {
+      sku: 'BGLE',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Everything'
+    }
+    basket.add(item, 6)
+    const result = basket.totalCost(item)
+
+    // Test
+    expect(Number(result)).toEqual(2.49)
+  })
+
+  it('should return total cost of the basket  with offer for Bagel Plain', () => {
+    // Set up
+    const basket = new Basket(20)
+    const item = {
+      sku: 'BGLP',
+      price: '0.39',
+      name: 'Bagel',
+      variant: 'Plain'
+    }
+    basket.add(item, 12)
+    const result = basket.totalCost(item)
+
+    // Test
+    expect(Number(result)).toEqual(3.99)
+  })
+})
