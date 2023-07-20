@@ -1,7 +1,18 @@
 class Basket {
+  #capacity
+  #items
+
   constructor(capacity) {
-    this.capacity = capacity
-    this.items = new Map()
+    this.#capacity = capacity
+    this.#items = new Map()
+  }
+
+  get capacity() {
+    return this.#capacity
+  }
+
+  get items() {
+    return this.#items
   }
 
   addItem (item) {
@@ -29,6 +40,10 @@ class Basket {
     if (numOfItemsInBasket >= this.capacity) {
       throw 'Basket is full!'
     }
+  }
+
+  checkPrice(item) {
+    return item.price
   }
 }
 
