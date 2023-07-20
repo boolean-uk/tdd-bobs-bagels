@@ -17,17 +17,21 @@ describe("Basket tests", () => {
     basket.addItem(item)
 
     // Test
-    expect(basket.items.length).toEqual(1)
+    expect(basket.items.size).toEqual(1)
   })
 
   it('should remove item from basket', () => {
     // Setup
     const item = {name: 'item', price: 19.99}
     basket.addItem(item)
-    basket.remove(item)
+    basket.removeItem(item)
 
     // Test
-    expect(basket.items.length).toEqual(0)
+    expect(basket.items.size).toEqual(0)
+  })
+
+  it('should throw exception while trying to remove non-existent item from basket', () => {
+    expect(() => basket.removeItem({name: 'non-existent'})).toThrow()
   })
 
 }) 
