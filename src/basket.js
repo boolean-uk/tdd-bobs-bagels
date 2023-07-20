@@ -32,11 +32,28 @@ class Basket {
             throw new Error("Basket is full!!!")
         }
         if (this._getLeftCapacity() - quantity < 0) {
-            throw new Error("Can't add as more than ${this._getLeftCapacity} items to basket")
+            throw new Error(`Can't add as more than ${this._getLeftCapacity} items to basket`)
         }
 
         for (let i = 0; i < quantity; i++) {
             this.contents.push(product)
+        }
+    }
+
+    removeItem(product, quantity) {
+        if (quantity < 0) {
+            throw new Error("Can't remove negative amount of products from basket")
+        }
+        if (this.getItemQuantity(product) === 0) {
+            throw new Error("Can't remove an item that is not in the basket")
+        }
+        if (this.getItemQuantity(product) - quantity < 0) {
+            throw new Error(`Can't remove as more than ${this.getItemQuantity(product)} items from basket`)
+        }
+
+        for (let i = 0; i < quantity; i++) {
+            const index = this.contents.findIndex(item => item.sku === product.sku)
+            this.contents.splice(index, 1)
         }
     }
 }

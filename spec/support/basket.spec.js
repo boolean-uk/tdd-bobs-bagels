@@ -136,7 +136,7 @@ describe('Basket', () => {
         // Verify
         expect(() => {
             basket.removeItem(product1, 6)
-        }).toThrowError("Can't remove more items than are in the basket")
+        }).toThrowError("Can't remove as more than 5 items from basket")
     })
 
 })
