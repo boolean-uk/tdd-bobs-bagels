@@ -20,4 +20,12 @@ describe('basket tests', () => {
   it('bagel not added to array', () => {
     expect(basket.add('NONEXISTING')).toEqual([])
   })
+
+  it('bagel removed from array', () => {
+    basket.add('BGLP')
+    expect(basket.remove('BGLP')).toEqual([])
+  })
+  it('bagel not existing', () => {
+    expect(basket.remove('NONEXISTING')).toEqual('bagel doesnt exist in basket')
+  })
 })
