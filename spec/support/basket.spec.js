@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-const { Basket } = require("../../src/Basket")
+const { Basket } = require("../../src/basket")
 const { Product } = require("../../src/Product")
 
 
@@ -7,6 +7,7 @@ describe('Testing class basket', () => {
 
     let basket
     let basket2
+    let basket3
     let product1
     let product2
     let product3
@@ -14,6 +15,7 @@ describe('Testing class basket', () => {
     beforeEach(() => {
         basket = new Basket()
         basket2 = new Basket(2)
+        basket3 = new Basket(30)
         product1 = new Product("BGLO", 0.49, "Bagel", "Onion")
         product2 = new Product("COFB", 0.99, "Coffee", "Black")
         product3 = new Product("BGLP", 0.39, "Bagel", "Plain")
@@ -83,5 +85,10 @@ describe('Testing class basket', () => {
         basket.addProduct(product1, 1)
         basket.addProduct(product2, 2)
         expect(basket.getNumberOfBagels()).toEqual(1)
+    })
+    it('should return price of bagels with discount', () => {
+        basket3.addProduct(product1, 7)
+        basket3.addProduct(product3, 14)
+        expect(basket3.getPriceOfMultipleBagels()).toEqual(3.99 + 2.49)
     })
 })
