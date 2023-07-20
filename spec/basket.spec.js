@@ -135,4 +135,14 @@ describe('Other item and basket operations', () => {
         expect(getItemPrice(inventory[0])).toEqual(0.49)
         expect(getItemPrice(inventory[1])).toEqual(0.39)
     })
+
+    it('should add 3 items to basket', () => {
+        addItem(basket, inventory[0], 3)
+        expect(basket.items.length).toEqual(3)
+    })
+
+    it('should throw an error when there is no space left in basket', () => {
+        addItem(basket, inventory[0])
+        expect(() => addItem(basket, inventory[0], 3)).toThrow('Basket can not containt that much items')
+    })
 })
