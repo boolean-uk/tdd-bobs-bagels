@@ -1,8 +1,14 @@
 <script>
+import Basket from "@/components/Basket.vue"
+
 export default {
+  components: { Basket },
   data() {
     return {
-      inventoryData: null
+      bagelData: null,
+      coffeeData: null,
+      fillingData: null,
+      basketItems: []
     };
   },
   created() {
@@ -11,38 +17,38 @@ export default {
   methods: {
     async loadInventoryData() {
       try {
-        const response = await fetch("inventory.json");
+        const response = await fetch("inventory-modified.json");
         const data = await response.json();
-        console.log(data);
 
-        this.inventoryData = data.inventory;
+        this.bagelData = data.bagel;
+        this.coffeeData = data.coffee;
+        this.fillingData = data.filling;
       } catch (error) {
         console.error(error);
       }
+    },
+    addToBasket() {
+      this.basketItems.push(this.bagelData[0]);
     }
   }
 };
 </script>
 
 <template>
-  <h1 class="text-xl">BOB'S BAGELS<br></h1>
-  <button class="btn">CLICK ME</button>
-  <div>
-    <div v-if="inventoryData">
-      <h2>Inventory Data:</h2>
-      <p v-for="(item, index) in inventoryData" :key="index">
-        <strong>SKU:</strong> {{ item.sku }}<br />
-        <strong>Name:</strong> {{ item.name }}<br />
-        <strong>Price:</strong> {{ item.price }}<br />
-        <strong>Variant:</strong> {{ item.variant }}
-        <br />
-        <strong v-if="item.fillings">Fillings:</strong>
-        <ul v-if="item.fillings">
-          <li v-for="(filling, index) in item.fillings" :key="index">{{ filling }}</li>
-        </ul>
-      </p>
-    </div>
-  </div>
+  <h1 class="text-5xl font-bold">BOB'S BAGELS<br></h1>
+  <button @click="addToBasket(item)" class="btn">Add to Basket</button>
+  <Basket :items="basketItems" />
+<!--  <div>-->
+<!--    <div v-if="bagelData">-->
+<!--      <h2>Bagel Data:</h2>-->
+<!--      <p v-for="(item, index) in bagelData" :key="index">-->
+<!--        <strong>SKU:</strong> {{ item.sku }}<br />-->
+<!--        <strong>Price:</strong> {{ item.price }}<br />-->
+<!--        <strong>Variant:</strong> {{ item.variant }}-->
+<!--        <br />-->
+<!--      </p>-->
+<!--    </div>-->
+<!--  </div>-->
 </template>
 
 <style scoped>
