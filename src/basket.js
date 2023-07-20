@@ -75,6 +75,10 @@ class Basket {
     }, 0)
     return parseFloat(price.toFixed(2))
   }
+
+  setCapacity(capacity) {
+    this.capacity = capacity
+  }
 }
 
 module.exports = Basket

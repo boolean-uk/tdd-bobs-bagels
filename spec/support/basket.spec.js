@@ -197,4 +197,22 @@ describe('Basket', () => {
       5 * product1.getPrice() + 3 * product2.getPrice()
     )
   })
+
+  it('should generate a receipt', () => {
+    // Setup
+    basket.addItem(product1, 5)
+    basket.addItem(product2, 3)
+
+    // Execute
+    const receipt = basket.generateReceipt()
+
+    // Verify
+    const fs = require('fs')
+    const expectedReceipt = fs.readFileSync(
+      'spec/support/example-receipt.txt',
+      'utf8'
+    )
+    console.log(expectedReceipt)
+    expect(receipt).toEqual(expectedReceipt)
+  })
 })

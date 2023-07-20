@@ -1,0 +1,14 @@
+    ~~~ Bob's Bagels ~~~
+
+    2021-03-16 21:38:44
+
+----------------------------
+
+Onion Bagel        2   £0.98
+Plain Bagel        12  £3.99
+
+----------------------------
+Total                  £4.97
+
+        Thank you
+      for your order!
