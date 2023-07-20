@@ -1,13 +1,13 @@
-const Bagel = require("./bagel");
+const Bagel = require("./Bagel");
 
 class Basket {
   bagels;
   basketCapacity;
   basketQuantity;
 
-  constructor() {
+  constructor(capacity) {
     this.bagels = [];
-    this.basketCapacity = 10;
+    this.basketCapacity = capacity;
     this.basketQuantity = 0;
   }
 

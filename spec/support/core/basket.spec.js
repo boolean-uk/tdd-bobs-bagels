@@ -1,10 +1,10 @@
-const Basket = require("../../src/basket");
-const Bagel = require("../../src/bagel");
+const Basket = require("../../../src/core/Basket");
+const Bagel = require("../../../src/core/Bagel");
 
 describe("basket class tests", () => {
   it("should add one bagel to the basket", () => {
     const newBagel = new Bagel("Plain", 3.57);
-    const basket = new Basket();
+    const basket = new Basket(10);
 
     const resultAdd = basket.add(newBagel, 1);
 
@@ -18,7 +18,7 @@ describe("basket class tests", () => {
 
   it("should increase quantity of specfic bagel if it is already in the basket", () => {
     const newBagel = new Bagel("Plain", 3.57);
-    const basket = new Basket();
+    const basket = new Basket(10);
 
     basket.add(newBagel, 1);
     const result = basket.add(newBagel, 3);
@@ -33,7 +33,7 @@ describe("basket class tests", () => {
 
   it("should not increase quantity of specfic bagel if it is already in the basket", () => {
     const newBagel = new Bagel("Plain", 3.57);
-    const basket = new Basket();
+    const basket = new Basket(10);
 
     basket.add(newBagel, 1);
     const result = basket.add(newBagel, 10);
@@ -48,7 +48,7 @@ describe("basket class tests", () => {
 
   it("should not add bagel if given quantity is invalid", () => {
     const newBagel = new Bagel("Plain", 3.57);
-    const basket = new Basket();
+    const basket = new Basket(10);
 
     const result = basket.add(newBagel, -4);
 
@@ -62,7 +62,7 @@ describe("basket class tests", () => {
 
   it("should remove specific quantity of bagels from the basket", () => {
     const newBagel = new Bagel("Plain", 3.57);
-    const basket = new Basket();
+    const basket = new Basket(10);
 
     basket.add(newBagel, 4);
     const result = basket.remove(newBagel, 2);
@@ -78,7 +78,7 @@ describe("basket class tests", () => {
   it("should not remove if bagel with given name does not exist", () => {
     const newBagel = new Bagel("Plain", 3.57);
     const invalidBagel = new Bagel("Poppy", 3);
-    const basket = new Basket();
+    const basket = new Basket(10);
 
     basket.add(newBagel, 4);
     const result = basket.remove(invalidBagel, 2);
@@ -88,7 +88,7 @@ describe("basket class tests", () => {
 
   it("should not remove bagel if given quantity is invalid", () => {
     const newBagel = new Bagel("Plain", 3.57);
-    const basket = new Basket();
+    const basket = new Basket(10);
 
     basket.add(newBagel, 1);
     const result = basket.remove(newBagel, -4);
@@ -103,7 +103,7 @@ describe("basket class tests", () => {
 
   it("should remove all bagels of given type", () => {
     const newBagel = new Bagel("Plain", 3.57);
-    const basket = new Basket();
+    const basket = new Basket(10);
 
     basket.add(newBagel, 4);
     const result = basket.remove(newBagel, 5);
@@ -118,7 +118,7 @@ describe("basket class tests", () => {
 
   it("should return true if basket is full when given quantity will be added", () => {
     const newBagel = new Bagel("Plain", 3.57);
-    const basket = new Basket();
+    const basket = new Basket(10);
 
     basket.add(newBagel, 8);
     const result = basket.isFull(3);
@@ -128,7 +128,7 @@ describe("basket class tests", () => {
 
   it("should return false if basket is not full when given quantity will be added", () => {
     const newBagel = new Bagel("Plain", 3.57);
-    const basket = new Basket();
+    const basket = new Basket(10);
 
     basket.add(newBagel, 8);
     const result = basket.isFull(2);
@@ -139,7 +139,7 @@ describe("basket class tests", () => {
   it("should return total price of products included in the basket", () => {
     const newBagel1 = new Bagel("Plain", 3.56);
     const newBagel2 = new Bagel("Onion", 1.02);
-    const basket = new Basket();
+    const basket = new Basket(10);
 
     basket.add(newBagel1, 1);
     basket.add(newBagel2, 2);
