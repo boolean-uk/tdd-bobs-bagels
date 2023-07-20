@@ -88,4 +88,19 @@ describe("basket class tests", () => {
 
   })
 
+  it("should not remove bagel if given quantity is invalid", () => {
+    const newBagel = new Bagel("Plain", 3.57);
+    const basket = new Basket();
+
+    basket.add(newBagel, 1)
+    const result = basket.remove(newBagel, -4);
+
+    const resultQuantity= basket.bagels.filter(
+      (item) => item.bagel.name === "Plain"
+    )[0].quantity;
+
+    expect(result).toEqual(false);
+    expect(resultLength).toEqual(1);
+  });
+
 });
