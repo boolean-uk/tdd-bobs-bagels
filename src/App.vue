@@ -1,23 +1,22 @@
 <template>
+  <NavBar></NavBar>
   <Main></Main>
 </template>
 
 <script>
 import Main from "@/components/Main.vue";
+import NavBar from "@/components/NavBar.vue";
 
 export default {
   name: "App",
   components: {
+    NavBar,
     Main
   }
 };
 </script>
 
 <style>
-body {
-    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 255, 1) 39%, rgba(218, 248, 255, 1) 100%);
-}
-
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
