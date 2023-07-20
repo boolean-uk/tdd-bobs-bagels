@@ -43,7 +43,7 @@ class Basket {
 
     getPriceOfFillings = () => {
         return Object.entries(this.basketList)
-            .filter(([product, quantity]) => product.sku[0] === 'F')
+            .filter(([product, quantity]) => product[0] === 'F')
             .map(([product, quantity]) => quantity * 0.12)
             .reduce((x, y) => x + y, 0)
     }

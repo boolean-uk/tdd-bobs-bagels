@@ -22,7 +22,7 @@ describe('Testing class basket', () => {
         product2 = new Product("COFB", 0.99, "Coffee", "Black")
         product3 = new Product("BGLP", 0.39, "Bagel", "Plain")
         filling1 = new Product("FILB",0.12,"Filling","Bacon")
-        filling1 = new Product("FILE",0.12,"Filling","Egg")
+        filling2 = new Product("FILE",0.12,"Filling","Egg")
     })
 
     it('should add product to basketList', () => {
