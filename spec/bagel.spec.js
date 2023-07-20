@@ -1,4 +1,4 @@
-const { Bagel, validateBagel } = require('../src/bagel')
+const { Bagel, validateBagel } = require('../src/models/bagel')
 
 describe('validateBagel', () => {
   it('should not allow object of different type to be created', function () {

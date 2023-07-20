@@ -1,5 +1,5 @@
-const { Bagel } = require('../src/bagel')
-const { Basket } = require('../src/basket')
+const { Bagel } = require('../src/models/bagel')
+const { Basket } = require('../src/models/basket')
 
 describe('constructor', () => {
   it('should throw for non positive capacity', function () {
@@ -8,18 +8,15 @@ describe('constructor', () => {
   })
 
   it('should create instance for positive capacity', function () {
-    let defaultBasket
-    let basket
+    let defaultBasket, basket
 
     expect(() => (defaultBasket = new Basket())).not.toThrow()
     expect(() => (basket = new Basket(20))).not.toThrow()
 
-    const emptyMap = new Map()
-
     expect(defaultBasket.capacity).toEqual(10)
-    expect(defaultBasket.bagels).toEqual(emptyMap)
+    expect(defaultBasket.bagels).toEqual([])
     expect(basket.capacity).toEqual(20)
-    expect(basket.bagels).toEqual(emptyMap)
+    expect(basket.bagels).toEqual([])
   })
 })
 
@@ -31,23 +28,18 @@ describe('addBagel', () => {
   })
 
   beforeEach(() => {
-    basket = new Basket(3)
+    basket = new Basket(1)
   })
 
   it('should add bagel', function () {
     expect(() => basket.addBagel(bagel)).not.toThrow()
-    expect([...basket.bagels.entries()].length).toEqual(1)
-    expect(basket.bagels.get(bagel)).toEqual(1)
-  })
-
-  it('should add two bagels', function () {
-    expect(() => basket.addBagel(bagel, 2)).not.toThrow()
-    expect([...basket.bagels.entries()].length).toEqual(1)
-    expect(basket.bagels.get(bagel)).toEqual(2)
+    expect(basket.bagels.length).toEqual(1)
+    expect(basket.bagels[0]).toEqual(bagel)
   })
 
   it('should not add bagel if basket is full', function () {
-    expect(() => basket.addBagel(bagel, 4)).toThrow()
+    expect(() => basket.addBagel(bagel)).not.toThrow()
+    expect(() => basket.addBagel(bagel)).toThrow()
   })
 })
 
@@ -63,18 +55,14 @@ describe('removeBagel', () => {
   })
 
   it('should remove bagel', () => {
-    basket.addBagel(bagel, 10)
-    expect(() => basket.removeBagel(bagel)).not.toThrow()
-    expect([...basket.bagels.entries()].length).toEqual(1)
-    expect(basket.bagels.get(bagel)).toEqual(9)
-    expect(() => basket.removeBagel(bagel, 9)).not.toThrow()
-    expect([...basket.bagels.entries()].length).toEqual(1)
-    expect(basket.bagels.get(bagel)).toEqual(0)
+    basket.addBagel(bagel)
+    expect(() => basket.removeBagel(bagel.uuid)).not.toThrow()
+    expect(basket.bagels).toEqual([])
   })
 
   it('should throw when trying to remove more bagels than present in basket', () => {
-    expect(() => basket.removeBagel(new Bagel('test', 2))).toThrow()
-    expect(() => basket.removeBagel(bagel, 11)).toThrow()
+    expect(() => basket.removeBagel(new Bagel('test', 2).uuid)).toThrow()
+    expect(() => basket.removeBagel(bagel.uuid)).toThrow()
   })
 })
 
@@ -91,10 +79,10 @@ describe('bagelAmount', () => {
 
   it('should correctly calculate amount of bagels in basket', () => {
     expect(basket.bagelAmount()).toEqual(0)
-    basket.addBagel(bagel, 5)
-    expect(basket.bagelAmount()).toEqual(5)
-    basket.addBagel(new Bagel('test', 2), 3)
-    expect(basket.bagelAmount()).toEqual(8)
+    basket.addBagel(bagel)
+    expect(basket.bagelAmount()).toEqual(1)
+    basket.addBagel(new Bagel('test', 2))
+    expect(basket.bagelAmount()).toEqual(2)
   })
 })
 
@@ -110,10 +98,10 @@ describe('totalCost', () => {
   })
 
   it('should correctly calculate price', () => {
-    expect(basket.totalCost()).toEqual(0)
-    basket.addBagel(bagel, 5)
-    expect(basket.totalCost()).toEqual(5 * 1.25)
-    basket.addBagel(new Bagel('test', 3.2), 3)
-    expect(basket.totalCost()).toEqual(5 * 1.25 + 3 * 3.2)
+    expect(new Basket().totalCost()).toEqual(0)
+    basket.addBagel(new Bagel('test', 1.25))
+    expect(basket.totalCost()).toEqual(1.25)
+    basket.addBagel(new Bagel('test', 3.2))
+    expect(basket.totalCost()).toEqual(1.25 + 3.2)
   })
 })
