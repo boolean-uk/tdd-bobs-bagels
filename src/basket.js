@@ -7,8 +7,8 @@ class Basket {
     this.capacity = capacity
   }
 
-  addItem(name) {
-    const isFull = this.items.length >= this.capacity
+  addItem(name, quantity = 1) {
+    const isFull = this.items.length + quantity >= this.capacity
     if (isFull) {
       return 'You can not add an item'
     }
@@ -17,13 +17,8 @@ class Basket {
     if (!invItem) {
       return 'Not in stock'
     }
-    // check if we have
-    const item = this.items.find((item) => item.sku === name)
-    // if exists
-    if (item) {
-      item.quantity += 1
-    } else {
-      this.items.push({ name: name, quantity: 1 })
+    for (let i = 0; i < quantity; i++) {
+      this.items.push(name)
     }
 
     return this.items
@@ -31,15 +26,11 @@ class Basket {
 
   removeItem(name) {
     // check if item exists
-    const item = this.items.find((item) => item.name === name)
+    const item = this.items.find((item) => item === name)
     if (!item) {
       return 'Item does not exist'
     }
-    // decrease the quantity
-    item.quantity -= 1
-    if (item.quantity <= 0) {
-      this.items.splice(this.items.indexOf(item), 1)
-    }
+    this.items.splice(this.items.indexOf(item), 1)
     return this.items
   }
 
