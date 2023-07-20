@@ -68,6 +68,13 @@ class Basket {
       this.contents.splice(index, 1)
     }
   }
+
+  getTotalPrice() {
+    const price = this.contents.reduce((total, item) => {
+      return total + parseFloat(item.price)
+    }, 0)
+    return parseFloat(price.toFixed(2))
+  }
 }
 
 module.exports = Basket
