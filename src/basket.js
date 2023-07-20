@@ -6,6 +6,9 @@ function addItem(basket, item) {
 }
 
 function removeItem(basket, item) {
+    if(!containsItem(basket, item))
+        throw 'Item does not exist in the basket'
+
     const index = basket.items.indexOf(item)
     basket.items.splice(index, 1)
 }
