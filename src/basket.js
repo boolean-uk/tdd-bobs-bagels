@@ -105,6 +105,54 @@ class Basket {
         return this.getPriceOfProductsWithoutDiscount6Or12() + this.getPriceOfPromoCoffeeAndBagel() + this.getPriceOfFillings() + this.getPriceOfMultipleBagels()
     }
 
+    getReceipt = () => {
+        let receipt = []
+        let variant
+        let name 
+        let price
+        const pound = '\u00A3'
+        const date = new Date()
+        const now = date.getDate() + '-' + (date.getMonth()+1) + '-'
+        + date.getFullYear() +" " 
+        + date.getHours() + ":"  
+        + date.getMinutes() + ":" 
+        + date.getSeconds()
+        receipt.push("    ~~~ Bob's Bagels ~~~");
+        receipt.push("\n");
+        receipt.push("\n");
+        receipt.push("    " + now.toLocaleString());
+        receipt.push("\n");
+        receipt.push("\n");
+        receipt.push("-".repeat(28));
+        receipt.push("\n");
+
+        for(let i in this.basketList) {
+            name = this.inventory.getProductBySKU(i).name
+            variant = this.inventory.getProductBySKU(i).variant
+            price = this.inventory.getProductBySKU(i).getPrice() * this.basketList[i] 
+
+            receipt.push(variant)
+            receipt.push(' ')
+            receipt.push(name)
+            receipt.push(' ')
+            receipt.push(this.basketList[i])
+            receipt.push(' ')
+            receipt.push(pound)
+            receipt.push(price.toFixed(2))
+            receipt.push('\n')
+        }        
+
+        receipt.push("-".repeat(28));
+        receipt.push("\n");
+        receipt.push("Total" + " ".repeat(18) + pound + this.getTotalCost().toFixed(2));
+        receipt.push("\n");
+        receipt.push("\n");
+
+        receipt.push(" ".repeat(8) + "Thank you" + "\n");
+        receipt.push(" ".repeat(6) + "for your order!");
+
+        return receipt.join("")
+    }
 }
 
 module.exports = {
