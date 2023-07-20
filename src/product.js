@@ -1,9 +1,9 @@
-class Bagel {
+class Product {
   constructor(sku, type, price) {
-    this.sky = sku
+    this.sku = sku
     this.type = type
     this.price = price
   }
 }
 
-module.exports = Bagel
+module.exports = Product
