@@ -46,4 +46,13 @@ describe('Basket test - core', () => {
       'You capacity cannot be smaller than products amount'
     )
   })
+
+  it('should throw error when trying to remove item not stored in basket', function () {
+    const basket = new Basket(1)
+    const bagel = new Bagel('Plain', 0.49)
+
+    expect(() => basket.removeBagel(bagel)).toThrowError(
+      'Item is not in basket'
+    )
+  })
 })
