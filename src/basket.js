@@ -1,15 +1,26 @@
 class Basket {
   constructor(capacity) {
     this.capacity = capacity
-    this.items = []
+    this.items = new Map()
   }
 
-  // get items() {
-  //   return this.items
-  // }
-
   addItem (item) {
-    this.items.push(item)
+    if (this.items.has(item)) {
+      this.items.set(item, this.items.get(item) + 1)
+    } else {
+      this.items.set(item, 1)
+    }
+  }
+
+  removeItem (item) {
+    if (this.items.has(item)) {
+      this.items.set(item, this.items.get(item) - 1)
+      if (this.items.get(item) <= 0) {
+        this.items.delete(item)
+      }
+    } else {
+      throw 'No such item in basket!'
+    }
   }
 }
 
