@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const { Basket } = require("../../Basket")
 const { Product } = require("../../Product")
 
@@ -71,5 +72,16 @@ describe('Testing class basket', () => {
         expect(basket2.getCapacity()).toEqual(2)
         basket2.setCapacity(5)
         expect(basket2.getCapacity()).toEqual(5)
+    })
+
+    it('should return total sum of Products', () => {
+        basket.addProduct(product1, 1)
+        basket.addProduct(product2, 2)
+        expect(basket.getNumberOfProducts()).toEqual(3)
+    })
+    it('should return total sum of bagels', () => {
+        basket.addProduct(product1, 1)
+        basket.addProduct(product2, 2)
+        expect(basket.getNumberOfBagels()).toEqual(1)
     })
 })

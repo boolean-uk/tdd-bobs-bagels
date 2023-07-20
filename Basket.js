@@ -5,7 +5,7 @@ class Basket {
     }
 
     addProduct = (product, amount) => {
-        if (this.capacity - this.getNumbersOfProduct() >= amount) {
+        if (this.capacity - this.getNumberOfProducts() >= amount) {
             this.basketList[product.sku] = (this.basketList[product.sku] || 0) + amount
         }
     }
@@ -26,11 +26,12 @@ class Basket {
         return this.basketList
     }
 
-    getNumbersOfProduct = () => {
+    getNumberOfProducts = () => {
         return Object.values(this.basketList).reduce((x, y) => x + y, 0)
     }
+
     isFull = () => {
-        return this.getNumbersOfProduct() === this.capacity
+        return this.getNumberOfProducts() === this.capacity
     }
 
 }
