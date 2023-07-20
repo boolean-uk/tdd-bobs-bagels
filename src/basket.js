@@ -1,8 +1,12 @@
-function addItem(basket, item) {
+function addItem(basket, item, quantity = 1) {
     if(isFull(basket))
         throw 'Basket is full'
 
-    basket.items.push(item)
+    if(basket.items.length + quantity > basket.capacity)
+        throw 'Basket can not containt that much items'
+
+    for(let i = 0; i < quantity; i++)
+        basket.items.push(item)
 }
 
 function removeItem(basket, item) {
