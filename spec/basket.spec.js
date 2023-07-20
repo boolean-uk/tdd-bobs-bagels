@@ -34,4 +34,14 @@ describe("Basket tests", () => {
     expect(() => basket.removeItem({name: 'non-existent'})).toThrow()
   })
 
+  it('should throw exception when trying to add item over basket capacity', () => {
+    // Setup
+    const item = {name: 'apple', price: 1.11}
+    basket.addItem(item)
+    basket.addItem(item)
+
+    // Test
+    expect(() => basket.addItem(item)).toThrow()
+  })
+
 }) 
