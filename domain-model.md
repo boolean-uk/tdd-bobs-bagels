@@ -46,7 +46,7 @@ When I go to checkout I'd like to know the total sum of the bagels in my basket
 |        |                         |                             | if the amount of bagels of bagelType in basket is < amount or amount <= 0              | false                          |
 |        |                         | changeCapacity(newCapacity) | if newCapacity >= currentAmount                                                        | true                           |
 |        |                         |                             | if newCapacity < currentAmount                                                         | false                          |
-|        |                         |  totalCost()                | always                                                                                 | total cost of bagels in basket |
+|        |                         | totalCost()                 | always                                                                                 | total cost of bagels in basket |
 |        |                         |                             |                                                                                        |                                |
 |        |                         | checkBagelPrice(bagelSKU)   | if the bagel of this sku exists                                                        | bagel cost                     |
 |        |                         |                             | if the bagel doesn't exist                                                             | false                          |
