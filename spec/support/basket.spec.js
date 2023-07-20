@@ -141,8 +141,8 @@ describe("basket class tests", () => {
     const newBagel2 = new Bagel("Onion", 1.02);
     const basket = new Basket();
 
-    basket.add(newBagel1, 8);
-    basket.add(newBagel2, 8);
+    basket.add(newBagel1, 1);
+    basket.add(newBagel2, 2);
     const result = basket.total();
 
     expect(result).toEqual(5.6);

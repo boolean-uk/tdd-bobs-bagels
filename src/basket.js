@@ -53,6 +53,14 @@ class Basket {
     return false;
   }
 
+  total() {
+    return this.bagels.reduce(
+      (previousItem, item) =>
+        previousItem.bagel.price * previousItem.quantity +
+        item.bagel.price * item.quantity
+    );
+  }
+
   find(bagel) {
     return this.bagels.filter((item) => item.bagel.name === bagel.name);
   }
