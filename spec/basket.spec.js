@@ -23,4 +23,12 @@ describe('Basket test - core', () => {
 
     expect(basket.products.length).toEqual(0)
   })
+
+  it('should extend basket capacity', function () {
+    const basket = new Basket(5)
+    const newCapacity = 10
+    basket.extendBasket(newCapacity)
+
+    expect(basket.capacity).toEqual(newCapacity)
+  })
 })
