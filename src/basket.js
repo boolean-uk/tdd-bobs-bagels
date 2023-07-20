@@ -7,6 +7,8 @@ class Basket{
         this.cappacity = cappacity;
     }
 
+    recipt = []
+
     addItem(item){
         const itemToAdd = ListOfProducts.find(product => product.sku === item);
 
@@ -90,28 +92,78 @@ class Basket{
 
 
     getBasketPriceWithDiscounts() {
-        const skuInfoMap = this.groupItemsBySku();
+        let skuInfoMap = this.groupItemsBySku();
         let totalPrice = 0;
+        let chosenItemPrice = 0;
         for (const sku in skuInfoMap) {
             const item = skuInfoMap[sku];
             if (sku === "BGLE" || sku === "BGLO") {
-                totalPrice += this.discountForBGLEBGLO(item.quantity, item.pricePerSku);
+                chosenItemPrice = this.discountForBGLEBGLO(item.quantity, item.pricePerSku);
+                totalPrice += chosenItemPrice;
+                this.recipt.push({sku: sku, quantity: item.quantity, price: chosenItemPrice.toFixed(2)});
             } 
             else if (sku === "BGLP") {
-                totalPrice += this.discountForBGLP(item.quantity, item.pricePerSku);
+                chosenItemPrice = this.discountForBGLP(item.quantity, item.pricePerSku);
+                totalPrice += chosenItemPrice;
+                this.recipt.push({sku: sku, quantity: item.quantity, price: chosenItemPrice.toFixed(2)});
             }
             else {
-                totalPrice += skuInfoMap[sku].quantity * skuInfoMap[sku].pricePerSku;
+                chosenItemPrice = item.quantity * item.pricePerSku;
+                totalPrice += chosenItemPrice;
+                this.recipt.push({sku: sku, quantity: item.quantity, price: chosenItemPrice.toFixed(2)});
             }
         }
 
         return totalPrice.toFixed(2);
+    }
+
+    changeReciptSku(){
+        this.recipt.map(item => {
+            switch (item.sku) {
+                case "BGLE":
+                    item.sku = "Everything Bagel";
+                    break;
+                case "BGLO":
+                    item.sku = "Onion Bagel";
+                    break;
+                case "BGLP":
+                    item.sku = "Plain Bagel";
+                    break;
+                case "COF":
+                    item.sku = "Coffee";
+                    break;
+                case "COF&BGLP":
+                    item.sku = "Coffee and Plain Bagel";
+                    break;
+                default:
+                    break;
+            }
+            return item;
+        });
+    }
+
+    showRecipt(){
+        let totalPrice = this.getBasketPriceWithDiscounts();
+        this.changeReciptSku();
+
+        console.log("         Bob's Bagels       ");
+        console.log( new Date().toLocaleString());
+        console.log("-------------------------------");
+        for(const item of this.recipt){
+            console.log("  " + item.sku + "  " + item.quantity + "   " + item.price);
+        }
+        console.log("-------------------------------");
+        console.log("                 Total: " + totalPrice);
+        console.log("          thank you");
+        console.log("         for yourt order");
     }
 };
 
 function changeBasketCappacity(newCappacity){
     cappacity = newCappacity;
 }
+
+
 
 module.exports = {
     Basket,
