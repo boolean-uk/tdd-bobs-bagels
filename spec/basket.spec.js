@@ -44,4 +44,10 @@ describe("Basket tests", () => {
     expect(() => basket.addItem(item)).toThrow()
   })
 
+  it('should return it price', () => {
+    const item = {name: 'apple', price: 1.11}
+
+    expect(basket.checkPrice(item)).toEqual(1.11)
+  })
+
 }) 
