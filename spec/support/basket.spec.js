@@ -21,6 +21,7 @@ describe('Testing class basket', () => {
         product1 = new Product("BGLO", 0.49, "Bagel", "Onion")
         product2 = new Product("COFB", 0.99, "Coffee", "Black")
         product3 = new Product("BGLP", 0.39, "Bagel", "Plain")
+        product4 = new Product("BGLE", 0.49, "Bagel", "Everything")
         filling1 = new Product("FILB",0.12,"Filling","Bacon")
         filling2 = new Product("FILE",0.12,"Filling","Egg")
     })
@@ -104,6 +105,23 @@ describe('Testing class basket', () => {
     it('should return price of coffees without discount', () => {
         basket3.addProduct(product1, 2)
         basket3.addProduct(product2, 3)
-        expect(basket3.getPriceOfProductsWithoutDiscount()).toEqual(0.99)
+        expect(basket3.getPriceOfProductsWithoutDiscount6Or12()).toEqual(0.99)
+    })
+    it('should return price of bagels without discount', () => {
+        basket3.addProduct(product1, 3)
+        basket3.addProduct(product2, 2)
+        expect(basket3.getPriceOfProductsWithoutDiscount6Or12()).toEqual(0.49)
+    })
+    it('should return price of coffees and bagel promotion', () => {
+        basket3.addProduct(product1, 2)
+        basket3.addProduct(product2, 3)
+        expect(basket3.getPriceOfPromoCoffeeAndBagel()).toEqual(2.50)
+    })
+    it('should return total cost of basket', () => {
+        basket3.addProduct(product1, 2);
+        basket3.addProduct(product2, 3);
+        basket3.addProduct(product3, 14);
+        basket3.addProduct(product4, 6);
+        expect(basket3.getTotalCost()).toEqual(2*1.25 + 3.99 + 1.25 + 0.39 + 2.49)
     })
 })

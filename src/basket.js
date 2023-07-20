@@ -18,30 +18,41 @@ class Basket {
         } else return 'Product not in basket'
     }
 
-    getTotalCost = () => {
-        let totalCost = 0.00
-        const tmp = structuredClone(this.basketList)
-        
+    getPricesOfBagelsWithoutDiscount6Or12 = () => {
+        return Object.entries(this.basketList)
+        .filter(([product, quantity]) => product[0] === 'B')
+        .flatMap(([product, quantity]) => Array((quantity % 6)).fill(this.inventory.getProductBySKU(product).getPrice()))
     }
 
-    getPriceOfProductsWithoutDiscount = () => {
-        const bagelsWithoutDiscount = Object.entries(this.basketList)
-            .filter(([product, quantity]) => product[0] === 'B')
-            .flatMap(([product, quantity]) => Array((quantity % 6)).fill(this.inventory.getProductBySKU(product).getPrice()))
+    getPricesOfCoffees = () => {
+        return Object.entries(this.basketList)
+        .filter(([product, quantity]) => product[0] === 'C')
+        .flatMap(([product, quantity]) => Array(quantity).fill(this.inventory.getProductBySKU(product).getPrice()))
+    }
+
+
+    getPriceOfProductsWithoutDiscount6Or12 = () => {
+        const bagelsWithoutDiscount6Or12 = this.getPricesOfBagelsWithoutDiscount6Or12()
             
-        console.log(bagelsWithoutDiscount)
-        const coffees = Object.entries(this.basketList)
-            .filter(([product, quantity]) => product[0] === 'C')
-            .flatMap(([product, quantity]) => Array(quantity).fill(this.inventory.getProductBySKU(product).getPrice()))
-        console.log(coffees)   
-        if (bagelsWithoutDiscount.length > coffees) {
-            return bagelsWithoutDiscount
+        const coffees = this.getPricesOfCoffees()
+        if (bagelsWithoutDiscount6Or12.length > coffees.length) {
+            return bagelsWithoutDiscount6Or12
                 .slice(coffees.length)
                 .reduce((x,y) => x + y, 0)
         } else {
             return coffees
-                .slice(bagelsWithoutDiscount.length)
+                .slice(bagelsWithoutDiscount6Or12.length)
                 .reduce((x,y) => x + y, 0)
+        }
+    }
+
+    getPriceOfPromoCoffeeAndBagel = () => {
+        const bagelsWithoutDiscount6Or12 = this.getPricesOfBagelsWithoutDiscount6Or12()
+        const coffees = this.getPricesOfCoffees()
+        if(bagelsWithoutDiscount6Or12.length > coffees.length) {
+            return bagelsWithoutDiscount6Or12.slice(0, coffees.length).length * 1.25
+        } else {
+            return coffees.slice(0, bagelsWithoutDiscount6Or12.length).length * 1.25
         }
     }
 
@@ -88,6 +99,10 @@ class Basket {
 
     isFull = () => {
         return this.getNumberOfProducts() === this.capacity
+    }
+
+    getTotalCost = () => {
+        return this.getPriceOfProductsWithoutDiscount6Or12() + this.getPriceOfPromoCoffeeAndBagel() + this.getPriceOfFillings() + this.getPriceOfMultipleBagels()
     }
 
 }
