@@ -11,3 +11,12 @@ describe('addItem', () => {
     ])
   })
 })
+
+describe('removeItem', () => {
+  const basket = new Basket(2)
+  it('should remove item from the basket', () => {
+    basket.addItem('BG')
+    const result = basket.removeItem('BG')
+    expect(result).toEqual([])
+  })
+})
