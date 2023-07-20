@@ -18,7 +18,7 @@ function clearBasket() {
   for (const i in bagelsInBasket) bagelsInBasket[i] = 0
 }
 
-function find(inventory, sku) {
+function find(sku) {
   for (const i in inventory) {
     if (inventory[i].sku === sku) return inventory[i]
   }
@@ -54,14 +54,14 @@ function remove(bagelSku, amount) {
 function total() {
   let total = 0
   for (const i in bagelsInBasket) {
-    total += bagelsInBasket[i] * find(inventory, i).price
+    total += bagelsInBasket[i] * find(i).price
   }
 
   return Math.floor(total * 100) / 100
 }
 
 function checkBagelPrice(bagelSKU) {
-  const bagel = find(inventory, bagelSKU)
+  const bagel = find(bagelSKU)
   return bagel === null ? 0 : bagel.price
 }
 
