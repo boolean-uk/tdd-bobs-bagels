@@ -16,12 +16,16 @@ class Basket {
         } else return 'Product not in basket'
     }
 
+
     getBasketList = () => {
         return this.basketList
     }
 
     getNumbersOfProduct = () => {
         return Object.values(this.basketList).reduce((x, y) => x + y, 0)
+    }
+    isFull = () => {
+        return this.getNumbersOfProduct() === this.capacity
     }
 
 }

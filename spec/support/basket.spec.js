@@ -56,4 +56,9 @@ describe('Testing class basket', () => {
         expect(Object.keys(basket.getBasketList()).length).toEqual(1)
         expect(basket.removeProduct(product2, 1)).toEqual("Product not in basket")
     })
+
+    it('should check if basket is full', () => {
+        basket2.addProduct(product2, 2)
+        expect(basket2.isFull).toBeTruthy()
+    })
 })
