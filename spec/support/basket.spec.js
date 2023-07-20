@@ -45,12 +45,12 @@ describe('Basket', () => {
     it('should not add an item if the basket is full', () => {
         // Execute
         basket.addItem(product1, 10)
-        basket.addItem(product2, 1)
 
         // Verify
-        expect(basket.contents).not.toContain(product2)
-        expect(basket.getItemQuantity(product2)).toEqual(0)
         expect(basket.getItemQuantity(product1)).toEqual(10)
+        expect(() => {
+            basket.addItem(product2, 1)
+        }).toThrowError("Basket is full!!!")
     })
 
 
