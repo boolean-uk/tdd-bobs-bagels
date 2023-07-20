@@ -56,4 +56,14 @@ describe('Basket test - core', () => {
       'Item is not in basket'
     )
   })
+
+  it('should be able to add the same bagels to cart', function () {
+    const basket = new Basket(5)
+    const bagel = new Product('plain', 0.49)
+    basket.addBagel(bagel)
+    basket.addBagel(bagel)
+    basket.addBagel(bagel)
+
+    expect(basket.products.length).toEqual(3)
+  })
 })
