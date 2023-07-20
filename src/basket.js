@@ -2,6 +2,7 @@ const { Bagel, validateBagel } = require('./bagel')
 
 class Basket {
   constructor(capacity = 10) {
+    if (capacity <= 0) throw new Error('Capacity must be a positive number')
     this.capacity = capacity
     this.bagels = new Map()
   }
@@ -9,8 +10,7 @@ class Basket {
   addBagel(bagel, amount = 1) {
     validateBagel(bagel)
     if (this.bagels.length === this.capacity) {
-      console.error('Cannot add bagel - basket is full')
-      return
+      throw new Error('Cannot add bagel - basket is full')
     }
     const currentAmount = this.bagels.get(bagel)
     if (currentAmount === undefined) {
@@ -24,10 +24,9 @@ class Basket {
     validateBagel(bagel)
     const currentAmount = this.bagels.get(bagel)
     if (currentAmount === undefined) {
-      console.error(`Cannot remove ${bagel} - it's not in the basket`)
-      return
+      throw new Error(`Cannot remove ${bagel} - it's not in the basket`)
     } else if (currentAmount < amount) {
-      console.error(
+      throw new Error(
         `Cannot remove ${amount} bagels - there are ${currentAmount} in the basket`
       )
     }
