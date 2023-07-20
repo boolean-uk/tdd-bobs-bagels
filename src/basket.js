@@ -13,8 +13,12 @@ function removeItem(basket, item) {
 const isFull = (basket) =>
     basket.items.length === basket.capacity
 
+const containsItem = (basket, item) =>
+    basket.items.indexOf(item) !== -1
+
 module.exports = {
     addItem,
     removeItem,
-    isFull
+    isFull,
+    containsItem
 }
