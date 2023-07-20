@@ -59,3 +59,25 @@ describe('addItem', () => {
     expect(basket.items).toEqual(['BGLO', 'BGLO'])
   })
 })
+
+describe('calculateTotalPrice', () => {
+  const basket = new Basket(3)
+  it('should return total price', () => {
+    basket.addItem('BGLO')
+    basket.addItem('BGLP')
+    const result = basket.calculateTotalPrice()
+    expect(result).toEqual(0.49 + 0.39)
+  })
+})
+
+describe('calculateTotalPriceManySameBagels', () => {
+  const basket = new Basket(4)
+  it('should return total price', () => {
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
+    const result = basket.calculateTotalPrice()
+    expect(basket.items).toEqual(['BGLO', 'BGLO', 'BGLO'])
+    expect(result).toEqual(0.49 * 3)
+  })
+})
