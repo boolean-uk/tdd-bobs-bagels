@@ -33,6 +33,12 @@ class Basket {
     return false;
   }
 
+  remove(bagel, quantity){
+    const findResult = this.find(bagel)
+    findResult[0].quantity -= quantity;
+    return true
+  }
+
   find(bagel) {
     return this.bagels.filter((item) => item.bagel.name === bagel.name);
   }

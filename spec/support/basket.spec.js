@@ -76,4 +76,16 @@ describe("basket class tests", () => {
 
   })
 
+  it("should not remove if bagel with given name does not exist", () => {
+    const newBagel = new Bagel("Plain", 3.57);
+    const invalidBagel = new Bagel("Poppy", 3);
+    const basket = new Basket();
+
+    basket.add(newBagel, 4);
+    const result = basket.remove(invalidBagel, 2);
+
+    expect(result).toEqual(false);
+
+  })
+
 });
