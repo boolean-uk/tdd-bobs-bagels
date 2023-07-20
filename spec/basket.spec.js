@@ -2,10 +2,10 @@ const Basket = require('../src/basket')
 describe('addItem', () => {
   const basket = new Basket(2)
   it('should add item to the basket', () => {
-    const item = basket.addItem('BG')
+    const item = basket.addItem('BGLO')
     expect(item).toEqual([
       {
-        name: 'BG',
+        name: 'BGLO',
         quantity: 1
       }
     ])
@@ -15,8 +15,8 @@ describe('addItem', () => {
 describe('addItem', () => {
   const basket = new Basket(3)
   it('should add 2 items to the basket', () => {
-    basket.addItem('BG')
-    basket.addItem('BH')
+    basket.addItem('BGLO')
+    basket.addItem('BGLP')
     expect(basket.items.length).toEqual(2)
   })
 })
@@ -24,7 +24,7 @@ describe('addItem', () => {
 describe('addItem', () => {
   const basket = new Basket(0)
   it('shouldnot add any item to the basket', () => {
-    const item = basket.addItem('BG')
+    const item = basket.addItem('BGLO')
     expect(basket.items.length).toEqual(0)
     expect(item).toEqual('You can not add an item')
   })
@@ -33,8 +33,8 @@ describe('addItem', () => {
 describe('removeItem', () => {
   const basket = new Basket(2)
   it('should remove item from the basket', () => {
-    basket.addItem('BG')
-    const result = basket.removeItem('BG')
+    basket.addItem('BGLO')
+    const result = basket.removeItem('BGLO')
     expect(result).toEqual([])
   })
 })
@@ -42,8 +42,16 @@ describe('removeItem', () => {
 describe('removeItem', () => {
   const basket = new Basket(2)
   it('shouldnot remove item from the basket', () => {
-    basket.addItem('BG')
+    basket.addItem('BGLO')
     const result = basket.removeItem('GH')
     expect(result).toEqual('Item does not exist')
+  })
+})
+
+describe('checkPrice', () => {
+  const basket = new Basket(2)
+  it('should return price', () => {
+    const result = basket.checkPrice('BGLO')
+    expect(result).toEqual('0.49')
   })
 })
