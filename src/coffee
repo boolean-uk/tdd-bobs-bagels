@@ -8,7 +8,8 @@ class coffee {
     }
   
     getPrice(){
-        return this.coffeeType.price
+        return Math.round(this.coffeeType.price * 100) / 100
+       // return this.coffeeType.price
     }
 }
 CoffeeType={

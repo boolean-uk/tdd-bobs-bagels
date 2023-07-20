@@ -1,6 +1,7 @@
 
 const { bagelSandwich,Bagel,Filling } = require('../../src/bagelSandwich')
 const { basket } = require('../../src/basket')
+const { coffee,CoffeeType } = require('../../src/coffee')
 
 describe('Add to basket', () => {
     let  bask
@@ -95,5 +96,22 @@ describe('Add to basket', () => {
         // Test
         expect(bask.totalPrice()).toEqual(plainBagel.getPrice()+onionBagel.getPrice())
         expect(bask.totalPrice()).toEqual(1.24)
+    })
+    it('should return total price', () => {
+        // Set up
+        onionBagel=new bagelSandwich([Filling.FILE,Filling.FILC],Bagel.BGLO)
+        bask.add(onionBagel)
+        plainBagel=new bagelSandwich([Filling.FILX],Bagel.BGLP)
+        bask.add(plainBagel)
+        capucino=new coffee(CoffeeType.COFC)
+        bask.add(capucino)
+       
+        // Test
+        // console.log(plainBagel.getPrice())
+        // console.log(onionBagel.getPrice())
+        // console.log(capucino.getPrice())
+        ourTotal=Math.round((plainBagel.getPrice()+onionBagel.getPrice()+capucino.getPrice()) * 100) / 100
+        expect(bask.totalPrice()).toEqual(ourTotal)
+       expect(bask.totalPrice()).toEqual(2.53)
     })
 })

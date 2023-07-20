@@ -13,13 +13,16 @@ class bagelSandwich{
         for(let i=0;i<this.fillings.length;i++){
             fillingsPrice+=this.fillings[i].price
         }
-        return fillingsPrice
+        return Math.round(fillingsPrice * 100) / 100
+        //return fillingsPrice
     }
     getBagelPrice(){
-        return this.bagel.price
+       return Math.round(this.bagel.price * 100) / 100
+       // return this.bagel.price
     }
     getPrice(){
-        return this.getBagelPrice()+this.getFillingsPrice()
+       return Math.round((this.getBagelPrice()+this.getFillingsPrice()) * 100) / 100
+       // return (this.getBagelPrice()+this.getFillingsPrice())
     }
 
 }

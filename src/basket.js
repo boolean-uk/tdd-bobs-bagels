@@ -31,9 +31,8 @@ class basket{
         for(let i=0;i<this.products.length;i++){
             totalPrice+=this.products[i].getPrice()
         }
-        return totalPrice
+       return Math.round(totalPrice * 100) / 100
     }
-    
 
 }
 module.exports = {
