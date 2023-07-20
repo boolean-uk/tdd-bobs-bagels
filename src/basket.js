@@ -54,26 +54,55 @@ class Basket {
 
   checkPrice(sku) {
     const item = this.getItemBySku(sku)
-    return item.price
+    return item.price / 100.0
   }
 
   getTotalPrice() {
-    // let totalPrice = 0
-    // for (let item of this.items.keys()) {
-    //   totalPrice += item.price * this.items.get(item)
-    // }
-    // return totalPrice
-
+    let totalPrice = 0
+    const remainingBagels = []
+    const coffees = []
+    
     for (let [key, value] of this.items.entries()) {
-      let sixBagels = value / 6
-      // totalPrice +=   
+      if (key.name === "Bagel" && value >= 6) {
+        let numOfSix = value / 6
+        totalPrice += (399 * (Math.floor(numOfSix / 2)) + 249 * (numOfSix % 2))
+        for (let i = 0; i < value % 6; i ++){
+          remainingBagels.push(key)    
+        }
+      }
+      else if (key.name === "Bagel" && value < 6){
+        for (let i = 0; i < value % 6; i ++){
+          remainingBagels.push(key)    
+        }
+      }
+      else if (key.name === "Bagel Sandwich") {    // fillings are included into price
+        totalPrice += key.price * value
+      }
+      else if (key.name === "Coffee") {
+        for (let i = 0; i < value; i ++){
+          coffees.push(key)    
+        }
+      }
+      
     }
 
+    const numOfCoffeeBagelCombos = Math.min(remainingBagels.length, coffees.length)
 
+    totalPrice += numOfCoffeeBagelCombos * 125
 
+    if (remainingBagels.length > coffees.length) {
+      for (let i = numOfCoffeeBagelCombos; i < remainingBagels.length; i++) {
+        totalPrice += remainingBagels[i].price
+      }
+    }
+    else {
+      for (let i = numOfCoffeeBagelCombos; i < coffees.length; i++) {
+        totalPrice += coffees[i].price
+      }
+    }
+
+    return totalPrice / 100.0
   }
-
-
 }
 
 module.exports = {

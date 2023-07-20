@@ -43,7 +43,7 @@ describe("Basket tests", () => {
 
   it('should return it price', () => {
     // Test
-    expect(basket.checkPrice("BGLS")).toEqual('0.49')
+    expect(basket.checkPrice("BGLS")).toEqual(0.49)
   })
 
   it('should be able to add the same item to basket more than once', () => {
@@ -63,6 +63,66 @@ describe("Basket tests", () => {
     basket.addItem("BGLP")
 
     expect(basket.getTotalPrice()).toEqual(0.78)
+  })
+
+  it('should calculate total price of items in basket combo of 6 same bagels', () => {
+    // Setup
+    basket = new Basket(20)
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+
+    expect(basket.getTotalPrice()).toEqual(2.49)
+  })
+
+  it('should calculate total price of items in basket combo of 12 same bagels', () => {
+    // Setup
+    basket = new Basket(20)
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+
+    expect(basket.getTotalPrice()).toEqual(3.99)
+  })
+
+  it('should calculate total price of items in basket combo of 6 same bagels and one coffee', () => {
+    // Setup
+    basket = new Basket(20)
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("COF")
+
+    expect(basket.getTotalPrice()).toEqual(3.48)
+  })
+
+  it('should calculate total price of items in basket combo of 6 same bagels and one bagel sandwich', () => {
+    // Setup
+    basket = new Basket(20)
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGLP")
+    basket.addItem("BGSS")
+
+    expect(basket.getTotalPrice()).toEqual(5.48)
   })
 
 }) 
