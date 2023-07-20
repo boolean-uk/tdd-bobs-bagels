@@ -35,6 +35,11 @@ class Basket {
     else return 'cannot change capacity'
     return this.capacity
   }
+  checkPrice(sku) {
+    const item = inventory.find((item) => item.sku === sku)
+    if (item) return item.price
+    else return 'item not found in inv'
+  }
 }
 
 module.exports = { Basket }
