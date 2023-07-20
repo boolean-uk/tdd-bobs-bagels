@@ -54,7 +54,8 @@ function total() {
   for (const i in bagelsInBasket) {
     total += bagelsInBasket[i] * find(inventory, i).price
   }
-  return total
+
+  return Math.floor(total * 100) / 100
 }
 
 function checkBagelPrice(bagelSKU) {
