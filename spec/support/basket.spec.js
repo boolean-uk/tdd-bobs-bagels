@@ -100,7 +100,24 @@ describe("basket class tests", () => {
     )[0].quantity;
 
     expect(result).toEqual(false);
-    expect(resultLength).toEqual(1);
+    expect(resultQuantity).toEqual(1);
   });
+
+  it("should remove all bagels of given type", () => {
+    const newBagel = new Bagel("Plain", 3.57);
+    const basket = new Basket();
+
+    basket.add(newBagel, 4);
+    const result = basket.remove(newBagel, 5);
+
+    const resultLength = basket.bagels.filter(
+      (item) => item.bagel.name === "Plain"
+    ).length;
+
+    expect(result).toEqual(true);
+    expect(resultLength).toEqual(0);
+  });
+
+
 
 });

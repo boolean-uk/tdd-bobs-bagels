@@ -36,10 +36,18 @@ class Basket {
   remove(bagel, quantity){
 
     const findResult = this.find(bagel)
-    
-    if (findResult.length > 0) {
-        findResult[0].quantity -= quantity;
-    return true
+
+    if (findResult.length > 0 && quantity > 0) {
+
+        if(findResult[0].quantity >= quantity){
+            findResult[0].quantity -= quantity;
+            this.basketQuantity -= quantity;
+        } else {
+            const index = this.bagels.findIndex(item => item.bagel.name === findResult[0].bagel.name)
+            if (index != -1) this.bagels.splice(index, 1)
+        }
+        
+        return true
     }
 
     return false
