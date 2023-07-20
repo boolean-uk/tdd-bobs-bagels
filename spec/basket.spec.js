@@ -76,6 +76,7 @@ describe("Basket tests", () => {
     basket.addItem("BGLP")
     basket.addItem("BGLP")
 
+    //Test
     expect(basket.getTotalPrice()).toEqual(2.49)
   })
 
@@ -95,6 +96,7 @@ describe("Basket tests", () => {
     basket.addItem("BGLP")
     basket.addItem("BGLP")
 
+    //Test
     expect(basket.getTotalPrice()).toEqual(3.99)
   })
 
@@ -109,6 +111,7 @@ describe("Basket tests", () => {
     basket.addItem("BGLP")
     basket.addItem("COF")
 
+    //Test
     expect(basket.getTotalPrice()).toEqual(3.48)
   })
 
@@ -123,7 +126,10 @@ describe("Basket tests", () => {
     basket.addItem("BGLP")
     basket.addItem("BGSS")
 
+    //Test
     expect(basket.getTotalPrice()).toEqual(5.48)
+  })
+
   it('should print receipt', () => {
     //Setup
     basket = new Basket(30)
@@ -133,6 +139,7 @@ describe("Basket tests", () => {
     Array(3).fill().forEach(() => basket.addItem("COF"));
     const receipt = basket.placeOrder()
 
+    //Test
     expect(receipt).toContain("~~~ Bob's Bagels ~~~")
     expect(receipt).toContain("--------------------------------")
     expect(receipt).toContain("Bagel   Onion      2  £0.98")
@@ -141,5 +148,4 @@ describe("Basket tests", () => {
     expect(receipt).toContain("Coffee             3  £2.97")
     expect(receipt).toContain("Total                    £10.1")
   })
-
-}) 
+})
