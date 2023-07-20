@@ -7,7 +7,11 @@ function removeItem(basket, item) {
     basket.items.splice(index, 1)
 }
 
+const isFull = (basket) =>
+    basket.items.length === basket.capacity
+
 module.exports = {
     addItem,
-    removeItem
+    removeItem,
+    isFull
 }
