@@ -110,8 +110,8 @@ describe('totalCost', () => {
   })
 
   it('should correctly calculate price', () => {
-    expect(new Basket().totalCost()).toEqual(0)
-    basket.addBagel(new Bagel('test', 1.25), 5)
+    expect(basket.totalCost()).toEqual(0)
+    basket.addBagel(bagel, 5)
     expect(basket.totalCost()).toEqual(5 * 1.25)
     basket.addBagel(new Bagel('test', 3.2), 3)
     expect(basket.totalCost()).toEqual(5 * 1.25 + 3 * 3.2)
