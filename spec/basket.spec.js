@@ -70,7 +70,7 @@ describe('Conditional basket operations', () => {
         addItem(basket, inventory[1])
         addItem(basket, inventory[2])
 
-        expect(() => addItem(basket, inventory[3])).toThrow()
+        expect(() => addItem(basket, inventory[3])).toThrow('Basket is full')
     })
 
     it('should return true if basket contains the item', () => {
@@ -91,5 +91,9 @@ describe('Conditional basket operations', () => {
         addItem(basket, inventory[2])
 
         expect(containsItem(basket, itemToCheck)).toBeFalse()
+    })
+
+    it('should throw an error if trying to remove nonexisting item from the basket', () => {
+        expect(() => removeItem(basket, inventory[0])).toThrow('Item does not exist in the basket')
     })
 })
