@@ -5,6 +5,8 @@ class Basket {
   }
 
   addBagel(bagel) {
+    if (this.products.length === this.capacity)
+      throw new Error('Capacity exceeded')
     this.products.push(bagel)
   }
 }
