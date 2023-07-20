@@ -69,7 +69,47 @@ class Basket {
         })
         return Number(total.toFixed(2))
     }
+
+    generateReceipt() {
+        const itemsCount = {}
+        for (let i = 0; i < this.contents.length; ++i) {
+            const item = this.contents[i]
+            const itemCount = itemsCount[item.sku]
+            itemsCount[item.sku] = itemCount === undefined ? 1 : itemCount + 1
+        }
+        console.log("")
+        console.log("    ~~~ Bob's Bagels ~~~")
+        let today = new Date()
+        console.log("\n    " + today.toLocaleString("pl-PL"))
+        console.log("")
+        console.log("-".repeat(29))
+        console.log("")
+        for (const [key, value] of Object.entries(itemsCount)) {
+            const bagel = inv.find((item) => item.sku === key)
+            console.log(`${bagel.variant} ${bagel.name}`.padEnd(21) + String(value).padEnd(3) + "£" + value * bagel.price)
+        }
+        console.log("")
+        console.log("-".repeat(29))
+        console.log("Total".padEnd(24) + "£" +basket.totalCost())
+        console.log("")
+        console.log("        Thank you")
+        console.log("      for your order!")
+    }
 }
+Basket.defaultCapacity = 8
+
+console.log("Receipt preview:\n")
+const basket = new Basket()
+basket.addItem("BGLP")
+basket.addItem("BGLP")
+basket.addItem("BGLE")
+basket.addItem("BGLE")
+basket.addItem("BGLE")
+basket.addItem("BGLE")
+basket.addItem("BGLO")
+basket.generateReceipt()
+console.log("")
+
 Basket.defaultCapacity = 4
 
 module.exports = {
