@@ -5,6 +5,7 @@ class Basket {
   }
 
   addItem (item) {
+    this.checkIfBasketIsFull()
     if (this.items.has(item)) {
       this.items.set(item, this.items.get(item) + 1)
     } else {
@@ -20,6 +21,13 @@ class Basket {
       }
     } else {
       throw 'No such item in basket!'
+    }
+  }
+
+  checkIfBasketIsFull() {
+    const numOfItemsInBasket = Array.from(this.items.values()).reduce((sum, el) => sum + el, 0)
+    if (numOfItemsInBasket >= this.capacity) {
+      throw 'Basket is full!'
     }
   }
 }
