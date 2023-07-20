@@ -11,9 +11,11 @@ describe('Basket test - core', () => {
   })
 
   it('should throw exception if basket capacity exceeded', function () {
-    const basket = new Basket(0)
-    const bagel = new Bagel('plain', 0.49)
-    expect(() => basket.addBagel(bagel)).toThrow(new Error('Capacity exceeded'))
+    const basket = new Basket(1)
+    const bagel1 = new Bagel('plain', 0.49)
+    const bagel2 = new Bagel('plain', 0.49)
+    basket.addBagel(bagel1)
+    expect(() => basket.addBagel(bagel2)).toThrowError('Capacity exceeded')
   })
 
   it('should remove bagel from basket', function () {
@@ -27,8 +29,21 @@ describe('Basket test - core', () => {
   it('should extend basket capacity', function () {
     const basket = new Basket(5)
     const newCapacity = 10
-    basket.extendBasket(newCapacity)
+    basket.changeCapacity(newCapacity)
 
     expect(basket.capacity).toEqual(newCapacity)
+  })
+
+  it('should throw error if new capacity is smaller than products amount', function () {
+    const basket = new Basket(5)
+    const bagel1 = new Bagel('Plain', 0.49)
+    const bagel2 = new Bagel('Egg', 0.49)
+    basket.addBagel(bagel1)
+    basket.addBagel(bagel2)
+    const newCapacity = 1
+
+    expect(() => basket.changeCapacity(newCapacity)).toThrowError(
+      'You capacity cannot be smaller than products amount'
+    )
   })
 })
