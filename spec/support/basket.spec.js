@@ -12,7 +12,8 @@ describe('basket tests', () => {
         sku: 'BGLP',
         price: '0.39',
         name: 'Bagel',
-        variant: 'Plain'
+        variant: 'Plain',
+        quantity: 1
       }
     ])
   })
@@ -26,6 +27,6 @@ describe('basket tests', () => {
     expect(basket.remove('BGLP')).toEqual([])
   })
   it('bagel not existing', () => {
-    expect(basket.remove('NONEXISTING')).toEqual('bagel doesnt exist in basket')
+    expect(basket.remove('NONEXISTING')).toEqual('item doesnt exist in basket')
   })
 })
