@@ -10,7 +10,7 @@ describe("basket class tests", () => {
     const everythingBagel = inventory.getProduct("BGLE");
     const coffee = inventory.getProduct("COFB");
 
-    const basket = new Basket(10);
+    const basket = new Basket(30);
 
     basket.add(onionBagel, 2);
     basket.add(plainBagel, 12);
@@ -19,6 +19,17 @@ describe("basket class tests", () => {
 
     const result = basket.total();
 
-    expect(result).toEqual(10.43);
+    expect(result).toEqual(10.73);
+  });
+
+  it("should return total price with discounts for 16 plain bagels", () => {
+    const inventory = new Inventory();
+    const plainBagel = inventory.getProduct("BGLP");
+    const basket = new Basket(30);
+    basket.add(plainBagel, 16);
+
+    const result = basket.total();
+
+    expect(result).toEqual(5.55);
   });
 });
