@@ -1,3 +1,5 @@
+const Product = require('./product')
+
 class Basket {
   constructor(capacity) {
     if (capacity <= 0) {
@@ -27,6 +29,15 @@ class Basket {
     if (newCapacity <= 0)
       throw new Error('Your capacity cannot be smaller or equal 0')
     this.capacity = newCapacity
+  }
+
+  getTotal() {
+    return this.products.reduce((total, prod) => {
+      if (prod instanceof Product) {
+        return total + prod.price
+      }
+      return total
+    }, 0)
   }
 }
 
