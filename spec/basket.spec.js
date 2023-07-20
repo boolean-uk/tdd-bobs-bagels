@@ -71,7 +71,7 @@ describe('calculateTotalPrice', () => {
 })
 
 describe('calculateTotalPriceManySameBagels', () => {
-  const basket = new Basket(4)
+  const basket = new Basket(3)
   it('should return total price', () => {
     basket.addItem('BGLO')
     basket.addItem('BGLO')
