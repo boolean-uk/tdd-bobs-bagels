@@ -1,5 +1,5 @@
 const { ListOfProducts } = require("./product.js");
-let cappacity = 40;
+let cappacity = 2;
 
 class Basket{
     constructor(){
@@ -112,36 +112,6 @@ class Basket{
 function changeBasketCappacity(newCappacity){
     cappacity = newCappacity;
 }
-
-
-const basket = new Basket();
-basket.addItem("BGLP");
-basket.addItem("BGLP");
-basket.addItem("BGLP");
-basket.addItem("BGLP");
-basket.addItem("BGLP");
-basket.addItem("BGLP");
-basket.addItem("BGLP");
-basket.addItem("BGLP");
-basket.addItem("BGLP");
-basket.addItem("BGLP");
-basket.addItem("BGLP");
-basket.addItem("BGLP");
-basket.addItem("COF");
-// basket.addItem("BGLO");
-// basket.addItem("BGLO");
-// basket.addItem("BGLO");
-// basket.addItem("BGLO");
-// basket.addItem("BGLO");
-basket.addItem("BGLE");
-basket.addItem("BGLE");
-basket.addItem("BGLE");
-basket.addItem("BGLE");
-basket.addItem("BGLE");
-basket.addItem("BGLE");
-console.log(basket.getBasketPriceWithDiscounts())
-
-
 
 module.exports = {
     Basket,
