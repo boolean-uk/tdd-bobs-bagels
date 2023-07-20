@@ -38,3 +38,12 @@ describe('removeItem', () => {
     expect(result).toEqual([])
   })
 })
+
+describe('removeItem', () => {
+  const basket = new Basket(2)
+  it('shouldnot remove item from the basket', () => {
+    basket.addItem('BG')
+    const result = basket.removeItem('GH')
+    expect(result).toEqual('Item does not exist')
+  })
+})
