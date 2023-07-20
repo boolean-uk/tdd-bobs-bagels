@@ -131,7 +131,7 @@ Total                    £${this.getTotalPrice()}
     this.items.forEach((quantity, item) => {
       const itemName = item.name.padEnd(longestName, ' ')
       const itemVariant = item.variant.padEnd(longestVariant, ' ')
-      const itemPrice = (item.price * quantity).toFixed(2)
+      const itemPrice = (this.checkPrice(item.sku) * quantity).toFixed(2)
       itemStrings += `${itemName}  ${itemVariant} ${quantity}  £${itemPrice}` + "\n"
     });
 
