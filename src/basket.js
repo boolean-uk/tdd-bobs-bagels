@@ -34,9 +34,15 @@ class Basket {
   }
 
   remove(bagel, quantity){
+
     const findResult = this.find(bagel)
-    findResult[0].quantity -= quantity;
+    
+    if (findResult.length > 0) {
+        findResult[0].quantity -= quantity;
     return true
+    }
+
+    return false
   }
 
   find(bagel) {
