@@ -45,6 +45,14 @@ class Basket {
   checkPrice(item) {
     return item.price
   }
+
+  getTotalPrice() {
+    let totalPrice = 0
+    for (let item of this.items.keys()) {
+      totalPrice += item.price * this.items.get(item)
+    }
+    return totalPrice
+  }
 }
 
 module.exports = {
