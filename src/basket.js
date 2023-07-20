@@ -19,9 +19,13 @@ const isFull = (basket) =>
 const containsItem = (basket, item) =>
     basket.items.indexOf(item) !== -1
 
+const setCapacity = (basket, capacity) =>
+    basket.capacity = capacity
+
 module.exports = {
     addItem,
     removeItem,
     isFull,
-    containsItem
+    containsItem,
+    setCapacity
 }
