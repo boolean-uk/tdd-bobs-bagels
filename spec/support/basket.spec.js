@@ -11,6 +11,8 @@ describe('Testing class basket', () => {
     let product1
     let product2
     let product3
+    let filling1
+    let filling2
 
     beforeEach(() => {
         basket = new Basket()
@@ -19,6 +21,8 @@ describe('Testing class basket', () => {
         product1 = new Product("BGLO", 0.49, "Bagel", "Onion")
         product2 = new Product("COFB", 0.99, "Coffee", "Black")
         product3 = new Product("BGLP", 0.39, "Bagel", "Plain")
+        filling1 = new Product("FILB",0.12,"Filling","Bacon")
+        filling1 = new Product("FILE",0.12,"Filling","Egg")
     })
 
     it('should add product to basketList', () => {
@@ -90,5 +94,11 @@ describe('Testing class basket', () => {
         basket3.addProduct(product1, 7)
         basket3.addProduct(product3, 14)
         expect(basket3.getPriceOfMultipleBagels()).toEqual(3.99 + 2.49)
+    })
+    it('should return price of fillings', () => {
+        basket.addProduct(filling1, 2)
+        basket.addProduct(filling2, 1)
+        basket.addProduct(product1)
+        expect(basket.getPriceOfFillings()).toEqual(3 * 0.12)
     })
 })
