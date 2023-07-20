@@ -1,4 +1,7 @@
 function addItem(basket, item) {
+    if(isFull(basket))
+        throw 'Basket is full'
+
     basket.items.push(item)
 }
 
