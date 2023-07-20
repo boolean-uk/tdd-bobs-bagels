@@ -13,6 +13,10 @@ class Basket {
   removeBagel(bagel) {
     this.products = this.products.filter((prod) => prod !== bagel)
   }
+
+  extendBasket(newCapacity) {
+    this.capacity = newCapacity
+  }
 }
 
 module.exports = Basket
