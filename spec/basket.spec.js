@@ -146,6 +146,6 @@ describe("Basket tests", () => {
     expect(receipt).toContain("Bagel   Plain      12  £4.68")
     expect(receipt).toContain("Bagel   Everything 3  £1.47")
     expect(receipt).toContain("Coffee             3  £2.97")
-    expect(receipt).toContain("Total                    £10.1")
+    expect(receipt).toContain("Total                    £8.72")
   })
 })
