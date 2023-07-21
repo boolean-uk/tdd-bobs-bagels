@@ -20,7 +20,7 @@ export default function AddProduct({ productList, capacity, productNames, basket
             <select name="products" className='form-select' value={selectedValue} onChange={(event) => setSelectedValue(event.target.value)}>
                 <option value="">Select a product</option>
                 {productList && productList.map((product,index) => {
-                    return <option key={product.sku} value={product.sku}>{ productNames[index] }</option>
+                    return <option key={product.sku} value={product.sku}>{ `${productNames[index]} : $${product.price} ` }</option>
                 })}
             </select>
             <button className='mt-4 btn btn-secondary' onClick={()=>addToBasket(selectedValue)}>add Product</button>
