@@ -15,16 +15,17 @@ function App() {
     setProducts(productsList.inventory)
   }, [])
   
-  const productNames = products
-    .map((product) => product.fillings ? `${product.variant} ${product.name} with ${product.fillings.join(", ")}` : `${product.variant} ${product.name}`)
 
+  const getName = (product) => {
+    return product.fillings ? `${product.variant} ${product.name} with ${product.fillings.join(", ")}` : `${product.variant} ${product.name}`
+  }
 
 
   return (
     <>
       <div className="container d-flex justify-content-between gap-5">
-        <AddProduct productList={products} productNames={ productNames} capacity={capacity} basket={basket} setBasket={setBasket}/>
-        <BasketComponent capacity={capacity} setCapacity={setCapacity} basket={basket} setBasket={setBasket} productNames={ productNames} />
+        <AddProduct productList={products} getName={ getName } capacity={capacity} basket={basket} setBasket={setBasket}/>
+        <BasketComponent capacity={capacity} setCapacity={setCapacity} basket={basket} setBasket={setBasket} getName={getName} />
       </div>
 
     </>

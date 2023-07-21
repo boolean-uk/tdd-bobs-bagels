@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react'
 
-function BasketComponent({ basket, setBasket, capacity, setCapacity, productNames }) {
+function BasketComponent({ basket, setBasket, capacity, setCapacity, getName }) {
     const [selectedValue, setSelectedValue] = useState(5);
     const removeProduct = (product) => {
         setBasket((previousBasket)=>previousBasket.filter((curr)=>curr.sku != product.sku))
@@ -18,7 +18,10 @@ function BasketComponent({ basket, setBasket, capacity, setCapacity, productName
       <div className='container option' >
           <ul className='list-group'>
           {basket && basket.map((product) => 
-              <li className='list-group-item p-1' key={product.sku}>{`${productNames[product.index]} x ${product.quantity}`} <button className='ms-4 btn btn-secondary' onClick={() => removeProduct(product)}>Remove product</button></li>
+              <li className='list-group-item p-1' key={product.sku}>
+                  {`${getName(product)} x ${product.quantity}`}
+                  <button className='ms-4 btn btn-secondary' onClick={() => removeProduct(product)}>Remove product</button>
+              </li>
               )}
           </ul>
           <div>
