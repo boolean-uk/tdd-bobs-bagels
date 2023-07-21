@@ -9,7 +9,7 @@ function BasketComponent({ basket, setBasket, capacity, setCapacity, productName
     }
     const getTotalCost = () => {
         return basket
-            .map((product) => product.price)
+            .map((product) => product.price * product.quantity)
             .reduce((x, y) => x + parseFloat(y), 0)
             .toFixed(2)
     }
@@ -18,7 +18,7 @@ function BasketComponent({ basket, setBasket, capacity, setCapacity, productName
       <div className='container option' >
           <ul className='list-group'>
           {basket && basket.map((product) => 
-              <li className='list-group-item p-1' key={product.sku}>{productNames[product.index]} <button className='ms-4 btn btn-secondary' onClick={() => removeProduct(product)}>Remove product</button></li>
+              <li className='list-group-item p-1' key={product.sku}>{`${productNames[product.index]} x ${product.quantity}`} <button className='ms-4 btn btn-secondary' onClick={() => removeProduct(product)}>Remove product</button></li>
               )}
           </ul>
           <div>

@@ -8,7 +8,18 @@ export default function AddProduct({ productList, capacity, productNames, basket
     const addToBasket = (productSKU) => {
         if (basket.length < capacity) {
           const product = productList.find((product) => product.sku === productSKU)
-          setBasket((prevBasket) => [...prevBasket, product]);
+          setBasket((prevBasket) => {
+            const existingProduct = prevBasket.find((item) => item.sku === product.sku);
+            if (existingProduct) {
+              // If product already exists, update its quantity
+              return prevBasket.map((item) =>
+                item.sku === product.sku ? { ...item, quantity: item.quantity + 1 } : item
+              );
+            } else {
+              // If product doesn't exist, add it with quantity 1
+              return [...prevBasket, { ...product, quantity: 1 }];
+            }
+          });
         } else {
           alert('Basket is full. Cannot add more items.');
         }
