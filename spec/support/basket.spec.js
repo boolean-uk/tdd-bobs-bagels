@@ -1,10 +1,12 @@
 /* eslint-disable prettier/prettier */
 const { Basket } = require("../../src/basket")
 const { Product } = require("../../src/Product")
+const { Inventory } = require("../../src/Inventory")
 
 
 describe('Testing class basket', () => {
 
+    let inventory
     let basket
     let basket2
     let basket3
@@ -15,12 +17,14 @@ describe('Testing class basket', () => {
     let filling2
 
     beforeEach(() => {
+        inventory = new Inventory()
         basket = new Basket()
         basket2 = new Basket(2)
         basket3 = new Basket(30)
         product1 = new Product("BGLO", 0.49, "Bagel", "Onion")
         product2 = new Product("COFB", 0.99, "Coffee", "Black")
         product3 = new Product("BGLP", 0.39, "Bagel", "Plain")
+        product4 = new Product("BGLE", 0.49, "Bagel", "Everything")
         filling1 = new Product("FILB",0.12,"Filling","Bacon")
         filling2 = new Product("FILE",0.12,"Filling","Egg")
     })
@@ -104,6 +108,77 @@ describe('Testing class basket', () => {
     it('should return price of coffees without discount', () => {
         basket3.addProduct(product1, 2)
         basket3.addProduct(product2, 3)
-        expect(basket3.getPriceOfProductsWithoutDiscount()).toEqual(0.99)
+        expect(basket3.getPriceOfProductsWithoutDiscount6Or12()).toEqual(0.99)
+    })
+    it('should return price of bagels without discount', () => {
+        basket3.addProduct(product1, 3)
+        basket3.addProduct(product2, 2)
+        expect(basket3.getPriceOfProductsWithoutDiscount6Or12()).toEqual(0.49)
+    })
+    it('should return price of coffees and bagel promotion', () => {
+        basket3.addProduct(product1, 2)
+        basket3.addProduct(product2, 3)
+        expect(basket3.getPriceOfPromoCoffeeAndBagel()).toEqual(2.50)
+    })
+    it('should return total cost of basket', () => {
+        basket3.addProduct(product1, 2);
+        basket3.addProduct(product2, 3);
+        basket3.addProduct(product3, 14);
+        basket3.addProduct(product4, 6);
+        expect(basket3.getTotalCost()).toEqual(2*1.25 + 3.99 + 1.25 + 0.39 + 2.49)
+    })
+
+    it('should return the receipt', () => {
+        basket3.addProduct(product1, 2);
+        basket3.addProduct(product2, 3);
+        basket3.addProduct(product3, 14);
+        basket3.addProduct(product4, 6);
+
+        let receipt = []
+        let variant
+        let name 
+        let price
+        const pound = '\u00A3'
+        const date = new Date()
+        const now = date.getDate() + '-' + (date.getMonth()+1) + '-'
+        + date.getFullYear() +" " 
+        + date.getHours() + ":"  
+        + date.getMinutes() + ":" 
+        + date.getSeconds()
+        receipt.push("    ~~~ Bob's Bagels ~~~");
+        receipt.push("\n");
+        receipt.push("\n");
+        receipt.push("    " + now.toLocaleString());
+        receipt.push("\n");
+        receipt.push("\n");
+        receipt.push("-".repeat(28));
+        receipt.push("\n");
+
+        for(let i in basket3.getBasketList()) {
+            name = inventory.getProductBySKU(i).name
+            variant = inventory.getProductBySKU(i).variant
+            price = inventory.getProductBySKU(i).getPrice() * basket3.getBasketList()[i] 
+
+            receipt.push(variant)
+            receipt.push(' ')
+            receipt.push(name)
+            receipt.push(' ')
+            receipt.push(basket3.getBasketList()[i])
+            receipt.push(' ')
+            receipt.push(pound)
+            receipt.push(price.toFixed(2))
+            receipt.push('\n')
+        }        
+
+        receipt.push("-".repeat(28));
+        receipt.push("\n");
+        receipt.push("Total" + " ".repeat(18) + pound + basket3.getTotalCost().toFixed(2));
+        receipt.push("\n");
+        receipt.push("\n");
+
+        receipt.push(" ".repeat(8) + "Thank you" + "\n");
+        receipt.push(" ".repeat(6) + "for your order!");
+
+        expect(basket3.getReceipt()).toEqual(receipt.join(""))
     })
 })
