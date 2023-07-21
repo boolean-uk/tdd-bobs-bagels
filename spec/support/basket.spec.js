@@ -107,11 +107,24 @@ describe('Add to basket', () => {
         bask.add(capucino)
        
         // Test
-        // console.log(plainBagel.getPrice())
-        // console.log(onionBagel.getPrice())
-        // console.log(capucino.getPrice())
         ourTotal=Math.round((plainBagel.getPrice()+onionBagel.getPrice()+capucino.getPrice()) * 100) / 100
         expect(bask.totalPrice()).toEqual(ourTotal)
        expect(bask.totalPrice()).toEqual(2.53)
     })
+
+    it('should return receipt', () => {
+            // Set up
+            onionBagel=new bagelSandwich([Filling.FILE,Filling.FILC],Bagel.BGLO)
+            bask.add(onionBagel)
+            plainBagel=new bagelSandwich([Filling.FILX],Bagel.BGLP)
+            bask.add(plainBagel)
+            plainBagel2=new bagelSandwich([Filling.FILX,Filling.FILC],Bagel.BGLP)
+            bask.add(plainBagel2)
+            capucino=new coffee(CoffeeType.COFC)
+            bask.add(capucino)
+           
+            // Test
+        
+           bask.printReceipt()
+        })
 })
