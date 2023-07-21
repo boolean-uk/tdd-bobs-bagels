@@ -7,6 +7,12 @@ function BasketComponent({ basket, setBasket, capacity, setCapacity, productName
     const removeProduct = (product) => {
         setBasket((previousBasket)=>previousBasket.filter((curr)=>curr.sku != product.sku))
     }
+    const getTotalCost = () => {
+        return basket
+            .map((product) => product.price)
+            .reduce((x, y) => x + parseFloat(y), 0)
+            .toFixed(2)
+    }
 
   return (
       <div className='container option' >
@@ -15,6 +21,9 @@ function BasketComponent({ basket, setBasket, capacity, setCapacity, productName
               <li className='list-group-item p-1' key={product.sku}>{ productNames[product.index]} <button className='ms-4 btn btn-secondary' onClick={() => removeProduct(product)}>Remove product</button></li>
               )}
           </ul>
+          <div>
+              <strong>Total cost: ${ getTotalCost()}</strong>
+          </div>
           <input type="range" className="form-range mt-4" min="1" max="50" step="1" id="customRange3" value={selectedValue} onChange={(event) => setSelectedValue(event.target.value)} /> 
           <div>{selectedValue}</div>
         <button className="btn btn-secondary" onClick={()=>setCapacity(selectedValue)} disabled={selectedValue === capacity}> Choose capacity</button>

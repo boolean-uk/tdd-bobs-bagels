@@ -16,7 +16,7 @@ export default function AddProduct({ productList, capacity, productNames, basket
     console.log(basket)
   return (
       <>
-          <div className="container option">
+          <div className="container option add">
             <select name="products" className='form-select' value={selectedValue} onChange={(event) => setSelectedValue(event.target.value)}>
                 <option value="">Select a product</option>
                 {productList && productList.map((product,index) => {
