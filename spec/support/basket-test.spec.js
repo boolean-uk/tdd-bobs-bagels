@@ -105,4 +105,10 @@ describe('Basket', () => {
     basket.addItem('COF')
     expect(Number(basket.getTotalCostWithDiscount())).toBeCloseTo(1.25, 2)
   })
+
+  //checkItemPrice
+  it('should return price of an item', () => {
+    const result = basket.getItemPrice("BGLO")
+    expect(result).toBe(0.49)
+  })
 })

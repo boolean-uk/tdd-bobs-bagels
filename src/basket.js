@@ -104,6 +104,11 @@ class Basket {
 
         return totalCost.toFixed(2)
     }
+
+    getItemPrice(sku) {
+        const checkItem = inventory.find((item) => item.sku === sku)
+        return Number(checkItem.price)
+    }
 }
 
 module.exports = {
