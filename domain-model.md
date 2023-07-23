@@ -73,6 +73,11 @@ As a Bob's Bagels manager,
 So that I can meet legal requirement to run my business
 I'd like to print for my customers receipts with the store's name, order date and time, and price for each item and in total, ending with a thank-you
 ```
+
+### Extension 3
+As a customer,
+So that I know how much money I saved by buying items in bulk,
+I'd like to see on my savings on receipt, both by each item and in total.
 ## Domain model
 
 
