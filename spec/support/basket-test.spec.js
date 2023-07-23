@@ -80,6 +80,6 @@ describe('Basket', () => {
     basket.addItem('BGLP')
     basket.addItem('BGLE')
     basket.addItem('COF')
-    expect(Number(basket.getTotalPrice().toFixed(2))).toBeCloseTo(2.36, 2)
+    expect(Number(basket.getTotalCost())).toBeCloseTo(2.36, 2)
   })
 })

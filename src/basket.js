@@ -7,12 +7,6 @@ class Basket {
         this.capacity = 5
     }
 
-    constructor(capacity) {
-        this.items = []
-        this.capacity = capacity
-    }
-
-
     addItem(sku) {
         if (this.isBasketFull()) {
             return false
@@ -107,7 +101,7 @@ class Basket {
                 totalCost += ((Number(item.price) * 100) * item.quantity) / 100
             }
         })
-        
+
         return totalCost.toFixed(2)
     }
 }
