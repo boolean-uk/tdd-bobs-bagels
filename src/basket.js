@@ -5,13 +5,11 @@ class Basket {
     constructor() {
         this.items = []
         this.capacity = 5
-        this.totalPrice = 0
     }
 
     constructor(capacity) {
         this.items = []
         this.capacity = capacity
-        this.totalPrice = 0
     }
 
 
@@ -49,11 +47,11 @@ class Basket {
     }
 
     getTotalCost() {
-        this.totalCost = 0
+        let totalCost = 0
         this.items.forEach((item) => {
-            this.totalCost += Math.round(Number(item.price) * item.quantity * 100) / 100
+            totalCost += Math.round((Number(item.price) * 100) * item.quantity) / 100
         });
-        return this.totalCost.toFixed(2)
+        return totalCost.toFixed(2)
     }
 
     currentItemsCount() {
@@ -74,6 +72,43 @@ class Basket {
         }
         this.capacity = capacity
         return this.capacity
+    }
+
+    getTotalCostWithDiscount() {
+        let countCoffee = 0
+        let countPlainBagel = 0
+        let totalCost = 0
+        
+        this.items.forEach((item) => {
+            if (item.sku === 'COF') {
+                countCoffee = item.quantity
+            }
+            if (item.sku === 'BGLP') {
+                countPlainBagel = item.quantity % 12
+            }
+        })
+
+        const coffeePlusBagelDiscount = countCoffee > countPlainBagel ? countPlainBagel : countCoffee
+
+        this.items.forEach((item) => {
+            if (item.sku === 'BGLO' || item.sku === 'BGLE') {
+                totalcost += (Math.floor(item.quantity / 6) * 249) / 100 
+                totalCost += ((item.quantity % 6) * (Number(item.price) * 100)) / 100
+            }
+            if (item.sku === 'BGLP') {
+                totalCost += (Math.floor(item.quantity / 12) * 399) / 100                
+                totalCost += ((item.quantity % 12 - coffeePlusBagelDiscount) * (Number(item.price) * 100)) / 100
+                totalCost += (coffeePlusBagelDiscount * 125) / 100
+            }
+            if (item.sku === 'COF') {
+                totalCost += ((item.quantity - coffeePlusBagelDiscount) * (Number(item.price) * 100)) / 100
+            }
+            else {
+                totalCost += ((Number(item.price) * 100) * item.quantity) / 100
+            }
+        })
+        
+        return totalCost.toFixed(2)
     }
 }
 
