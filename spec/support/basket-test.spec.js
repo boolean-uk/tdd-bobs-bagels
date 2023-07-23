@@ -42,7 +42,7 @@ describe('Basket', () => {
 
   //isBasketFull
   it('should return true when the basket is full', () => {
-    for (let i=0;i<basket.capacity;i++) {
+    for (let i=0; i < basket.capacity; i++) {
         basket.addItem('BGLO')
     }
     expect(basket.isBasketFull()).toBe(true)
@@ -81,5 +81,28 @@ describe('Basket', () => {
     basket.addItem('BGLE')
     basket.addItem('COF')
     expect(Number(basket.getTotalCost())).toBeCloseTo(2.36, 2)
+  })
+
+  //getTotalCostWithDiscount
+  it('should apply the special offer for BGLE (6 for 2.49)', () => {   
+    basket.changeCapacity(6)
+    for (let i=0; i < 6; i++) {
+        basket.addItem('BGLE')
+    }
+    expect(Number(basket.getTotalCostWithDiscount())).toBeCloseTo(2.49, 2)
+  })
+
+  it('should apply the special offer for BGLP (12 for 3.99)', () => {   
+    basket.changeCapacity(12)
+    for (let i=0; i < 12; i++) {
+        basket.addItem('BGLP')
+    }
+    expect(Number(basket.getTotalCostWithDiscount())).toBeCloseTo(3.99, 2)
+  })
+
+  it('should apply the special offer for Plain Bagel + Coffee', () => {   
+    basket.addItem('BGLP')
+    basket.addItem('COF')
+    expect(Number(basket.getTotalCostWithDiscount())).toBeCloseTo(1.25, 2)
   })
 })

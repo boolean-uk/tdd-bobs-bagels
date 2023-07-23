@@ -86,19 +86,19 @@ class Basket {
 
         this.items.forEach((item) => {
             if (item.sku === 'BGLO' || item.sku === 'BGLE') {
-                totalcost += (Math.floor(item.quantity / 6) * 249) / 100 
-                totalCost += ((item.quantity % 6) * (Number(item.price) * 100)) / 100
+                totalCost += Math.round((Math.floor(item.quantity / 6) * 249)) / 100 
+                totalCost += Math.round((item.quantity % 6) * (Number(item.price) * 100)) / 100
             }
             if (item.sku === 'BGLP') {
-                totalCost += (Math.floor(item.quantity / 12) * 399) / 100                
-                totalCost += ((item.quantity % 12 - coffeePlusBagelDiscount) * (Number(item.price) * 100)) / 100
-                totalCost += (coffeePlusBagelDiscount * 125) / 100
+                totalCost += Math.round(Math.floor(item.quantity / 12) * 399) / 100                
+                totalCost += Math.round((item.quantity % 12 - coffeePlusBagelDiscount) * (Number(item.price) * 100)) / 100
+                totalCost += Math.round(coffeePlusBagelDiscount * 125) / 100
             }
             if (item.sku === 'COF') {
-                totalCost += ((item.quantity - coffeePlusBagelDiscount) * (Number(item.price) * 100)) / 100
+                totalCost += Math.round((item.quantity - coffeePlusBagelDiscount) * (Number(item.price) * 100)) / 100
             }
-            else {
-                totalCost += ((Number(item.price) * 100) * item.quantity) / 100
+            if (!item.sku === 'BGLO' || !item.sku === 'BGLP' || !item.sku === 'BGLE' || !item.sku === 'COF'){
+                totalCost += Math.round((Number(item.price) * 100) * item.quantity) / 100
             }
         })
 
