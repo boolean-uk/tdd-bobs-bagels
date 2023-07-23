@@ -103,56 +103,6 @@ class Basket {
 
     return totalPrice / 100.0
   }
-  
-  placeOrder() {
-
-    const receipt = `
-      ~~~ Bob's Bagels ~~~
-      ${this.getDateTimeNow()}
-  
---------------------------------
-  
-${this.getItemStrings(this.items)} 
---------------------------------
-  
-Total                    £${this.getTotalPrice()}
-    
-    `
-    return receipt
-  }
-
-  getItemStrings() {
-    const keys = Array.from(this.items.keys());
-    const longestName = Math.max(...keys.map(item => item.name.length));
-    const longestVariant = Math.max(...keys.map(item => item.variant.length));
-    
-    let itemStrings = ""
-
-    this.items.forEach((quantity, item) => {
-      const itemName = item.name.padEnd(longestName, ' ')
-      const itemVariant = item.variant.padEnd(longestVariant, ' ')
-      const itemPrice = (this.checkPrice(item.sku) * quantity).toFixed(2)
-      itemStrings += `${itemName}  ${itemVariant} ${quantity}  £${itemPrice}` + "\n"
-    });
-
-    return itemStrings
-  }
-
-  getDateTimeNow() {
-    const now = new Date();
-    const format = (value) => String(value).padStart(2, '0')
-  
-    const year = now.getFullYear();
-    const month = format(now.getMonth() + 1);
-    const day = format(now.getDate());
-  
-    const hours = format(now.getHours());
-    const minutes = format(now.getMinutes());
-    const seconds = format(now.getSeconds());
-  
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  }
-
 }
 
 module.exports = {
