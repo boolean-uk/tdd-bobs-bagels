@@ -83,10 +83,24 @@ V: pay, know
 | addToBasket(sku) | sku(@string)| | valid sku     | add item to basket, message "item added" |
 |||| invalid sku | return message "item not found"
 |||| no sku input | return message "item sku required"
+|||| basket is full | return message "basket full"
 |||||
 | removeFromBasket(sku) | sku(@string)| | valid sku, sku in basket | remove item to basket, message "item removed" |
 |||| valid sku, sku not in basket | return message "item not in cart"
 |||| invalid sku | return message "valid sku required"
 |||| no sku input | return message "item sku required"
 |||||
+| checkBasketCapacity()|||basket is (@array)|return length of basket array
+||||basket is not (@array)|return "error, misconfigured basket"
+|||||
+|changeBasketCapacity(capacity)|capacity(@Number)| @Number > 0| positive integer input | change maxBasketCapacity, return maxBasketCapacity
+|||| positive float input | round float to integer, change maxBasketCapacity, return maxBasketCapacity
+|||| not positive number input | return "please enter positive number value"
+|||||
+| checkValidSku(sku)|sku(@string)|| valid sku | returns item object
+|||||
+| findBasketItem(sku) | sku(@string) || valid sku, sku in basket, return item object
+|||| valid sku, sku not in basket | return "item not in basket"
+|||| invalid sku | return "sku does not exist"
+
 
