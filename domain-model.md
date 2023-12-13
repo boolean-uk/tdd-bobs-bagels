@@ -78,12 +78,12 @@ N: public, checkout, sum of bagels,
 V: pay, know
 ```
 
-| Methods       | Inputs | Data | Scenario | Outputs |
-| ------------- | ------ | ---- | -------- | ------- |
-| addToBasket(sku) | sku(@string)| | valid sku | add item to basket, message "item added" |
-|||| invalid sku | return message "item not found"
-|||| no sku input | return message "item sku required"
-|||| basket is full | return message "basket full"
+| Methods       | Inputs | Data | Scenario | Outputs | Done |
+| ------------- | ------ | ---- | -------- | ------- | ---- |
+| addToBasket(sku) | sku(@string)| | valid sku | add item to basket, message "item added" | x |
+|||| invalid sku | return message "item not found" | x |
+|||| no sku input | return message "item sku required" | x |
+|||| basket is full | return message "basket full" | |
 |||| sku already in basket | increase quantity of item in basket, message "item added"
 |||||
 | removeFromBasket(sku) | sku(@string)| | valid sku, sku in basket | remove item to basket, message "item removed" |
@@ -110,5 +110,5 @@ V: pay, know
 |displayBasketSum()||| items in basket | return sum of items.price
 |||| no items in basket | return 0
 |||||
-| findInventoryItem(sku)| sku(@string)||valid sku, sku in inventory | return item object
-|||| valid sku, sku not in inventory | return "item not found"
+| findInventoryItem(sku)| sku(@string)||valid sku, sku in inventory | return item object | x |
+|||| valid sku, sku not in inventory | return "item not found" | x |
