@@ -49,6 +49,18 @@ describe('BagelBasket', () => {
     const largerBasket = new BagelBasket(10)
     expect(largerBasket.capacity).toBe(10)
   })
+  // Adding the same item //
+  it('Lets you add the same item again', () => {
+    const bagelToAdd = bagels[0]
+    basket.addItem(bagelToAdd)
+    basket.addItem(bagelToAdd)
+
+    // Check if the specific bagel was added twice
+    const countOfAddedBagel = basket.items.filter(
+      (item) => item.name === bagelToAdd.name
+    ).length
+    expect(countOfAddedBagel).toBe(2)
+  })
   // Total price added together //
   it('Adds the total price of each item', () => {
     basket.addItem(bagels[0])
