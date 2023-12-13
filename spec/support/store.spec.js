@@ -50,8 +50,8 @@ describe("basket handout", () => {
 
   it("basket XS has capacity 1", () => {
     const myStore = new Store()
-    expect(myStore.handoutBasket("XS").capacity).toEqual(1)
-    expect(myStore.handoutBasket("XS").name).toEqual("XS")
+    const handedOut = myStore.handoutBasket("XS")
+    expect(handedOut.capacity).toEqual(1)
   })
 })
 

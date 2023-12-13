@@ -2,6 +2,7 @@ import { inventory } from "./inventory.js"
 import { basketTypesDefault } from "./baskettypes.js"
 import Employee from "./employee.js"
 import Customer from "./customer.js"
+import Basket from "./basket.js"
 
 class Store {
   constructor (name) {
@@ -40,9 +41,12 @@ class Store {
 
   handoutBasket (name) {
     if (this.availableBasketTypes.length === 0) return "no basket types"
-    const foundBasket = this.availableBasketTypes.find(basket => basket.name === name)
-    if (!foundBasket) return "type not found" 
-    return foundBasket
+    const foundBasketType = this.availableBasketTypes.find(basket => basket.name === name)
+    if (!foundBasketType) return "type not found"
+    console.log("found basket", foundBasketType, "searched for", name)
+    const actualBasket = new Basket(foundBasketType.capacity)
+    console.log(actualBasket, foundBasketType.capacity)
+    return actualBasket
   }
 }
 

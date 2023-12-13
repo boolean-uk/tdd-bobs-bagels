@@ -1,5 +1,5 @@
 class Basket {
-  constructor ( name, capacity ) {
+  constructor ( capacity ) {
     this.capacity = capacity
     this.items = []
   }
