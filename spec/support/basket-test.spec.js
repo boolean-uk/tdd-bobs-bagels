@@ -62,4 +62,12 @@ describe('Add an item to the basket', () => {
     const result = basket.getItemPrice('BGLO')
     expect(result).toEqual(0.49)
   })
+
+  // Getting the total cost 
+  it('should get the total cost of items', () => {
+    basket.addItem('BGLO')
+    basket.addItem('BGLP')
+    basket.addItem('BGLE')
+    expect(basket.getTotalCost()).toEqual(1.37)
+  })
 })

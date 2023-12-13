@@ -68,6 +68,10 @@ class Basket {
     const findItem = inventory.find(item => item.sku === sku)
     return Number(findItem.price)
   }
+
+  getTotalCost(sku) {
+    
+  }
 }
 
 module.exports = {
