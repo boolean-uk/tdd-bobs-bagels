@@ -15,12 +15,18 @@ class Basket {
   }
 
   addBagel(bagelType) {
-    const bagelToAdd = bagelsInventory.find((bagel) => bagel.sku === bagelType)
-    if (!bagelToAdd) {
-      return 'bagel does not exist, check bagel sku'
+    if (this.basketList.length === this.maxCapacity) {
+      return 'basket is full of bagels!'
     } else {
-      this.basketList.push(bagelToAdd)
-      return bagelToAdd
+      const bagelToAdd = bagelsInventory.find(
+        (bagel) => bagel.sku === bagelType
+      )
+      if (!bagelToAdd) {
+        return 'bagel does not exist, check bagel sku'
+      } else {
+        this.basketList.push(bagelToAdd)
+        return bagelToAdd
+      }
     }
   }
 
@@ -43,12 +49,13 @@ const b = new Basket()
 // ADD BAGEL
 b.addBagel('BGSS')
 b.addBagel('BGLO')
-b.addBagel('BGSE')
-// console.log(b.addBagel('BGSS'))
+// b.addBagel('BGSE')
+// b.addBagel('BGLS')
+console.log(b.addBagel('BGSS'))
 
 // REMOVE BAGEL
 // b.removeBagel('BGSS')
-console.log(b.removeBagel(undefined))
+// console.log(b.removeBagel(undefined))
 
 // GET BASKET
 // console.log(b.getBasket())
