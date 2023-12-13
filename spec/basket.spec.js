@@ -90,7 +90,8 @@ describe('Basket', () => {
     const basket = new Basket()
 
     beforeEach(() => {
-      basket._list = mockList
+      basket._list = mockList.slice(1)
+      basket._inventory = mockList
     })
 
     it('return item if valid sku', () => {
@@ -105,9 +106,15 @@ describe('Basket', () => {
     })
 
     it('return "item not found" if sku not found', () => {
-      const result = basket.findBasketItem('ZZZZ')
+      const result = basket.findBasketItem('AAAA')
 
       expect(result).toBe('item not found')
+    })
+
+    it('return "invalid" sku when sku does not exist in inventory', () => {
+      const result = basket.findBasketItem('ZZZZ')
+
+      expect(result).toBe('item is not stocked')
     })
   })
 })
