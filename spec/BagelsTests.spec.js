@@ -45,3 +45,43 @@ describe('Add Bagel', () => {
     expect(res.quantity).toEqual(3)
   })
 })
+
+describe('Remove Bagel', () => {
+  it('passed sky which exist in our basket', () => {
+    const basket = new Basket(5)
+
+    basket.addBagel('BGLO')
+    basket.addBagel('BGLP')
+    basket.addBagel('BGLE')
+
+    const res = basket.removeBagel('BGLP')
+
+    expect(res).toBeTrue()
+    expect(basket.basketList.length).toEqual(2)
+    expect(basket.basketList[0].sku).toEqual('BGLO')
+    expect(basket.basketList[1].sku).toEqual('BGLE')
+  })
+
+  it('Passed sku which not exist in our basket', () => {
+    const basket = new Basket(5)
+
+    basket.addBagel('BGLO')
+
+    const res = basket.removeBagel('BGLP')
+
+    expect(res).toEqual('You do not have this bagel in your basket.')
+  })
+
+  it('Remove bagel when in the basket there is 4 quantity of the same type of bagel', () => {
+    const basket = new Basket(5)
+
+    basket.addBagel('BGLO')
+    basket.addBagel('BGLO')
+    basket.addBagel('BGLO')
+
+    const res = basket.removeBagel('BGLO')
+
+    expect(res).toBeTrue()
+    expect(basket.basketList[0].quantity).toEqual(2)
+  })
+})
