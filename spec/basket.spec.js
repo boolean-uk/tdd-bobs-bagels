@@ -84,3 +84,26 @@ describe('set the capacity of the basket', () => {
     expect(result).toEqual('invalid number - capacity remains 2')
   })
 })
+
+describe('check that the item to be removed is in the basket', () => {
+  it('item found', () => {
+    const basketItem1 = new BasketItem('BGLO', '0.49', 'Bagel', 'Onion')
+    const basketItem2 = new BasketItem('BGLP', '0.39', 'Bagel', 'Plain')
+    const basket1 = new Basket([basketItem1, basketItem2])
+
+    const result = basket1.checkForItemToRemove(basketItem2)
+
+    expect(result.sku).toEqual('BGLP')
+  })
+
+  it('no such item found', () => {
+    const basketItem1 = new BasketItem('BGLO', '0.49', 'Bagel', 'Onion')
+    const basketItem2 = new BasketItem('BGLP', '0.39', 'Bagel', 'Plain')
+    const basketItem3 = new BasketItem('BGLE', '0.49', 'Bagel', 'Everything')
+    const basket1 = new Basket([basketItem1, basketItem2])
+
+    const result = basket1.checkForItemToRemove(basketItem3)
+
+    expect(result).toEqual('no such item in the basket!')
+  })
+})
