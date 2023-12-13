@@ -2,7 +2,7 @@
 
 ## PART ONE:
 
-# USer stories 1
+# User story 1
 
 As a member of the public
 So I can order a bagel when I want to
@@ -54,7 +54,7 @@ Basket({})
 
 ## PART TWO:
 
-# USer stories 1
+## User story 1
 
 As a member of the public,
 So that I can not overfill my small bagel basket
@@ -160,34 +160,42 @@ So that I can buy many of my favorite bagel
 I'd like to be able to add the same type of bagel to my basket more than once
 
 ## Method
+
 addItem()
 
 ## Input
+
 item(Obj{}) => property - name: string
 
 ## Scenario
+
 if there is same item as item is about to be added to the basket
 
 ## Output
+
 Item nam = BGLO
 Item name = BGLO
+
 <!--------------------------------------------->
 
-## User Story 2
+## User Story 3
 
 As a member of the public,
 So that I can prepare to pay
 When I go to checkout I'd like to know the total sum of the bagels in my basket
 
 ## Method
+
 getTotalCost()
 
 ## Input
+
 item(Obj{}) => properties - price: number, quantity: number
 
 ## Scenario
-if basket's length is more than 0 
+
+if basket's length is more than 0
 
 ## Output
-get the total price of the items
 
+get the total price of the items
