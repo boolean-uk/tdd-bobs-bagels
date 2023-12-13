@@ -1,4 +1,4 @@
-const Basket = require('../src/basket.js')
+import Basket from '../src/basket.js'
 
 describe('Bobs bagels basket methods', () => {
   describe('/ adding basket items', () => {
@@ -17,6 +17,50 @@ describe('Bobs bagels basket methods', () => {
     it('/ no sku added', () => {
       const newItem = basket.addItem('')
       expect(newItem).toEqual('sku required!')
+    })
+  })
+  describe('/ remove items from basket', () => {
+    const basket = new Basket()
+    beforeEach(() => {
+      basket.basketList = [
+        {
+          sku: '1111',
+          price: '0.55',
+          name: 'Fork',
+          variant: 'Silverware'
+        },
+        {
+          sku: '2222',
+          price: '0.89',
+          name: 'Knife',
+          variant: 'Silverware'
+        },
+        {
+          sku: '3333',
+          price: '1.52',
+          name: 'Napkin',
+          variant: 'Cotton'
+        }
+      ]
+    })
+    it('/ if sku is valid and in basket', () => {
+      const newBasket = [
+        {
+          sku: '1111',
+          price: '0.55',
+          name: 'Fork',
+          variant: 'Silverware'
+        },
+        {
+          sku: '3333',
+          price: '1.52',
+          name: 'Napkin',
+          variant: 'Cotton'
+        }
+      ]
+      const itemToRemove = removeItem('2222')
+
+      expect(basket.basketList).toEqual(newBasket)
     })
   })
 })

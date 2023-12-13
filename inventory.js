@@ -1,4 +1,4 @@
-const inventory = [
+export const inventory = [
   {
     sku: 'BGLO',
     price: '0.49',
@@ -45,4 +45,4 @@ const inventory = [
   }
 ]
 
-module.exports = inventory
+

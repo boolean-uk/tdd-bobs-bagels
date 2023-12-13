@@ -1,6 +1,6 @@
-const inventory = require('../inventory')
+import { inventory } from '../inventory.js'
 
-class Basket {
+export default class Basket {
   constructor() {
     this.basketList = []
   }
@@ -16,5 +16,3 @@ class Basket {
 
 const basket = new Basket()
 console.log(basket.addItem('BGLO'))
-
-module.exports = Basket
