@@ -49,6 +49,35 @@ N: public, sanity, item, basket
 V: maintain, know, remove
 ```
 
+## Part 3
+
+```txt
+As a member of the public,
+So that I can know how much my bagels are,
+I’d like to see the price of each item before I add it to my basket.
+
+N: public, bagels, price, item, basket
+V: know, see, add
+
+=======================
+
+As a member of the public
+So that I can buy many of my favorite bagel
+I'd like to be able to add the same type of bagel to my basket more than once
+
+N: public, favorite bagel, bagel, basket
+V: buy many, add multiple,
+
+======================
+
+As a member of the public,
+So that I can prepare to pay
+When I go to checkout I'd like to know the total sum of the bagels in my basket
+
+N: public, checkout, sum of bagels,
+V: pay, know
+```
+
 | Methods       | Inputs | Data | Scenario | Outputs |
 | ------------- | ------ | ---- | -------- | ------- |
 | addToBasket(sku) | sku(@string)| | valid sku     | add item to basket, message "item added" |
@@ -60,3 +89,4 @@ V: maintain, know, remove
 |||| invalid sku | return message "valid sku required"
 |||| no sku input | return message "item sku required"
 |||||
+
