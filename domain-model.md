@@ -1,4 +1,4 @@
-# domaine models
+# domain models
 
 |        | METHODS | INPUTS | DATA | SITUATION | OUTPUTS |
 |--------|-|-|-|-|-|
