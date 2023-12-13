@@ -101,4 +101,19 @@ describe('Basket', () => {
       expect(result).toEqual(errorMessage)
     })
   })
+
+  //   PART 3
+  describe('Check Bagel Price', () => {
+    it('should return price of selected bagel', () => {
+      const confirmationMessage = 'the price of the Onion Bagel is £0.49'
+      const result = b.checkPrice('BGLO')
+      expect(result).toEqual(confirmationMessage)
+    })
+
+    it('should return error message if bagel cannot be found', () => {
+      const errorMessage = 'bagel does not exist'
+      const result = b.checkPrice()
+      expect(result).toEqual(errorMessage)
+    })
+  })
 })
