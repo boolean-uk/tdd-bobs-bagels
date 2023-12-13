@@ -93,7 +93,17 @@ describe('check that the item to be removed is in the basket', () => {
 
     const result = basket1.checkForItemToRemove(basketItem2)
 
-    expect(result.sku).toEqual('BGLP')
+    expect({
+      sku: result.sku,
+      price: result.price,
+      name: result.name,
+      variant: result.variant
+    }).toEqual({
+      sku: 'BGLP',
+      price: '0.39',
+      name: 'Bagel',
+      variant: 'Plain'
+    })
   })
 
   it('no such item found', () => {

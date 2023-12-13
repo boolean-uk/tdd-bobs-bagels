@@ -35,6 +35,15 @@ class Basket {
     this.capacity = num
     return { list: this.list, capacity: this.capacity }
   }
+
+  checkForItemToRemove(item) {
+    const searchResult = this.list.find((i) => i.sku === item.sku)
+
+    if (!searchResult || searchResult.length < 1) {
+      return 'no such item in the basket!'
+    }
+    return item
+  }
 }
 
 class BasketItem {
