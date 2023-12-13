@@ -12,6 +12,12 @@
   #### availableProducts
     TYPE: Array of Objects
     EXAMPLE: [ { sku: @integer, name: @string, price: @float } ]
+  #### employees
+    TYPE: Array of Employee instances
+    EXAMPLE: [ { new Employee } ]
+  #### customers 
+    TYPE: Array of Customer instances
+    EXAMPLE: [ { new Customer } ]
   ### METHODS
   #### open ()
   INPUT: none
