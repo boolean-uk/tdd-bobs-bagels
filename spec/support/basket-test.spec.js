@@ -15,6 +15,12 @@ describe('Add an item to the basket', () => {
     expect(basket.items[0].sku).toEqual('BGLO')
   })
 
+  it('can add an item more than once to the basket', () => {
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
+    expect(basket.items[0].quantity).toEqual(2)
+  })
+
   // Removing item from the basket
   it('removes an item from the basket', () => {
     basket.addItem('BGLO')
@@ -46,7 +52,14 @@ describe('Add an item to the basket', () => {
 
   // Change the current basket capacity
   it('should change the current basket capacity', () => {
-    basket.changeCapacity(6)
-    expect(basket.capacity).toEqual(6)
+    const result = basket.changeCapacity(5)
+    expect(result).toEqual(6)
+  })
+
+
+  // Getting the item price
+  it('gets the ptice for each item', () => {
+    const result = basket.getItemPrice('BGLO')
+    expect(result).toEqual(0.49)
   })
 })

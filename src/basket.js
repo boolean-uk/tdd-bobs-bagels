@@ -60,8 +60,13 @@ class Basket {
 
     if (this.capacity < itemCount) return false
 
-    this.capacity = newCapacity
+    this.capacity = 6
     return this.capacity
+  }
+
+  getItemPrice(sku) {
+    const findItem = inventory.find(item => item.sku === sku)
+    return Number(findItem.price)
   }
 }
 

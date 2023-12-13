@@ -150,3 +150,24 @@ if item found in inventory
 ## Output
 
 get the item price
+
+<!--------------------------------------------->
+
+## User Story 2
+
+As a member of the public
+So that I can buy many of my favorite bagel
+I'd like to be able to add the same type of bagel to my basket more than once
+
+## Method
+addItem()
+
+## Input
+item(Obj{}) => property - name(@string)
+
+## Scenario
+if there is same item as item is about to be added to the basket
+
+## Output
+Item nam = BGLO
+Item name = BGLO
