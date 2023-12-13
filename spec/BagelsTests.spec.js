@@ -1,5 +1,7 @@
 const Basket = require('../src/basket')
+const inventory = require('../inventory')
 
+// Add Bagel
 describe('Add Bagel', () => {
   it('passed sku which avaliable in inventory', () => {
     const basket = new Basket(5)
@@ -45,6 +47,7 @@ describe('Add Bagel', () => {
   })
 })
 
+// Remove Bagel
 describe('Remove Bagel', () => {
   it('passed sky which exist in our basket', () => {
     const basket = new Basket(5)
@@ -85,6 +88,7 @@ describe('Remove Bagel', () => {
   })
 })
 
+// Create Basket
 describe('Create Basket', () => {
   it('Passed less capacity that 25 (25 is the biggest basket which you ca create)', () => {
     const basket = new Basket(5)
@@ -113,5 +117,21 @@ describe('Create Basket', () => {
       'Enter capacity for create new basket (the minimum capacity can be 1)'
     )
     expect(basket.capacity).toEqual(5)
+  })
+})
+
+// Get Inventory
+describe('Get Inventory', () => {
+  it('should show all inventory which we have', () => {
+    const basket = new Basket()
+
+    const res = basket.getInventory()
+
+    expect(res[0]).toEqual({
+      name: inventory[0].name,
+      variant: inventory[0].variant,
+      price: inventory[0].price
+    })
+    expect(res).toEqual(inventory.length)
   })
 })
