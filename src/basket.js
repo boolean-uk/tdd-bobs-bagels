@@ -18,20 +18,21 @@ class Basket {
 
   addItem(sku) {
     const itemExists = this.items.find((item) => item.sku === sku)
-    if(itemExists){
-        itemExists.quantity++
-        return this.items
+    if (itemExists) {
+      itemExists.quantity++
+      return this.items
     }
 
-    const newItem = inventory.find(item => item.sku === sku)
+    const newItem = inventory.find((item) => item.sku === sku)
 
-    if(!newItem) return false
+    if (!newItem) return false
 
     newItem.quantity = 1
-    this.items.push({...newItem})
+    this.items.push({ ...newItem })
     return this.items
-}
+  }
 
+  removeItem(sku) {}
 }
 
 module.exports = {

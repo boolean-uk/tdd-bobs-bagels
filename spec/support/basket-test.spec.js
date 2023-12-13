@@ -16,4 +16,9 @@ describe('Add an item to the basket', () => {
     })
 
     // Removing item from the basket
+    it('removes an item from the basket', () => {
+        basket.addItem('BGLO')
+        basket.removeItem('BGLO')
+        expect(basket.items.length).toEqual(0)
+    })
 })
