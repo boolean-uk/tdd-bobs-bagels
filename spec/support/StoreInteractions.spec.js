@@ -38,3 +38,10 @@ describe("Store closing", () => {
     expect(myStore.close()).toEqual("We're already closed!")
   })
 })
+
+describe("basket handout", () => {
+  it("no basket templates", () => {
+    const myStore = new Store()
+    expect(myStore.handoutBasket()).toEqual("no basket types")
+  })
+})

@@ -16,6 +16,14 @@ class Store {
     this.isOpen = false
     return "Store is now closed!"
   }
+
+  handoutBasket (name) {
+    if (this.availableBasketTypes.length === 0) return "no basket types"
+    if (!!name) return false
+    const foundBasket = this.availableBasketTypes.find(basket => basket.name === name)
+    if (!!foundBasket) return "invalid name" 
+    return foundBasket
+  }
 }
 
 export default Store
