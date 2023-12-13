@@ -71,3 +71,16 @@ describe('remove from basket', () => {
     expect(result).toEqual('the basket is not full yet (1/2)')
   })
 })
+
+describe('set the capacity of the basket', () => {
+  it('the capacity was set successfully', () => {
+    const basket1 = new Basket([], 2)
+    const result = basket1.setCapacity(5)
+    expect(result).toEqual({ list: [], capacity: 5 })
+  })
+  it('invalid number - the capacity is unchanged', () => {
+    const basket1 = new Basket([], 2)
+    const result = basket1.setCapacity(-3)
+    expect(result).toEqual('invalid number - capacity remains 2')
+  })
+})
