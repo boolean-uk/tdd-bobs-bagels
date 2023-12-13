@@ -109,6 +109,7 @@ V: pay, know
 |||||
 |displayBasketSum()||| items in basket | return sum of items.price
 |||| no items in basket | return 0
-
-
-
+|||||
+| findInventoryItem(sku)| sku(@string)||valid sku, sku in basket | return item object
+|||| valid sku, sku not in basket | return "item not in basket"
+|||| invalid sku | return "sku does not exist"
