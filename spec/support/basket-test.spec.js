@@ -12,7 +12,13 @@ describe('Add an item to the basket', () => {
     const item1 = 'BGLO'
     // const newItem = new Item(item1)
     basket.addItem(item1)
-    expect(basket.items[0].sku).toEqual('BGLO')
+    expect(basket.items[0]).toEqual({
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion',
+      quantity: 1
+    })
   })
 
   it('can add an item more than once to the basket', () => {
@@ -56,14 +62,13 @@ describe('Add an item to the basket', () => {
     expect(result).toEqual(6)
   })
 
-
   // Getting the item price
   it('gets the ptice for each item', () => {
     const result = basket.getItemPrice('BGLO')
     expect(result).toEqual(0.49)
   })
 
-  // Getting the total cost 
+  // Getting the total cost
   it('should get the total cost of items', () => {
     basket.addItem('BGLO')
     basket.addItem('BGLP')
