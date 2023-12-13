@@ -147,4 +147,22 @@ describe('Basket', () => {
       expect(result).toEqual(exampleBasket)
     })
   })
+
+  describe('Calc Basket Total', () => {
+    it('should return total of all bagels in basket', () => {
+      const basketTotal = 'the price of your basket is £1.86'
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLP')
+      const result = b.calcBasketVal()
+      expect(result).toEqual(basketTotal)
+    })
+
+    it('return message if there are no bagels in basket', () => {
+      const message = 'there are no bagels in your basket'
+      const result = b.calcBasketVal()
+      expect(result).toEqual(message)
+    })
+  })
 })
