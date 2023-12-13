@@ -32,7 +32,6 @@ describe('BagelBasket', () => {
       })
     })
   })
-
   // Basket too full section //
   it('stops the basket from overfilling', () => {
     for (let i = 0; i < basket.capacity + 1; i++) {
@@ -44,6 +43,16 @@ describe('BagelBasket', () => {
   it('Should return a message if item doesnt exist in basket', () => {
     const result = basket.findBagel('non-existent-sku')
     expect(result).toBe('Item doesnt exist in basket')
+  })
+  // Total price added together //
+  it('Adds the total price of each item', () => {
+    basket.addItem(bagels[0])
+    basket.addItem(bagels[1])
+
+    const expectedTotal = bagels.slice(0, 2).reduce((total, bagel) => {
+      return total + Number(bagel.price)
+    }, 0)
+    expect(basket.getTotalPrice()).toBe(expectedTotal)
   })
 })
 

@@ -29,6 +29,10 @@ class BagelBasket {
       'Item doesnt exist in basket'
     )
   }
+
+  getTotalPrice() {
+    return this.items.reduce((total, item) => total + Number(item.price), 0)
+  }
 }
 
 module.exports = BagelBasket
