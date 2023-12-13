@@ -67,9 +67,11 @@ describe("customers", () => {
     expect(myStore.customers.length).toEqual(oldCustomerCount + 1)
   })
 
-  it("customers can look at baskets", () => {
+  it("customers can receive a basket", () => {
     const myStore = new Store("Test")
     myStore.addCustomer()
-    myStore.customers[0].lookAtBasketType()
+    const pseudoBasket = { capacity: 42 }
+    myStore.customers[0].receiveBasket(pseudoBasket)
+    expect(myStore.customers[0].basket.capacity).toEqual(42)
   })
 })
