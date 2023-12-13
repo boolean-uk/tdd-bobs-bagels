@@ -76,11 +76,13 @@ As a member of the public,
 So that I can know how much my bagels are,
 I’d like to see the price of each item before I add it to my basket.
 ```
+
 ```
 As a member of the public
 So that I can buy many of my favorite bagel
 I'd like to be able to add the same type of bagel to my basket more than once
 ```
+
 ```
 As a member of the public,
 So that I can prepare to pay
@@ -89,103 +91,12 @@ When I go to checkout I'd like to know the total sum of the bagels in my basket
 
 ### Keywords
 
-1. **Verbs:** 
-2. **Nouns:** 
+1. **Verbs:** know, see, add, buy, pay
+2. **Nouns:** member, public, bagels, price, basket, checkout
 
 ### Table
 
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
-
-
-
-## New Model
-
-```
-
-```
-
-### Keywords
-
-1. **Verbs:** 
-2. **Nouns:** 
-
-### Table
-
-| Methods | Inputs | Data | Scenario | Outputs
-| ------ | ------ | ------ | ----- | -----
-
-
-
-## New Model
-
-```
-
-```
-
-### Keywords
-
-1. **Verbs:** 
-2. **Nouns:** 
-
-### Table
-
-| Methods | Inputs | Data | Scenario | Outputs
-| ------ | ------ | ------ | ----- | -----
-
-
-
-## New Model
-
-```
-
-```
-
-### Keywords
-
-1. **Verbs:** 
-2. **Nouns:** 
-
-### Table
-
-| Methods | Inputs | Data | Scenario | Outputs
-| ------ | ------ | ------ | ----- | -----
-
-
-
-## New Model
-
-```
-
-```
-
-### Keywords
-
-1. **Verbs:** 
-2. **Nouns:** 
-
-### Table
-
-| Methods | Inputs | Data | Scenario | Outputs
-| ------ | ------ | ------ | ----- | -----
-
-
-
-## New Model
-
-```
-
-```
-
-### Keywords
-
-1. **Verbs:** 
-2. **Nouns:** 
-
-### Table
-
-| Methods | Inputs | Data | Scenario | Outputs
-| ------ | ------ | ------ | ----- | -----
-
-
+|||||
 
