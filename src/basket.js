@@ -21,6 +21,8 @@ class Basket {
       this.list.push(item)
       return 'item added'
     }
+
+    return 'item sku not found'
   }
 
   findInventoryItem(sku) {
