@@ -5,5 +5,6 @@ describe("Store interactions", () => {
   it("initially, the store exists but has no available bucket types", () => {
     expect(myStore.availableBasketTypes).toEqual([])
     expect(myStore.name === "Bob's Bagels").toBeTrue()
+    expect(myStore.open).toBeFalse()
   })
 })
