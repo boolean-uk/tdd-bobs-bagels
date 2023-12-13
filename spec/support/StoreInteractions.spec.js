@@ -6,11 +6,11 @@ describe("Store interactions", () => {
     expect(myStore.availableBasketTypes).toEqual([])
     expect(myStore.availableProducts).toEqual([])
     expect(myStore.name === "Bob's Bagels").toBeTrue()
-    expect(myStore.open).toBeFalse()
+    expect(myStore.isOpen).toBeFalse()
   })
 
   it("opening store works", () => {
     expect(myStore.open()).toEqual("Store is now open!")
-    expect(myStore.open).toBeTrue()
+    expect(myStore.isOpen).toBeTrue()
   })
 })
