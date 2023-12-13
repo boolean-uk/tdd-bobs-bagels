@@ -44,6 +44,14 @@ class Basket {
     }
     return this.items
   }
+
+  isBasketFull() {
+    let count = 0
+
+    this.items.forEach(item => count += item.quantity)
+
+    return count === this.capacity
+  }
 }
 
 module.exports = {
