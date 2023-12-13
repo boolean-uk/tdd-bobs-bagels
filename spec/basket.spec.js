@@ -44,5 +44,10 @@ describe('find item in inventory', () => {
     expect(result.name).toEqual('Donut')
     expect(result.variant).toEqual('Sesame')
   })
+
+  it('sku not found in inventory', () => {
+    const result = basket.findInventoryItem('DDDD')
+
+    expect(result).toEqual('item not found')
   })
 })
