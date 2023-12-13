@@ -14,6 +14,15 @@ class Basket {
     return this._inventory
   }
 
+  add(sku) {
+    const item = this.findInventoryItem(sku)
+
+    if (item !== 'item not found') {
+      this.list.push(item)
+      return 'item added'
+    }
+  }
+
   findInventoryItem(sku) {
     const foundItem = this.inventory.find((item) => item.sku === sku)
 
