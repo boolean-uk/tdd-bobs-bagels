@@ -27,6 +27,14 @@ class Basket {
     }
     return `the basket is not full yet (${this.list.length}/${this.capacity})`
   }
+
+  setCapacity(num) {
+    if (!num || typeof num !== 'number' || num < 1) {
+      return `invalid number - capacity remains ${this.capacity}`
+    }
+    this.capacity = num
+    return { list: this.list, capacity: this.capacity }
+  }
 }
 
 class BasketItem {
