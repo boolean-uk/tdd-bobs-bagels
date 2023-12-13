@@ -33,7 +33,7 @@ class Basket {
   removeBagel(bagelType) {
     const removeBagel = this.basketList.find((bagel) => bagel.sku === bagelType)
     if (!removeBagel) {
-      return 'bagel does not exist, check bagel sku'
+      return 'bagel does not exist in basket'
     } else {
       const index = this.basketList.indexOf(removeBagel)
       this.basketList.splice(index, 1)

@@ -64,9 +64,9 @@ describe('Basket', () => {
       expect(result).toEqual(exampleBasket)
     })
 
-    it('bagel being removed does not exist in basket', () => {
+    it('bagel being removed does not exist, check bagel sku', () => {
       const result = b.removeBagel()
-      expect(result).toEqual('bagel does not exist, check bagel sku')
+      expect(result).toEqual('bagel does not exist in basket')
     })
   })
 
