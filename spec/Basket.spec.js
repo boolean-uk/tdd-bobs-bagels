@@ -21,35 +21,46 @@ describe('BagelBasket', () => {
     basket = new BagelBasket()
   })
 
-  // Bagels being added to basket and removed from basket //
-  bagels.forEach((bagels, index) => {
+  // Bagels being added to basket and removed from basket
+  bagels.forEach((bagel, index) => {
     describe(`Bagel ${index + 1}`, () => {
       it('adds and removes an item from the basket', () => {
-        basket.addItem(bagels)
-        expect(basket.items).toContain(bagels)
-        basket.removeItem(bagels)
-        expect(basket.items).not.toContain(bagels)
+        basket.addItem(bagel)
+        expect(basket.items).toContain(bagel)
+        basket.removeItem(bagel)
+        expect(basket.items).not.toContain(bagel)
       })
     })
   })
-  // Basket too full section //
+
+  // Basket too full section
   it('stops the basket from overfilling', () => {
     for (let i = 0; i < basket.capacity + 1; i++) {
       basket.addItem(bagels[0])
     }
     expect(basket.items.length).toBeLessThanOrEqual(basket.capacity)
   })
-  // if item doesnt exist //
-  it('Should return a message if item doesnt exist in basket', () => {
+
+  // if item doesn't exist
+  it("Should return a message if item doesn't exist in basket", () => {
     const result = basket.findBagel('non-existent-sku')
-    expect(result).toBe('Item doesnt exist in basket')
+    expect(result).toBe("Item doesn't exist in basket")
   })
-  // increase capacity //
+
+  // increase capacity
   it('Basket capacity increased', () => {
     const largerBasket = new BagelBasket(10)
     expect(largerBasket.capacity).toBe(10)
   })
-  // Adding the same item //
+
+  // showing the price of each item
+  it('Show the price of each item before it goes in the basket', () => {
+    const bagelToShow = bagels[0] // Choose a specific bagel to show the price
+    const price = basket.getItemPrice(bagelToShow)
+    expect(price.toFixed(2)).toBe(bagelToShow.price)
+  })
+
+  // Adding the same item
   it('Lets you add the same item again', () => {
     const bagelToAdd = bagels[0]
     basket.addItem(bagelToAdd)
@@ -61,7 +72,8 @@ describe('BagelBasket', () => {
     ).length
     expect(countOfAddedBagel).toBe(2)
   })
-  // Total price added together //
+
+  // Total price added together
   it('Adds the total price of each item', () => {
     basket.addItem(bagels[0])
     basket.addItem(bagels[1])
@@ -74,7 +86,6 @@ describe('BagelBasket', () => {
       .toFixed(2)
 
     expect(basket.getTotalPrice().toFixed(2)).toBe(expectedTotal)
-    console.log(Number(bagels[0].price) + Number(bagels[1].price))
   })
 })
 

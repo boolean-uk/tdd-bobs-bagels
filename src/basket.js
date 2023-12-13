@@ -23,10 +23,14 @@ class BagelBasket {
     }
   }
 
+  getItemPrice(item) {
+    return Number(item.price)
+  }
+
   findBagel(sku) {
     return (
       this.items.find((item) => item.sku === sku) ||
-      'Item doesnt exist in basket'
+      "Item doesn't exist in basket"
     )
   }
 
