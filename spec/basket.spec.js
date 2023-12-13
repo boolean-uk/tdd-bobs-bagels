@@ -40,12 +40,7 @@ describe('remove from basket', () => {
     const result = basket1.removeItem(basketItem1)
 
     expect(result.length).toEqual(1)
-    expect(result[0].sku).toEqual({
-      sku: 'BGLO',
-      price: '0.49',
-      name: 'Bagel',
-      variant: 'Onion'
-    })
+    expect(result[0].sku).toEqual('BGLP')
   })
 
   it('basket is empty', () => {

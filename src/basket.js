@@ -10,6 +10,15 @@ class Basket {
     this.list.push(item)
     return this.list
   }
+
+  removeItem(item) {
+    if (this.list.length < 1) {
+      return 'nothing to remove, your basket is empty'
+    }
+    const indexOfItemToRemove = this.list.indexOf(item)
+    this.list.splice(indexOfItemToRemove, 1)
+    return this.list
+  }
 }
 
 class BasketItem {
