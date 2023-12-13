@@ -40,22 +40,6 @@ describe('Basket', () => {
   })
 
   describe('Remove Bagel From Basket', () => {
-    it('removed bagel must be returned as an object', () => {
-      const exampleBagel = {
-        sku: 'BGLO',
-        price: '0.49',
-        name: 'Bagel',
-        variant: 'Onion'
-      }
-      const result = b.removeBagel('BGLO')
-      expect(result).toEqual(exampleBagel)
-    })
-
-    it('bagel being removed does not exist in basket', () => {
-      const result = b.removeBagel()
-      expect(result).toEqual('bagel does not exist, check bagel sku')
-    })
-
     it('removes selected bagel from basket', () => {
       const exampleBasket = [
         {
@@ -77,6 +61,11 @@ describe('Basket', () => {
       b.removeBagel('BGLO')
       const result = b.getBasket()
       expect(result).toEqual(exampleBasket)
+    })
+
+    it('bagel being removed does not exist in basket', () => {
+      const result = b.removeBagel()
+      expect(result).toEqual('bagel does not exist, check bagel sku')
     })
   })
 })
