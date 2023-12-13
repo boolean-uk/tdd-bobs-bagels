@@ -79,7 +79,7 @@
 ## Customer
   ### PROPERTIES
   #### basket
-    @Object: {}
+    @Object: {} OR null
   ### METHODS
   #### lookAtBasketType
     INPUT: no input

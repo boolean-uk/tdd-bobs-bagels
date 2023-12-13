@@ -1,5 +1,6 @@
 import { inventory } from "./inventory.js"
 import Employee from "./employee.js"
+import Customer from "./customer.js"
 
 class Store {
   constructor (name) {
