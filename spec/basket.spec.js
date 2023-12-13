@@ -62,5 +62,9 @@ describe('Bobs bagels basket methods', () => {
       expect(basket.basketList[0].name).toEqual('Fork')
       expect(basket.basketList).toEqual(newBasket)
     })
+    it('/ no sku added ', () => {
+      const removedItem = basket.removeItem('')
+      expect(removedItem).toEqual('sku required')
+    })
   })
 })
