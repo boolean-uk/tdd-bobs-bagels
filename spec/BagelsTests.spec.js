@@ -135,3 +135,26 @@ describe('Get Inventory', () => {
     expect(res.length).toEqual(inventory.length)
   })
 })
+
+// Total Sum
+describe('Total Sum', () => {
+  it('The total su is not 0', () => {
+    const basket = new Basket(5)
+
+    basket.addBagel('BGLO')
+    basket.addBagel('BGLO')
+    basket.addBagel('BGLP')
+
+    const res = basket.totalSum()
+
+    expect(res).toEqual(1.37)
+  })
+
+  it('The total sum is 0', () => {
+    const basket = new Basket(5)
+
+    const res = basket.totalSum()
+
+    expect(res).toEqual('Your basket is empty')
+  })
+})
