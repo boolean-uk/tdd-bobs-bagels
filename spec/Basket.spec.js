@@ -54,10 +54,15 @@ describe('BagelBasket', () => {
     basket.addItem(bagels[0])
     basket.addItem(bagels[1])
 
-    const expectedTotal = bagels.slice(0, 2).reduce((total, bagel) => {
-      return total + Number(bagel.price)
-    }, 0)
-    expect(basket.getTotalPrice()).toBe(expectedTotal)
+    const expectedTotal = bagels
+      .slice(0, 2)
+      .reduce((total, bagel) => {
+        return total + Number(bagel.price)
+      }, 0)
+      .toFixed(2)
+
+    expect(basket.getTotalPrice().toFixed(2)).toBe(expectedTotal)
+    console.log(Number(bagels[0].price) + Number(bagels[1].price))
   })
 })
 
