@@ -34,8 +34,7 @@ describe('Add Bagel', () => {
     const basket = new Basket(5)
 
     basket.addBagel('BGLO')
-
-    console.log(basket.addBagel('BGLO'))
+    basket.addBagel('BGLO')
     const res = basket.addBagel('BGLO')
 
     expect(res.sku).toEqual('BGLO')
