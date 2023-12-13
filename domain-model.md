@@ -80,10 +80,11 @@ V: pay, know
 
 | Methods       | Inputs | Data | Scenario | Outputs |
 | ------------- | ------ | ---- | -------- | ------- |
-| addToBasket(sku) | sku(@string)| | valid sku     | add item to basket, message "item added" |
+| addToBasket(sku) | sku(@string)| | valid sku | add item to basket, message "item added" |
 |||| invalid sku | return message "item not found"
 |||| no sku input | return message "item sku required"
 |||| basket is full | return message "basket full"
+|||| sku already in basket | increase quantity of item in basket, message "item added"
 |||||
 | removeFromBasket(sku) | sku(@string)| | valid sku, sku in basket | remove item to basket, message "item removed" |
 |||| valid sku, sku not in basket | return message "item not in cart"
@@ -102,5 +103,12 @@ V: pay, know
 | findBasketItem(sku) | sku(@string) || valid sku, sku in basket, return item object
 |||| valid sku, sku not in basket | return "item not in basket"
 |||| invalid sku | return "sku does not exist"
+|||||
+|displayItemPrice(sku)| sku(@string) | | valid sku | return item price
+|||| invalid sku | return "sku not found"
+|||||
+|displayBasketSum()||| items in basket | return sum of items.price
+|||| no items in basket | return 0
+
 
 
