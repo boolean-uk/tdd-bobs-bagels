@@ -1,7 +1,9 @@
 /* eslint-disable prettier/prettier */
+
 class IndividualUser {
     constructor() {
         this.userOrderList = []
+    
     }
 
     addOrderToBasket(item) {
@@ -14,9 +16,11 @@ class IndividualUser {
         if (itemToDelete !== -1) {
             this.userOrderList.splice(itemToDelete, 1)
         } else {
-            return "Item is not found "
+            return "Item you trying to Remove does not exist in your basket"
         }
     }
+
+
 }
 
 module.exports = IndividualUser
