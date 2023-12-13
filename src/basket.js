@@ -54,9 +54,10 @@ class Basket {
   }
 
   changeCapacity(newCapacity) {
-    let count
-    this.items.forEach((item) => (count += item.quantity))
-    if (this.capacity < count) return false
+    let itemCount
+    this.items.forEach((item) => itemCount += item.quantity)
+
+    if (this.capacity < itemCount) return false
 
     this.capacity = newCapacity
     return this.capacity
