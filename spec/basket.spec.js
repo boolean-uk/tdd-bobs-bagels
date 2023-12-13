@@ -34,9 +34,11 @@ describe('Basket', () => {
     })
 
     it('return "item sku required" if no sku input', () => {
-      const result = basket.add()
+      const result1 = basket.add()
+      const result2 = basket.add('')
 
-      expect(result).toEqual('item sku required')
+      expect(result1).toEqual('item sku required')
+      expect(result2).toEqual('item sku required')
     })
   })
 
