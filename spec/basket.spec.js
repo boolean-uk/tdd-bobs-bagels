@@ -117,4 +117,19 @@ describe('Basket', () => {
       expect(result).toBe('item is not stocked')
     })
   })
+
+  describe('remove item from basket', () => {
+    const basket = new Basket()
+
+    beforeEach(() => {
+      basket._list = [...mockList]
+    })
+
+    it('remove item with valid sku', () => {
+      const result = basket.remove('BBBB')
+
+      expect(result).toBe('item removed')
+      expect(basket.list).toEqual([mockList[0], mockList[2]])
+    })
+  })
 })
