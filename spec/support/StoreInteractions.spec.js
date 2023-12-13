@@ -32,4 +32,9 @@ describe("Store closing", () => {
     expect(myStore.close()).toEqual("Store is now closed!")
     expect(myStore.isOpen).toBeFalse()
   })
+
+  it("closing store when already closed doesn't work", () => {
+    const myStore = new Store()
+    expect(myStore.close()).toEqual("We're already closed!")
+  })
 })
