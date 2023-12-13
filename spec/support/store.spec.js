@@ -77,9 +77,8 @@ describe("customers", () => {
   it("customers can receive a basket", () => {
     const myStore = new Store("Test")
     myStore.addCustomer()
-    const pseudoBasket = { capacity: 42 }
-    myStore.customers[0].receiveBasket(pseudoBasket)
-    expect(myStore.customers[0].basket.capacity).toEqual(42)
+    myStore.customers[0].receiveBasket(myStore.handoutBasket("M"))
+    expect(myStore.customers[0].basket.capacity).toEqual(4)
   })
 })
 
