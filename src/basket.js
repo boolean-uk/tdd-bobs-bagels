@@ -39,6 +39,7 @@ class Basket {
     }
 
     this.items[itemIndex].quantity--
+
     if (itemIndex <= 0) {
       this.items.splice(itemIndex, 1)
     }
@@ -55,15 +56,13 @@ class Basket {
 
   changeCapacity(newCapacity) {
     let itemCount
-    this.items.forEach((item) => itemCount += item.quantity)
+    this.items.forEach((item) => (itemCount += item.quantity))
 
     if (this.capacity < itemCount) return false
 
     this.capacity = newCapacity
     return this.capacity
   }
-
-  
 }
 
 module.exports = {

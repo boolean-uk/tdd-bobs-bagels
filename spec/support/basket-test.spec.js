@@ -1,4 +1,4 @@
-const { Basket, Item } = require('../../src/basket')
+const { Basket } = require('../../src/basket')
 
 describe('Add an item to the basket', () => {
   let basket
@@ -29,10 +29,17 @@ describe('Add an item to the basket', () => {
     expect(basket.items[0].sku).toEqual('BGLP')
   })
 
+  it('cannot remove item not in the basket', () => {
+    basket.addItem('BGLO')
+    basket.addItem('BGLP')
+    const result = basket.removeItem('BGLE')
+    expect(result).toBeFalse()
+  })
+
   // isFullBasket()
   it('should return true if basket is full', () => {
     for (let i = 0; i < basket.capacity; i++) {
-        basket.addItem('BGLO')
+      basket.addItem('BGLO')
     }
     expect(basket.isBasketFull()).toBeTrue()
   })

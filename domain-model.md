@@ -1,3 +1,5 @@
+<!-- ######################## PART ONE ############################## -->
+
 ## PART ONE:
 
 # USer stories 1
@@ -48,7 +50,7 @@ if basket is not empty
 
 Basket({})
 
-<!-- ###################################################### -->
+<!-- ######################## PART TWO ############################## -->
 
 ## PART TWO:
 
@@ -99,6 +101,52 @@ current capacity = new capacity
 
 capacity increased
 
-<!-- As a member of the public
+<!--------------------------------------------->
+
+## User Story 3
+
+As a member of the public
 So that I can maintain my sanity
-I'd like to know if I try to remove an item that doesn't exist in my basket.  -->
+I'd like to know if I try to remove an item that doesn't exist in my basket.
+
+## Methods
+
+removeItem()
+
+## Inputs
+
+---
+
+## Scenario
+
+if index of item equals to -1
+
+## Output
+
+result to be false
+
+<!-- ######################## PART THREE ############################## -->
+
+## Part Three:
+
+## User Story 1
+
+As a member of the public,
+So that I can know how much my bagels are,
+I’d like to see the price of each item before I add it to my basket.
+
+## Method
+
+getItemPrice()
+
+## Input
+
+item.price(@number)
+
+## Scenario
+
+if item found in inventory
+
+## Output
+
+get the item price
