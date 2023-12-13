@@ -22,7 +22,7 @@ class Basket {
         (bagel) => bagel.sku === bagelType
       )
       if (!bagelToAdd) {
-        return 'bagel does not exist, check bagel sku'
+        return 'bagel does not exist in our bakery'
       } else {
         this.basketList.push(bagelToAdd)
         return bagelToAdd

@@ -20,9 +20,9 @@ describe('Basket', () => {
       expect(result).toEqual(exampleBagel)
     })
 
-    it('bagel being added does not exist in bagel inventory', () => {
+    it('bagel being added does not exist in bagel inventory, check bagel sku', () => {
       const result = b.addBagel()
-      expect(result).toEqual('bagel does not exist, check bagel sku')
+      expect(result).toEqual('bagel does not exist in our bakery')
     })
 
     it('adds selected bagel to user basket', () => {
@@ -114,6 +114,33 @@ describe('Basket', () => {
       const errorMessage = 'bagel does not exist'
       const result = b.checkPrice()
       expect(result).toEqual(errorMessage)
+    })
+  })
+
+  describe('Increase Bagel Quantity', () => {
+    it('adding multiple of the same bagel increases the quantity', () => {
+      const exampleBasket = [
+        {
+          sku: 'BGLO',
+          price: '0.49',
+          name: 'Bagel',
+          variant: 'Onion',
+          quantity: 3
+        },
+        {
+          sku: 'BGLP',
+          price: '0.39',
+          name: 'Bagel',
+          variant: 'Plain',
+          quantity: 1
+        }
+      ]
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLP')
+      const result = b.getBasket()
+      expect(result).toEqual(exampleBasket)
     })
   })
 })
