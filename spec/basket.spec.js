@@ -18,6 +18,10 @@ describe('Bobs bagels basket methods', () => {
       const newItem = basket.addItem('')
       expect(newItem).toEqual('sku required!')
     })
+    it('/if sku is not a string', () => {
+      const notASku = basket.addItem(1234)
+      expect(notASku).toEqual('sku required!')
+    })
   })
   describe('/ remove items from basket', () => {
     const basket = new Basket()
