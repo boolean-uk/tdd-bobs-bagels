@@ -8,7 +8,12 @@ describe('BagelBasket', () => {
     { sku: 'BGLE', price: '0.49', name: 'Bagel', variant: 'Everything' },
     { sku: 'BGLS', price: '0.49', name: 'Bagel', variant: 'Sesame' },
     { sku: 'COF', price: '0.39', name: 'Coffee', variant: '' },
-    { sku: 'BGSE', price: '2.99', name: 'Bagel Sandwich', variant: 'Everything'},
+    {
+      sku: 'BGSE',
+      price: '2.99',
+      name: 'Bagel Sandwich',
+      variant: 'Everything'
+    },
     { sku: 'BGSS', price: '4.99', name: 'Bagel', variant: 'Sesame' }
   ]
 
@@ -34,6 +39,11 @@ describe('BagelBasket', () => {
       basket.addItem(bagels[0])
     }
     expect(basket.items.length).toBeLessThanOrEqual(basket.capacity)
+  })
+  // if item doesnt exist //
+  it('Should return a message if item doesnt exist in basket', () => {
+    const result = basket.findBagel('non-existent-sku')
+    expect(result).toBe('Item doesnt exist in basket')
   })
 })
 

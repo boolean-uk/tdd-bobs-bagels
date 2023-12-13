@@ -8,7 +8,7 @@ class BagelBasket {
     if (this.items.length < this.capacity) {
       this.items.push(item)
     } else {
-      console.log('Cannot add item, basket is full')
+      return 'Cannot add item, basket is full'
     }
   }
 
@@ -21,6 +21,13 @@ class BagelBasket {
     } else {
       return 'Item not found'
     }
+  }
+
+  findBagel(sku) {
+    return (
+      this.items.find((item) => item.sku === sku) ||
+      'Item doesnt exist in basket'
+    )
   }
 }
 
