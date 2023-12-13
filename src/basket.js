@@ -45,6 +45,17 @@ class Basket {
 
     return 'You do not have this bagel in your basket.'
   }
+
+  createBasket(cap) {
+    if (cap > 25) return 'Your basket is too big the max capacity is 25'
+    else if (cap > 0) {
+      this.capacity = cap
+
+      return true
+    }
+
+    return 'Enter capacity for create new basket (the minimum capacity can be 1)'
+  }
 }
 
 module.exports = Basket

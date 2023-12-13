@@ -101,7 +101,7 @@ describe('Create Basket', () => {
     const res = basket.createBasket(30)
 
     expect(res).toEqual('Your basket is too big the max capacity is 25')
-    expect(basket.quantity).toEqual(5)
+    expect(basket.capacity).toEqual(5)
   })
 
   it('Passed capacity 0', () => {
