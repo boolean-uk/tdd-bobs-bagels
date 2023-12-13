@@ -45,7 +45,7 @@ describe("Store closing", () => {
 describe("basket handout", () => {
   it("no basket template name returns no valid name", () => {
     const myStore = new Store()
-    expect(myStore.handoutBasket()).toEqual("no valid name")
+    expect(myStore.handoutBasket()).toEqual("type not found")
   })
 })
 

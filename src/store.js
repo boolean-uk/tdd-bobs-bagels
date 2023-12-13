@@ -40,9 +40,8 @@ class Store {
 
   handoutBasket (name) {
     if (this.availableBasketTypes.length === 0) return "no basket types"
-    if (!name) return "no valid name"
     const foundBasket = this.availableBasketTypes.find(basket => basket.name === name)
-    if (!!foundBasket) return "invalid name" 
+    if (!foundBasket) return "type not found" 
     return foundBasket
   }
 }
