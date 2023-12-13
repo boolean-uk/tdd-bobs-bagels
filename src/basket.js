@@ -3,6 +3,7 @@ const { bagelsInventory } = require('../inventory.json')
 class Basket {
   constructor() {
     this.basketList = []
+    this.maxCapacity = 3
   }
 
   getBasket() {

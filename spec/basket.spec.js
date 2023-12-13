@@ -7,6 +7,7 @@ describe('Basket', () => {
     b = new Basket()
   })
 
+  //   PART 1
   describe('Add Bagel To Basket', () => {
     it('added bagel must be returned as an object', () => {
       const exampleBagel = {
@@ -66,6 +67,17 @@ describe('Basket', () => {
     it('bagel being removed does not exist in basket', () => {
       const result = b.removeBagel()
       expect(result).toEqual('bagel does not exist, check bagel sku')
+    })
+  })
+
+  //   PART 2
+  describe('Check When Basket Is Full', () => {
+    it('when adding a bagel, user should be notified if basket is full', () => {
+      b.addBagel('BGLO')
+      b.addBagel('BGLP')
+      b.addBagel('BGLE')
+      const result = b.addBagel('BGLS')
+      expect(result).toEqual('basket is full of bagels!')
     })
   })
 })
