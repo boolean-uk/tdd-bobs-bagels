@@ -67,6 +67,28 @@ class BagelStore {
   updateBasketCapacity(newCapacity) {
     this.basketCapacity = newCapacity
   }
+
+  totalPrice() {
+    let sum = 0
+
+    this.basket.forEach((item) => (sum += item.quantity * item.price))
+
+    return `Total: $${sum}`
+  }
+
+  bagelPrices() {
+    const priceArr = []
+
+    this.inventory.forEach((item, idx) =>
+      priceArr.push(
+        `${item.variant ? `${idx}: ${item.variant}` : `${idx}:`} ${
+          item.name
+        } - $${item.price}\n`
+      )
+    )
+
+    return `Prices:\n${priceArr.join('')}`
+  }
 }
 
 module.exports = {
