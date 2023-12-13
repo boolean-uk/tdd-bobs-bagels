@@ -46,3 +46,14 @@ describe("basket handout", () => {
     expect(myStore.handoutBasket()).toEqual("no basket types")
   })
 })
+
+describe("adding employees", () => {
+  it("adding an employee adds employee count by one", () => {
+    const myStore = new Store("Test")
+    const oldEmployeeCount = myStore.employees.length
+    myStore.addEmployee("Tina", "worker")
+    expect(myStore.employees.length).toEqual(oldEmployeeCount + 1)
+    expect(myStore.employees[oldEmployeeCount].name).toEqual("Tina")
+    expect(myStore.employees[oldEmployeeCount].role).toEqual("worker")
+  })
+})
