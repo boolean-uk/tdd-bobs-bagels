@@ -23,6 +23,21 @@ describe('Store ordering ', () => {
             expect(user.userOrderList.length).toBe(1)
         })
 
+
+
+        it('keep track of basket Full', () => {
+            const user = new IndividualUser()
+
+           
+            const orderItem2 = data.inventory[0].sku;
+            for (let i = 0; i < 11; i++) {
+                user.addOrderToBasket(orderItem2)
+            }
+
+            const MessageIfFull = user.addOrderToBasket(orderItem2)
+            expect(MessageIfFull).toBe('Your basket is full!')
         
+        })
+
     })
 })

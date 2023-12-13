@@ -7,7 +7,8 @@ class IndividualUser {
     }
 
     addOrderToBasket(item) {
-        this.userOrderList.push(item)
+            this.userOrderList.push(item)
+
     }
 
     removeItemFromBasket(item) {
@@ -19,6 +20,7 @@ class IndividualUser {
             return "Item you trying to Remove does not exist in your basket"
         }
     }
+
 
 
 }
