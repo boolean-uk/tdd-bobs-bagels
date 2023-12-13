@@ -6,7 +6,7 @@ export default class Basket {
   }
 
   addItem(sku) {
-    if (!sku) return 'sku required!'
+    if (!sku || typeof sku !== 'string') return 'sku required!'
     const itemToAdd = inventory.find((item) => item.sku === sku)
     if (!itemToAdd) return 'item not found'
     this.basketList.push(itemToAdd)
@@ -14,7 +14,7 @@ export default class Basket {
   }
 
   removeItem(sku) {
-    if (!sku) return 'sku required'
+    if (!sku || typeof sku !== 'string') return 'sku required'
     const newBasket = this.basketList.filter((item) => item.sku !== sku)
     return (this.basketList = newBasket)
   }
