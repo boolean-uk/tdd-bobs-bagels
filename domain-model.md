@@ -2,51 +2,23 @@
 
 ## Part 1
 
-### Story
-
 ```txt
 As a member of the public
 So I can order a bagel when I want to
 I'd like to add an item to my basket
-```
 
-### Words
+N: public, bagel, item, basket
+V: Order, Add
 
-#### Verbs
+=========================================
 
-- Order
-- Add
-
-#### Nouns
-
-- public
-- bagel
-- item
-- basket
-
-
-
-### Story
-
-```txt
 As a member of the public,
 So that I can change my order
 I'd like to remove an item from my basket
+
+N: public, item, basket, order
+V: Change, Remove
 ```
-
-### Words
-
-#### Verbs
-
-- Order
-- Change
-- Remove
-
-#### Nouns
-
-- public
-- item
-- basket
 
 ## Part 2
 
