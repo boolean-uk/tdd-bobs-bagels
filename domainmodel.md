@@ -48,14 +48,20 @@
       SCENARIOS: decreases item.quantity in basket.items by one
       deletes item from basket.items
 
-
-## Manager
+## Employee (name, role)
+  ### PROPERTIES
+  #### name
+    TYPE: @string
+    EXAMPLE: "Tina" / "Bob"
+  #### role
+    TYPE: @string
+    EXAMPLE: "manager" / "worker"
   ### METHODS
   #### createBasketTemplate
     INPUTS: capacity, nameTemplate
     OUTPUT: { capacity: @Number, template: @String }
 
-## Client
+## Customer
   ### PROPERTIES
   #### basket
     @Object: {}
