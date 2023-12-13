@@ -163,7 +163,7 @@ I'd like to be able to add the same type of bagel to my basket more than once
 addItem()
 
 ## Input
-item(Obj{}) => property - name(@string)
+item(Obj{}) => property - name: string
 
 ## Scenario
 if there is same item as item is about to be added to the basket
@@ -171,3 +171,23 @@ if there is same item as item is about to be added to the basket
 ## Output
 Item nam = BGLO
 Item name = BGLO
+<!--------------------------------------------->
+
+## User Story 2
+
+As a member of the public,
+So that I can prepare to pay
+When I go to checkout I'd like to know the total sum of the bagels in my basket
+
+## Method
+getTotalCost()
+
+## Input
+item(Obj{}) => properties - price: number, quantity: number
+
+## Scenario
+if basket's length is more than 0 
+
+## Output
+get the total price of the items
+
