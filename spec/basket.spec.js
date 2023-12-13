@@ -14,5 +14,9 @@ describe('Bobs bagels basket methods', () => {
       const newItem = basket.addItem('XXXX')
       expect(newItem).toEqual('item not found')
     })
+    it('/ no sku added', () => {
+      const newItem = basket.addItem('')
+      expect(newItem).toEqual('sku required!')
+    })
   })
 })
