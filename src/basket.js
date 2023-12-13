@@ -66,6 +66,17 @@ class Basket {
     else
       return `the price of the ${bagelToCheck.variant} ${bagelToCheck.name} is £${bagelToCheck.price}`
   }
+
+  calcBasketVal() {
+    if (this.basketList.length === 0) {
+      return 'there are no bagels in your basket'
+    }
+    const basketPrices = this.basketList.map(
+      (bagel) => bagel.price * bagel.quantity
+    )
+    const sum = basketPrices.reduce((acc, curr) => acc + curr).toFixed(2)
+    return `the price of your basket is £${sum}`
+  }
 }
 
 // CONSOLE.LOG TEST
@@ -76,7 +87,7 @@ const b = new Basket()
 b.addBagel('BGLO')
 b.addBagel('BGLO')
 b.addBagel('BGLP')
-// b.addBagel('BGLS')
+b.addBagel('BGLS')
 // console.log(b.addBagel('BGLO'))
 
 // REMOVE BAGEL
@@ -93,5 +104,8 @@ b.addBagel('BGLP')
 // CHECK BAGEL PRICE
 // console.log(b.checkPrice('BGLO'))
 // b.checkPrice('BGLO')
+
+// CALC BASKET TOTAL
+console.log(b.calcBasketVal())
 
 module.exports = { Basket }
