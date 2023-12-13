@@ -9,7 +9,7 @@ class IndividualUser {
     }
 
     removeItemFromBasket(item) {
-        const itemToDelete = this.userOrderList.find((i) => i === item) 
+        const itemToDelete = this.userOrderList.indexOf(item) 
 
         if (itemToDelete !== -1) {
             this.userOrderList.splice(itemToDelete, 1)
