@@ -5,6 +5,7 @@ class Employee {
   }
 
   updateRole (newRole) {
+    console.log(this.role, newRole)
     this.role = newRole
   }
 }

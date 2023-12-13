@@ -11,3 +11,11 @@ describe("Employee tests", () => {
     expect(Bob.role).toEqual("manager")
   })
 })
+
+describe("Employee role updating", () => {
+  it("update employees role", () => {
+    const Gene = new Employee("Gene", "worker")
+    Gene.updateRole("mascot")
+    expect(Gene.role).toEqual("mascot")
+  })
+})
