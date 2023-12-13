@@ -100,9 +100,9 @@ V: pay, know
 |||||
 | checkValidSku(sku)|sku(@string)|| valid sku | returns item object
 |||||
-| findBasketItem(sku) | sku(@string) || valid sku, sku in basket, return item object
-|||| valid sku, sku not in basket | return "item not in basket"
-|||| invalid sku | return "sku does not exist"
+| findBasketItem(sku) | sku(@string) || valid sku, sku in basket | return item object | x |
+|||| valid sku, sku not in basket | return "item not found" | x |
+|||| invalid sku | return "item is not stocked" | x |
 |||||
 |displayItemPrice(sku)| sku(@string) | | valid sku | return item price
 |||| invalid sku | return "sku not found"
