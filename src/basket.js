@@ -15,6 +15,13 @@ class Basket {
   }
 
   add(sku) {
+    if (
+      typeof sku !== 'string' ||
+      (typeof sku === 'string' && sku.length === 0)
+    ) {
+      return 'item sku required'
+    }
+
     const item = this.findInventoryItem(sku)
 
     if (item !== 'item not found') {
