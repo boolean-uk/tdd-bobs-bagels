@@ -49,6 +49,15 @@ class Basket {
     } else this.maxCapacity = newCapacity
     return `basket capacity is now ${newCapacity}`
   }
+
+  checkPrice(bagelType) {
+    const bagelToCheck = bagelsInventory.find(
+      (bagel) => bagel.sku === bagelType
+    )
+    if (!bagelToCheck) return 'bagel does not exist'
+    else
+      return `the price of the ${bagelToCheck.variant} ${bagelToCheck.name} is £${bagelToCheck.price}`
+  }
 }
 
 // CONSOLE.LOG TEST
@@ -70,7 +79,11 @@ b.addBagel('BGLO')
 // console.log(b.getBasket())
 
 // INCREASE BASKET CAPACITY
-console.log(b.largerBasket(5))
+// console.log(b.largerBasket(5))
 // console.log(b.maxCapacity)
+
+// CHECK BAGEL PRICE
+console.log(b.checkPrice('BGLO'))
+// b.checkPrice('BGLO')
 
 module.exports = { Basket }
