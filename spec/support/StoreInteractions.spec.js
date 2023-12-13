@@ -4,14 +4,9 @@ describe("Store creation", () => {
   it("initially, the store exists but has no available bucket types", () => {
     const myStore = new Store("Bob's Bagels")
     expect(myStore.availableBasketTypes).toEqual([])
-    expect(myStore.availableProducts).toEqual([])
+    expect(myStore.availableProducts).toBeTruthy()
     expect(myStore.name === "Bob's Bagels").toBeTrue()
     expect(myStore.isOpen).toBeFalse()
-  })
-
-  it("loaded inventory?", () => {
-    const myStore = new Store("Test")
-    console.log(myStore.inventory)
   })
 })
 

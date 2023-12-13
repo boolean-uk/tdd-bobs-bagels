@@ -5,8 +5,7 @@ class Store {
     this.name = name
     this.isOpen = false
     this.availableBasketTypes = []
-    this.availableProducts = []
-    this.inventory = inventory
+    this.availableProducts = [...inventory]
   }
   open () {
     if (this.isOpen) return "We're already open!"
