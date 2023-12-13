@@ -28,7 +28,6 @@ I'd like to remove an item from my basket
 ||||no sku added| return "sku required"
 |||||
 |removeItem|(sku)|sku(@string)|if sku is valid and in basket| remove item from basket
-||||if sku valid but not in basket| return "item not in basket"
 ||||no sku added| return "sku required"
 
 
@@ -54,15 +53,20 @@ I'd like to know if I try to remove an item that doesn't exist in my basket.
 
 ### Keywords
 
-1. **Verbs:** overfill, know, adding, create, 
+1. **Verbs:** overfill, know, adding, create, record
 2. **Nouns:** public, bagel, basket, manager, sales, capacity
 
 ### Table
 
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
-|checkIfFull|()|@Number||
-
+|checkIfFull|()|@Number|If basket equals to basket full max items| return "basket is full"
+|||||
+|changeBasketSize|(Size)|Size(@Number)|if basket size exists| change the basket size allowance
+||||if basket size does not exist| return "error, set basket size"
+|||||
+|checkBasketItem|(sku)|sku(@string)|if sku does exist in basket| return "false" and "item does not exist in baskey"
+||||if sku does exist in basket| return sku.
 
 
 ## New Model
