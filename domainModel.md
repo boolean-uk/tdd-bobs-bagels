@@ -23,11 +23,11 @@ I'd like to remove an item from my basket
 
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | ------
-|addItem|(sku)|sku(@string)|if sku is valid| add item to basket as a string
+|[X] addItem|(sku)|sku(@string)|if sku is valid| add item to basket as a string
 ||||sku not valid|return "item not found"
 ||||no sku added| return "sku required"
 |||||
-|removeItem|(sku)|sku(@string)|if sku is valid and in basket| remove item from basket
+|[X] removeItem|(sku)|sku(@string)|if sku is valid and in basket| remove item from basket
 ||||no sku added| return "sku required"
 
 
@@ -60,12 +60,12 @@ I'd like to know if I try to remove an item that doesn't exist in my basket.
 
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
-|checkIfFull|()|@Number|If basket equals to basket full max items| return "basket is full"
+|[ ] checkIfFull|()|@Number|If basket equals to basket full max items| return "basket is full"
 |||||
-|changeBasketSize|(Size)|Size(@Number)|if basket size exists| change the basket size allowance
+|[ ] changeBasketSize|(Size)|Size(@Number)|if basket size exists| change the basket size allowance
 ||||if basket size does not exist| return "error, set basket size"
 |||||
-|checkBasketItem|(sku)|sku(@string)|if sku does exist in basket| return "false" and "item does not exist in baskey"
+|[ ] checkBasketItem|(sku)|sku(@string)|if sku does exist in basket| return "false" and "item does not exist in baskey"
 ||||if sku does exist in basket| return sku.
 
 
@@ -98,11 +98,12 @@ When I go to checkout I'd like to know the total sum of the bagels in my basket
 
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
-|findItems|(sku)|sku(@string)|if sku in items state/object| display item description and price
+|[ ] findItems|(sku)|sku(@string)|if sku in items state/object| display item description and price
 ||||if no items in state/object| return false
 |||||
-|increaseQuantity|(sku)|sku(@string), @Number|if sku exist in basket| increase quanitity by one
+|[ ] increaseQuantity|(sku)|sku(@string), @Number|if sku exist in basket| increase quanitity by one
 ||||if sku does not exist in basket| add item to basket.
 |||||
-|totalCost|()|@Array|if items in array|add all items prices as a number
+|[ ] totalCost|()|@Array|if items in array|add all items prices as a number
 ||||if no items in array|return 0
+

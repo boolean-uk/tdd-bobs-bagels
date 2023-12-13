@@ -18,6 +18,7 @@ export default class Basket {
     const newBasket = this.basketList.filter((item) => item.sku !== sku)
     return (this.basketList = newBasket)
   }
+  
 }
 
 // const basket = new Basket()
