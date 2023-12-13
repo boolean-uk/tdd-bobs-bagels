@@ -56,6 +56,16 @@ class Basket {
 
     return 'Enter capacity for create new basket (the minimum capacity can be 1)'
   }
+
+  getInventory() {
+    const inventoryObj = inventory.map((item) => ({
+      name: item.name,
+      variant: item.variant,
+      price: item.price
+    }))
+
+    return inventoryObj
+  }
 }
 
 module.exports = Basket

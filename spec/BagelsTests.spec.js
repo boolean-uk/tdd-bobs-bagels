@@ -132,6 +132,6 @@ describe('Get Inventory', () => {
       variant: inventory[0].variant,
       price: inventory[0].price
     })
-    expect(res).toEqual(inventory.length)
+    expect(res.length).toEqual(inventory.length)
   })
 })
