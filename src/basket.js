@@ -38,6 +38,12 @@ class Basket {
     if (typeof foundItem === 'object') return foundItem
     return 'item not found'
   }
+
+  findBasketItem(sku) {
+    const foundItem = this.list.find((item => item.sku === sku))
+
+    return foundItem
+  }
 }
 
 export default Basket
