@@ -75,3 +75,16 @@ describe("customers", () => {
     expect(myStore.customers[0].basket.capacity).toEqual(42)
   })
 })
+
+describe("employees can do employee stuff", () => {
+  it("adding basket templates", () => {
+    const myStore = new Store("Bob's Bagels")
+    myStore.addEmployee("Bob", "cashier")
+    const Bob = myStore.employees[0]
+    const createdBasketType = Bob.createBasketType("XS", 1)
+    myStore.addBasketType(createdBasketType)
+    expect(myStore.availableBasketTypes.length).toEqual(1)
+    expect(myStore.availableBasketTypes[0].type).toEqual("XS")
+    expect(myStore.availableBasketTypes[0].capacity).toEqual(1)
+  })
+})
