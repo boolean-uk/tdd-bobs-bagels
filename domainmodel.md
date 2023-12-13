@@ -60,6 +60,9 @@
   #### createBasketTemplate
     INPUTS: capacity, nameTemplate
     OUTPUT: { capacity: @Number, template: @String }
+  #### updateRole
+    INPUT: role @string
+    FUNCTION: sets input as this.role
 
 ## Customer
   ### PROPERTIES
