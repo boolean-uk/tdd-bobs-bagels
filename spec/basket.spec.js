@@ -59,8 +59,7 @@ describe('Bobs bagels basket methods', () => {
         }
       ]
       const itemToRemove = removeItem('2222')
-
-      expect(basket.basketList).toEqual(newBasket)
+      expect(itemToRemove).toEqual(newBasket)
     })
   })
 })
