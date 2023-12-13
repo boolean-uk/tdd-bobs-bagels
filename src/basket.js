@@ -66,6 +66,18 @@ class Basket {
 
     return inventoryObj
   }
+
+  totalSum() {
+    const sum = this.basketList
+      .map((item) => item.price * item.quantity)
+      .reduce((a, b) => a + b, 0)
+
+    if (sum > 0) {
+      return sum
+    }
+
+    return 'Your basket is empty'
+  }
 }
 
 module.exports = Basket
