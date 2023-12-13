@@ -56,4 +56,40 @@ describe('Basket:', () => {
 
     expect(result).toEqual('ERROR: Invalid Item. Please input a valid sku.')
   })
+
+  it('Create basket with given capacity', () => {
+    store.updateBasketCapacity(10)
+
+    const result = store.basketCapacity
+
+    expect(result).toEqual(10)
+  })
+
+  it('Hits limit of basket capacity by items', () => {
+    store.addToBasket('bglo')
+    store.addToBasket('BGLE')
+    store.addToBasket('BGLS')
+    store.addToBasket('BGLP')
+    store.addToBasket('BGSS')
+
+    const result = store.addToBasket('BGSE')
+
+    expect(result).toEqual(
+      'Your basket is full. Please create a new basket with a greater capacity'
+    )
+  })
+
+  it('Hits limit of basket capacity by quantity', () => {
+    store.addToBasket('bglo')
+    store.addToBasket('bglo')
+    store.addToBasket('bglo')
+    store.addToBasket('bglo')
+    store.addToBasket('bglo')
+
+    const result = store.addToBasket('bglo')
+
+    expect(result).toEqual(
+      'Your basket is full. Please create a new basket with a greater capacity'
+    )
+  })
 })
