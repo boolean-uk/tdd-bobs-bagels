@@ -14,7 +14,7 @@ export default class Basket {
   }
 
   removeItem(sku) {
-    if (!sku || typeof sku !== 'string') return 'sku required'
+    if (!sku || typeof sku !== 'string') return 'sku required!'
     const newBasket = this.basketList.filter((item) => item.sku !== sku)
     return (this.basketList = newBasket)
   }

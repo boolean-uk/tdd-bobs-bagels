@@ -64,7 +64,11 @@ describe('Bobs bagels basket methods', () => {
     })
     it('/ no sku added ', () => {
       const removedItem = basket.removeItem('')
-      expect(removedItem).toEqual('sku required')
+      expect(removedItem).toEqual('sku required!')
+    })
+    it('/ if parameter is not a string', () => {
+      const removingSku = basket.removeItem(1234)
+      expect(removingSku).toEqual('sku required!')
     })
   })
 })
