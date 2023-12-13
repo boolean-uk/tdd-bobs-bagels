@@ -1,9 +1,11 @@
 import { inventory } from "./inventory.js"
+import Employee from "./employee.js"
 
 class Store {
   constructor (name) {
     this.name = name
     this.isOpen = false
+    this.employees = []
     this.availableBasketTypes = []
     this.availableProducts = [...inventory]
   }
@@ -17,6 +19,11 @@ class Store {
     if (!this.isOpen) return "We're already closed!"
     this.isOpen = false
     return "Store is now closed!"
+  }
+
+  addEmployee (name, role) {
+    const employee = new Employee(name, role)
+    this.employees.push(employee)
   }
 
   handoutBasket (name) {
