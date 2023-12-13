@@ -33,16 +33,20 @@ class Basket {
   }
 
   findInventoryItem(sku) {
-    const foundItem = this.inventory.find((item) => item.sku === sku)
+    const foundItem = this.findSku(this.inventory, sku)
 
     if (typeof foundItem === 'object') return foundItem
     return 'item not found'
   }
 
   findBasketItem(sku) {
-    const foundItem = this.list.find((item => item.sku === sku))
+    const foundItem = this.findSku(this.list, sku)
 
     return foundItem
+  }
+
+  findSku(array, sku) {
+    return array.find(item => item.sku === sku)
   }
 }
 
