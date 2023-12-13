@@ -80,4 +80,24 @@ describe('Basket', () => {
       expect(result).toEqual('basket is full of bagels!')
     })
   })
+
+  describe('Increase Basket Capacity', () => {
+    it('bagel basket capacity can be increased as required', () => {
+      const maxCapacity = 10
+      const result = b.largerBasket(10)
+      expect(result).toEqual(maxCapacity)
+    })
+
+    it('shouold return message to confirm the basket capacity increased', () => {
+      const confirmationMessage = 'basket capacity is now 10'
+      const result = b.largerBasket(10)
+      expect(result).toEqual(confirmationMessage)
+    })
+
+    it('should return error message if a valid number is not entered', () => {
+      const errorMessage = 'enter a valid number to increase basket capacity'
+      const result = b.largerBasket()
+      expect(result).toEqual(errorMessage)
+    })
+  })
 })
