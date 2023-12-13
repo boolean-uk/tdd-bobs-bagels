@@ -57,6 +57,6 @@ I'd like to remove an item from my basket
 | ------------- | ------ | ---- | -------- | ------- |
 | removeFromBasket(sku) | sku(@string)| | valid sku, sku in basket | remove item to basket, message "item removed" |
 |||| valid sku, sku not in basket | return message "item not in cart"
-|||| invalid | return message "valid sku required"
+|||| invalid sku | return message "valid sku required"
 |||| no sku input | return message "item sku required"
 |||||
