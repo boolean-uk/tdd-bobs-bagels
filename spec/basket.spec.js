@@ -32,6 +32,12 @@ describe('Basket', () => {
 
       expect(result).toEqual('item sku not found')
     })
+
+    it('return "item sku required" if no sku input', () => {
+      const result = basket.add()
+
+      expect(result).toEqual('item sku required')
+    })
   })
 
   describe('find item in inventory', () => {
