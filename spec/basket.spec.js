@@ -58,8 +58,9 @@ describe('Bobs bagels basket methods', () => {
           variant: 'Cotton'
         }
       ]
-      const itemToRemove = removeItem('2222')
-      expect(itemToRemove).toEqual(newBasket)
+      basket.removeItem('2222')
+      expect(basket.basketList[0].name).toEqual('Fork')
+      expect(basket.basketList).toEqual(newBasket)
     })
   })
 })

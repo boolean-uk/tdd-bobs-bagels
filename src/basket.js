@@ -12,7 +12,17 @@ export default class Basket {
     this.basketList.push(itemToAdd)
     return itemToAdd.name
   }
+
+  removeItem(sku) {
+    if (!sku) return 'sku required'
+    const newBasket = this.basketList.filter((item) => item.sku !== sku)
+    return (this.basketList = newBasket)
+  }
 }
 
-const basket = new Basket()
-console.log(basket.addItem('BGLO'))
+// const basket = new Basket()
+// basket.addItem('BGLO')
+// basket.addItem('BGLS')
+// console.log(basket)
+// basket.removeItem('BGLO')
+// console.log(basket)
