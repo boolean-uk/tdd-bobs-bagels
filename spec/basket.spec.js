@@ -109,7 +109,9 @@ describe('Bobs bagels basket methods', () => {
     })
     it('/ if basket quantity exceeds 12 items', () => {
       const itemCheck = basket.checkIfFull()
-      expect(itemCheck).toEqual('basket is full' && false)
+      const sameBasket = basket.basketList
+      expect(itemCheck).toEqual('basket is full')
+      expect(basket.basketList).toEqual(sameBasket)
     })
   })
 })
