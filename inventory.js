@@ -45,4 +45,4 @@ const inventory = [
   }
 ]
 
-module.exports = inventory
+export default inventory

@@ -1,4 +1,4 @@
-const inventory = require('../inventory.js')
+import inventory from '../inventory.js'
 
 class Basket {
   constructor() {
@@ -31,4 +31,4 @@ class Basket {
   }
 }
 
-module.exports = Basket
+export default Basket
