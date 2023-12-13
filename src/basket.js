@@ -13,6 +13,13 @@ class Basket {
   get inventory() {
     return this._inventory
   }
+
+  findInventoryItem(sku) {
+    const foundItem = this.inventory.find((item) => item.sku === sku)
+
+    if (typeof foundItem === 'object') return foundItem
+    return 'item not found'
+  }
 }
 
 module.exports = Basket
