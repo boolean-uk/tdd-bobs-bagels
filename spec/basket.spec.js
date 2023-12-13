@@ -14,7 +14,8 @@ describe('Basket', () => {
         sku: 'BGLO',
         price: '0.49',
         name: 'Bagel',
-        variant: 'Onion'
+        variant: 'Onion',
+        quantity: 1
       }
       const result = b.addBagel('BGLO')
       expect(result).toEqual(exampleBagel)
@@ -31,7 +32,8 @@ describe('Basket', () => {
           sku: 'BGLO',
           price: '0.49',
           name: 'Bagel',
-          variant: 'Onion'
+          variant: 'Onion',
+          quantity: 1
         }
       ]
       b.addBagel('BGLO')
@@ -47,13 +49,15 @@ describe('Basket', () => {
           sku: 'BGLP',
           price: '0.39',
           name: 'Bagel',
-          variant: 'Plain'
+          variant: 'Plain',
+          quantity: 1
         },
         {
           sku: 'BGLE',
           price: '0.49',
           name: 'Bagel',
-          variant: 'Everything'
+          variant: 'Everything',
+          quantity: 1
         }
       ]
       b.addBagel('BGLO')

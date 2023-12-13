@@ -24,9 +24,17 @@ class Basket {
       if (!bagelToAdd) {
         return 'bagel does not exist in our bakery'
       } else {
-        this.basketList.push(bagelToAdd)
-        return bagelToAdd
+        const isBagelInBasket = this.basketList.find(
+          (bagel) => bagel === bagelToAdd
+        )
+        if (!isBagelInBasket) {
+          bagelToAdd.quantity = 1
+          this.basketList.push(bagelToAdd)
+        } else {
+          bagelToAdd.quantity++
+        }
       }
+      return bagelToAdd
     }
   }
 
@@ -65,11 +73,11 @@ class Basket {
 const b = new Basket()
 
 // ADD BAGEL
-b.addBagel('BGSS')
 b.addBagel('BGLO')
-// b.addBagel('BGSE')
+b.addBagel('BGLO')
+b.addBagel('BGLP')
 // b.addBagel('BGLS')
-// console.log(b.addBagel('BGSS'))
+// console.log(b.addBagel('BGLO'))
 
 // REMOVE BAGEL
 // b.removeBagel('BGSS')
@@ -83,7 +91,7 @@ b.addBagel('BGLO')
 // console.log(b.maxCapacity)
 
 // CHECK BAGEL PRICE
-console.log(b.checkPrice('BGLO'))
+// console.log(b.checkPrice('BGLO'))
 // b.checkPrice('BGLO')
 
 module.exports = { Basket }
