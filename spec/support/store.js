@@ -13,7 +13,7 @@ class Store {
 
   close () {
     if (!this.isOpen) return "We're already closed!"
-    this.open = false
+    this.isOpen = false
     return "Store is now closed!"
   }
 }

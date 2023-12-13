@@ -28,5 +28,8 @@ describe("Store opening", () => {
 describe("Store closing", () => {
   it("closing store", () => {
     const myStore = new Store()
+    myStore.open()
+    expect(myStore.close()).toEqual("Store is now closed!")
+    expect(myStore.isOpen).toBeFalse()
   })
 })
