@@ -1,9 +1,10 @@
 import Store from "../../src/store.js"
+import { basketTypesDefault } from "../../src/baskettypes.js"
 
 describe("Store creation", () => {
-  it("initially, the store exists but has no available bucket types", () => {
+  it("initially, the store exists with the default bucket types", () => {
     const myStore = new Store("Bob's Bagels")
-    expect(myStore.availableBasketTypes).toEqual([])
+    expect(myStore.availableBasketTypes).toEqual(basketTypesDefault)
     expect(myStore.employees).toEqual([])
     expect(myStore.customers).toEqual([])
     expect(myStore.availableProducts).toBeTruthy()
@@ -42,9 +43,9 @@ describe("Store closing", () => {
 })
 
 describe("basket handout", () => {
-  it("no basket templates", () => {
+  it("no basket template name returns no valid name", () => {
     const myStore = new Store()
-    expect(myStore.handoutBasket()).toEqual("no basket types")
+    expect(myStore.handoutBasket()).toEqual("no valid name")
   })
 })
 
@@ -81,10 +82,11 @@ describe("employees can do employee stuff", () => {
     const myStore = new Store("Bob's Bagels")
     myStore.addEmployee("Bob", "cashier")
     const Bob = myStore.employees[0]
-    const createdBasketType = Bob.createBasketType("XS", 1)
+    const createdBasketType = Bob.createBasketType("XXL", 25)
+    const indexOfNewBasket = myStore.availableBasketTypes.length
     myStore.addBasketType(createdBasketType)
-    expect(myStore.availableBasketTypes.length).toEqual(1)
-    expect(myStore.availableBasketTypes[0].type).toEqual("XS")
-    expect(myStore.availableBasketTypes[0].capacity).toEqual(1)
+    expect(myStore.availableBasketTypes.length).toEqual(indexOfNewBasket + 1)
+    expect(myStore.availableBasketTypes[indexOfNewBasket].type).toEqual("XXL")
+    expect(myStore.availableBasketTypes[indexOfNewBasket].capacity).toEqual(25)
   })
 })

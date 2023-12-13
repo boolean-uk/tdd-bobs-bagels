@@ -1,4 +1,5 @@
 import { inventory } from "./inventory.js"
+import { basketTypesDefault } from "./baskettypes.js"
 import Employee from "./employee.js"
 import Customer from "./customer.js"
 
@@ -8,7 +9,7 @@ class Store {
     this.isOpen = false
     this.employees = []
     this.customers = []
-    this.availableBasketTypes = []
+    this.availableBasketTypes = [...basketTypesDefault]
     this.availableProducts = [...inventory]
   }
   open () {
@@ -39,7 +40,8 @@ class Store {
 
   handoutBasket (name) {
     if (this.availableBasketTypes.length === 0) return "no basket types"
-    if (!!name) return false
+    console.log(name, "here")
+    if (!name) return "no valid name"
     const foundBasket = this.availableBasketTypes.find(basket => basket.name === name)
     if (!!foundBasket) return "invalid name" 
     return foundBasket
