@@ -36,4 +36,10 @@ describe('Add an item to the basket', () => {
     }
     expect(basket.isBasketFull()).toBeTrue()
   })
+
+  // Change the current basket capacity
+  it('should change the current basket capacity', () => {
+    basket.changeCapacity(6)
+    expect(basket.capacity).toEqual(6)
+  })
 })

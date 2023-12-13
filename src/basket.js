@@ -48,9 +48,18 @@ class Basket {
   isBasketFull() {
     let count = 0
 
-    this.items.forEach(item => count += item.quantity)
+    this.items.forEach((item) => (count += item.quantity))
 
     return count === this.capacity
+  }
+
+  changeCapacity(newCapacity) {
+    let count
+    this.items.forEach((item) => (count += item.quantity))
+    if (this.capacity < count) return false
+
+    this.capacity = newCapacity
+    return this.capacity
   }
 }
 
