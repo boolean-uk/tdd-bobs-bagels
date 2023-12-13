@@ -7,6 +7,7 @@ class Basket {
 
   addItem(sku) {
     const itemToAdd = inventory.find((item) => item.sku === sku)
+    if (!itemToAdd) return 'item not found'
     this.basketList.push(itemToAdd)
     return itemToAdd.name
   }
