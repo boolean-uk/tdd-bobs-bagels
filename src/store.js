@@ -6,6 +6,7 @@ class Store {
     this.name = name
     this.isOpen = false
     this.employees = []
+    this.customers = []
     this.availableBasketTypes = []
     this.availableProducts = [...inventory]
   }
@@ -24,6 +25,11 @@ class Store {
   addEmployee (name, role) {
     const employee = new Employee(name, role)
     this.employees.push(employee)
+  }
+
+  addCustomer () {
+    const customer = new Customer()
+    this.customers.push(customer)
   }
 
   handoutBasket (name) {

@@ -5,6 +5,7 @@ describe("Store creation", () => {
     const myStore = new Store("Bob's Bagels")
     expect(myStore.availableBasketTypes).toEqual([])
     expect(myStore.employees).toEqual([])
+    expect(myStore.customers).toEqual([])
     expect(myStore.availableProducts).toBeTruthy()
     expect(myStore.name === "Bob's Bagels").toBeTrue()
     expect(myStore.isOpen).toBeFalse()
