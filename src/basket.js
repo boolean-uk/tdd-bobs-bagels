@@ -32,9 +32,20 @@ class Basket {
     return this.items
   }
 
-  removeItem(sku) {}
+  removeItem(sku) {
+    const itemIndex = this.items.findIndex((item) => item.sku === sku)
+    if (itemIndex === -1) {
+      return false
+    }
+
+    this.items[itemIndex].quantity--
+    if (itemIndex <= 0) {
+      this.items.splice(itemIndex, 1)
+    }
+    return this.items
+  }
 }
 
 module.exports = {
-  Basket,
+  Basket
 }
