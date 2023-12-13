@@ -32,6 +32,14 @@ class Basket {
     return 'item sku not found'
   }
 
+  remove(sku) {
+    const indexToRemove = this._list.findIndex(item => item.sku === sku)
+
+    this._list.splice(indexToRemove, 1)
+
+    return 'item removed'
+  }
+
   findInventoryItem(sku) {
     const foundItem = this.findSku(this.inventory, sku)
 
@@ -51,7 +59,7 @@ class Basket {
   }
 
   findSku(array, sku) {
-    return array.find(item => item.sku === sku)
+    return array.find((item) => item.sku === sku)
   }
 }
 
