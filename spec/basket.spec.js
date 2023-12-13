@@ -85,4 +85,23 @@ describe('Basket', () => {
       expect(result).toEqual('item not found')
     })
   })
+
+  describe('find item in basket', () => {
+    const basket = new Basket()
+
+    beforeEach(() => {
+      basket._list = mockList
+    })
+
+    it('find item in basket', () => {
+      const result = findBasketItem('BBBB')
+
+      expect(result).toEqual({
+        sku: 'BBBB',
+        price: '10',
+        name: 'Lettuce',
+        variant: ''
+      })
+    })
+  })
 })
