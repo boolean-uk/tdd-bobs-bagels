@@ -25,6 +25,9 @@
   #### close ()
   INPUT: none
   OUTPUT: sets this.open = false
+  #### addBasketType (basketTemplateObj)
+  INPUT: resulting @obj of managers.addBasketType
+  FUNCTION: pushes object to AvailableBasketType
   #### handoutBasket (customerId, type)
   INPUT: customerId as @number, Name of Basket type @String
   FUNCTION: sets customers.basket as Object of basketType
@@ -69,7 +72,7 @@
     TYPE: @string
     EXAMPLE: "manager" / "worker"
   ### METHODS
-  #### createBasketTemplate
+  #### createBasketType
     INPUTS: capacity, nameTemplate
     OUTPUT: { capacity: @Number, template: @String }
   #### updateRole

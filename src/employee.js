@@ -3,6 +3,13 @@ class Employee {
     this.name = name
     this.role = role
   }
+  
+  createBasketType (typeName, capacity) {
+    return {
+      type: typeName,
+      capacity: capacity
+    }
+  }
 
   updateRole (newRole) {
     this.role = newRole

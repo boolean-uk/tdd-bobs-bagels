@@ -33,6 +33,10 @@ class Store {
     this.customers.push(customer)
   }
 
+  addBasketType (basketObj) {
+    this.availableBasketTypes.push(basketObj)
+  }
+
   handoutBasket (name) {
     if (this.availableBasketTypes.length === 0) return "no basket types"
     if (!!name) return false
