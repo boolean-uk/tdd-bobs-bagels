@@ -2,6 +2,8 @@
 
 ## Store
   ### PROPERTIES
+  #### name
+    TYPE: string, e.g. "Bob's Bagels"
   #### open
     TYPE: BOOLEAN
   #### availableBasketTypes
@@ -11,6 +13,12 @@
     TYPE: Array of Objects
     EXAMPLE: [ { sku: @integer, name: @string, price: @float } ]
   ### METHODS
+  #### open ()
+  INPUT: none
+  OUTPUT: sets this.open = true
+  #### close ()
+  INPUT: none
+  OUTPUT: sets this.open = false
   #### handoutBasket ()
   INPUT: Name of Basket type @String
   OUTPUT: Object of basketType
