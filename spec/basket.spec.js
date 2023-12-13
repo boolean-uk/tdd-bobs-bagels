@@ -37,19 +37,12 @@ describe('find item in inventory', () => {
   })
 
   it('find items in inventory', () => {
-    const result = basket.inventory
+    const result = basket.findInventoryItem('AAAA')
 
-    expect(result[0].sku).toEqual('AAAA')
-    expect(result[1].sku).toEqual('BBBB')
-    expect(result[2].sku).toEqual('CCCC')
-    expect(result[0].price).toEqual('5')
-    expect(result[1].price).toEqual('10')
-    expect(result[2].price).toEqual('15')
-    expect(result[0].name).toEqual('Donut')
-    expect(result[1].name).toEqual('Lettuce')
-    expect(result[2].name).toEqual('Tomato')
-    expect(result[0].variant).toEqual('Sesame')
-    expect(result[1].variant).toEqual('')
-    expect(result[2].variant).toEqual('')
+    expect(result.sku).toEqual('AAAA')
+    expect(result.price).toEqual('5')
+    expect(result.name).toEqual('Donut')
+    expect(result.variant).toEqual('Sesame')
+  })
   })
 })
