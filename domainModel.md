@@ -1,4 +1,4 @@
-# Domain Models
+# Bobs Bagels Domain Models
 
 ## Part 1
 
@@ -98,11 +98,11 @@ When I go to checkout I'd like to know the total sum of the bagels in my basket
 
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
-|getItems|()|@Object|if items in items state/object| display item description and price
+|findItems|(sku)|sku(@string)|if sku in items state/object| display item description and price
 ||||if no items in state/object| return false
 |||||
 |increaseQuantity|(sku)|sku(@string), @Number|if sku exist in basket| increase quanitity by one
 ||||if sku does not exist in basket| add item to basket.
 |||||
-|totalCost|(basket)|@Array|if items in array|add all items prices as a number
+|totalCost|()|@Array|if items in array|add all items prices as a number
 ||||if no items in array|return 0
