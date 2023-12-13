@@ -29,6 +29,12 @@
   INPUT: Name of Basket type @String
   OUTPUT: Object of basketType
   SCENARIO: Basket Type exists / doesn't exist
+  #### addEmployee ()
+  INPUT: name, role
+  Function: pushes a new Employee instances to .employees
+  #### addCustomer ()
+  INPUT: -
+  Function: pushes a new Customer instance to .customers
 
 # CLASSES
 
