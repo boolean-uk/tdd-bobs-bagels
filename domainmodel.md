@@ -25,9 +25,9 @@
   #### close ()
   INPUT: none
   OUTPUT: sets this.open = false
-  #### handoutBasket ()
-  INPUT: Name of Basket type @String
-  OUTPUT: Object of basketType
+  #### handoutBasket (customerId, type)
+  INPUT: customerId as @number, Name of Basket type @String
+  FUNCTION: sets customers.basket as Object of basketType
   SCENARIO: Basket Type exists / doesn't exist
   #### addEmployee ()
   INPUT: name, role
@@ -80,14 +80,3 @@
   ### PROPERTIES
   #### basket
     @Object: {} OR null
-  ### METHODS
-  #### lookAtBasketType
-    INPUT: no input
-    OUTPUT: Store.availableBasketTypes
-    SCENARIO: no basket types exist / basket types exist
-  #### takeBasket
-    INPUT: name @string
-    OUTPUT: gets basket from Store.handoutBasket,
-    adds .items @array property,
-    assigns it to this client
-    SCENARIO: Basket Type exists / doesn't exist

@@ -59,11 +59,17 @@ describe("adding employees", () => {
   })
 })
 
-describe("adding customers", () => {
+describe("customers", () => {
   it("add one customer raises customer count by one", () => {
     const myStore = new Store("Test")
     const oldCustomerCount = myStore.customers.length
     myStore.addCustomer()
     expect(myStore.customers.length).toEqual(oldCustomerCount + 1)
+  })
+
+  it("customers can look at baskets", () => {
+    const myStore = new Store("Test")
+    myStore.addCustomer()
+    myStore.customers[0].lookAtBasketType()
   })
 })
