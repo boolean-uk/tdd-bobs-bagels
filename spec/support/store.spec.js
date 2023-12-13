@@ -47,6 +47,12 @@ describe("basket handout", () => {
     const myStore = new Store()
     expect(myStore.handoutBasket()).toEqual("type not found")
   })
+
+  it("basket XS has capacity 1", () => {
+    const myStore = new Store()
+    expect(myStore.handoutBasket("XS").capacity).toEqual(1)
+    expect(myStore.handoutBasket("XS").name).toEqual("XS")
+  })
 })
 
 describe("adding employees", () => {
