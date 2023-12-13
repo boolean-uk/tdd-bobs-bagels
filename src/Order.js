@@ -6,9 +6,22 @@ class IndividualUser {
     
     }
 
-    addOrderToBasket(item) {
-            this.userOrderList.push(item)
-
+    addOrderToBasket(item, name, managerLimit) {
+        if (name !== 'manager') {
+            if(this.userOrderList.length >= 10) {
+                return "Your basket is full!"
+            } else {
+                this.userOrderList.push(item)
+                return 'You Can Add More'
+            }
+        } else {
+            if (this.userOrderList.length >= managerLimit) {
+                return "Your basket is full!";
+            } else {
+                this.userOrderList.push(item);
+                return 'You Can Add More';
+            }
+        }
     }
 
     removeItemFromBasket(item) {
@@ -20,6 +33,10 @@ class IndividualUser {
             return "Item you trying to Remove does not exist in your basket"
         }
     }
+
+
+    
+
 
 
 
