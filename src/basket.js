@@ -7,6 +7,8 @@ class BagelBasket {
   addItem(item) {
     if (this.items.length < this.capacity) {
       this.items.push(item)
+    } else {
+      console.log('Cannot add item, basket is full')
     }
   }
 
@@ -14,10 +16,11 @@ class BagelBasket {
     const index = this.items.findIndex(
       (item) => item.name === itemToRemove.name
     )
-    if (index === -1) {
+    if (index !== -1) {
+      this.items.splice(index, 1)
+    } else {
       return 'Item not found'
     }
-    this.items.splice(index, 1)
   }
 }
 
