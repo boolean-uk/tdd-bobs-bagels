@@ -79,7 +79,7 @@ I’d like to see the price of each item before I add it to my basket.
 
 ```
 As a member of the public
-So that I can buy many of my favorite bagel
+So that I can buy many of my favorite bagels
 I'd like to be able to add the same type of bagel to my basket more than once
 ```
 
@@ -98,5 +98,11 @@ When I go to checkout I'd like to know the total sum of the bagels in my basket
 
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
+|getItems|()|@Object|if items in items state/object| display item description and price
+||||if no items in state/object| return false
 |||||
-
+|increaseQuantity|(sku)|sku(@string), @Number|if sku exist in basket| increase quanitity by one
+||||if sku does not exist in basket| add item to basket.
+|||||
+|totalCost|(basket)|@Array|if items in array|add all items prices as a number
+||||if no items in array|return 0
