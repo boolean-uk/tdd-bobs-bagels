@@ -44,6 +44,11 @@ describe('BagelBasket', () => {
     const result = basket.findBagel('non-existent-sku')
     expect(result).toBe('Item doesnt exist in basket')
   })
+  // increase capacity //
+  it('Basket capacity increased', () => {
+    const largerBasket = new BagelBasket(10)
+    expect(largerBasket.capacity).toBe(10)
+  })
   // Total price added together //
   it('Adds the total price of each item', () => {
     basket.addItem(bagels[0])
