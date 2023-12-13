@@ -1,5 +1,7 @@
-export default class Basket {
-    constructor(){
-        
-    }
+class Basket {
+  constructor() {}
+}
+
+module.exports = {
+  Basket
 }

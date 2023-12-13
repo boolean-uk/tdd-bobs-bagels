@@ -1,4 +1,4 @@
-import Basket from '../src/basket.js'
+const Basket = require('../src/basket.js')
 
 describe('Bobs bagels basket methods', () => {
   describe('adding basket items', () => {
