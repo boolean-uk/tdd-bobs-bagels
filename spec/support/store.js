@@ -1,4 +1,4 @@
-class store {
+class Store {
   constructor (name) {
     this.name = name
     this.isOpen = false
@@ -18,4 +18,4 @@ class store {
   }
 }
 
-export default store
+export default Store
