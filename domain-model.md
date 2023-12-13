@@ -89,10 +89,11 @@ changeCapacity()
 ## Inputs
 
 count of items => count(@number)
+and newCapacity => @number
 
 ## Scenario
 
-if count is equal to basket capacity
+current capacity = new capacity
 
 ## Output
 
