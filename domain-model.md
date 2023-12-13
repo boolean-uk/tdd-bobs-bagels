@@ -111,5 +111,4 @@ V: pay, know
 |||| no items in basket | return 0
 |||||
 | findInventoryItem(sku)| sku(@string)||valid sku, sku in inventory | return item object
-|||| valid sku, sku not in inventory | return "item not in inventory"
-|||| invalid sku | return "sku does not exist"
+|||| valid sku, sku not in inventory | return "item not found"
