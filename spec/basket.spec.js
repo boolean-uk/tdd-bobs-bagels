@@ -12,9 +12,9 @@ describe('add bagel to basket', () => {
     const result2 = basket.add('BGSE')
 
     expect(basket.list[0].sku).toEqual('BGLE')
-    expect(basket.list[0].price).toEqual('0.39')
+    expect(basket.list[0].price).toEqual('0.49')
     expect(basket.list[0].name).toEqual('Bagel')
-    expect(basket.list[0].variant).toEqual('Plain')
+    expect(basket.list[0].variant).toEqual('Everything')
 
     expect(basket.list[1].sku).toEqual('BGSE')
     expect(basket.list[1].price).toEqual('2.99')
