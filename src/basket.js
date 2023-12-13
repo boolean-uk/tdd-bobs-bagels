@@ -40,6 +40,15 @@ class Basket {
       return removeBagel
     }
   }
+
+  largerBasket(newCapacity) {
+    if (typeof newCapacity === 'number' && newCapacity <= this.maxCapacity) {
+      return 'new capacity must be greater than current maximum capacity'
+    } else if (typeof newCapacity !== 'number') {
+      return 'enter a valid number to increase basket capacity'
+    } else this.maxCapacity = newCapacity
+    return `basket capacity is now ${newCapacity}`
+  }
 }
 
 // CONSOLE.LOG TEST
@@ -51,7 +60,7 @@ b.addBagel('BGSS')
 b.addBagel('BGLO')
 // b.addBagel('BGSE')
 // b.addBagel('BGLS')
-console.log(b.addBagel('BGSS'))
+// console.log(b.addBagel('BGSS'))
 
 // REMOVE BAGEL
 // b.removeBagel('BGSS')
@@ -59,5 +68,9 @@ console.log(b.addBagel('BGSS'))
 
 // GET BASKET
 // console.log(b.getBasket())
+
+// INCREASE BASKET CAPACITY
+console.log(b.largerBasket(5))
+// console.log(b.maxCapacity)
 
 module.exports = { Basket }

@@ -83,9 +83,10 @@ describe('Basket', () => {
 
   describe('Increase Basket Capacity', () => {
     it('bagel basket capacity can be increased as required', () => {
-      const maxCapacity = 10
-      const result = b.largerBasket(10)
-      expect(result).toEqual(maxCapacity)
+      b.largerBasket(10)
+      const newMaxCapacity = 10
+      const result = b.maxCapacity
+      expect(result).toEqual(newMaxCapacity)
     })
 
     it('shouold return message to confirm the basket capacity increased', () => {
