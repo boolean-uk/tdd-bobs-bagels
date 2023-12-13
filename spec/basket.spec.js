@@ -93,7 +93,7 @@ describe('Basket', () => {
       basket._list = mockList
     })
 
-    it('find item in basket', () => {
+    it('return item if valid sku', () => {
       const result = basket.findBasketItem('BBBB')
 
       expect(result).toEqual({
@@ -102,6 +102,12 @@ describe('Basket', () => {
         name: 'Lettuce',
         variant: ''
       })
+    })
+
+    it('return "item not found" if sku not found', () => {
+      const result = basket.findBasketItem('ZZZZ')
+
+      expect(result).toBe('item not found')
     })
   })
 })
