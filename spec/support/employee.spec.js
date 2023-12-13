@@ -1,4 +1,4 @@
-import Employee from "./employee.js"
+import Employee from "../../src/employee.js"
 
 describe("Employee tests", () => {
   it("creation of worker", () => {

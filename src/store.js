@@ -1,9 +1,12 @@
+import { inventory } from "./inventory.js"
+
 class Store {
   constructor (name) {
     this.name = name
     this.isOpen = false
     this.availableBasketTypes = []
     this.availableProducts = []
+    this.inventory = inventory
   }
   open () {
     if (this.isOpen) return "We're already open!"

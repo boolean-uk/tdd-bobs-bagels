@@ -1,4 +1,4 @@
-import Store from "./store.js"
+import Store from "../../src/store.js"
 
 describe("Store creation", () => {
   it("initially, the store exists but has no available bucket types", () => {
@@ -7,6 +7,11 @@ describe("Store creation", () => {
     expect(myStore.availableProducts).toEqual([])
     expect(myStore.name === "Bob's Bagels").toBeTrue()
     expect(myStore.isOpen).toBeFalse()
+  })
+
+  it("loaded inventory?", () => {
+    const myStore = new Store("Test")
+    console.log(myStore.inventory)
   })
 })
 
