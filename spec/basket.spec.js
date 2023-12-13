@@ -94,7 +94,7 @@ describe('Basket', () => {
     })
 
     it('find item in basket', () => {
-      const result = findBasketItem('BBBB')
+      const result = basket.findBasketItem('BBBB')
 
       expect(result).toEqual({
         sku: 'BBBB',
