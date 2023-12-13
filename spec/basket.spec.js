@@ -92,4 +92,40 @@ describe('Basket:', () => {
       'Your basket is full. Please create a new basket with a greater capacity'
     )
   })
+
+  it('Views price list of all items in inventory', () => {
+    const result = store.bagelPrices()
+
+    const expectedString = `Prices:\n0: Onion Bagel - $0.49\n1: Plain Bagel - $0.39\n2: Everything Bagel - $0.49\n3: Sesame Bagel - $0.49\n4: Coffee - $0.99\n5: Everything Bagel Sandwich - $2.99\n6: Sesame Bagel Sandwich - $4.99\n`
+
+    expect(result.trim()).toEqual(expectedString.trim())
+  })
+
+  it('Ability to view quantity of items when adding to basket', () => {
+    store.addToBasket('bglo')
+    store.addToBasket('bglo')
+
+    const result = store.basket
+
+    expect(result).toEqual([
+      {
+        sku: 'BGLO',
+        price: '0.49',
+        name: 'Bagel',
+        variant: 'Onion',
+        quantity: 2
+      }
+    ])
+  })
+
+  it('View total price of items in cart', () => {
+    store.addToBasket('bglo')
+    store.addToBasket('bglo')
+    store.addToBasket('bglo')
+    store.addToBasket('bglo')
+
+    const result = store.totalPrice()
+
+    expect(result).toEqual('Total: $1.96')
+  })
 })
