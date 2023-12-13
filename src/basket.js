@@ -4,6 +4,7 @@ class BagelStore {
   constructor() {
     this.basket = []
     this.inventory = []
+    this.basketCapacity = 5
   }
 
   loadFiles() {
@@ -13,6 +14,13 @@ class BagelStore {
   }
 
   addToBasket(bagelItemSku) {
+    let totalItems = 0
+
+    this.basket.forEach((item) => (totalItems += item.quantity))
+    if (this.basket.length >= this.basketCapacity || totalItems >= 5) {
+      return 'Your basket is full. Please create a new basket with a greater capacity'
+    }
+
     const sku = bagelItemSku.toUpperCase()
 
     if (typeof bagelItemSku !== 'string' || sku.length !== 4) {
@@ -54,6 +62,10 @@ class BagelStore {
     this.basket = filteredBasket
 
     return `${sku} was succesfully removed`
+  }
+
+  updateBasketCapacity(newCapacity) {
+    this.basketCapacity = newCapacity
   }
 }
 
