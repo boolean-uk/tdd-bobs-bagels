@@ -30,3 +30,29 @@ describe('add to basket', () => {
     expect(result).toEqual(expected)
   })
 })
+
+describe('remove from basket', () => {
+  it('item succesfully removed', () => {
+    const basketItem1 = new BasketItem('BGLO', '0.49', 'Bagel', 'Onion')
+    const basketItem2 = new BasketItem('BGLP', '0.39', 'Bagel', 'Plain')
+    const basket1 = new Basket([basketItem1, basketItem2])
+
+    const result = basket1.removeItem(basketItem1)
+
+    expect(result.length).toEqual(1)
+    expect(result[0].sku).toEqual({
+      sku: 'BGLO',
+      price: '0.49',
+      name: 'Bagel',
+      variant: 'Onion'
+    })
+  })
+
+  it('basket is empty', () => {
+    const basketItem1 = new BasketItem('BGLO', '0.49', 'Bagel', 'Onion')
+    const basket1 = new Basket([])
+    const result = basket1.removeItem(basketItem1)
+
+    expect(result).toEqual('nothing to remove, your basket is empty')
+  })
+})
