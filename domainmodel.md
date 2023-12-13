@@ -9,7 +9,7 @@
     EXAMPLE: [ { basketType }, { basketType } ]
   #### availableProducts
     TYPE: Array of Objects
-    EXAMPLE: [ { sku: 1234, name: @string, price: @float } ]
+    EXAMPLE: [ { sku: @integer, name: @string, price: @float } ]
   ### METHODS
   #### handoutBasket ()
   INPUT: Name of Basket type @String
@@ -45,10 +45,7 @@
   ### METHODS
   #### createBasketTemplate
     INPUTS: capacity, nameTemplate
-    OUTPUT: {
-              capacity: @Number,
-              template: @String
-            }
+    OUTPUT: { capacity: @Number, template: @String }
 
 ## Client
   ### PROPERTIES
