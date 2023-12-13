@@ -31,19 +31,22 @@ describe('Bobs bagels basket methods', () => {
           sku: '1111',
           price: '0.55',
           name: 'Fork',
-          variant: 'Silverware'
+          variant: 'Silverware',
+          quantity: 1
         },
         {
           sku: '2222',
           price: '0.89',
           name: 'Knife',
-          variant: 'Silverware'
+          variant: 'Silverware',
+          quantity: 1
         },
         {
           sku: '3333',
           price: '1.52',
           name: 'Napkin',
-          variant: 'Cotton'
+          variant: 'Cotton',
+          quantity: 1
         }
       ]
     })
@@ -53,13 +56,15 @@ describe('Bobs bagels basket methods', () => {
           sku: '1111',
           price: '0.55',
           name: 'Fork',
-          variant: 'Silverware'
+          variant: 'Silverware',
+          quantity: 1
         },
         {
           sku: '3333',
           price: '1.52',
           name: 'Napkin',
-          variant: 'Cotton'
+          variant: 'Cotton',
+          quantity: 1
         }
       ]
       basket.removeItem('2222')
@@ -73,6 +78,38 @@ describe('Bobs bagels basket methods', () => {
     it('/ if parameter is not a string', () => {
       const removingSku = basket.removeItem(1234)
       expect(removingSku).toEqual('sku required!')
+    })
+  })
+  describe('Checking for full basket', () => {
+    const basket = new Basket()
+    beforeEach(() => {
+      basket.basketList = [
+        {
+          sku: '1111',
+          price: '0.55',
+          name: 'Fork',
+          variant: 'Silverware',
+          quantity: 6
+        },
+        {
+          sku: '2222',
+          price: '0.89',
+          name: 'Knife',
+          variant: 'Silverware',
+          quantity: 4
+        },
+        {
+          sku: '3333',
+          price: '1.52',
+          name: 'Napkin',
+          variant: 'Cotton',
+          quantity: 2
+        }
+      ]
+    })
+    it('/if basket quantity exceeds 12 items', () => {
+      const itemCheck = basket.checkIfFull()
+      expect(itemCheck).toEqual('basket is full')
     })
   })
 })

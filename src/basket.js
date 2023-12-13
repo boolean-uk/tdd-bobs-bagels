@@ -9,7 +9,9 @@ export default class Basket {
     if (!sku || typeof sku !== 'string') return 'sku required!'
     const itemToAdd = inventory.find((item) => item.sku === sku)
     if (!itemToAdd) return 'item not found'
+    itemToAdd.quantity = 1
     this.basketList.push(itemToAdd)
+    console.log(itemToAdd)
     return itemToAdd.name
   }
 
@@ -18,11 +20,10 @@ export default class Basket {
     const newBasket = this.basketList.filter((item) => item.sku !== sku)
     return (this.basketList = newBasket)
   }
-  
 }
 
-// const basket = new Basket()
-// basket.addItem('BGLO')
+const basket = new Basket()
+basket.addItem('BGLO')
 // basket.addItem('BGLS')
 // console.log(basket)
 // basket.removeItem('BGLO')
