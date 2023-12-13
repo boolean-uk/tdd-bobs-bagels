@@ -43,9 +43,7 @@ class Store {
     if (this.availableBasketTypes.length === 0) return "no basket types"
     const foundBasketType = this.availableBasketTypes.find(basket => basket.name === name)
     if (!foundBasketType) return "type not found"
-    console.log("found basket", foundBasketType, "searched for", name)
     const actualBasket = new Basket(foundBasketType.capacity)
-    console.log(actualBasket, foundBasketType.capacity)
     return actualBasket
   }
 }
