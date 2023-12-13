@@ -58,3 +58,12 @@ describe("adding employees", () => {
     expect(myStore.employees[oldEmployeeCount].role).toEqual("worker")
   })
 })
+
+describe("adding customers", () => {
+  it("add one customer raises customer count by one", () => {
+    const myStore = new Store("Test")
+    const oldCustomerCount = myStore.customers.length
+    myStore.addCustomer()
+    expect(myStore.customers.length).toEqual(oldCustomerCount + 1)
+  })
+})
