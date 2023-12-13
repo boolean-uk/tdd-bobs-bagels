@@ -3,6 +3,7 @@ import { inventory } from '../inventory.js'
 export default class Basket {
   constructor() {
     this.basketList = []
+    this.basketSize = 12
   }
 
   addItem(sku) {
@@ -20,10 +21,20 @@ export default class Basket {
     const newBasket = this.basketList.filter((item) => item.sku !== sku)
     return (this.basketList = newBasket)
   }
+
+  checkIfFull() {
+    let sum = 0
+    this.basketList.forEach((item) => {
+      sum += item.quantity
+      return sum
+    })
+    if (sum === this.basketSize) return 'basket is full' && false
+  }
 }
 
 const basket = new Basket()
 basket.addItem('BGLO')
+basket.checkIfFull()
 // basket.addItem('BGLS')
 // console.log(basket)
 // basket.removeItem('BGLO')

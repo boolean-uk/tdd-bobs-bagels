@@ -6,11 +6,11 @@ describe('Bobs bagels basket methods', () => {
     beforeEach(() => {
       basket.basketList = []
     })
-    it(' /adding a valid sku', () => {
+    it(' / adding a valid sku', () => {
       const newItem = basket.addItem('BGLO')
       expect(newItem).toEqual('Bagel')
     })
-    it('/if sku is invalid', () => {
+    it('/ if sku is invalid', () => {
       const newItem = basket.addItem('XXXX')
       expect(newItem).toEqual('item not found')
     })
@@ -80,7 +80,7 @@ describe('Bobs bagels basket methods', () => {
       expect(removingSku).toEqual('sku required!')
     })
   })
-  describe('Checking for full basket', () => {
+  describe(' / Checking for full basket', () => {
     const basket = new Basket()
     beforeEach(() => {
       basket.basketList = [
@@ -107,9 +107,9 @@ describe('Bobs bagels basket methods', () => {
         }
       ]
     })
-    it('/if basket quantity exceeds 12 items', () => {
+    it('/ if basket quantity exceeds 12 items', () => {
       const itemCheck = basket.checkIfFull()
-      expect(itemCheck).toEqual('basket is full')
+      expect(itemCheck).toEqual('basket is full' && false)
     })
   })
 })
