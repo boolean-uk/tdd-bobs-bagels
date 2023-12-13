@@ -1,5 +1,26 @@
 import Basket from '../src/basket.js'
 
+const mockList = [
+  {
+    sku: 'AAAA',
+    price: '5',
+    name: 'Donut',
+    variant: 'Sesame'
+  },
+  {
+    sku: 'BBBB',
+    price: '10',
+    name: 'Lettuce',
+    variant: ''
+  },
+  {
+    sku: 'CCCC',
+    price: '15',
+    name: 'Tomato',
+    variant: ''
+  }
+]
+
 describe('Basket', () => {
   describe('add bagel to basket', () => {
     const basket = new Basket()
@@ -46,26 +67,7 @@ describe('Basket', () => {
     const basket = new Basket()
 
     beforeEach(() => {
-      basket._inventory = [
-        {
-          sku: 'AAAA',
-          price: '5',
-          name: 'Donut',
-          variant: 'Sesame'
-        },
-        {
-          sku: 'BBBB',
-          price: '10',
-          name: 'Lettuce',
-          variant: ''
-        },
-        {
-          sku: 'CCCC',
-          price: '15',
-          name: 'Tomato',
-          variant: ''
-        }
-      ]
+      basket._inventory = mockList
     })
 
     it('find items in inventory', () => {
