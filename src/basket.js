@@ -1,6 +1,7 @@
 class Basket {
-  constructor(arrayOfItems) {
+  constructor(arrayOfItems, capacity) {
     this.list = arrayOfItems
+    this.capacity = capacity
   }
 
   addToBasket(item) {
@@ -18,6 +19,13 @@ class Basket {
     const indexOfItemToRemove = this.list.indexOf(item)
     this.list.splice(indexOfItemToRemove, 1)
     return this.list
+  }
+
+  isBasketFull() {
+    if (this.capacity === this.list.length) {
+      return `the basket is full! (${this.list.length}/${this.capacity})`
+    }
+    return `the basket is not full yet (${this.list.length}/${this.capacity})`
   }
 }
 

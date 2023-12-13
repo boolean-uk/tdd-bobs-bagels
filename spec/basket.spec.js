@@ -55,9 +55,9 @@ describe('remove from basket', () => {
     it('the basket is full', () => {
       const basketItem1 = new BasketItem('BGLO', '0.49', 'Bagel', 'Onion')
       const basketItem2 = new BasketItem('BGLP', '0.39', 'Bagel', 'Plain')
-      const basket1 = new Basket([basketItem1, basketItem2])
+      const basket1 = new Basket([basketItem1, basketItem2], 2)
 
-      const result = basket1.isBasketfull()
+      const result = basket1.isBasketFull()
       expect(result).toEqual('the basket is full! (2/2)')
     })
   })
@@ -65,9 +65,9 @@ describe('remove from basket', () => {
   it('the basket is not full', () => {
     const basketItem1 = new BasketItem('BGLO', '0.49', 'Bagel', 'Onion')
 
-    const basket1 = new Basket([basketItem1])
+    const basket1 = new Basket([basketItem1], 2)
 
-    const result = basket1.isBasketfull()
+    const result = basket1.isBasketFull()
     expect(result).toEqual('the basket is not full yet (1/2)')
   })
 })
