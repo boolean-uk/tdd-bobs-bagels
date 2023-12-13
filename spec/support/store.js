@@ -18,3 +18,5 @@ class store {
     return "Store is now closed!"
   }
 }
+
+export default store

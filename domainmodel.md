@@ -36,7 +36,7 @@
   ### METHODS
   #### isFull
     INPUT: none
-    OUTPUT: sum of all items.quantity < basket.capacity
+    OUTPUT: sum of all items.quantity < basket.capacity (@boolean)
   #### addItem
     INPUT: sku
     OUTPUT:
