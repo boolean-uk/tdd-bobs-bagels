@@ -69,8 +69,14 @@ class Basket {
     return Number(findItem.price)
   }
 
-  getTotalCost(sku) {
-    
+  getTotalCost() {
+    let totalCost = 0
+
+    this.items.forEach(item => {
+        totalCost += (Number(item.price) * item.quantity) 
+    })
+
+    return totalCost
   }
 }
 
