@@ -26,6 +26,12 @@ describe('Basket', () => {
       expect(result1).toEqual('item added')
       expect(result2).toEqual('item added')
     })
+
+    it('return "item not found" when invalid sku given', () => {
+      const result = basket.add('not a real sku')
+
+      expect(result).toEqual('item sku not found')
+    })
   })
 
   describe('find item in inventory', () => {
