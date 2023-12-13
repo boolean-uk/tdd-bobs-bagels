@@ -3,10 +3,27 @@ const Basket = require('../src/basket.js')
 describe('add bagel to basket', () => {
   const basket = new Basket()
 
-  it('add items to basket', () => {
-    const result = basket.add('BGLO')
+  beforeEach(() => {
+    basket._list = []
+  })
 
-    expect(basket.list[0].sku).toEqual('BGLO')
+  it('add items to basket', () => {
+    const result1 = basket.add('BGLE')
+    const result2 = basket.add('BGSE')
+
+    expect(basket.list[0].sku).toEqual('BGLE')
+    expect(basket.list[0].price).toEqual('0.39')
+    expect(basket.list[0].name).toEqual('Bagel')
+    expect(basket.list[0].variant).toEqual('Plain')
+
+    expect(basket.list[1].sku).toEqual('BGSE')
+    expect(basket.list[1].price).toEqual('2.99')
+    expect(basket.list[1].name).toEqual('Bagel Sandwich')
+    expect(basket.list[1].variant).toEqual('Everything')
+    expect(basket.list[1].fillings).toEqual(['Bacon', 'Egg', 'Cheese'])
+
+    expect(result1).toEqual('item added')
+    expect(result2).toEqual('item added')
   })
 })
 
