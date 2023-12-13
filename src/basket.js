@@ -1,6 +1,6 @@
 class Basket {
-  constructor() {
-    this.list = []
+  constructor(arrayOfItems) {
+    this.list = arrayOfItems
   }
 
   addToBasket(item) {
@@ -20,13 +20,6 @@ class BasketItem {
     this.variant = variant
   }
 }
-
-const basketItem1 = new BasketItem('BGLO', '0.49', 'Bagel', 'Onion')
-const basket = new Basket()
-
-console.log(basket)
-basket.addToBasket(basketItem1)
-console.log(basket)
 
 module.exports = {
   Basket,

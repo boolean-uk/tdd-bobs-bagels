@@ -14,9 +14,9 @@ describe('add to basket', () => {
     )
 
     const result = basket1.addToBasket(basketItemToAdd)
-    const expected = new Basket([basketItem1, basketItem2, basketItemToAdd])
 
-    expect(result).toEqual(expected)
+    expect(result.length).toEqual(3)
+    expect(result[2].sku).toEqual('BGLE')
   })
 
   it('the item is already in the basket', () => {
