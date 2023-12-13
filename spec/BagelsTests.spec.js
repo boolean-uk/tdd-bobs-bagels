@@ -84,3 +84,34 @@ describe('Remove Bagel', () => {
     expect(basket.basketList[0].quantity).toEqual(2)
   })
 })
+
+describe('Create Basket', () => {
+  it('Passed less capacity that 25 (25 is the biggest basket which you ca create)', () => {
+    const basket = new Basket(5)
+
+    const res = basket.createBasket(20)
+
+    expect(res).toBeTrue()
+    expect(basket.capacity).toEqual(20)
+  })
+
+  it('Passed more that 25 capacity for basket', () => {
+    const basket = new Basket(5)
+
+    const res = basket.createBasket(30)
+
+    expect(res).toEqual('Your basket is too big the max capacity is 25')
+    expect(basket.quantity).toEqual(5)
+  })
+
+  it('Passed capacity 0', () => {
+    const basket = new Basket(5)
+
+    const res = basket.createBasket(0)
+
+    expect(res).toEqual(
+      'Enter capacity for create new basket (the minimum capacity can be 1)'
+    )
+    expect(basket.capacity).toEqual(5)
+  })
+})
