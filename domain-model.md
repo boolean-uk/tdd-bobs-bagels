@@ -22,8 +22,6 @@ V: Change, Remove
 
 ## Part 2
 
-### Story
-
 ```txt
 As a member of the public,
 So that I can not overfill my small bagel basket
