@@ -48,5 +48,8 @@ describe('find item in inventory', () => {
     expect(result[0].name).toEqual('Donut')
     expect(result[1].name).toEqual('Lettuce')
     expect(result[2].name).toEqual('Tomato')
+    expect(result[0].variant).toEqual('Sesame')
+    expect(result[1].variant).toEqual('')
+    expect(result[2].variant).toEqual('')
   })
 })
