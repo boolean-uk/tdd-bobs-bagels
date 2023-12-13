@@ -8,4 +8,9 @@ describe("Store interactions", () => {
     expect(myStore.name === "Bob's Bagels").toBeTrue()
     expect(myStore.open).toBeFalse()
   })
+
+  it("opening store works", () => {
+    expect(myStore.open()).toEqual("Store is now open!")
+    expect(myStore.open).toBeTrue()
+  })
 })
