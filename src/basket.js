@@ -43,6 +43,10 @@ class Basket {
     const foundItem = this.findSku(this.list, sku)
 
     if (typeof foundItem === 'object') return foundItem
+
+    const stockedItem = this.findInventoryItem(sku)
+
+    if (stockedItem === 'item not found') return 'item is not stocked'
     return 'item not found'
   }
 
