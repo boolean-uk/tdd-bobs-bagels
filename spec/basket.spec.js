@@ -116,17 +116,17 @@ describe('check that the item to be removed is in the basket', () => {
 
 describe('display item price property', () => {
   it('exists', () => {
-    const basketItem1 = inventory.inventory[4]
+    const basketItem1 = new BasketItem(inventory.inventory[4])
     const result = basketItem1.displayItemPrice()
     expect(result).toBe('0.99')
   })
   it('does not exist', () => {
-    const basketItem2 = {
+    const basketItem2 = new BasketItem({
       sku: 'BGLO',
       price: undefined,
       name: 'Bagel',
       variant: 'Onion'
-    }
+    })
     const result = basketItem2.displayItemPrice()
     expect(result).toEqual('price unknown - please message the seller')
   })

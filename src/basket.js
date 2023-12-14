@@ -53,6 +53,13 @@ class BasketItem {
     this.name = inventoryItem.name
     this.variant = inventoryItem.variant
   }
+
+  displayItemPrice() {
+    if (!this.price) {
+      return 'price unknown - please message the seller'
+    }
+    return this.price
+  }
 }
 
 module.exports = {
