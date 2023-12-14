@@ -153,3 +153,21 @@ describe('increase the quantity of an item', () => {
     expect(result).toBe('this item is not in you basket yet - add it?')
   })
 })
+
+describe('total cost', () => {
+  it('shows the sum of the prices of the items multiplied by their quantities', () => {
+    const basketItem1 = new BasketItem(inventory.inventory[2])
+    const basketItem2 = new BasketItem(inventory.inventory[3])
+    const basketItem3 = new BasketItem(inventory.inventory[4])
+    const basket1 = new Basket([basketItem1, basketItem2, basketItem3], 4)
+
+    const result = basket1.total()
+    expect(result).toBe('4.47')
+  })
+
+  it('cannot show the sum, the basket is empty', () => {
+    const basket1 = new Basket([], 4)
+    const result = basket1.total()
+    expect(result).toBe('the basket is empty - add some bagels?')
+  })
+})
