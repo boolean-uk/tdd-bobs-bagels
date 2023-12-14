@@ -11,7 +11,7 @@ export default class Basket {
   addItem(sku) {
     if (!sku || typeof sku !== 'string') return 'sku required!'
 
-    const itemToAdd = inventory.find((item) => item.sku === sku)
+    const itemToAdd = this.inventory.find((item) => item.sku === sku)
 
     if (!itemToAdd) return 'item not found'
 
@@ -53,5 +53,5 @@ export default class Basket {
     if(!foundItem) return false
     return `Name: ${foundItem.name}, Price: £${foundItem.price}`
   }
-  
+
 }
