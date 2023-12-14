@@ -243,7 +243,7 @@ describe('Bobs bagels basket', () => {
     it('/ if basket list does not have any items in its array', () => {
       basket.basketList = []
       const result = basket.totalCost()
-      expect(result).toEqual('Total Cost: £0')
+      expect(result).toEqual('Total Cost: £0.00')
     })
   })
 })
