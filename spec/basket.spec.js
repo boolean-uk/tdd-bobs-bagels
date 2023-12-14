@@ -166,5 +166,9 @@ describe('Bobs bagels basket', () => {
       const result = basket.findItemDetails('b2b2')
       expect(result).toEqual('Name: Item2, Price: £6.55')
     })
+    it('/ if item does not exist in inventory list', () => {
+      const result = basket.findItemDetails('d4d4')
+      expect(result).toBeFalse()
+    })
   })
 })
