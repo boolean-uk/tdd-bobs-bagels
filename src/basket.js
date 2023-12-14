@@ -28,7 +28,7 @@ class Basket {
     }
   }
 
-  addItem(sku) {
+  addItem(sku, quantity = 1) {
     console.log('Current basket capacity in addItem:', this.capacity) // checking
 
     if (this.items.length >= this.capacity) {
@@ -39,12 +39,13 @@ class Basket {
     const itemData = this.inventory.find((item) => item.sku === sku)
 
     if (itemData) {
-      const existingItemIndex = this.items.findIndex((item) => item.sku === sku)
+      const existingItem = this.items.find((item) => item.sku === sku)
 
-      if (existingItemIndex !== -1) {
-        this.items[existingItemIndex].quantity += 1
+      if (existingItem) {
+        existingItem.quantity += quantity
       } else {
         const newItem = new Item(itemData)
+        newItem.quantity = quantity
         this.items.push(newItem)
       }
       return true
@@ -54,16 +55,24 @@ class Basket {
     }
   }
 
-  removeItem(sku) {
+  removeItem(sku, quantity = 1) {
     const itemIndex = this.items.findIndex((item) => item.sku === sku)
+
     if (itemIndex === -1) {
       return false
     }
-    this.items[itemIndex].quantity--
-    if (this.items[itemIndex].quantity === 0) {
+
+    this.items[itemIndex].quantity -= quantity
+
+    if (this.items[itemIndex].quantity <= 0) {
       this.items.splice(itemIndex, 1)
     }
-    return this.items
+
+    return true
+  }
+
+  calculateTotal() {
+    return this.items.reduce((total, item) => total + item.price * item.quantity, 0)
   }
 
   setBasketCapacity(newCapacity) {

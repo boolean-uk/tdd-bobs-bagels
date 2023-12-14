@@ -51,10 +51,11 @@ describe('Basket', () => {
   it('notifies when the basket is full', () => {
     basket.addItem('BGLO')
     basket.addItem('BGLP')
-    basket.addItem('BGLC') // Attempting to add more items than the basket capacity
+    basket.addItem('BGLC') // adding more items than the basket capacity
 
     expect(console.warn).toHaveBeenCalledWith('Basket is full. Cannot add more items.')
   })
+  
 
   it('updates basket capacity', () => {
     console.log('Current basket capacity:', basket.capacity)
@@ -63,16 +64,37 @@ describe('Basket', () => {
     basket.addItem('BGLO')
     basket.addItem('BGLP')
     console.log('Items after adding BGLO and BGLP:', basket.items)
-    basket.addItem('BGLC'); // Adding item
+    basket.addItem('BGLC') // Adding item
     console.log('Items after adding BGLC:', basket.items)
     const addedItemSkus = basket.items.map(item => item.sku)
     console.log('Added item SKUs:', addedItemSkus)
-    expect(addedItemSkus.length).toEqual(2) // I changed this to adjust the exepected basket capacity
-})
-
+    expect(addedItemSkus.length).toEqual(2) // I changed this to adjust the expected basket capacity
+  })
 
   it('notifies when removing a non-existent item', () => {
     const result = basket.removeItem('BGLE')
     expect(result).toBe(false)
+  })
+
+  it('displays the price of each item before adding it to the basket', () => {
+    const sku = 'BGLO'
+    const itemData = basket.inventory.find((item) => item.sku === sku)
+    const spyConsoleLog = spyOn(console, 'log').and.callThrough()
+    basket.addItem(sku)
+    expect(spyConsoleLog).toHaveBeenCalledWith(`Price of ${itemData.name} (${itemData.variant}): $${itemData.price}`)
+
+  })
+
+  it('calculates the total sum of bagels in the basket', () => {
+    const sku1 = 'BGLO'
+    const sku2 = 'BGLP'
+
+    basket.addItem(sku1, 2)
+    basket.addItem(sku2, 3)
+
+    const total = basket.calculateTotal()
+
+    expect(total).toEqual(2 * basket.inventory.find((item) => item.sku === sku1).price + 3
+     * basket.inventory.find((item) => item.sku === sku2).price)
   })
 })
