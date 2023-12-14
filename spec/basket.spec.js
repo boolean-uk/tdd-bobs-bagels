@@ -66,7 +66,7 @@ describe('Basket', () => {
       basket.add('BGLE')
       const result = basket.add('BGLE')
 
-      expect(result).toBe('item added')
+      expect(result).toBe('item quantity increased')
       expect(basket._list).toEqual([
         {
           sku: 'BGLE',
