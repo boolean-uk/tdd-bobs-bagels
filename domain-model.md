@@ -94,9 +94,8 @@ V: pay, know
 | checkBasketQuantity()|||basket is (@array)|return sum of each item quantity | x |
 ||||basket is not (@array)|return "error, misconfigured basket"
 |||||
-| setBasketCapacity(capacity)|capacity(@Number)| @Number > 0| positive integer input | change maxBasketCapacity, return maxBasketCapacity
-|||| positive float input | round float to integer, change maxBasketCapacity, return maxBasketCapacity
-|||| not positive number input | return "please enter positive number value"
+| setBasketCapacity(capacity)|capacity(@Number)| @Number > 0| positive integer input | change capacity, return capacity | x |
+|||| not positive number input | return "please enter positive number value" | x |
 |||||
 | checkValidSku(sku)|sku(@string)|| valid sku | returns item object
 |||||
