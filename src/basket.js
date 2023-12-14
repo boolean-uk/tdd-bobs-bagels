@@ -48,7 +48,8 @@ export default class Basket {
 
   changeBasketSize(size) {
     if (!size || typeof size !== 'number') return 'error, set basket size.'
-    return (this.basketSize = size)
+    this.basketSize = size
+    return
   }
 
   findItemDetails(sku) {

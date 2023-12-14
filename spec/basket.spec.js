@@ -27,7 +27,7 @@ describe('Bobs bagels basket', () => {
           name: 'Item3',
           variant: 'None',
           quantity: 1
-        },
+        }
       ]
     })
     it(' / adding a valid sku', () => {
@@ -160,10 +160,9 @@ describe('Bobs bagels basket', () => {
   describe('/ change basket size', () => {
     const basket = new Basket()
     it('/ if changeBasketSize recieves a number, return new basket size', () => {
-      const newBasketSize = basket.basketSize
-      const result = basket.changeBasketSize(16)
+      basket.basketSize = 12
+      basket.changeBasketSize(16)
 
-      expect(result).toEqual(16)
       expect(basket.basketSize).toEqual(16)
     })
     it('/ if changeBasketSize does not recieve a number', () => {
@@ -199,7 +198,7 @@ describe('Bobs bagels basket', () => {
           name: 'Item3',
           variant: 'None',
           quantity: 1
-        },
+        }
       ]
     })
     it('if item exists in inventory list', () => {
