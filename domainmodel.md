@@ -44,6 +44,9 @@
   #### isFull
     INPUT: none
     OUTPUT: sum of all items.quantity < basket.capacity (@boolean)
+  #### changeCapacity
+    INPUT: new Capacity @integer
+    OUTPUT: boolean – to indicate whether it was changed or not
   #### addItem
     INPUT: sku
     OUTPUT:
