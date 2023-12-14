@@ -55,6 +55,9 @@
     OUTPUT:
       SCENARIOS: gets item from Store, adds .quantity property, initializes it as = 1
       increases item.quantity in basket.items by one
+  #### checkTotal
+    INPUT: nothing
+    OUTPUT: product sum of all items in basket.items
   #### removeItem
     INPUT: sku
     OUTPUT:

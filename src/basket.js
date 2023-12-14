@@ -9,6 +9,10 @@ class Basket {
     return numOfItems >= this.capacity
   }
 
+  checkTotal () {
+    return this.items.reduce((total, item) => total + (item.price * item.quantity), 0)
+  }
+
   changeCapacity (newCapacity) {
     if (this.items.length > newCapacity) return false
     this.capacity = newCapacity
