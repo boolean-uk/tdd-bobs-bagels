@@ -212,32 +212,38 @@ describe('Bobs bagels basket', () => {
   })
   describe('/ if items in array of basket list. Add all items prices and return total cost', () => {
     const basket = new Basket()
-    beforeEach(()=> {
-      basket.basketList = [{
-        sku: 'aa11',
-        price: '1.25',
-        name: 'Item1',
-        variant: 'None',
-        quantity: 3
-      },
-      {
-        sku: 'bb22',
-        price: '6.55',
-        name: 'Item2',
-        variant: 'None',
-        quantity: 1
-      },
-      {
-        sku: 'cc33',
-        price: '8.50',
-        name: 'Item3',
-        variant: 'None',
-        quantity: 2
-      }]
-    })
     it('/ if items in basket list ', () => {
+      basket.basketList = [
+        {
+          sku: 'aa11',
+          price: '1.25',
+          name: 'Item1',
+          variant: 'None',
+          quantity: 3
+        },
+        {
+          sku: 'bb22',
+          price: '6.55',
+          name: 'Item2',
+          variant: 'None',
+          quantity: 1
+        },
+        {
+          sku: 'cc33',
+          price: '8.50',
+          name: 'Item3',
+          variant: 'None',
+          quantity: 2
+        }
+      ]
+
       const result = basket.totalCost()
       expect(result).toEqual('Total Cost: £27.30')
+    })
+    it('/ if basket list does not have any items in its array', () => {
+      basket.basketList = []
+      const result = basket.totalCost()
+      expect(result).toEqual('Total Cost: £0')
     })
   })
 })
