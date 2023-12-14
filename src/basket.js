@@ -54,6 +54,20 @@ class Basket {
     const updatedItem = { ...searchResult, quantity: updatedQuantity }
     return updatedItem
   }
+
+  total() {
+    if (this.list.length < 1) {
+      return 'the basket is empty - add some bagels?'
+    }
+    const stringsToIntegers = this.list.map(
+      (i) => parseFloat(i.price) * 100 * i.quantity
+    )
+    const integersSum = stringsToIntegers.reduce(
+      (accumulator, currentValue) => accumulator + currentValue
+    )
+    const total = `${integersSum / 100}`
+    return total
+  }
 }
 
 class BasketItem {

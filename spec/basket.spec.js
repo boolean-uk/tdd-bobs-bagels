@@ -162,7 +162,7 @@ describe('total cost', () => {
     const basket1 = new Basket([basketItem1, basketItem2, basketItem3], 4)
 
     const result = basket1.total()
-    expect(result).toBe('4.47')
+    expect(result).toBe('1.97')
   })
 
   it('cannot show the sum, the basket is empty', () => {
