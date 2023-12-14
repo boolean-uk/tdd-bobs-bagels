@@ -8,7 +8,7 @@ class BagelBasket {
     if (this.items.length < this.capacity) {
       this.items.push(item)
     } else {
-      return 'Cannot add item, basket is full'
+      console.log('Cannot add item, basket is full')
     }
   }
 
@@ -39,4 +39,4 @@ class BagelBasket {
   }
 }
 
-module.exports = BagelBasket
+module.exports = { BagelBasket }

@@ -1,4 +1,4 @@
-const BagelBasket = require('../src/basket.js')
+const { BagelBasket } = require('../src/basket.js')
 
 describe('BagelBasket', () => {
   let basket
@@ -34,7 +34,14 @@ describe('BagelBasket', () => {
   })
 
   // Basket too full section
-  it('stops the basket from overfilling', () => {
+  it('should add items within capacity', () => {
+    for (let i = 0; i < basket.capacity; i++) {
+      basket.addItem(bagels[0])
+    }
+    expect(basket.items.length).toBe(basket.capacity)
+  })
+
+  it('should not add items beyond capacity', () => {
     for (let i = 0; i < basket.capacity + 1; i++) {
       basket.addItem(bagels[0])
     }
@@ -51,6 +58,18 @@ describe('BagelBasket', () => {
   it('Basket capacity increased', () => {
     const largerBasket = new BagelBasket(10)
     expect(largerBasket.capacity).toBe(10)
+  })
+
+  // finding existing items
+  it('should find an existing item by SKU', () => {
+    basket.addItem(bagels[0])
+    const result = basket.findBagel(bagels[0].sku)
+    expect(result).toEqual(bagels[0])
+  })
+
+  it('should not find an item with a non-existent SKU', () => {
+    const result = basket.findBagel('non-existent-sku')
+    expect(result).toBe("Item doesn't exist in basket")
   })
 
   // showing the price of each item
