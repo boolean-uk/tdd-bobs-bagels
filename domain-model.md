@@ -91,7 +91,7 @@ V: pay, know
 |||| invalid sku | return message "item not stocked" | x |
 |||| no sku input | return message "item sku required" | x |
 |||||
-| checkBasketCapacity()|||basket is (@array)|return length of basket array
+| checkBasketQuantity()|||basket is (@array)|return sum of each item quantity
 ||||basket is not (@array)|return "error, misconfigured basket"
 |||||
 |changeBasketCapacity(capacity)|capacity(@Number)| @Number > 0| positive integer input | change maxBasketCapacity, return maxBasketCapacity
