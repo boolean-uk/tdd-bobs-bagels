@@ -122,13 +122,6 @@ b.addBagel('BGLO')
 b.addBagel('BGLO')
 b.addBagel('BGLO')
 b.addBagel('BGLO')
-b.addBagel('BGLO')
-b.addBagel('BGLO')
-b.addBagel('BGLO')
-b.addBagel('BGLO')
-b.addBagel('BGLO')
-b.addBagel('BGLO')
-b.addBagel('BGLO')
 b.addBagel('BGLP')
 // b.addBagel('BGLS')
 // console.log(b.addBagel('BGLO'))
@@ -151,7 +144,8 @@ b.addBagel('BGLP')
 
 // SPECIAL OFFERS
 // console.log(b.basketHasSpecialOffers())
-// b.basketHasSpecialOffers()
+b.basketHasSpecialOffers()
+console.log(b.updatedBasket)
 
 // CALC BASKET TOTAL
 console.log(b.calcBasketVal())

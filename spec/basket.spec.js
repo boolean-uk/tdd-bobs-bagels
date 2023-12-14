@@ -158,12 +158,14 @@ describe('Basket', () => {
       b.addBagel('BGLO')
       b.addBagel('BGLO')
       b.addBagel('BGLP')
+      b.basketHasSpecialOffers()
       const result = b.calcBasketVal()
       expect(result).toEqual(basketTotal)
     })
 
     it('return message if there are no bagels in basket', () => {
       const message = 'there are no bagels in your basket'
+      b.basketHasSpecialOffers()
       const result = b.calcBasketVal()
       expect(result).toEqual(message)
     })
