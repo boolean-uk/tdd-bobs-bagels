@@ -71,6 +71,10 @@ describe('Bobs bagels basket', () => {
       expect(basket.basketList[0].name).toEqual('Fork')
       expect(basket.basketList).toEqual(newBasket)
     })
+    it('/ if sku is valid but not in basket', () => {
+      const result = basket.removeItem('4444')
+      expect(result).toEqual('item is not in basket')
+    })
     it('/ no sku added ', () => {
       const removedItem = basket.removeItem('')
       expect(removedItem).toEqual('sku required!')
@@ -133,5 +137,4 @@ describe('Bobs bagels basket', () => {
       expect(basket.basketSize).toEqual(basketSize)
     })
   })
-  describe('/ ')
 })

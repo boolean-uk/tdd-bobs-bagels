@@ -9,9 +9,13 @@ export default class Basket {
 
   addItem(sku) {
     if (!sku || typeof sku !== 'string') return 'sku required!'
+
     const itemToAdd = inventory.find((item) => item.sku === sku)
+
     if (!itemToAdd) return 'item not found'
+
     if (this.basketisFull) return this.checkIfFull()
+
     itemToAdd.quantity = 1
     this.basketList.push(itemToAdd)
     return itemToAdd.name
@@ -19,6 +23,7 @@ export default class Basket {
 
   removeItem(sku) {
     if (!sku || typeof sku !== 'string') return 'sku required!'
+
     const newBasket = this.basketList.filter((item) => item.sku !== sku)
     return (this.basketList = newBasket)
   }
@@ -29,6 +34,7 @@ export default class Basket {
       sum += item.quantity
       return sum
     })
+    
     if (sum === this.basketSize) this.basketisFull = true
     return 'basket is full'
   }
