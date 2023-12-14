@@ -103,10 +103,10 @@ Part two
  - The manager adjusts the capacity of an existing basket.
  - The manager records sales using the basket.
 
- 
+
 ## Domain Model for Part 3
 
-### User Stories:
+ # User Stories:
 
 1. As a member of the public: 
  - So that I can know how much my bagels are, 
@@ -120,7 +120,7 @@ Part two
  - So that I can prepare to pay, 
  - When I go to checkout, I'd like to know the total sum of the bagels in my basket. 
 
-### Entities:
+ # Entities:
 
 1. Public Member: 
  - Attributes:
@@ -152,7 +152,7 @@ Part two
   - Actions:
    -  Display Price 
 
-### Interactions:
+ # Interactions:
 
 1.  Member of the Public Interactions: 
   -  A member checks the price of a bagel item before adding it to the basket. 
