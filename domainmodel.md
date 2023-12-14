@@ -41,6 +41,9 @@
   #### capacity
     TYPE: Integer
   ### METHODS
+  #### countItems
+   INPUT: none
+   OUTPUT: @integer of all quantities
   #### isFull
     INPUT: none
     OUTPUT: sum of all items.quantity < basket.capacity (@boolean)

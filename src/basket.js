@@ -4,6 +4,10 @@ class Basket {
     this.items = []
   }
 
+  countItems () {
+    return this.items.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0)
+  }
+
   isFull () {
     const numOfItems = this.items.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0)
     return numOfItems >= this.capacity
@@ -33,7 +37,7 @@ class Basket {
       this.items.push({ ...itemObj, quantity: 1 })
     } else {
       const position = this.items.findIndex(item => item.sku === itemObj.sku)
-      console.log(position, "found index")
+      this.items[position].quantity = this.items[position].quantity + 1 
     }
     return true
   }

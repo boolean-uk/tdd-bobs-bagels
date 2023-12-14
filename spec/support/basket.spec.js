@@ -51,6 +51,15 @@ describe("filling basket", () => {
     expect(myBasket.isFull()).toBeFalse()
   })
 
+  it("adding existing item leads to increase in counter", () => {
+    const myBasket = new Basket(3)
+    const item = new Item("ITM1", "first", 1.23)
+    myBasket.addItem(item)
+    myBasket.addItem(item)
+    myBasket.addItem(item)
+    expect(myBasket.countItems()).toEqual(3)
+  })
+
   it("total is calculated correctly", () => {
     const myBasket = new Basket(2)
     const item = new Item("ITM1", "first", 1.23)
