@@ -13,6 +13,7 @@ class Store {
     this.availableBasketTypes = [...basketTypesDefault]
     this.availableProducts = [...inventory]
   }
+
   open () {
     if (this.isOpen) return "We're already open!"
     this.isOpen = true
@@ -37,6 +38,12 @@ class Store {
 
   addBasketType (basketObj) {
     this.availableBasketTypes.push(basketObj)
+  }
+
+  handoutProductBySKU (sku) {
+    const foundProduct = this.availableProducts(product.sku === sku)
+    if (!!foundProduct) return "unknown sku"
+    return foundProduct
   }
 
   handoutBasket (name) {
