@@ -2,7 +2,6 @@ import { inventory } from "./inventory.js"
 import { basketTypesDefault } from "./baskettypes.js"
 import Employee from "./employee.js"
 import Basket from "./basket.js"
-import { skuFromName } from "./item.js"
 
 class Store {
   constructor (name) {
@@ -48,7 +47,7 @@ class Store {
   getProductByDescription (name, variant) {
     const foundProduct = this.availableProducts.find(product => {
       return product.name.toLowerCase() === name.toLowerCase() &&
-      product.variant.toLowerCase() === variant.toLowerCase()
+      product.variant.toLowerCase() === (variant || "").toLowerCase()
       })
     if (!!foundProduct) {
       console.log(`Here is a ${name} of variant ${variant}:`)

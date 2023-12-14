@@ -26,7 +26,7 @@ export const inventory = [
     {
       "sku": "COF",
       "price": "0.99",
-      "name": "Bagel",
+      "name": "Coffee",
       "variant": ""
     },
     {
