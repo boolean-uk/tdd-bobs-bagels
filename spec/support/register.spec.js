@@ -27,10 +27,10 @@ describe("register can process customers", () => {
     shopper.basket.addItem(myBagel)
 
     myRegister.takeCustomer(shopper)
-    expect(myRegister.drawer).toEqual(0)
+    expect(myRegister.till).toEqual(0)
     expect(myRegister.currentCustomer !== null).toBeTrue()
     myRegister.billCustomer()
-    expect(myRegister.drawer > 0).toBeTrue()
+    expect(myRegister.till > 0).toBeTrue()
     expect(myRegister.currentCustomer).toEqual(null)
   })
 })

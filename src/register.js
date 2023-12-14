@@ -1,14 +1,14 @@
 class Register {
   constructor (atStore) {
     this.atStore = atStore
-    this.drawer = 0
+    this.till = 0
     this.currentCustomer = null
   }
 
-  changeToDrawer (amount) {
-    const drawerBefore = this.drawer.toFixed(2)
-    this.drawer = this.drawer + amount
-    console.log(`register change: £${drawerBefore} + £${amount} -> £${this.drawer}`)
+  changeTotill (amount) {
+    const tillBefore = this.till.toFixed(2)
+    this.till = this.till + amount
+    console.log(`register change: £${tillBefore} + £${amount} -> £${this.till}`)
   }
 
   takeCustomer (customer) {
@@ -17,7 +17,7 @@ class Register {
 
   billCustomer () {
     this.receipt()
-    this.changeToDrawer(this.currentCustomer.basket.checkTotal())
+    this.changeTotill(this.currentCustomer.basket.checkTotal())
     this.currentCustomer = null
   }
 

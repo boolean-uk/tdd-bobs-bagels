@@ -113,14 +113,14 @@
 ## PROPERTIES
 ### atStore
   @Store instance
-### drawer
+### till
   @float, current balance
 ### currentCustomer
   @customer instance
 ## METHODS
-### changeToDrawer
+### changeTotill
   INPUT: @float, amount (currency)
-  FUNCTION: adds x to this.drawer 
+  FUNCTION: adds x to this.till 
 ### takeCustomer
   INPUT: @customer instance
   FUNCTION: sets customer as this.currentcustomer
