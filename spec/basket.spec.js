@@ -180,6 +180,17 @@ describe('Basket', () => {
 
       expect(result).toBe(10)
     })
+
+    it('return "basket misconfigured" if basketList is not Array', () => {
+      const inputs = ['', 1, {}]
+
+      inputs.forEach((input) => {
+        basket._list = input
+        const result = basket.checkBasketQuantity()
+
+        expect(result).toBe('misconfigured basket')
+      })
+    })
   })
 
   describe('set basket capacity', () => {
