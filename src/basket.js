@@ -4,6 +4,7 @@ class Basket {
   constructor() {
     this._list = []
     this._inventory = inventory
+    this.capacity = 12
   }
 
   get list() {
@@ -85,6 +86,10 @@ class Basket {
 
   checkBasketQuantity() {
     return this._list.reduce((a, b) => a + b.quantity, 0)
+  }
+
+  setBasketCapacity(newCapacity) {
+    return this.capacity = newCapacity
   }
 }
 
