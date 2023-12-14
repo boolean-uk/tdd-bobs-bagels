@@ -11,7 +11,13 @@
     EXAMPLE: [ { basketType }, { basketType } ]
   #### availableProducts
     TYPE: Array of Objects
-    EXAMPLE: [ { sku: @integer, name: @string, price: @float } ]
+    EXAMPLE: [ { sku: @string, name: @string, price: @float } ]
+  #### specials
+    TYPE: Array of Objects
+    EXAMPLE: [ {
+      sku: @string,
+      calcTotal: @function (amount @ integer, price @ float)
+    }]
   #### employees
     TYPE: Array of Employee instances
     EXAMPLE: [ { new Employee } ]
