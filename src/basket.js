@@ -102,6 +102,12 @@ class Basket {
     }
     return 'please enter positive integer value'
   }
+
+  displayItemPrice(sku) {
+    const item = this.findInventoryItem(sku)
+
+    return Number(item.price)
+  }
 }
 
 export default Basket
