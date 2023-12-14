@@ -1,31 +1,50 @@
 /* eslint-disable prettier/prettier */
-
+const data = require('../inventory.json')
 class IndividualUser {
     constructor() {
         this.userOrderList = []
     
     }
 
+    findExistingItem(item) {
+        return  this.userOrderList.find((itemExist) => itemExist.sku === item)
+    }
+
     addOrderToBasket(item, name, managerLimit) {
-        if (name !== 'manager') {
-            if(this.userOrderList.length >= 10) {
-                return "Your basket is full!"
+
+            if (name !== 'manager') {
+                return this.setUserBasketLimit(item)
+
             } else {
-                this.userOrderList.push(item)
-                return 'You Can Add More'
+                return this.setManagerLimit(item, managerLimit)
             }
+    }
+
+
+    setUserBasketLimit(item) {
+        if(this.userOrderList.length >= 10) {
+            return "Your basket is full!"
         } else {
-            if (this.userOrderList.length >= managerLimit) {
-                return "Your basket is full!";
-            } else {
-                this.userOrderList.push(item);
-                return 'You Can Add More';
-            }
+            const orderedItem = data.inventory.find((order) => order.sku === item)
+            this.userOrderList.push(orderedItem)
+            return 'You Can Add More'
         }
     }
 
+
+    setManagerLimit(item, managerLimit) {
+        if (this.userOrderList.length >= managerLimit) {
+            return "Your basket is full!";
+        } else {
+            const orderedItem = data.inventory.find((order) => order.sku === item)
+            this.userOrderList.push(orderedItem)
+            return 'You Can Add More';
+        }
+    }
+
+
     removeItemFromBasket(item) {
-        const itemToDelete = this.userOrderList.indexOf(item) 
+        const itemToDelete = this.userOrderList.findIndex((order) => order.sku === item)
 
         if (itemToDelete !== -1) {
             this.userOrderList.splice(itemToDelete, 1)
@@ -35,7 +54,21 @@ class IndividualUser {
     }
 
 
-    
+
+    retrieveItemPrice(itemName) {
+        const item = data.inventory.find((item) => item.sku === itemName)
+
+        if(item) {
+            const itemPrice =Number(item.price)
+            return itemPrice
+        } else {
+            return "Nothing found"
+        }     
+    }
+
+
+
+
 
 
 
