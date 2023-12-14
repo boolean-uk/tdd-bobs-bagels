@@ -89,7 +89,14 @@ class Basket {
   }
 
   setBasketCapacity(newCapacity) {
-    return this.capacity = newCapacity
+    if (
+      typeof newCapacity === 'number' &&
+      newCapacity > 0 &&
+      newCapacity % 1 === 0
+    ) {
+      return (this.capacity = newCapacity)
+    }
+    return 'please enter positive integer value'
   }
 }
 
