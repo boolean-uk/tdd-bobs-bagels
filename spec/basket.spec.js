@@ -165,4 +165,25 @@ describe('Basket', () => {
       expect(result).toEqual(message)
     })
   })
+
+  // EXTENSION 1
+  describe('Onion Bagel Special Offer', () => {
+    it('6 Onion Bagels should cost £2.49', () => {
+      const BGLOx6Price = 'the price of your basket is £2.49' // DISCOUNT ON 6X BGLO
+      const result = b.calcBasketVal()
+      expect(result).toEqual(BGLOx6Price)
+    })
+
+    it('10 Onion Bagel should cost £4.45', () => {
+      const BGLOx10Price = 'the price of your basket is £4.45' // DISCOUNT ON 6X BGLO AND 4X BGLO @ 0.49 EACH
+      const result = b.calcBasketVal()
+      expect(result).toEqual(BGLOx10Price)
+    })
+
+    it('12 Onion Bagel should cost £4.45', () => {
+      const BGLOx12Price = 'the price of your basket is £4.98' // DISCOUNT ON 2 LOTS OF 6X BGLO
+      const result = b.calcBasketVal()
+      expect(result).toEqual(BGLOx12Price)
+    })
+  })
 })
