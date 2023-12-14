@@ -2,9 +2,13 @@ const fs = require('fs')
 
 class BagelStore {
   constructor() {
-    this.basket = []
+    this.baskets = {
+      defaultBasket: {
+        items: [],
+        capacity: 10
+      }
+    }
     this.inventory = []
-    this.basketCapacity = 5
   }
 
   loadFiles() {
@@ -13,65 +17,116 @@ class BagelStore {
     this.inventory = inventory
   }
 
-  addToBasket(bagelItemSku) {
-    let totalItems = 0
-
-    this.basket.forEach((item) => (totalItems += item.quantity))
-    if (this.basket.length >= this.basketCapacity || totalItems >= 5) {
-      return 'Your basket is full. Please create a new basket with a greater capacity'
-    }
-
-    const sku = bagelItemSku.toUpperCase()
-
-    if (typeof bagelItemSku !== 'string' || sku.length !== 4) {
-      return 'ERROR: Invalid item'
-    }
-
-    const duplicate = this.basket.some((obj) => {
-      return obj.sku == sku
-    })
-
-    const bagelItem = this.inventory.filter((item) => item.sku === sku)[0]
-
-    if (bagelItem) {
-      if (duplicate) {
-        this.basket = [...this.basket]
-        bagelItem.quantity++
-      } else {
-        this.basket.push(bagelItem)
-        bagelItem.quantity = 1
+  createBasket(basketName, capacity) {
+    if (basketName && capacity) {
+      if (typeof basketName !== 'string' || typeof capacity !== 'number') {
+        return "Error: Please input a valid name & capacity e.g. ('John's', 5)."
       }
 
-      return `${bagelItem.variant ? bagelItem.variant : ''} ${
-        bagelItem.name
-      } (${bagelItem.sku}) added to basket`
+      this.baskets[basketName] = {}
+      this.baskets[basketName].items = []
+      this.baskets[basketName].capacity = capacity ? capacity : 10
+
+      return `Success! Created "${basketName}" basket with a capacity of ${this.baskets[basketName].capacity}.`
     } else {
-      return 'Error: Invalid item'
+      return 'ERROR: Please input a valid name & capacity'
     }
   }
 
-  removeItemFromBasket(bagelItemSku) {
-    const sku = bagelItemSku.toUpperCase()
+  addItemToBasket(bagelSku, basketName) {
+    let basket
+    !basketName
+      ? (basket = this.baskets.defaultBasket.items)
+      : (basket = this.baskets[basketName].items)
+    let basketCapacity = !basketName
+      ? this.baskets.defaultBasket.capacity
+      : this.baskets[basketName].capacity
 
-    if (sku.length !== 4 || typeof bagelItemSku !== 'string') {
-      return 'ERROR: Invalid Item. Please input a valid sku.'
+    const bagelSkusArr = []
+    this.inventory.forEach((item) => bagelSkusArr.push(item.sku))
+
+    if (bagelSkusArr.includes(bagelSku.toUpperCase())) {
+      const bagel = this.inventory.find(
+        (item) => item.sku === bagelSku.toUpperCase()
+      )
+      const bagelInBasket = basket.find((item) => item === bagel)
+
+      let basketTotalQuantity = 0
+      basket.forEach((item) => (basketTotalQuantity += item.quantity))
+
+      if (basketTotalQuantity >= basketCapacity) {
+        return `ERROR: "${
+          basketName ? basketName : 'defaultBasket'
+        }" has reached max capacity.`
+      } else {
+        if (bagelInBasket) {
+          bagelInBasket.quantity++
+        } else {
+          basket.push(bagel)
+          const bagelInBasket = basket.find((item) => item === bagel)
+          bagelInBasket.quantity = 1
+        }
+      }
+
+      return `Success! Added ${bagel.variant ? bagel.variant : ''} ${
+        bagel.name
+      } (${bagel.sku}) to '${
+        basketName ? basketName : 'defaultBasket'
+      }' basket.`
+    } else {
+      return 'ERROR: Please input a valid bagel sku :).'
     }
-
-    const filteredBasket = this.basket.filter((item) => item.sku !== sku)
-
-    this.basket = filteredBasket
-
-    return `${sku} was succesfully removed`
   }
 
-  updateBasketCapacity(newCapacity) {
-    this.basketCapacity = newCapacity
+  removeItemFromBasket(bagelSku, basketName) {
+    let basket
+    !basketName
+      ? (basket = this.baskets.defaultBasket.items)
+      : (basket = this.baskets[basketName].items)
+
+    const bagelSkusArr = []
+    basket.forEach((item) => bagelSkusArr.push(item.sku))
+
+    if (bagelSkusArr.includes(bagelSku.toUpperCase())) {
+      const filteredBasket = basket.filter(
+        (item) => item.sku !== bagelSku.toUpperCase()
+      )
+
+      if (basketName) {
+        this.baskets[basketName].items = filteredBasket
+      } else {
+        this.baskets.defaultBasket.items = filteredBasket
+      }
+
+      return `${bagelSku.toUpperCase()} was succesfully removed`
+    } else {
+      return 'ERROR: Please input a valid bagel sku.'
+    }
   }
 
-  totalPrice() {
+  viewBasket(basketName) {
+    let basket = basketName
+      ? this.baskets[basketName].items
+      : this.baskets.defaultBasket.items
+
+    const namesOfBaskets = Object.keys(this.baskets)
+
+    if (!basketName) {
+      return basket
+    } else if (namesOfBaskets.includes(basketName)) {
+      return basket
+    } else {
+      return 'ERROR: Please input a valid basket name'
+    }
+  }
+
+  totalPrice(basketName) {
     let sum = 0
+    let basket = basketName
+      ? this.baskets[basketName].items
+      : this.baskets.defaultBasket.items
 
-    this.basket.forEach((item) => (sum += item.quantity * item.price))
+    basket.forEach((item) => (sum += item.quantity * item.price))
 
     return `Total: $${sum}`
   }
