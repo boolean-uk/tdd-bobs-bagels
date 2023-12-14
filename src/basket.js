@@ -19,7 +19,7 @@ class Basket {
     const basketQuantity = this.checkBasketQuantity()
 
     if (basketQuantity >= this.capacity) return 'basket full'
-    
+
     if (
       typeof sku !== 'string' ||
       (typeof sku === 'string' && sku.length === 0)
@@ -104,6 +104,8 @@ class Basket {
   }
 
   displayItemPrice(sku) {
+    if (typeof sku !== 'string' || sku.length < 1) return 'sku required'
+
     const item = this.findInventoryItem(sku)
 
     if (item === 'item not found') return 'item not found'
