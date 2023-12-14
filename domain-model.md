@@ -83,7 +83,7 @@ V: pay, know
 | addToBasket(sku) | sku(@string)| | valid sku | add item to basket, message "item added" | x |
 |||| invalid sku | return message "item not found" | x |
 |||| no sku input | return message "item sku required" | x |
-|||| basket is full | return message "basket full" | |
+|||| basket is full | return message "basket full" | x |
 |||| sku already in basket | increase quantity of item in basket, message "item added" | x |
 |||||
 | removeFromBasket(sku) | sku(@string)| | valid sku, sku in basket | remove item to basket, message "item removed" | x |
