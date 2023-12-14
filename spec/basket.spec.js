@@ -148,5 +148,13 @@ describe('Basket', () => {
 
       expect(result).toBe('item is not stocked')
     })
+
+    it('return "item sku required" if no sku input', () => {
+      const result1 = basket.remove()
+      const result2 = basket.remove('')
+
+      expect(result1).toBe('item sku required')
+      expect(result2).toBe('item sku required')
+    })
   })
 })
