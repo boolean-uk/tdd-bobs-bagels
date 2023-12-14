@@ -1,14 +1,14 @@
-const skuFromName = (name) => {
-  return name.toUpperCase().replace(/[AEIOU]/gi, "").slice(0, 3)
+const skuFromName = (name, variant) => {
+  if (variant) {
+    return name.toUpperCase().replace(/[AEIOU]/gi, "").slice(0, 3) + variant.toUpperCase()[0]
+  } else {
+    return name.toUpperCase().replace(/[AEIOU]/gi, "").slice(0, 3)
+  }
 }
 
 class Item {
   constructor (name, price, variant, ...fillings) {
-    if (variant) {
-      this.sku = skuFromName(name) + variant.toUpperCase()[0]
-    } else {
-      this.sku = skuFromName(name)
-    }
+    this.sku = skuFromName(name, variant)
     this.name = name
     this.price = price || 0
     this.variant = variant || ""
