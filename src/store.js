@@ -7,6 +7,7 @@ class Store {
   constructor (name) {
     this.name = name
     this.isOpen = false
+    this.specials = []
     this.employees = []
     this.availableBasketTypes = [...basketTypesDefault]
     this.availableProducts = [...inventory]
