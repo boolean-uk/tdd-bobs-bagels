@@ -122,23 +122,28 @@ describe('Basket', () => {
     const basket = new Basket()
 
     beforeEach(() => {
-      basket._list = mockList.slice(1)
+      basket._inventory = [...mockList]
     })
 
     it('remove item with valid sku', () => {
+      basket._list = [...mockList]
+
       const result = basket.remove('BBBB')
 
       expect(result).toBe('item removed')
-      expect(basket.list).toEqual([mockList[2]])
+      expect(basket.list).toEqual([mockList[0], mockList[2]])
     })
 
     it('return "item not found" if sku not found in basket', () => {
-      const result = basket.remove('AAAA')
+      basket._list = mockList.slice(0, 2)
+
+      const result = basket.remove('CCCC')
 
       expect(result).toBe('item not found')
     })
 
     it('return "invalid sku" when sku does not exist in inventory', () => {
+      basket._list = [...mockList]
       const result = basket.remove('ZZZZ')
 
       expect(result).toBe('item is not stocked')
