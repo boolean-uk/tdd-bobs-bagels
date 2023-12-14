@@ -45,7 +45,8 @@ export default class Basket {
       return sum
     })
 
-    if (sum === this.basketSize) this.basketisFull = true
+    if (sum === this.basketSize) 
+    this.basketisFull = true
     return 'basket is full'
   }
 
@@ -57,7 +58,9 @@ export default class Basket {
 
   findItemDetails(sku) {
     const foundItem = this.inventory.find((item) => sku === item.sku)
+
     if (!foundItem) return false
+
     return `Name: ${foundItem.name}, Price: £${foundItem.price}`
   }
 
@@ -67,9 +70,43 @@ export default class Basket {
       const sum = item.price * item.quantity
       return (total += sum)
     })
+
     return `Total Cost: £${total.toFixed(2)}`
   }
 }
+
+
+// OUTSIDE OF TESTING SUITE TESTING (MOCK RUNNING INPUTS INTO FUNCTIONS)
+
+// const basket = new Basket()
+// basket.addItem('BGSE')
+// basket.addItem('BGSE')
+// basket.addItem('BGSS')
+// console.log(basket.basketList)
+// console.log(basket.findItemDetails('BGSE'))
+// console.log(basket.totalCost())
+// basket.removeItem('BGSE')
+
+// // REMOVES ENTIRE ITEM CATEGORY. LEAVING AS IS A I BELIEVE IT SATISFIES THE REQUIREMENTS
+// console.log(basket.basketList) 
+
+// basket.changeBasketSize(13)
+// console.log(basket.basketSize)
+// basket.addItem('BGSS')
+// basket.addItem('BGSS')
+// basket.addItem('BGSS')
+// basket.addItem('BGSS')
+// basket.addItem('BGSS')
+// basket.addItem('BGSS')
+// basket.addItem('BGSS')
+// basket.addItem('BGSS')
+// basket.addItem('BGSS')
+// basket.addItem('BGSS')
+// basket.addItem('BGSS')
+// basket.addItem('BGSS')
+// basket.addItem('BGSS')
+// console.log(basket.addItem('BGSS'))
+// console.log(basket.totalCost())
 
 
 
