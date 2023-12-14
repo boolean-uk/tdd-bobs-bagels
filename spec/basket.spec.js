@@ -199,4 +199,18 @@ describe('Basket', () => {
       })
     })
   })
+
+  describe('display item price', () => {
+    const basket = new Basket()
+
+    beforeEach(() => {
+      basket._inventory = mockInventory
+    })
+
+    it('return item price with valid sku', () => {
+      const result = basket.displayItemPrice('CCCC')
+
+      expect(result).toBe(15)
+    })
+  })
 })
