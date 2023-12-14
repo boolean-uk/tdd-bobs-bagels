@@ -89,7 +89,7 @@ V: pay, know
 | removeFromBasket(sku) | sku(@string)| | valid sku, sku in basket | remove item to basket, message "item removed" | x |
 |||| valid sku, sku not in basket | return message "item not in cart" | x |
 |||| invalid sku | return message "item not stocked" | x |
-|||| no sku input | return message "item sku required"
+|||| no sku input | return message "item sku required" | x |
 |||||
 | checkBasketCapacity()|||basket is (@array)|return length of basket array
 ||||basket is not (@array)|return "error, misconfigured basket"
