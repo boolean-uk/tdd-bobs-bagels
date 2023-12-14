@@ -244,5 +244,13 @@ describe('Basket', () => {
 
       expect(result).toBe(30)
     })
+
+    it('return 0 if no items in basket', () => {
+      basket._list = []
+
+      const result = basket.displayBasketSum()
+
+      expect(result).toBe(0)
+    })
   })
 })
