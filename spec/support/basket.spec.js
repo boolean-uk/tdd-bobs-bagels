@@ -4,7 +4,9 @@ describe('Basket', () => {
   let basket
 
   beforeEach(() => {
-    basket = new Basket()
+    //basket = new Basket()
+    basket = new Basket(2) // initial capacity to 2 for testing
+    spyOn(console, 'warn') // for the error i got Expected a spy, but got Function.
   })
 
   it('adds an item to the basket', () => {
@@ -42,6 +44,29 @@ describe('Basket', () => {
   it('cannot remove item not in the basket', () => {
     basket.addItem('BGLO')
     basket.addItem('BGLP')
+    const result = basket.removeItem('BGLE')
+    expect(result).toBe(false)
+  })
+
+  it('notifies when the basket is full', () => {
+    basket.addItem('BGLO')
+    basket.addItem('BGLP')
+    basket.addItem('BGLC') // Attempting to add more items than the basket capacity
+
+    expect(console.warn).toHaveBeenCalledWith('Basket is full. Cannot add more items.')
+  })
+
+  it('updates basket capacity', () => {
+    basket.setBasketCapacity(3)
+    basket.addItem('BGLO')
+    basket.addItem('BGLP')
+    basket.addItem('BGLC') // Adding one more item within the updated capacity
+    const addedItemSkus = basket.items.map(item => item.sku)
+    expect(addedItemSkus).toEqual(['BGLO', 'BGLP', 'BGLC'])
+  })
+
+
+  it('notifies when removing a non-existent item', () => {
     const result = basket.removeItem('BGLE')
     expect(result).toBe(false)
   })

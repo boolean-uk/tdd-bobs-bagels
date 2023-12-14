@@ -12,8 +12,9 @@ class Item {
 }
 
 class Basket {
-  constructor() {
+  constructor(capacity = 10) {
     this.items = []
+    this.capacity = capacity
     this.inventory = this.loadInventoryData()
   }
 
@@ -28,10 +29,14 @@ class Basket {
   }
 
   addItem(sku) {
-    const itemData = this.inventory.find(item => item.sku === sku)
+    if (this.items.length >= this.capacity) {
+      console.warn('Basket is full. Cannot add more items.')
+      return false
+    }
+    const itemData = this.inventory.find((item) => item.sku === sku)
 
     if (itemData) {
-      const existingItem = this.items.find(item => item.sku === sku)
+      const existingItem = this.items.find((item) => item.sku === sku)
 
       if (existingItem) {
         existingItem.quantity += 1
@@ -55,6 +60,10 @@ class Basket {
       this.items.splice(itemIndex, 1)
     }
     return this.items
+  }
+
+  setBasketCapacity(newCapacity) {
+    this.capacity = newCapacity
   }
 }
 
