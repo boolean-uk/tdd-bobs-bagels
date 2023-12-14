@@ -21,7 +21,8 @@ const mockInventory = [
   }
 ]
 
-const mockBasketList = mockInventory.map((item) => {
+const mockInventoryCopy = JSON.parse(JSON.stringify(mockInventory))
+const mockBasketList = mockInventoryCopy.map((item) => {
   item.quantity = 1
   return item
 })
@@ -32,7 +33,7 @@ describe('Basket', () => {
 
     beforeEach(() => {
       basket._list = []
-      basket._inventory = mockInventory
+      basket._inventory = JSON.parse(JSON.stringify(mockInventory))
       basket.capacity = 12
     })
 
@@ -65,7 +66,7 @@ describe('Basket', () => {
       const result = basket.add('BBBB')
 
       expect(result).toBe('item quantity increased')
-      expect(basket._list).toEqual([mockBasketList[1]])
+      expect(basket._list[0].quantity).toEqual(2)
     })
 
     it('return "basket is full" if basket full', () => {
@@ -81,7 +82,7 @@ describe('Basket', () => {
     const basket = new Basket()
 
     beforeEach(() => {
-      basket._inventory = mockInventory
+      basket._inventory = JSON.parse(JSON.stringify(mockInventory))
     })
 
     it('find items in inventory', () => {
@@ -105,7 +106,7 @@ describe('Basket', () => {
 
     beforeEach(() => {
       basket._list = mockBasketList.slice(1)
-      basket._inventory = mockInventory
+      basket._inventory = JSON.parse(JSON.stringify(mockInventory))
     })
 
     it('return item if valid sku', () => {
@@ -131,11 +132,11 @@ describe('Basket', () => {
     const basket = new Basket()
 
     beforeEach(() => {
-      basket._inventory = mockInventory
+      basket._inventory = JSON.parse(JSON.stringify(mockInventory))
     })
 
     it('remove item with valid sku', () => {
-      basket._list = [...mockBasketList]
+      basket._list = JSON.parse(JSON.stringify(mockBasketList))
 
       const result = basket.remove('BBBB')
 
@@ -152,7 +153,7 @@ describe('Basket', () => {
     })
 
     it('return "invalid sku" when sku does not exist in inventory', () => {
-      basket._list = [...mockBasketList]
+      basket._list = JSON.parse(JSON.stringify(mockBasketList))
       const result = basket.remove('ZZZZ')
 
       expect(result).toBe('item is not stocked')
@@ -171,7 +172,7 @@ describe('Basket', () => {
     const basket = new Basket()
 
     it('return number of items in basket', () => {
-      basket._list = [...mockBasketList]
+      basket._list = JSON.parse(JSON.stringify(mockBasketList))
       basket._list[1].quantity = 3
       basket._list[2].quantity = 6
 
@@ -205,7 +206,7 @@ describe('Basket', () => {
     const basket = new Basket()
 
     beforeEach(() => {
-      basket._inventory = mockInventory
+      basket._inventory = JSON.parse(JSON.stringify(mockInventory))
     })
 
     it('return item price with valid sku', () => {
@@ -223,7 +224,7 @@ describe('Basket', () => {
     it('return "sku required" when no sku input', () => {
       const inputs = ['', undefined, null, [], {}]
 
-      inputs.forEach(input => {
+      inputs.forEach((input) => {
         const result = basket.displayItemPrice(input)
 
         expect(result).toBe('sku required')
@@ -235,7 +236,7 @@ describe('Basket', () => {
     const basket = new Basket()
 
     beforeEach(() => {
-      basket._list = mockBasketList
+      basket._list = JSON.parse(JSON.stringify(mockBasketList))
     })
 
     it('return sum of items in basket list', () => {
