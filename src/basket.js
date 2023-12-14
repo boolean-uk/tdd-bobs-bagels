@@ -3,7 +3,8 @@ const { bagelsInventory } = require('../inventory.json')
 class Basket {
   constructor() {
     this.basketList = []
-    this.maxCapacity = 3
+    this.maxCapacity = 6
+    this.currentCapacity = 0
   }
 
   getBasket() {
@@ -15,7 +16,7 @@ class Basket {
   }
 
   addBagel(bagelType) {
-    if (this.basketList.length === this.maxCapacity) {
+    if (this.currentCapacity === this.maxCapacity) {
       return 'basket is full of bagels!'
     } else {
       const bagelToAdd = bagelsInventory.find(
@@ -29,9 +30,11 @@ class Basket {
         )
         if (!isBagelInBasket) {
           bagelToAdd.quantity = 1
+          this.currentCapacity++
           this.basketList.push(bagelToAdd)
         } else {
           bagelToAdd.quantity++
+          this.currentCapacity++
         }
       }
       return bagelToAdd
@@ -67,6 +70,15 @@ class Basket {
       return `the price of the ${bagelToCheck.variant} ${bagelToCheck.name} is £${bagelToCheck.price}`
   }
 
+  // basketHasSpecialOffers() {
+  //   const updatedBasket = this.basketList.map((bagel) => {
+  //     if (bagel.sku === 'BGLO' && bagel.quantity > 5) {
+  //       return bagel.quantity
+  //     } else return bagel
+  //   })
+  //   return updatedBasket
+  // }
+
   calcBasketVal() {
     if (this.basketList.length === 0) {
       return 'there are no bagels in your basket'
@@ -86,8 +98,14 @@ const b = new Basket()
 // ADD BAGEL
 b.addBagel('BGLO')
 b.addBagel('BGLO')
-b.addBagel('BGLP')
-b.addBagel('BGLS')
+b.addBagel('BGLO')
+b.addBagel('BGLO')
+b.addBagel('BGLO')
+b.addBagel('BGLO')
+// b.addBagel('BGLO')
+// b.addBagel('BGLP')
+// b.addBagel('BGLS')
+console.log(b.addBagel('BGLO'))
 // console.log(b.addBagel('BGLO'))
 
 // REMOVE BAGEL
@@ -95,7 +113,7 @@ b.addBagel('BGLS')
 // console.log(b.removeBagel(undefined))
 
 // GET BASKET
-// console.log(b.getBasket())
+console.log(b.getBasket())
 
 // INCREASE BASKET CAPACITY
 // console.log(b.largerBasket(5))
@@ -106,6 +124,9 @@ b.addBagel('BGLS')
 // b.checkPrice('BGLO')
 
 // CALC BASKET TOTAL
-console.log(b.calcBasketVal())
+// console.log(b.calcBasketVal())
+
+// SPECIAL OFFERS
+// console.log(b.basketHasSpecialOffers())
 
 module.exports = { Basket }
