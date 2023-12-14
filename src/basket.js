@@ -24,6 +24,8 @@ export default class Basket {
   removeItem(sku) {
     if (!sku || typeof sku !== 'string') return 'sku required!'
 
+    if (!this.basketList.find((item) => item.sku === sku)) return 'item is not in basket'
+
     const newBasket = this.basketList.filter((item) => item.sku !== sku)
     return (this.basketList = newBasket)
   }
@@ -34,7 +36,7 @@ export default class Basket {
       sum += item.quantity
       return sum
     })
-    
+
     if (sum === this.basketSize) this.basketisFull = true
     return 'basket is full'
   }
