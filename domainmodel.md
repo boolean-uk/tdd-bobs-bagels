@@ -16,7 +16,7 @@
     TYPE: Array of Objects
     EXAMPLE: [ {
       sku: @string,
-      calcTotal: @function (amount @ integer, price @ float)
+      ruleAsFunction: @function (amount @ integer, price @ float)
     }]
   #### employees
     TYPE: Array of Employee instances

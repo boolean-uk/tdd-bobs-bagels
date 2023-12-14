@@ -1,5 +1,6 @@
 import { inventory } from "./inventory.js"
 import { basketTypesDefault } from "./baskettypes.js"
+import defaultSpecials from "./defaultSpecials.js"
 import Employee from "./employee.js"
 import Basket from "./basket.js"
 
@@ -7,7 +8,7 @@ class Store {
   constructor (name) {
     this.name = name
     this.isOpen = false
-    this.specials = []
+    this.specials = [...defaultSpecials]
     this.employees = []
     this.availableBasketTypes = [...basketTypesDefault]
     this.availableProducts = [...inventory]
