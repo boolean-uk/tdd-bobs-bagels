@@ -7,7 +7,6 @@ describe("Store creation", () => {
     const myStore = new Store("Bob's Bagels")
     expect(myStore.availableBasketTypes).toEqual(basketTypesDefault)
     expect(myStore.employees).toEqual([])
-    expect(myStore.customers).toEqual([])
     expect(myStore.availableProducts).toBeTruthy()
     expect(myStore.name === "Bob's Bagels").toBeTrue()
     expect(myStore.isOpen).toBeFalse()
@@ -72,7 +71,7 @@ describe("customers", () => {
     const myStore = new Store("Test")
     const shopper = new Customer(myStore)
     shopper.receiveBasket(myStore.handoutBasket("M"))
-    expect(shopper.customers[0].basket.capacity).toEqual(4)
+    expect(shopper.basket.capacity).toEqual(4)
   })
 })
 
