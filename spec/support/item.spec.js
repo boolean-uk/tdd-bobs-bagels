@@ -12,7 +12,7 @@ describe("new item creation", () => {
   it("item with variant", () => {
     const myItem = new Item("MFN", "muffin", 3.02, "skittles")
     expect(myItem.name).toEqual("muffin")
-    expect(myItem.sku).toEqual("MFN")
+    expect(myItem.sku).toEqual("MFFS")
     expect(myItem.variant).toEqual("skittles")
     expect(myItem.fillings).toBeUndefined()
   })
