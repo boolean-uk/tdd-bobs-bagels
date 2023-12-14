@@ -1,4 +1,10 @@
-const { BasketItem, Basket } = require('../src/basket.js')
+const {
+  BasketItem,
+  Basket,
+  Inventory,
+  InventoryItem,
+  SpecialOffer
+} = require('../src/basket.js')
 const inventory = require('../inventory.json')
 
 describe('add to basket', () => {
@@ -174,14 +180,37 @@ describe('total cost', () => {
 
 describe('special offers', () => {
   it('found successfully', () => {
-    const inventoryItem1 = new InventoryItem(inventory.inventory[0])
-    const inventoryItem2 = new InventoryItem(inventory.inventory[1])
-    const inventoryItem3 = new InventoryItem(inventory.inventory[2])
+    const specialOffer1 = new SpecialOffer(true, 6, '2.49', 'BGLO')
+    const specialOffer2 = new SpecialOffer(true, 12, '3.99', 'BGLP')
+    const specialOffer3 = new SpecialOffer(true, 6, '2.49', 'BGLE')
+    const specialOffer4 = new SpecialOffer(
+      true,
+      1,
+      '1.25',
+      'COF',
+      'Coffee & Plain Bagel'
+    )
+
+    const inventoryItem1 = new InventoryItem(
+      inventory.inventory[0],
+      specialOffer1
+    )
+    const inventoryItem2 = new InventoryItem(
+      inventory.inventory[1],
+      specialOffer2
+    )
+    const inventoryItem3 = new InventoryItem(
+      inventory.inventory[2],
+      specialOffer3
+    )
     const inventoryItem4 = new InventoryItem(inventory.inventory[3])
-    const inventoryItem5 = new InventoryItem(inventory.inventory[4])
+    const inventoryItem5 = new InventoryItem(
+      inventory.inventory[4],
+      specialOffer4
+    )
     const inventoryItem6 = new InventoryItem(inventory.inventory[5])
 
-    const inventory = new Inventory([
+    const inventory1 = new Inventory([
       inventoryItem1,
       inventoryItem2,
       inventoryItem3,
@@ -190,7 +219,7 @@ describe('special offers', () => {
       inventoryItem6
     ])
 
-    const result = inventory.getSpecialOffers()
+    const result = inventory1.getSpecialOffers()
 
     expect(result[0].active).toEqual(true)
     expect(result[0].itemSku).toEqual('BGLO')
@@ -215,11 +244,8 @@ describe('special offers', () => {
   })
 
   it('were not found', () => {
-    it('', () => {
-      const inventory = inventory.inventory
-      const result = inventory.getSpecialOffers()
-
-      expect(result).toEqual('no offers found')
-    })
+    const inventory1 = new Inventory(inventory.inventory)
+    const result = inventory1.getSpecialOffers()
+    expect(result).toEqual('no offers found')
   })
 })

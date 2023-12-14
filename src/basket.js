@@ -87,7 +87,48 @@ class BasketItem {
   }
 }
 
+class Inventory {
+  constructor(arrayOfItems) {
+    this.list = arrayOfItems
+  }
+
+  getSpecialOffers() {
+    const itemsWithSpecialOffers = this.list.filter((i) => i.specialOffer)
+
+    if (!itemsWithSpecialOffers || itemsWithSpecialOffers.length < 1) {
+      return 'no offers found'
+    }
+
+    const specialOffers = itemsWithSpecialOffers.map((i) => i.specialOffer)
+
+    return specialOffers
+  }
+}
+
+class InventoryItem {
+  constructor(inventoryItem, specialOffer) {
+    this.sku = inventoryItem.sku
+    this.price = inventoryItem.price
+    this.name = inventoryItem.name
+    this.variant = inventoryItem.variant
+    this.specialOffer = specialOffer
+  }
+}
+
+class SpecialOffer {
+  constructor(active, requiredQuantity, discountedPrice, itemSku, combo) {
+    this.active = active
+    this.itemSku = itemSku
+    this.requiredQuantity = requiredQuantity
+    this.discountedPrice = discountedPrice
+    this.combo = combo
+  }
+}
+
 module.exports = {
   Basket,
-  BasketItem
+  BasketItem,
+  Inventory,
+  InventoryItem,
+  SpecialOffer
 }
