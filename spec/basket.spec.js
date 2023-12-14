@@ -181,5 +181,14 @@ describe('Basket', () => {
       expect(result).toBe(20)
       expect(basket.capacity).toBe(20)
     })
+
+    it('return "please enter positive integer value" if not positive integer value given ', () => {
+      const inputs = ['10', 3.5, 0, -5, [1], { 1: 1 }]
+
+      inputs.forEach((input) => {
+        const result = basket.setBasketCapacity(input)
+        expect(result).toBe('please enter positive integer value')
+      })
+    })
   })
 })
