@@ -29,15 +29,14 @@ export default class Basket {
       sum += item.quantity
       return sum
     })
-    if (sum === this.basketSize) 
-    this.basketisFull = true
+    if (sum === this.basketSize) this.basketisFull = true
     return 'basket is full'
   }
 
-  changeBasketSize(size){
-   return this.basketSize = size
-  } 
- 
+  changeBasketSize(size) {
+    if (!size || typeof size !== 'number') return 'error, set basket size.'
+    return (this.basketSize = size)
+  }
 }
 
 const basket = new Basket()
