@@ -47,6 +47,9 @@
   #### changeCapacity
     INPUT: new Capacity @integer
     OUTPUT: boolean – to indicate whether it was changed or not
+  #### itemInBasket
+    INPUT: @object of item
+    OUTPUT: @boolean whether item is in basket or not
   #### addItem
     INPUT: sku
     OUTPUT:

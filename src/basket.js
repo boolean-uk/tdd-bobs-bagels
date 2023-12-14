@@ -14,6 +14,10 @@ class Basket {
     return true
   }
 
+  itemInBasket (itemObj) {
+    return !!this.items.filter(item => item.sku === itemObj.sku).length
+  }
+
   addItem (itemObj) {
     if (this.isFull === true) return false
     this.items.push({ ...itemObj, quantity: 1 })
