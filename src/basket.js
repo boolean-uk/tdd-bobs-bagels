@@ -43,6 +43,11 @@ class Basket {
   }
 
   removeItem (itemObj) {
+    if (this.itemInBasket(itemObj) === false) {
+      console.log("you don't have that item in your basket")
+      return false
+    }
+    
     this.items = this.items.filter(item => item.sku !== itemObj.sku)
     return true
   }

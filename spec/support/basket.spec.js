@@ -61,6 +61,17 @@ describe("filling basket", () => {
   })
 })
 
+describe("removing items", () => {
+  it("checking whether item is present", () => {
+    const myBasket = new Basket(3)
+    const item = new Item("ITM1", "first", 1.23)
+    const item2 = new Item("ITM2", "second", 2.34)
+    myBasket.addItem(item)
+    expect(myBasket.itemInBasket(item)).toBeTrue()
+    expect(myBasket.itemInBasket(item2)).toBeFalse()
+  })
+})
+
 describe("calculating total", () => {
   it("total is 0 for new basket", () => {
     const myBasket = new Basket(2)
