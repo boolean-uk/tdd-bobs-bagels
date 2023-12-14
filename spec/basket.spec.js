@@ -172,9 +172,16 @@ describe('Basket', () => {
   })
 
   // EXTENSION 1
-  xdescribe('Onion Bagel Special Offer', () => {
+  describe('Onion Bagel Special Offer', () => {
     it('6 Onion Bagels should cost £2.49', () => {
       const BGLOx6Price = 'the price of your basket is £2.49' // DISCOUNT ON 6X BGLO
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.basketHasSpecialOffers()
       const result = b.calcBasketVal()
       expect(result).toEqual(BGLOx6Price)
     })
@@ -182,6 +189,17 @@ describe('Basket', () => {
     it('10 Onion Bagel should cost £4.45', () => {
       const BGLOx10Price = 'the price of your basket is £4.45' // DISCOUNT ON 6X BGLO AND 4X BGLO @ 0.49 EACH
       b.largerBasket(10)
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.basketHasSpecialOffers()
       const result = b.calcBasketVal()
       expect(result).toEqual(BGLOx10Price)
     })
@@ -189,6 +207,19 @@ describe('Basket', () => {
     it('12 Onion Bagel should cost £4.45', () => {
       const BGLOx12Price = 'the price of your basket is £4.98' // DISCOUNT ON 2 LOTS OF 6X BGLO
       b.largerBasket(12)
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.addBagel('BGLO')
+      b.basketHasSpecialOffers()
       const result = b.calcBasketVal()
       expect(result).toEqual(BGLOx12Price)
     })

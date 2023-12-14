@@ -144,10 +144,10 @@ b.addBagel('BGLP')
 
 // SPECIAL OFFERS
 // console.log(b.basketHasSpecialOffers())
-b.basketHasSpecialOffers()
-console.log(b.updatedBasket)
+// b.basketHasSpecialOffers()
+// console.log(b.updatedBasket)
 
 // CALC BASKET TOTAL
-console.log(b.calcBasketVal())
+// console.log(b.calcBasketVal())
 
 module.exports = { Basket }
