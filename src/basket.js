@@ -33,9 +33,12 @@ class Basket {
   }
 
   remove(sku) {
-    const indexToRemove = this._list.findIndex(item => item.sku === sku)
+    const indexToRemove = this._list.findIndex((item) => item.sku === sku)
 
     if (indexToRemove === -1) {
+      const stockedItem = this.findInventoryItem(sku)
+
+      if (stockedItem === 'item not found') return 'item is not stocked'
       return 'item not found'
     }
 
