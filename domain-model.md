@@ -60,6 +60,7 @@ I need to be able to add the special offers.
 
 |        | METHODS | INPUTS | DATA | SITUATION | OUTPUTS |
 |--------|-|-|-|-|-|
+| 1 | getSpecialOffers(@Inventory)| inventory(@items[]), items(@Objects), specialOffer(@Object)|item: properties:sku(@String), price(@String), name(@String), variant(@String), specialOffer(@Object). specialOffer: properties: active(@Boolean), requiredQuantity(@Integer), discountedPrice(@String)|If there are special offers... If there aren't any special offers| ...a list of special offers ...false|
 
 ### extension 2 - user stories
 

@@ -171,3 +171,39 @@ describe('total cost', () => {
     expect(result).toBe('the basket is empty - add some bagels?')
   })
 })
+
+describe('special offers', () => {
+  it('found successfully', () => {
+    const inventory = new Inventory(inventory.inventory)
+
+    const result = inventory.getSpecialOffers()
+
+    expect(result[0].active).toEqual(true)
+    expect(result[0].itemSku).toEqual('BGLO')
+    expect(result[0].requiredQuantity).toEqual(6)
+    expect(result[0].discountedPrice).toEqual('2.49')
+
+    expect(result[1].active).toEqual(true)
+    expect(result[1].itemSku).toEqual('BGLP')
+    expect(result[1].requiredQuantity).toEqual(12)
+    expect(result[1].discountedPrice).toEqual('3.99')
+
+    expect(result[2].active).toEqual(true)
+    expect(result[2].itemSku).toEqual('BGLE')
+    expect(result[2].requiredQuantity).toEqual(6)
+    expect(result[2].discountedPrice).toEqual('2.49')
+
+    expect(result[3].active).toEqual(true)
+    expect(result[3].itemSku).toEqual('COF')
+    expect(result[3].requiredQuantity).toEqual(1)
+    expect(result[3].discountedPrice).toEqual('1.25')
+    expect(result[3].combo).toEqual('Coffee & Plain Bagel')
+  })
+})
+
+// |  SKU   |  Name  |  Variant   | Price | Special offers
+// |--------|--------|------------|-------|----
+// |  BGLO  | Bagel  | Onion      |  .49  | 6 for 2.49     
+// |  BGLP  | Bagel  | Plain      |  .39  | 12 for 3.99
+// |  BGLE  | Bagel  | Everything |  .49  | 6 for 2.49
+// |  COF   | Coffee |            |  .99  | Coffee & Plain Bagel for 1.25             
