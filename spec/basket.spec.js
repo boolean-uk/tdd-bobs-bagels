@@ -219,5 +219,15 @@ describe('Basket', () => {
 
       expect(result).toBe('item not found')
     })
+
+    it('return "sku required" when no sku input', () => {
+      const inputs = ['', undefined, null, [], {}]
+
+      inputs.forEach(input => {
+        const result = basket.displayItemPrice(input)
+
+        expect(result).toBe('sku required')
+      })
+    })
   })
 })
