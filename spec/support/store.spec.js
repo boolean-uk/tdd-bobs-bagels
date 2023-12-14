@@ -100,7 +100,7 @@ describe("customers", () => {
     expect(askedFor.price > 0).toBeTrue()
   })
 
-  it("customer can ask for price of  item that doesn't exist", () => {
+  it("customer can ask for price of item that doesn't exist", () => {
     const myStore = new Store("Bob's Bagels")
     const shopper = new Customer(myStore)
     const askedFor = shopper.askForItem("XYZ", "nonexisting")

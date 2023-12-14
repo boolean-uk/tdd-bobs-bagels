@@ -34,10 +34,10 @@ class Store {
     this.availableBasketTypes.push(basketObj)
   }
 
-  handoutProductBySKU (sku) {
+  getProductBySKU (sku) {
     const foundProduct = this.availableProducts.find(product => product.sku === sku)
-    console.log(foundProduct)
     if (!!foundProduct) {
+      console.log(foundProduct)
       return foundProduct
     } else {
       console.log("unknown SKU", sku)
@@ -45,14 +45,18 @@ class Store {
     }
   }
 
-  presentProductByNameVariant (name, variant) {
-    const skuToSearch = skuFromName(name, variant)
-    if (this.handoutProductBySKU(skuToSearch) === false) {
+  getProductByDescription (name, variant) {
+    const foundProduct = this.availableProducts.find(product => {
+      return product.name.toLowerCase() === name.toLowerCase() &&
+      product.variant.toLowerCase() === variant.toLowerCase()
+      })
+    if (!!foundProduct) {
+      console.log(`Here is a ${name} of variant ${variant}:`)
+      console.log(foundProduct)
+      return foundProduct
+    } else {
       console.log(`We don't have a ${name} of variant ${variant}.`)
       return false
-    } else {
-      console.log(`Here is a ${name} of variant ${variant}:`)
-      return this.handoutProductBySKU(skuToSearch)
     }
   }
 
