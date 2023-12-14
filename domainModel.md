@@ -23,11 +23,11 @@ I'd like to remove an item from my basket
 
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | ------
-|[X] addItem|(sku)|sku(@string)|if sku is valid| add item to basket as a string
+|[X] addItem|(sku)|sku: sku:(@string), price:(@string), name:(@string), variant(@string), fillings(@string) |if sku is valid| add item to basket as a string
 ||||sku not valid|return "item not found"
 ||||no sku added| return "sku required"
 |||||
-|[X] removeItem|(sku)|sku(@string)|if sku is valid and in basket| remove item from basket
+|[X] removeItem|(sku)|sku: sku:(@string), price:(@string), name:(@string), variant(@string), fillings(@string) |if sku is valid and in basket| remove item from basket
 ||||no sku added| return "sku required"
 
 
@@ -60,7 +60,7 @@ I'd like to know if I try to remove an item that doesn't exist in my basket.
 
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
-|[ ] checkIfFull|()|@Number|If basket equals to basket full max items| return "basket is full"
+|[X] checkIfFull|()|quantity(@Number)|If basket equals to basket full max items| return "basket is full"
 |||||
 |[ ] changeBasketSize|(Size)|Size(@Number)|if basket size exists| change the basket size allowance
 ||||if basket size does not exist| return "error, set basket size"

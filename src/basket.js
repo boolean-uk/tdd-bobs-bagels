@@ -4,13 +4,14 @@ export default class Basket {
   constructor() {
     this.basketList = []
     this.basketSize = 12
+    this.basketisFull = false
   }
 
   addItem(sku) {
     if (!sku || typeof sku !== 'string') return 'sku required!'
     const itemToAdd = inventory.find((item) => item.sku === sku)
     if (!itemToAdd) return 'item not found'
-    if (this.checkIfFull() === 'basket is full') return this.checkIfFull()
+    if (this.basketisFull) return this.checkIfFull()
     itemToAdd.quantity = 1
     this.basketList.push(itemToAdd)
     return itemToAdd.name
@@ -28,8 +29,15 @@ export default class Basket {
       sum += item.quantity
       return sum
     })
-    if (sum === this.basketSize) return 'basket is full'
+    if (sum === this.basketSize) 
+    this.basketisFull = true
+    return 'basket is full'
   }
+
+  changeBasketSize(size){
+   return this.basketSize = size
+  } 
+ 
 }
 
 const basket = new Basket()
