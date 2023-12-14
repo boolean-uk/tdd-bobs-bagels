@@ -2,15 +2,20 @@ const { inventory } = require('../inventory.json')
 class Basket {
   constructor() {
     this.basketList = []
+    this.maxCapacity = 5
   }
 
   addItemToBasket(bagelType) {
-    const bagelToAdd = inventory.find((bagel) => bagel.sku === bagelType)
-    if (!bagelToAdd) {
-      return `No bagels found`
+    if (this.basketList.length > 4) {
+      return 'Basket is Full!!cannot add more bagels!'
     } else {
-      this.basketList.push(bagelToAdd)
-      return bagelToAdd
+      const bagelToAdd = inventory.find((bagel) => bagel.sku === bagelType)
+      if (!bagelToAdd) {
+        return `No bagels found`
+      } else {
+        this.basketList.push(bagelToAdd)
+        return bagelToAdd
+      }
     }
   }
 
@@ -37,12 +42,12 @@ class Basket {
 }
 
 const b = new Basket()
-console.log('your order is', b.addItemToBasket('BGLO'))
-console.log('your order is', b.addItemToBasket('BGLE'))
-console.log('your order is', b.addItemToBasket('BGLE'))
-
-console.log('your order is', b.removeItemFromBasket('BGLE'))
-console.log('your order is', b.removeItemFromBasket('BGLE'))
+console.log('basket', b.addItemToBasket('BGLO'))
+console.log('basket', b.addItemToBasket('BGLO'))
+console.log('basket', b.addItemToBasket('BGLO'))
+console.log('basket', b.addItemToBasket('BGLO'))
+console.log('basket', b.addItemToBasket('BGLO'))
+console.log('basket', b.addItemToBasket('BGLO'))
 console.log(b.getBasket())
 module.exports = {
   Basket
