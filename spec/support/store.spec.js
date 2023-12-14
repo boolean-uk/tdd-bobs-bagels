@@ -73,6 +73,13 @@ describe("customers", () => {
     shopper.receiveBasket(myStore.handoutBasket("M"))
     expect(shopper.basket.capacity).toEqual(4)
   })
+
+  it("the store entered by the customer is a reference not a POJO", () =>{
+    const myStore = new Store("Bob's Bagels")
+    const shopper = new Customer(myStore)
+    myStore.addEmployee("Bob", "manager")
+    expect(myStore.employees).toEqual(shopper.atStore.employees)
+  })
 })
 
 describe("employees can do employee stuff", () => {
