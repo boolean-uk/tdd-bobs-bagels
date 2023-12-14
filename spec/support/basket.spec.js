@@ -70,6 +70,21 @@ describe("removing items", () => {
     expect(myBasket.itemInBasket(item)).toBeTrue()
     expect(myBasket.itemInBasket(item2)).toBeFalse()
   })
+
+  it("removing present item", () => {
+    const myBasket = new Basket(3)
+    const item = new Item("ITM1", "first", 1.23)
+    myBasket.addItem(item)
+    expect(myBasket.countItems()).toEqual(1)
+    expect(myBasket.removeItem(item)).toBeTrue()
+    expect(myBasket.countItems()).toEqual(0)
+  })
+
+  it("removing missing item", () => {
+    const myBasket = new Basket(3)
+    const item = new Item("ITM1", "first", 1.23)
+    expect(myBasket.removeItem(item)).toBeFalse()
+  })
 })
 
 describe("calculating total", () => {
