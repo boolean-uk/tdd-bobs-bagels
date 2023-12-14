@@ -1,5 +1,5 @@
 import Basket from "../../src/basket.js"
-import Item from "../../src/item.js"
+import { Item } from "../../src/item.js"
 
 describe("basket", () => {
   it("upon creation basket is empty", () => {

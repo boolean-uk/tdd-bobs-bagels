@@ -12,6 +12,10 @@ class Customer {
   receiveBasket (basketObj) {
     this.basket = basketObj
   }
+
+  askForItem (name, variant) {
+    this.atStore.presentProductByNameVariant(name, variant)
+  }
 }
 
 export default Customer

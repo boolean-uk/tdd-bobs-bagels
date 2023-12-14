@@ -91,6 +91,12 @@ describe("customers", () => {
     expect(shopper.basket.isFull()).toBeFalse()
     expect(shopper.basket.items.length).toEqual(0)
   })
+
+  it("customer can ask for price", () => {
+    const myStore = new Store("Bob's Bagels")
+    const shopper = new Customer(myStore)
+    shopper.askForItem("Bagel", "everything")
+  })
 })
 
 describe("employees can do employee stuff", () => {

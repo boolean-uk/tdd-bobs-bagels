@@ -2,7 +2,7 @@ import { inventory } from "./inventory.js"
 import { basketTypesDefault } from "./baskettypes.js"
 import Employee from "./employee.js"
 import Basket from "./basket.js"
-import skuFromName from "./item.js"
+import { skuFromName } from "./item.js"
 
 class Store {
   constructor (name) {
@@ -35,14 +35,25 @@ class Store {
   }
 
   handoutProductBySKU (sku) {
-    const foundProduct = this.availableProducts(product.sku === sku)
-    if (!!foundProduct) return "unknown sku"
-    return foundProduct
+    const foundProduct = this.availableProducts.find(product => product.sku === sku)
+    console.log(foundProduct)
+    if (!!foundProduct) {
+      return foundProduct
+    } else {
+      console.log("unknown SKU", sku)
+      return false
+    }
   }
 
   presentProductByNameVariant (name, variant) {
     const skuToSearch = skuFromName(name, variant)
-    this.handoutProductBySKU(skuToSearch)
+    if (this.handoutProductBySKU(skuToSearch) === false) {
+      console.log(`We don't have a ${name} of variant ${variant}.`)
+      return false
+    } else {
+      console.log(`Here is a ${name} of variant ${variant}:`)
+      return this.handoutProductBySKU(skuToSearch)
+    }
   }
 
   handoutBasket (name) {
