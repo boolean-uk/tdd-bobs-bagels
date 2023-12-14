@@ -230,4 +230,18 @@ describe('Basket', () => {
       })
     })
   })
+
+  describe('display basket sum', () => {
+    const basket = new Basket()
+
+    beforeEach(() => {
+      basket._list = mockBasketList
+    })
+
+    it('return sum of items in basket list', () => {
+      const result = basket.displayBasketSum()
+
+      expect(result).toBe(30)
+    })
+  })
 })
