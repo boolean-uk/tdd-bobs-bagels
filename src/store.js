@@ -1,7 +1,6 @@
 import { inventory } from "./inventory.js"
 import { basketTypesDefault } from "./baskettypes.js"
 import Employee from "./employee.js"
-import Customer from "./customer.js"
 import Basket from "./basket.js"
 
 class Store {
@@ -9,7 +8,6 @@ class Store {
     this.name = name
     this.isOpen = false
     this.employees = []
-    this.customers = []
     this.availableBasketTypes = [...basketTypesDefault]
     this.availableProducts = [...inventory]
   }
@@ -29,11 +27,6 @@ class Store {
   addEmployee (name, role) {
     const employee = new Employee(name, role)
     this.employees.push(employee)
-  }
-
-  addCustomer () {
-    const customer = new Customer()
-    this.customers.push(customer)
   }
 
   addBasketType (basketObj) {

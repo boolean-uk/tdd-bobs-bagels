@@ -1,5 +1,6 @@
 import Store from "../../src/store.js"
 import { basketTypesDefault } from "../../src/baskettypes.js"
+import Customer from "../../src/customer.js"
 
 describe("Store creation", () => {
   it("initially, the store exists with the default bucket types", () => {
@@ -67,18 +68,11 @@ describe("adding employees", () => {
 })
 
 describe("customers", () => {
-  it("add one customer raises customer count by one", () => {
-    const myStore = new Store("Test")
-    const oldCustomerCount = myStore.customers.length
-    myStore.addCustomer()
-    expect(myStore.customers.length).toEqual(oldCustomerCount + 1)
-  })
-
   it("customers can receive a basket", () => {
     const myStore = new Store("Test")
-    myStore.addCustomer()
-    myStore.customers[0].receiveBasket(myStore.handoutBasket("M"))
-    expect(myStore.customers[0].basket.capacity).toEqual(4)
+    const shopper = new Customer(myStore)
+    shopper.receiveBasket(myStore.handoutBasket("M"))
+    expect(shopper.customers[0].basket.capacity).toEqual(4)
   })
 })
 
