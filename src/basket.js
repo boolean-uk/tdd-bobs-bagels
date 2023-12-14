@@ -44,6 +44,16 @@ class Basket {
     }
     return item
   }
+
+  increaseQuantity(item) {
+    const searchResult = this.list.find((i) => i.sku === item.sku)
+    if (!searchResult || searchResult.length < 1) {
+      return 'this item is not in you basket yet - add it?'
+    }
+    const updatedQuantity = searchResult.quantity + 1
+    const updatedItem = { ...searchResult, quantity: updatedQuantity }
+    return updatedItem
+  }
 }
 
 class BasketItem {
@@ -52,6 +62,7 @@ class BasketItem {
     this.price = inventoryItem.price
     this.name = inventoryItem.name
     this.variant = inventoryItem.variant
+    this.quantity = 1
   }
 
   displayItemPrice() {

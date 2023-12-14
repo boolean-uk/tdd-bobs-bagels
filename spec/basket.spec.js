@@ -141,7 +141,7 @@ describe('increase the quantity of an item', () => {
 
     const result = basket1.increaseQuantity(basketItem2)
     expect(result.quantity).toBe(2)
-    expect(result.sku).toBe('BGLE')
+    expect(result.sku).toBe('BGLS')
   })
   it('which is not in the basket', () => {
     const basketItem1 = new BasketItem(inventory.inventory[2])
