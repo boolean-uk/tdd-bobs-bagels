@@ -6,10 +6,33 @@ describe('Bobs bagels basket', () => {
     const basket = new Basket()
     beforeEach(() => {
       basket.basketList = []
+      basket.inventory = [
+        {
+          sku: 'a1a1',
+          price: '1.25',
+          name: 'Item1',
+          variant: 'None',
+          quantity: 1
+        },
+        {
+          sku: 'b2b2',
+          price: '6.55',
+          name: 'Item2',
+          variant: 'None',
+          quantity: 1
+        },
+        {
+          sku: 'c3c3',
+          price: '8.50',
+          name: 'Item3',
+          variant: 'None',
+          quantity: 1
+        },
+      ]
     })
     it(' / adding a valid sku', () => {
-      const newItem = basket.addItem('BGLO')
-      expect(newItem).toEqual('Bagel')
+      const newItem = basket.addItem('a1a1')
+      expect(newItem).toEqual('Item1')
     })
     it('/ if sku is invalid', () => {
       const newItem = basket.addItem('XXXX')
@@ -22,6 +45,21 @@ describe('Bobs bagels basket', () => {
     it('/ if sku is not a string', () => {
       const notASku = basket.addItem(1234)
       expect(notASku).toEqual('sku required!')
+    })
+    it('/ adding item of same sku returns quantity + 1', () => {
+      basket.basketList = [
+        {
+          sku: 'a1a1',
+          price: '1.25',
+          name: 'Item1',
+          variant: 'None',
+          quantity: 1
+        }
+      ]
+      const result = basket.newItem('a1a1')
+      const newBasket = basket.basketList[0].quantity
+      expect(result).toEqual(newBasket === 2)
+
     })
   })
   describe('/ remove items from basket', () => {
@@ -146,19 +184,22 @@ describe('Bobs bagels basket', () => {
           sku: 'a1a1',
           price: '1.25',
           name: 'Item1',
-          variant: 'None'
+          variant: 'None',
+          quantity: 1
         },
         {
           sku: 'b2b2',
           price: '6.55',
           name: 'Item2',
-          variant: 'None'
+          variant: 'None',
+          quantity: 1
         },
         {
           sku: 'c3c3',
           price: '8.50',
           name: 'Item3',
-          variant: 'None'
+          variant: 'None',
+          quantity: 1
         },
       ]
     })

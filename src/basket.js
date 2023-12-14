@@ -53,4 +53,5 @@ export default class Basket {
     if(!foundItem) return false
     return `Name: ${foundItem.name}, Price: £${foundItem.price}`
   }
+  
 }

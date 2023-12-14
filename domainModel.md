@@ -98,7 +98,7 @@ When I go to checkout I'd like to know the total sum of the bagels in my basket
 
 | Methods | Inputs | Data | Scenario | Outputs
 | ------ | ------ | ------ | ----- | -----
-|[ ] findItems|(sku)|sku(@string)|if sku in inventory exists| display item description and price
+|[X] findItems|(sku)|sku(@string)|if sku in inventory exists| display item description and price
 ||||if sku does not exist in inventory| return false
 |||||
 |[ ] increaseQuantity|(sku)|sku(@string), @Number|if sku exist in basket| increase quanitity by one
