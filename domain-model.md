@@ -107,8 +107,8 @@ V: pay, know
 |||| invalid sku | return "sku not found" | x |
 |||| no sku input | return "sku required" | x |
 |||||
-|displayBasketSum()||| items in basket | return sum of items.price
-|||| no items in basket | return 0
+|displayBasketSum()||| items in basket | return sum of items.price | x |
+|||| no items in basket | return 0 | x |
 |||||
 | findInventoryItem(sku)| sku(@string)||valid sku, sku in inventory | return item object | x |
 |||| valid sku, sku not in inventory | return "item not found" | x |
