@@ -45,6 +45,7 @@ export default class Basket {
     if (!size || typeof size !== 'number') return 'error, set basket size.'
     return (this.basketSize = size)
   }
+
 }
 
 const basket = new Basket()

@@ -1,3 +1,4 @@
+import { inventory } from '../inventory.js'
 import Basket from '../src/basket.js'
 
 describe('Bobs bagels basket', () => {
@@ -135,6 +136,35 @@ describe('Bobs bagels basket', () => {
 
       expect(result).toEqual('error, set basket size.')
       expect(basket.basketSize).toEqual(basketSize)
+    })
+  })
+  describe('/ finding items in the inventory and if true displaying the values of the items', () => {
+    const inventory = new Inventory()
+    beforeEach(() => {
+      inventory.items = [
+        {
+          sku: 'a1a1',
+          price: '1.25',
+          name: 'Item1',
+          variant: 'None'
+        },
+        {
+          sku: 'b2b2',
+          price: '6.55',
+          name: 'Item2',
+          variant: 'None'
+        },
+        {
+          sku: 'c3c3',
+          price: '8.50',
+          name: 'Item3',
+          variant: 'None'
+        },
+      ]
+    })
+    it('if item exists in inventory list', () => {
+      const result = findItems('b2b2')
+      expect(result).toEqual('Name: Item1, Price: £1.25')
     })
   })
 })

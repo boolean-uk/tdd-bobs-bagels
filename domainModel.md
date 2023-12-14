@@ -65,7 +65,7 @@ I'd like to know if I try to remove an item that doesn't exist in my basket.
 |[X] changeBasketSize|(Size)|Size(@Number)|if changeBasketZise recieves a number| change the basket size allowance
 ||||if changeBasketSize does not revieve a number| return "error, set basket size"
 |||||
-|[ ] removeItem CONTINUED|(sku)|sku: sku:(@string), price:(@string), name:(@string), variant(@string), fillings(@string) |if sku does not exist in basket| return "false" and "item does not exist in basket"
+|[X] removeItem CONTINUED|(sku)|sku: sku:(@string), price:(@string), name:(@string), variant(@string), fillings(@string) |if sku does not exist in basket| return "false" and "item does not exist in basket"
 ||||if sku does exist in basket| return sku.
 
 
