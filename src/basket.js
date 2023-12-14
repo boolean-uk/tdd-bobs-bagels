@@ -89,7 +89,10 @@ class Basket {
   }
 
   checkBasketQuantity() {
+    if (Array.isArray(this._list)) {
     return this._list.reduce((a, b) => a + b.quantity, 0)
+    }
+    return 'misconfigured basket'
   }
 
   setBasketCapacity(newCapacity) {
