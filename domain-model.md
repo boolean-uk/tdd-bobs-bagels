@@ -92,7 +92,7 @@ V: pay, know
 |||| no sku input | return message "item sku required" | x |
 |||||
 | checkBasketQuantity()|||basket is (@array)|return sum of each item quantity | x |
-||||basket is not (@array)|return "error, misconfigured basket"
+||||basket is not (@array)|return "misconfigured basket" | x |
 |||||
 | setBasketCapacity(capacity)|capacity(@Number)| @Number > 0| positive integer input | change capacity, return capacity | x |
 |||| not positive number input | return "please enter positive number value" | x |
