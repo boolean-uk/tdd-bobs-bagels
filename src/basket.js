@@ -112,6 +112,10 @@ class Basket {
 
     return Number(item.price)
   }
+
+  displayBasketSum() {
+    return this._list.reduce((a, b) => a + (b.price * b.quantity), 0)
+  }
 }
 
 export default Basket
