@@ -86,8 +86,8 @@ V: pay, know
 |||| basket is full | return message "basket full" | |
 |||| sku already in basket | increase quantity of item in basket, message "item added"
 |||||
-| removeFromBasket(sku) | sku(@string)| | valid sku, sku in basket | remove item to basket, message "item removed" |
-|||| valid sku, sku not in basket | return message "item not in cart"
+| removeFromBasket(sku) | sku(@string)| | valid sku, sku in basket | remove item to basket, message "item removed" | x |
+|||| valid sku, sku not in basket | return message "item not in cart" | 
 |||| invalid sku | return message "valid sku required"
 |||| no sku input | return message "item sku required"
 |||||
