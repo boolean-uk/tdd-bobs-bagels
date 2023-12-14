@@ -1,6 +1,6 @@
 import Basket from '../src/basket.js'
 
-const mockList = [
+const mockInventory = [
   {
     sku: 'AAAA',
     price: '5',
@@ -21,28 +21,25 @@ const mockList = [
   }
 ]
 
+const mockBasketList = mockInventory.map((item) => {
+  item.quantity = 1
+  return item
+})
+
 describe('Basket', () => {
   describe('add bagel to basket', () => {
     const basket = new Basket()
 
     beforeEach(() => {
       basket._list = []
+      basket._inventory = mockInventory
     })
 
     it('add items to basket', () => {
-      const result1 = basket.add('BGLE')
-      const result2 = basket.add('BGSE')
+      const result1 = basket.add('AAAA')
+      const result2 = basket.add('CCCC')
 
-      expect(basket.list[0].sku).toEqual('BGLE')
-      expect(basket.list[0].price).toEqual('0.49')
-      expect(basket.list[0].name).toEqual('Bagel')
-      expect(basket.list[0].variant).toEqual('Everything')
-
-      expect(basket.list[1].sku).toEqual('BGSE')
-      expect(basket.list[1].price).toEqual('2.99')
-      expect(basket.list[1].name).toEqual('Bagel Sandwich')
-      expect(basket.list[1].variant).toEqual('Everything')
-      expect(basket.list[1].fillings).toEqual(['Bacon', 'Egg', 'Cheese'])
+      expect(basket._list).toEqual([mockBasketList[0], mockBasketList[2]])
 
       expect(result1).toEqual('item added')
       expect(result2).toEqual('item added')
@@ -63,19 +60,11 @@ describe('Basket', () => {
     })
 
     it('increase item quantity if item already in basket', () => {
-      basket.add('BGLE')
-      const result = basket.add('BGLE')
+      basket.add('BBBB')
+      const result = basket.add('BBBB')
 
       expect(result).toBe('item quantity increased')
-      expect(basket._list).toEqual([
-        {
-          sku: 'BGLE',
-          price: '0.49',
-          name: 'Bagel',
-          variant: 'Everything',
-          quantity: 2
-        }
-      ])
+      expect(basket._list).toEqual([mockBasketList[1]])
     })
   })
 
@@ -83,7 +72,7 @@ describe('Basket', () => {
     const basket = new Basket()
 
     beforeEach(() => {
-      basket._inventory = mockList
+      basket._inventory = mockInventory
     })
 
     it('find items in inventory', () => {
@@ -106,19 +95,14 @@ describe('Basket', () => {
     const basket = new Basket()
 
     beforeEach(() => {
-      basket._list = mockList.slice(1)
-      basket._inventory = mockList
+      basket._list = mockBasketList.slice(1)
+      basket._inventory = mockInventory
     })
 
     it('return item if valid sku', () => {
       const result = basket.findBasketItem('BBBB')
 
-      expect(result).toEqual({
-        sku: 'BBBB',
-        price: '10',
-        name: 'Lettuce',
-        variant: ''
-      })
+      expect(result).toEqual(mockBasketList[1])
     })
 
     it('return "item not found" if sku not found', () => {
@@ -138,20 +122,20 @@ describe('Basket', () => {
     const basket = new Basket()
 
     beforeEach(() => {
-      basket._inventory = [...mockList]
+      basket._inventory = mockInventory
     })
 
     it('remove item with valid sku', () => {
-      basket._list = [...mockList]
+      basket._list = [...mockBasketList]
 
       const result = basket.remove('BBBB')
 
       expect(result).toBe('item removed')
-      expect(basket.list).toEqual([mockList[0], mockList[2]])
+      expect(basket.list).toEqual([mockBasketList[0], mockBasketList[2]])
     })
 
     it('return "item not found" if sku not found in basket', () => {
-      basket._list = mockList.slice(0, 2)
+      basket._list = mockBasketList.slice(0, 2)
 
       const result = basket.remove('CCCC')
 
@@ -159,7 +143,7 @@ describe('Basket', () => {
     })
 
     it('return "invalid sku" when sku does not exist in inventory', () => {
-      basket._list = [...mockList]
+      basket._list = [...mockBasketList]
       const result = basket.remove('ZZZZ')
 
       expect(result).toBe('item is not stocked')
