@@ -1,4 +1,8 @@
-# domain models
+# user stories and domain models
+
+## CORE
+
+### core - domain models
 
 |        | METHODS | INPUTS | DATA | SITUATION | OUTPUTS |
 |--------|-|-|-|-|-|
@@ -13,3 +17,53 @@
 | 6| displayItemPrice(@item)| BasketItem(@Object) | properties: sku(@String), price(@String), name(@String), variant(@String), quantity(@Number)| If item has a price property... If the item does not have a price property...|...show the price ...show 'price unknown - message the seller'|
 | 7| increaseQuantity()|BasketItem(@Object)|properties: sku(@String), price(@String), name(@String), variant(@String), quantity(@Number)|If the item is already in the basket... if the item is not already in the basket...|...increase its quantity by one ... show 'this item was not found in your basket, would you like to add it?'|
 | 8| total(@Basket)|basket(@BasketItem[]), basketItem(@Object)|properties: sku(@String), price(@String), name(@String), variant(@String), quantity(@Number)|If the basket is empty... If the basket is not empty| ...show 'your basket is empty!' ...show the total price of all the items found in the basket|
+
+## EXTENSIONS
+
+### extension 1 - user stories
+
+As a customer,
+So that I can decide which bagel to buy,
+I need to be able to see all special offers before putting any items in my cart.
+
+As a customer,
+So that I can decide how many bagels to buy,
+I need to be able to see if there is a special offer on the bagel I have added to my cart.
+
+As a customer,
+So that I am charged the correct amount,
+I need the total price of my basket to take the special offers into account.
+
+As a mangager,
+So that our customers are satisfied with our special offers,
+I need them to see how much they have saved by ordering the necessary amounts.
+
+As a mangager,
+So that our customers are encouraged to enjoy our special offers,
+I need them to see how much they could save by ordering the necessary amounts before they pay.
+
+### extension 1 - domain models
+
+|        | METHODS | INPUTS | DATA | SITUATION | OUTPUTS |
+|--------|-|-|-|-|-|
+
+### extension 2 - user stories
+
+### extension 2 - domain models
+
+|        | METHODS | INPUTS | DATA | SITUATION | OUTPUTS |
+|--------|-|-|-|-|-|
+
+### extension 3 - user stories
+
+### extension 3 - domain models
+
+|        | METHODS | INPUTS | DATA | SITUATION | OUTPUTS |
+|--------|-|-|-|-|-|
+
+### extension 4 - user stories
+
+### extension 4 - domain models
+
+|        | METHODS | INPUTS | DATA | SITUATION | OUTPUTS |
+|--------|-|-|-|-|-|
