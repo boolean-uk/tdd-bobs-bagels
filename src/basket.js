@@ -5,6 +5,7 @@ export default class Basket {
     this.basketList = []
     this.basketSize = 12
     this.basketisFull = false
+    this.inventory = inventory
   }
 
   addItem(sku) {
@@ -24,7 +25,8 @@ export default class Basket {
   removeItem(sku) {
     if (!sku || typeof sku !== 'string') return 'sku required!'
 
-    if (!this.basketList.find((item) => item.sku === sku)) return 'item is not in basket'
+    if (!this.basketList.find((item) => item.sku === sku))
+      return 'item is not in basket'
 
     const newBasket = this.basketList.filter((item) => item.sku !== sku)
     return (this.basketList = newBasket)
@@ -46,8 +48,8 @@ export default class Basket {
     return (this.basketSize = size)
   }
 
+  findItemDetails(sku) {
+    const foundItem = this.inventory.find((item) => sku === item.sku)
+    return `Name: ${foundItem.name}, Price: £${foundItem.price}`
+  }
 }
-
-const basket = new Basket()
-
-basket.checkIfFull()

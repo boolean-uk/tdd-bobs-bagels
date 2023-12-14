@@ -138,10 +138,10 @@ describe('Bobs bagels basket', () => {
       expect(basket.basketSize).toEqual(basketSize)
     })
   })
-  describe('/ finding items in the inventory and if true displaying the values of the items', () => {
-    const inventory = new Inventory()
+  describe('/ finding items in the inventory and if true, display the values of the items', () => {
+    const basket = new Basket()
     beforeEach(() => {
-      inventory.items = [
+      basket.inventory = [
         {
           sku: 'a1a1',
           price: '1.25',
@@ -163,8 +163,8 @@ describe('Bobs bagels basket', () => {
       ]
     })
     it('if item exists in inventory list', () => {
-      const result = findItems('b2b2')
-      expect(result).toEqual('Name: Item1, Price: £1.25')
+      const result = basket.findItemDetails('b2b2')
+      expect(result).toEqual('Name: Item2, Price: £6.55')
     })
   })
 })
