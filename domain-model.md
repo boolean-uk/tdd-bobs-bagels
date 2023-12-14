@@ -94,7 +94,7 @@ V: pay, know
 | checkBasketQuantity()|||basket is (@array)|return sum of each item quantity | x |
 ||||basket is not (@array)|return "error, misconfigured basket"
 |||||
-|changeBasketCapacity(capacity)|capacity(@Number)| @Number > 0| positive integer input | change maxBasketCapacity, return maxBasketCapacity
+| setBasketCapacity(capacity)|capacity(@Number)| @Number > 0| positive integer input | change maxBasketCapacity, return maxBasketCapacity
 |||| positive float input | round float to integer, change maxBasketCapacity, return maxBasketCapacity
 |||| not positive number input | return "please enter positive number value"
 |||||
