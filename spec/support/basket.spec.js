@@ -50,4 +50,14 @@ describe("filling basket", () => {
     expect(myBasket.items.length).toEqual(2)
     expect(myBasket.isFull()).toBeFalse()
   })
+
+  it("total is calculated correctly", () => {
+    const myBasket = new Basket(2)
+    const item = new Item("ITM1", "first", 1.23)
+    const item2 = new Item("ITM2", "second", 2.34)
+    myBasket.addItem(item)
+    myBasket.addItem(item2)
+    expect(myBasket.isFull()).toBeTrue()
+    expect(myBasket.checkTotal()).toEqual(3.57)
+  })
 })
