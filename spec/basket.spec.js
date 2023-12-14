@@ -157,4 +157,18 @@ describe('Basket', () => {
       expect(result2).toBe('item sku required')
     })
   })
+
+  describe('check basket total item quantity', () => {
+    const basket = new Basket()
+
+    it('return number of items in basket', () => {
+      basket._list = [...mockBasketList]
+      basket._list[1].quantity = 3
+      basket._list[2].quantity = 6
+
+      const result = basket.checkBasketQuantity()
+
+      expect(result).toBe(10)
+    })
+  })
 })
