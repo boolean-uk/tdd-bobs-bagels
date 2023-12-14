@@ -5,7 +5,8 @@ class Basket {
   }
 
   isFull () {
-    return this.items.length >= this.capacity
+    const numOfItems = this.items.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0)
+    return numOfItems >= this.capacity
   }
 
   changeCapacity (newCapacity) {
@@ -24,7 +25,12 @@ class Basket {
       return false
     }
     
-    this.items.push({ ...itemObj, quantity: 1 })
+    if (this.itemInBasket(itemObj) === false) {
+      this.items.push({ ...itemObj, quantity: 1 })
+    } else {
+      const position = this.items.findIndex(item => item.sku === itemObj.sku)
+      console.log(position, "found index")
+    }
     return true
   }
 
