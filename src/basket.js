@@ -4,7 +4,9 @@ class Basket {
   constructor() {
     this.basketList = []
     this.maxCapacity = 6
+    // this.maxCapacity = 20
     this.currentCapacity = 0
+    this.updatedBasket = []
   }
 
   getBasket() {
@@ -70,28 +72,48 @@ class Basket {
       return `the price of the ${bagelToCheck.variant} ${bagelToCheck.name} is £${bagelToCheck.price}`
   }
 
-  // basketHasSpecialOffers() {
-  //   const updatedBasket = this.basketList.map((bagel) => {
-  //     if (bagel.sku === 'BGLO' && bagel.quantity > 5) {
-  //       return bagel.quantity
-  //     } else return bagel
-  //   })
-  //   return updatedBasket
-  // }
+  basketHasSpecialOffers() {
+    const offerPriceBGLO = '2.49'
+    const updatedBasket = this.basketList.map((bagel) => {
+      if (bagel.sku === 'BGLO' && bagel.quantity === 6) {
+        bagel.price = offerPriceBGLO
+        bagel.quantity = 'offerApplied'
+        return bagel
+      } else if (bagel.sku === 'BGLO' && bagel.quantity > 5) {
+        const remainder = bagel.quantity % 6
+        if (remainder === 0) {
+          bagel.price = `${(bagel.quantity / 6) * 2.49}`
+          bagel.quantity = 'offerApplied'
+          return bagel
+        } else {
+          const numOfx6Bagels = (bagel.quantity - remainder) / 6
+          bagel.price = `${remainder * 0.49 + numOfx6Bagels * 2.49}`
+          bagel.quantity = 'offerApplied'
+          return bagel
+        }
+      } else return bagel
+    })
+    this.updatedBasket = updatedBasket
+    return updatedBasket
+  }
 
   calcBasketVal() {
-    if (this.basketList.length === 0) {
+    if (this.updatedBasket.length === 0) {
       return 'there are no bagels in your basket'
     }
-    const basketPrices = this.basketList.map(
-      (bagel) => bagel.price * bagel.quantity
-    )
+    const basketPrices = this.updatedBasket.map((bagel) => {
+      if (bagel.quantity === 'offerApplied') {
+        return Number(bagel.price)
+      } else {
+        return Number(bagel.price * bagel.quantity)
+      }
+    })
     const sum = basketPrices.reduce((acc, curr) => acc + curr).toFixed(2)
     return `the price of your basket is £${sum}`
   }
 }
 
-// CONSOLE.LOG TEST
+// CONSOLE.LOG TESTS
 // INITIAL
 const b = new Basket()
 
@@ -102,10 +124,14 @@ b.addBagel('BGLO')
 b.addBagel('BGLO')
 b.addBagel('BGLO')
 b.addBagel('BGLO')
-// b.addBagel('BGLO')
-// b.addBagel('BGLP')
+b.addBagel('BGLO')
+b.addBagel('BGLO')
+b.addBagel('BGLO')
+b.addBagel('BGLO')
+b.addBagel('BGLO')
+b.addBagel('BGLP')
 // b.addBagel('BGLS')
-console.log(b.addBagel('BGLO'))
+// console.log(b.addBagel('BGLO'))
 // console.log(b.addBagel('BGLO'))
 
 // REMOVE BAGEL
@@ -113,7 +139,7 @@ console.log(b.addBagel('BGLO'))
 // console.log(b.removeBagel(undefined))
 
 // GET BASKET
-console.log(b.getBasket())
+// console.log(b.getBasket())
 
 // INCREASE BASKET CAPACITY
 // console.log(b.largerBasket(5))
@@ -123,10 +149,11 @@ console.log(b.getBasket())
 // console.log(b.checkPrice('BGLO'))
 // b.checkPrice('BGLO')
 
-// CALC BASKET TOTAL
-// console.log(b.calcBasketVal())
-
 // SPECIAL OFFERS
 // console.log(b.basketHasSpecialOffers())
+// b.basketHasSpecialOffers()
+
+// CALC BASKET TOTAL
+console.log(b.calcBasketVal())
 
 module.exports = { Basket }

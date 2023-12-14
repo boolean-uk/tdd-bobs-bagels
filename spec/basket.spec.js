@@ -179,12 +179,14 @@ describe('Basket', () => {
 
     it('10 Onion Bagel should cost £4.45', () => {
       const BGLOx10Price = 'the price of your basket is £4.45' // DISCOUNT ON 6X BGLO AND 4X BGLO @ 0.49 EACH
+      b.largerBasket(10)
       const result = b.calcBasketVal()
       expect(result).toEqual(BGLOx10Price)
     })
 
     it('12 Onion Bagel should cost £4.45', () => {
       const BGLOx12Price = 'the price of your basket is £4.98' // DISCOUNT ON 2 LOTS OF 6X BGLO
+      b.largerBasket(12)
       const result = b.calcBasketVal()
       expect(result).toEqual(BGLOx12Price)
     })
