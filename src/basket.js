@@ -35,6 +35,10 @@ class Basket {
   remove(sku) {
     const indexToRemove = this._list.findIndex(item => item.sku === sku)
 
+    if (indexToRemove === -1) {
+      return 'item not found'
+    }
+
     this._list.splice(indexToRemove, 1)
 
     return 'item removed'
