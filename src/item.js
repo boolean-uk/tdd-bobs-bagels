@@ -3,7 +3,7 @@ const skuFromName = (name) => {
 }
 
 class Item {
-  constructor (sku, name, price, variant, ...fillings) {
+  constructor (name, price, variant, ...fillings) {
     if (variant) {
       this.sku = skuFromName(name) + variant.toUpperCase()[0]
     } else {

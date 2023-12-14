@@ -13,7 +13,7 @@ describe("basket", () => {
 describe("filling basket", () => {
   it("adding items to basket", () => {
     const myBasket = new Basket(2)
-    const item = new Item("TEST", "Test", 1.23)
+    const item = new Item("Test", 1.23)
     myBasket.addItem(item)
     expect(myBasket.isFull()).toBeFalse()
     expect(myBasket.items.length).toEqual(1)
@@ -21,8 +21,8 @@ describe("filling basket", () => {
 
   it("adding items to full basket capacity", () => {
     const myBasket = new Basket(2)
-    const item = new Item("ITM1", "first", 1.23)
-    const item2 = new Item("ITM2", "second", 2.34)
+    const item = new Item("first", 1.23)
+    const item2 = new Item("second", 2.34)
     myBasket.addItem(item)
     myBasket.addItem(item2)
     expect(myBasket.isFull()).toBeTrue()
@@ -31,8 +31,8 @@ describe("filling basket", () => {
 
   it("adding items over full basket capacity gives back false", () => {
     const myBasket = new Basket(1)
-    const item = new Item("ITM1", "first", 1.23)
-    const item2 = new Item("ITM2", "second", 2.34)
+    const item = new Item( "first", 1.23)
+    const item2 = new Item("second", 2.34)
     myBasket.addItem(item)
     expect(myBasket.isFull()).toBeTrue()
     expect(myBasket.addItem(item2)).toBeFalse()
@@ -41,8 +41,8 @@ describe("filling basket", () => {
 
   it("expanding the basket is possible", () => {
     const myBasket = new Basket(1)
-    const item = new Item("ITM1", "first", 1.23)
-    const item2 = new Item("ITM2", "second", 2.34)
+    const item = new Item("first", 1.23)
+    const item2 = new Item("second", 2.34)
     myBasket.addItem(item)
     expect(myBasket.isFull()).toBeTrue()
     myBasket.changeCapacity(4)
@@ -53,7 +53,7 @@ describe("filling basket", () => {
 
   it("adding existing item leads to increase in counter", () => {
     const myBasket = new Basket(3)
-    const item = new Item("ITM1", "first", 1.23)
+    const item = new Item( "first", 1.23)
     myBasket.addItem(item)
     myBasket.addItem(item)
     myBasket.addItem(item)
@@ -64,8 +64,8 @@ describe("filling basket", () => {
 describe("removing items", () => {
   it("checking whether item is present", () => {
     const myBasket = new Basket(3)
-    const item = new Item("ITM1", "first", 1.23)
-    const item2 = new Item("ITM2", "second", 2.34)
+    const item = new Item("first", 1.23)
+    const item2 = new Item("second", 2.34)
     myBasket.addItem(item)
     expect(myBasket.itemInBasket(item)).toBeTrue()
     expect(myBasket.itemInBasket(item2)).toBeFalse()
@@ -73,7 +73,7 @@ describe("removing items", () => {
 
   it("removing present item", () => {
     const myBasket = new Basket(3)
-    const item = new Item("ITM1", "first", 1.23)
+    const item = new Item("first", 1.23)
     myBasket.addItem(item)
     expect(myBasket.countItems()).toEqual(1)
     expect(myBasket.removeItem(item)).toBeTrue()
@@ -82,7 +82,7 @@ describe("removing items", () => {
 
   it("removing missing item", () => {
     const myBasket = new Basket(3)
-    const item = new Item("ITM1", "first", 1.23)
+    const item = new Item("first", 1.23)
     expect(myBasket.removeItem(item)).toBeFalse()
   })
 })
@@ -95,8 +95,8 @@ describe("calculating total", () => {
 
   it("total is calculated correctly when all quantities are 1", () => {
     const myBasket = new Basket(2)
-    const item = new Item("ITM1", "first", 1.23)
-    const item2 = new Item("ITM2", "second", 2.34)
+    const item = new Item("first", 1.23)
+    const item2 = new Item("second", 2.34)
     myBasket.addItem(item)
     myBasket.addItem(item2)
     expect(myBasket.isFull()).toBeTrue()
@@ -105,8 +105,8 @@ describe("calculating total", () => {
 
   it("total is calculated correctly even when items are double", () => {
     const myBasket = new Basket(3)
-    const item = new Item("ITM1", "first", 1.23)
-    const item2 = new Item("ITM2", "second", 2.34)
+    const item = new Item("first", 1.23)
+    const item2 = new Item("second", 2.34)
     myBasket.addItem(item)
     myBasket.addItem(item)
     myBasket.addItem(item2)
