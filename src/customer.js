@@ -14,7 +14,7 @@ class Customer {
   }
 
   askForItem (name, variant) {
-    this.atStore.presentProductByNameVariant(name, variant)
+    return this.atStore.presentProductByNameVariant(name, variant)
   }
 }
 

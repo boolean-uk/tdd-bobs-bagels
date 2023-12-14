@@ -95,7 +95,16 @@ describe("customers", () => {
   it("customer can ask for price", () => {
     const myStore = new Store("Bob's Bagels")
     const shopper = new Customer(myStore)
-    shopper.askForItem("Bagel", "everything")
+    const askedFor = shopper.askForItem("Bagel", "everything")
+    expect(askedFor).toBeTruthy()
+    expect(askedFor.price > 0).toBeTrue()
+  })
+
+  it("customer can ask for price of  item that doesn't exist", () => {
+    const myStore = new Store("Bob's Bagels")
+    const shopper = new Customer(myStore)
+    const askedFor = shopper.askForItem("XYZ", "nonexisting")
+    expect(askedFor).toBeFalse()
   })
 })
 
