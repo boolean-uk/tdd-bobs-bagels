@@ -19,7 +19,11 @@ class Basket {
   }
 
   addItem (itemObj) {
-    if (this.isFull === true) return false
+    if (this.isFull() === true) {
+      console.log("Your basket is full!")
+      return false
+    }
+    
     this.items.push({ ...itemObj, quantity: 1 })
     return true
   }

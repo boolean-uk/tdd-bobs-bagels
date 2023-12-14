@@ -28,4 +28,14 @@ describe("filling basket", () => {
     expect(myBasket.isFull()).toBeTrue()
     expect(myBasket.items.length).toEqual(2)
   })
+
+  it("adding items over full basket capacity gives back false", () => {
+    const myBasket = new Basket(1)
+    const item = new Item("ITM1", "first", 1.23)
+    const item2 = new Item("ITM2", "second", 2.34)
+    myBasket.addItem(item)
+    expect(myBasket.isFull()).toBeTrue()
+    expect(myBasket.addItem(item2)).toBeFalse()
+    expect(myBasket.items.length).toEqual(1)
+  })
 })
