@@ -36,12 +36,12 @@ describe('Store ordering ', () => {
             const user = new IndividualUser()
  
             
-            const orderItem2 = data.inventory[0].sku;
+            const orderItem2 = new Item(data)
             for (let i = 0; i < 11; i++) {
-                user.addOrderToBasket(orderItem2, 'mikel', 30)
+                user.addOrderToBasket(orderItem2, 30)
             }
 
-            const MessageIfFull = user.addOrderToBasket(orderItem2, 'mikel', 30)
+            const MessageIfFull = user.addOrderToBasket(orderItem2, 30)
      
             console.log(user.userOrderList.length)
             expect(MessageIfFull).toBe("Your basket is full!")
@@ -54,12 +54,12 @@ describe('Store ordering ', () => {
             const user = new IndividualUser()
  
             
-            const orderItem2 = data.inventory[0].sku;
+            const orderItem2 = new Item(data)
             for (let i = 0; i < 7; i++) {
-                user.addOrderToBasket(orderItem2, 'mikel', 30)
+                user.addOrderToBasket(orderItem2, 30)
             }
 
-            const MessageIfFull = user.addOrderToBasket(orderItem2, 'mikel', 30)
+            const MessageIfFull = user.addOrderToBasket(orderItem2, 30)
      
             console.log(user.userOrderList.length)
             expect(MessageIfFull).toBe("You Can Add More")
@@ -71,16 +71,16 @@ describe('Store ordering ', () => {
 
     //     // this is to check and comfirm if truely the manager can add more than 10 , that is he can add uo to the limit he set
         it('for manager lowest', () => {
-            const user = new IndividualUser()
+            const user = new IndividualUser(true)
  
             
-            const orderItem2 = data.inventory[0].sku;
+            const orderItem2 = new Item(data)
             for (let i = 0; i < 10; i++) {
-                user.addOrderToBasket(orderItem2, 'manager', 33)
+                user.addOrderToBasket(orderItem2, 33)
             }
 
 
-            const MessageIfFull = user.addOrderToBasket(orderItem2, 'manager', 33)
+            const MessageIfFull = user.addOrderToBasket(orderItem2, 33)
             console.log(MessageIfFull)
             console.log(user.userOrderList.length)
             expect(MessageIfFull).toBe('You Can Add More')
@@ -91,16 +91,16 @@ describe('Store ordering ', () => {
 
         // this is the to check and comfirm to MAKE SURE THE MANAGER CANT ADD MORE THAN THE LIMIT HE sessionStorage, THOU HE CAN ALWAYS CHANGE IT
         it('for manager higest', () => {
-            const user = new IndividualUser()
+            const user = new IndividualUser(true)
  
             
-            const orderItem2 = data.inventory[0].sku;
+            const orderItem2 = new Item(data)
             for (let i = 0; i < 34; i++) {
-                user.addOrderToBasket(orderItem2, 'manager', 33)
+                user.addOrderToBasket(orderItem2, 33)
             }
 
 
-            const MessageIfFull = user.addOrderToBasket(orderItem2, 'manager', 33)
+            const MessageIfFull = user.addOrderToBasket(orderItem2, 33)
             console.log(MessageIfFull)
             console.log(user.userOrderList.length)
             expect(MessageIfFull).toBe('Your basket is full!')
@@ -110,7 +110,8 @@ describe('Store ordering ', () => {
 
         it('get the price before adding the item to the basket', () => {
             const user = new IndividualUser()
- 
+
+        
             const price = user.retrieveItemPrice('BGLP')
             expect(price).toBe(39)
 

@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
 const data = require('../inventory.json')
 class IndividualUser {
-    constructor() {
+    constructor(isManager = false) {
         this.userOrderList = []
+        this.isManager = isManager
     
     }
 
@@ -10,9 +11,9 @@ class IndividualUser {
     //     return  this.userOrderList.find((itemExist) => itemExist.sku === item)
     // }
 
-    addOrderToBasket(item, name, managerLimit) {
+    addOrderToBasket(item, managerLimit) {
 
-            if (name !== 'manager') {
+            if (!this.isManager) {
                 return this.setUserBasketLimit(item)
 
             } else {
