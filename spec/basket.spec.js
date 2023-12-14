@@ -1,6 +1,6 @@
 const { BagelStore } = require('../src/basket.js')
 
-describe('Basket:', () => {
+describe("Bob's bagels:", () => {
   let store
 
   beforeEach(() => {
@@ -8,10 +8,10 @@ describe('Basket:', () => {
     store.loadFiles()
   })
 
-  it('Add valid item to basket', () => {
-    store.addToBasket('bglo')
+  it('Add valid item to default basket', () => {
+    store.addItemToBasket('bglo')
 
-    const result = store.basket
+    const result = store.baskets.defaultBasket.items
 
     expect(result).toEqual([
       {
@@ -24,18 +24,18 @@ describe('Basket:', () => {
     ])
   })
 
-  it('Add invalid item to basket', () => {
-    const result = store.addToBasket('troll')
+  it('Add invalid item to default basket', () => {
+    const result = store.addItemToBasket('troll')
 
-    expect(result).toEqual('ERROR: Invalid item')
+    expect(result).toEqual('ERROR: Please input a valid bagel sku :).')
   })
 
-  it('Remove valid item from basket', () => {
-    store.addToBasket('bGlO')
-    store.addToBasket('bgls')
+  it('Remove valid item from default basket', () => {
+    store.addItemToBasket('bGlO')
+    store.addItemToBasket('bgls')
     store.removeItemFromBasket('bglo')
 
-    const result = store.basket
+    const result = store.baskets.defaultBasket.items
 
     expect(result).toEqual([
       {
@@ -48,64 +48,56 @@ describe('Basket:', () => {
     ])
   })
 
-  it('Remove invalid item from basket', () => {
-    store.addToBasket('BGLO')
-    store.addToBasket('BGSS')
+  it('Remove invalid item from default basket', () => {
+    store.addItemToBasket('BGLO')
+    store.addItemToBasket('BGSS')
 
     const result = store.removeItemFromBasket('bgl')
 
-    expect(result).toEqual('ERROR: Invalid Item. Please input a valid sku.')
+    expect(result).toEqual('ERROR: Please input a valid bagel sku.')
   })
 
-  it('Create basket with given capacity', () => {
-    store.updateBasketCapacity(10)
+  it('Create new basket with given capacity', () => {
+    store.createBasket('new', 5)
 
-    const result = store.basketCapacity
+    const result = store.baskets.new
 
-    expect(result).toEqual(10)
+    expect(result).toEqual({
+      items: [],
+      capacity: 5
+    })
   })
 
-  it('Hits limit of basket capacity by items', () => {
-    store.addToBasket('bglo')
-    store.addToBasket('BGLE')
-    store.addToBasket('BGLS')
-    store.addToBasket('BGLP')
-    store.addToBasket('BGSS')
-
-    const result = store.addToBasket('BGSE')
+  it('Create new basket with incorrect parameters', () => {
+    const result = store.createBasket('new', [])
 
     expect(result).toEqual(
-      'Your basket is full. Please create a new basket with a greater capacity'
+      "Error: Please input a valid name & capacity e.g. ('John's', 5)."
     )
   })
 
-  it('Hits limit of basket capacity by quantity', () => {
-    store.addToBasket('bglo')
-    store.addToBasket('bglo')
-    store.addToBasket('bglo')
-    store.addToBasket('bglo')
-    store.addToBasket('bglo')
+  it('Hits limit of default basket capacity', () => {
+    store.addItemToBasket('bglo')
+    store.addItemToBasket('BGLE')
+    store.addItemToBasket('BGLS')
+    store.addItemToBasket('BGLP')
+    store.addItemToBasket('BGSS')
+    store.addItemToBasket('bglo')
+    store.addItemToBasket('BGLE')
+    store.addItemToBasket('BGLS')
+    store.addItemToBasket('BGLP')
+    store.addItemToBasket('BGSS')
 
-    const result = store.addToBasket('bglo')
+    const result = store.addItemToBasket('BGSE')
 
-    expect(result).toEqual(
-      'Your basket is full. Please create a new basket with a greater capacity'
-    )
-  })
-
-  it('Views price list of all items in inventory', () => {
-    const result = store.bagelPrices()
-
-    const expectedString = `Prices:\n0: Onion Bagel - $0.49\n1: Plain Bagel - $0.39\n2: Everything Bagel - $0.49\n3: Sesame Bagel - $0.49\n4: Coffee - $0.99\n5: Everything Bagel Sandwich - $2.99\n6: Sesame Bagel Sandwich - $4.99\n`
-
-    expect(result.trim()).toEqual(expectedString.trim())
+    expect(result).toEqual('ERROR: "defaultBasket" has reached max capacity.')
   })
 
   it('Ability to view quantity of items when adding to basket', () => {
-    store.addToBasket('bglo')
-    store.addToBasket('bglo')
+    store.addItemToBasket('bglo')
+    store.addItemToBasket('bglo')
 
-    const result = store.basket
+    const result = store.baskets.defaultBasket.items
 
     expect(result).toEqual([
       {
@@ -118,11 +110,19 @@ describe('Basket:', () => {
     ])
   })
 
+  it('Views price list of all items in inventory', () => {
+    const result = store.bagelPrices()
+
+    const expectedString = `Prices:\n0: Onion Bagel - $0.49\n1: Plain Bagel - $0.39\n2: Everything Bagel - $0.49\n3: Sesame Bagel - $0.49\n4: Coffee - $0.99\n5: Everything Bagel Sandwich - $2.99\n6: Sesame Bagel Sandwich - $4.99\n`
+
+    expect(result.trim()).toEqual(expectedString.trim())
+  })
+
   it('View total price of items in cart', () => {
-    store.addToBasket('bglo')
-    store.addToBasket('bglo')
-    store.addToBasket('bglo')
-    store.addToBasket('bglo')
+    store.addItemToBasket('bglo')
+    store.addItemToBasket('bglo')
+    store.addItemToBasket('bglo')
+    store.addItemToBasket('bglo')
 
     const result = store.totalPrice()
 
