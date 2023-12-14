@@ -50,7 +50,7 @@ export default class Basket {
 
   findItemDetails(sku) {
     const foundItem = this.inventory.find((item) => sku === item.sku)
-    
+    if(!foundItem) return false
     return `Name: ${foundItem.name}, Price: £${foundItem.price}`
   }
 }
