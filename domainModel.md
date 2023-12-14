@@ -104,6 +104,6 @@ When I go to checkout I'd like to know the total sum of the bagels in my basket
 |[X] addItem (Continued)|(sku)|sku(@string), @Number|if sku exist in basket| increase quanitity by one
 ||||if sku does not exist in basket| add item to basket.
 |||||
-|[ ] totalCost|()|@Array|if items in array|add all items prices as a number
+|[X] totalCost|()|@Array|if items in array|add all items prices as a number
 ||||if no items in array|return 0
 
