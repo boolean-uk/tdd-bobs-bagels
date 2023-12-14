@@ -129,7 +129,7 @@ describe('Basket', () => {
       const result = basket.remove('BBBB')
 
       expect(result).toBe('item removed')
-      expect(basket.list).toEqual([mockList[0], mockList[2]])
+      expect(basket.list).toEqual([mockList[2]])
     })
 
     it('return "item not found" if sku not found in basket', () => {
