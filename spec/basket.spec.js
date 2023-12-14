@@ -213,5 +213,11 @@ describe('Basket', () => {
 
       expect(result).toBe(15)
     })
+
+    it('return "item not found" if sku not found', () => {
+      const result = basket.displayItemPrice('ZZZZ')
+
+      expect(result).toBe('item not found')
+    })
   })
 })
