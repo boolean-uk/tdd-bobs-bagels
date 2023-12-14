@@ -21,10 +21,29 @@ class Basket {
       return this.basketList
     }
   }
+
+  removeItemFromBasket(bagelType) {
+    const bagelToRemove = this.basketList.find(
+      (bagel) => bagel.sku === bagelType
+    )
+    if (!bagelToRemove) {
+      return 'first add bagel in the basket'
+    } else {
+      const index = this.basketList.indexOf(bagelToRemove)
+      this.basketList.splice(index, 1)
+      return bagelToRemove
+    }
+  }
 }
 
 const b = new Basket()
-console.log('your order is', b.addItemToBasket('BGLP'))
+console.log('your order is', b.addItemToBasket('BGLO'))
+console.log('your order is', b.addItemToBasket('BGLE'))
+console.log('your order is', b.addItemToBasket('BGLE'))
+
+console.log('your order is', b.removeItemFromBasket('BGLE'))
+console.log('your order is', b.removeItemFromBasket('BGLE'))
+console.log(b.getBasket())
 module.exports = {
   Basket
 }
