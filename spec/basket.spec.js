@@ -131,3 +131,25 @@ describe('display item price property', () => {
     expect(result).toEqual('price unknown - please message the seller')
   })
 })
+
+describe('increase the quantity of an item', () => {
+  it('is already in the basket', () => {
+    const basketItem1 = new BasketItem(inventory.inventory[2])
+    const basketItem2 = new BasketItem(inventory.inventory[3])
+    const basketItem3 = new BasketItem(inventory.inventory[4])
+    const basket1 = new Basket([basketItem1, basketItem2, basketItem3], 4)
+
+    const result = basket1.increaseQuantity(basketItem2)
+    expect(result.quantity).toBe(2)
+    expect(result.sku).toBe('BGLE')
+  })
+  it('which is not in the basket', () => {
+    const basketItem1 = new BasketItem(inventory.inventory[2])
+    const basketItem2 = new BasketItem(inventory.inventory[3])
+    const basketItem3 = new BasketItem(inventory.inventory[4])
+    const basket1 = new Basket([basketItem1, basketItem2], 4)
+
+    const result = basket1.increaseQuantity(basketItem3)
+    expect(result).toBe('this item is not in you basket yet - add it?')
+  })
+})
