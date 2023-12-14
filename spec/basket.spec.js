@@ -33,6 +33,7 @@ describe('Basket', () => {
     beforeEach(() => {
       basket._list = []
       basket._inventory = mockInventory
+      basket.capacity = 12
     })
 
     it('add items to basket', () => {
