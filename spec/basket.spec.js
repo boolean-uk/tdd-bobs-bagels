@@ -59,7 +59,6 @@ describe('Bobs bagels basket', () => {
       basket.addItem('a1a1')
       const result = basket.basketList[0].quantity
       expect(result).toEqual(2)
-
     })
   })
   describe('/ remove items from basket', () => {

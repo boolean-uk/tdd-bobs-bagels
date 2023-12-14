@@ -12,8 +12,11 @@ export default class Basket {
     if (!sku || typeof sku !== 'string') return 'sku required!'
 
     const itemToAdd = this.inventory.find((item) => item.sku === sku)
+    const foundInBasket = this.basketList.find((item) => item.sku === sku)
 
     if (!itemToAdd) return 'item not found'
+
+    if (foundInBasket) return foundInBasket.quantity++
 
     if (this.basketisFull) return this.checkIfFull()
 
