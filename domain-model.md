@@ -105,7 +105,7 @@ V: pay, know
 |||||
 |displayItemPrice(sku)| sku(@string) | | valid sku | return item price | x |
 |||| invalid sku | return "sku not found" | x |
-|||| no sku input | return "sku required"
+|||| no sku input | return "sku required" | x |
 |||||
 |displayBasketSum()||| items in basket | return sum of items.price
 |||| no items in basket | return 0
