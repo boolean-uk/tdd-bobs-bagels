@@ -59,8 +59,15 @@ describe("filling basket", () => {
     myBasket.addItem(item)
     expect(myBasket.countItems()).toEqual(3)
   })
+})
 
-  it("total is calculated correctly", () => {
+describe("calculating total", () => {
+  it("total is 0 for new basket", () => {
+    const myBasket = new Basket(2)
+    expect(myBasket.checkTotal()).toEqual(0)
+  })
+
+  it("total is calculated correctly when all quantities are 1", () => {
     const myBasket = new Basket(2)
     const item = new Item("ITM1", "first", 1.23)
     const item2 = new Item("ITM2", "second", 2.34)
@@ -69,4 +76,14 @@ describe("filling basket", () => {
     expect(myBasket.isFull()).toBeTrue()
     expect(myBasket.checkTotal()).toEqual(3.57)
   })
+
+  it("total is calculated correctly even when items are double", () => {
+    const myBasket = new Basket(3)
+    const item = new Item("ITM1", "first", 1.23)
+    const item2 = new Item("ITM2", "second", 2.34)
+    myBasket.addItem(item)
+    myBasket.addItem(item)
+    myBasket.addItem(item2)
+    expect(myBasket.checkTotal()).toEqual(4.8)
+  })  
 })
