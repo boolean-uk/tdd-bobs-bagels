@@ -127,11 +127,7 @@ describe('Get Inventory', () => {
 
     const res = basket.getInventory()
 
-    expect(res[0]).toEqual({
-      name: inventory[0].name,
-      variant: inventory[0].variant,
-      price: inventory[0].price
-    })
+    expect(res[0]).toEqual(inventory[0])
     expect(res.length).toEqual(inventory.length)
   })
 })
@@ -156,5 +152,59 @@ describe('Total Sum', () => {
     const res = basket.totalSum()
 
     expect(res).toEqual('Your basket is empty')
+  })
+
+  it('total sum with special offers for 6 BGLO', () => {
+    const basket = new Basket(25)
+
+    basket.addBagel('BGLO')
+    basket.addBagel('BGLO')
+    basket.addBagel('BGLO')
+    basket.addBagel('BGLO')
+    basket.addBagel('BGLO')
+    basket.addBagel('BGLO')
+
+    expect(basket.totalSum()).toEqual(2.49)
+  })
+
+  it('total sum with special offers for 12 BGLP', () => {
+    const basket = new Basket(25)
+
+    basket.addBagel('BGLP')
+    basket.addBagel('BGLP')
+    basket.addBagel('BGLP')
+    basket.addBagel('BGLP')
+    basket.addBagel('BGLP')
+    basket.addBagel('BGLP')
+    basket.addBagel('BGLP')
+    basket.addBagel('BGLP')
+    basket.addBagel('BGLP')
+    basket.addBagel('BGLP')
+    basket.addBagel('BGLP')
+    basket.addBagel('BGLP')
+
+    expect(basket.totalSum()).toEqual(3.99)
+  })
+
+  it('total sum with special offers for 6 BGLE', () => {
+    const basket = new Basket(25)
+
+    basket.addBagel('BGLE')
+    basket.addBagel('BGLE')
+    basket.addBagel('BGLE')
+    basket.addBagel('BGLE')
+    basket.addBagel('BGLE')
+    basket.addBagel('BGLE')
+
+    expect(basket.totalSum()).toEqual(2.49)
+  })
+
+  it('total sum with special offer for Coffee and Plain Bagel for 1.25', () => {
+    const basket = new Basket(25)
+
+    basket.addBagel('BGLP')
+    basket.addBagel('COF')
+
+    expect(basket.totalSum()).toEqual(1.25)
   })
 })

@@ -58,11 +58,7 @@ class Basket {
   }
 
   getInventory() {
-    const inventoryObj = inventory.map((item) => ({
-      name: item.name,
-      variant: item.variant,
-      price: item.price
-    }))
+    const inventoryObj = inventory
 
     return inventoryObj
   }
