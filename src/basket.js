@@ -47,11 +47,11 @@ class Basket {
 }
 
 class BasketItem {
-  constructor(sku, price, name, variant) {
-    this.sku = sku
-    this.price = price
-    this.name = name
-    this.variant = variant
+  constructor(inventoryItem) {
+    this.sku = inventoryItem.sku
+    this.price = inventoryItem.price
+    this.name = inventoryItem.name
+    this.variant = inventoryItem.variant
   }
 }
 

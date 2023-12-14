@@ -1,17 +1,13 @@
 const { BasketItem, Basket } = require('../src/basket.js')
+const inventory = require('../inventory.json')
 
 describe('add to basket', () => {
   it('the item, which was not already in the basket, is added', () => {
-    const basketItem1 = new BasketItem('BGLO', '0.49', 'Bagel', 'Onion')
-    const basketItem2 = new BasketItem('BGLP', '0.39', 'Bagel', 'Plain')
+    const basketItem1 = new BasketItem(inventory.inventory[0])
+    const basketItem2 = new BasketItem(inventory.inventory[1])
     const basket1 = new Basket([basketItem1, basketItem2])
 
-    const basketItemToAdd = new BasketItem(
-      'BGLE',
-      '0.49',
-      'Bagel',
-      'Everything'
-    )
+    const basketItemToAdd = new BasketItem(inventory.inventory[2])
 
     const result = basket1.addToBasket(basketItemToAdd)
 
@@ -20,8 +16,8 @@ describe('add to basket', () => {
   })
 
   it('the item is already in the basket', () => {
-    const basketItem1 = new BasketItem('BGLO', '0.49', 'Bagel', 'Onion')
-    const basketItem2 = new BasketItem('BGLP', '0.39', 'Bagel', 'Plain')
+    const basketItem1 = new BasketItem(inventory.inventory[0])
+    const basketItem2 = new BasketItem(inventory.inventory[1])
     const basket1 = new Basket([basketItem1, basketItem2])
 
     const result = basket1.addToBasket(basketItem1)
@@ -33,8 +29,8 @@ describe('add to basket', () => {
 
 describe('remove from basket', () => {
   it('item succesfully removed', () => {
-    const basketItem1 = new BasketItem('BGLO', '0.49', 'Bagel', 'Onion')
-    const basketItem2 = new BasketItem('BGLP', '0.39', 'Bagel', 'Plain')
+    const basketItem1 = new BasketItem(inventory.inventory[0])
+    const basketItem2 = new BasketItem(inventory.inventory[1])
     const basket1 = new Basket([basketItem1, basketItem2])
 
     const result = basket1.removeItem(basketItem1)
@@ -44,7 +40,7 @@ describe('remove from basket', () => {
   })
 
   it('basket is empty', () => {
-    const basketItem1 = new BasketItem('BGLO', '0.49', 'Bagel', 'Onion')
+    const basketItem1 = new BasketItem(inventory.inventory[0])
     const basket1 = new Basket([])
     const result = basket1.removeItem(basketItem1)
 
@@ -53,8 +49,8 @@ describe('remove from basket', () => {
 
   describe('check whether the basket is full', () => {
     it('the basket is full', () => {
-      const basketItem1 = new BasketItem('BGLO', '0.49', 'Bagel', 'Onion')
-      const basketItem2 = new BasketItem('BGLP', '0.39', 'Bagel', 'Plain')
+      const basketItem1 = new BasketItem(inventory.inventory[0])
+      const basketItem2 = new BasketItem(inventory.inventory[1])
       const basket1 = new Basket([basketItem1, basketItem2], 2)
 
       const result = basket1.isBasketFull()
@@ -63,7 +59,7 @@ describe('remove from basket', () => {
   })
 
   it('the basket is not full', () => {
-    const basketItem1 = new BasketItem('BGLO', '0.49', 'Bagel', 'Onion')
+    const basketItem1 = new BasketItem(inventory.inventory[0])
 
     const basket1 = new Basket([basketItem1], 2)
 
@@ -87,8 +83,8 @@ describe('set the capacity of the basket', () => {
 
 describe('check that the item to be removed is in the basket', () => {
   it('item found', () => {
-    const basketItem1 = new BasketItem('BGLO', '0.49', 'Bagel', 'Onion')
-    const basketItem2 = new BasketItem('BGLP', '0.39', 'Bagel', 'Plain')
+    const basketItem1 = new BasketItem(inventory.inventory[0])
+    const basketItem2 = new BasketItem(inventory.inventory[1])
     const basket1 = new Basket([basketItem1, basketItem2])
 
     const result = basket1.checkForItemToRemove(basketItem2)
@@ -107,9 +103,9 @@ describe('check that the item to be removed is in the basket', () => {
   })
 
   it('no such item found', () => {
-    const basketItem1 = new BasketItem('BGLO', '0.49', 'Bagel', 'Onion')
-    const basketItem2 = new BasketItem('BGLP', '0.39', 'Bagel', 'Plain')
-    const basketItem3 = new BasketItem('BGLE', '0.49', 'Bagel', 'Everything')
+    const basketItem1 = new BasketItem(inventory.inventory[0])
+    const basketItem2 = new BasketItem(inventory.inventory[1])
+    const basketItem3 = new BasketItem(inventory.inventory[2])
     const basket1 = new Basket([basketItem1, basketItem2])
 
     const result = basket1.checkForItemToRemove(basketItem3)
