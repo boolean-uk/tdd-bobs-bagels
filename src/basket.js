@@ -33,6 +33,13 @@ class Basket {
   }
 
   remove(sku) {
+    if (
+      typeof sku !== 'string' ||
+      (typeof sku === 'string' && sku.length === 0)
+    ) {
+      return 'item sku required'
+    }
+    
     const indexToRemove = this._list.findIndex((item) => item.sku === sku)
 
     if (indexToRemove === -1) {
