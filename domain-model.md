@@ -34,13 +34,27 @@ As a customer,
 So that I am charged the correct amount,
 I need the total price of my basket to take the special offers into account.
 
-As a mangager,
+<!--turns out this one is part of extension 3-->
+<!-- As a mangager,
 So that our customers are satisfied with our special offers,
-I need them to see how much they have saved by ordering the necessary amounts.
+I need them to see how much they have saved by ordering the necessary amounts. -->
 
-As a mangager,
+<!--turns out this one would fit extension 3 better-->
+<!-- As a mangager,
 So that our customers are encouraged to enjoy our special offers,
-I need them to see how much they could save by ordering the necessary amounts before they pay.
+I need them to see how much they could save by ordering the necessary amounts before they pay. -->
+
+As a manager,
+So that I can adapt our special offers to the current market,
+I need to be able to modify the special offers.
+
+As a manager,
+So that I can adapt our special offers to the current market,
+I need to be able to remove a special offer.
+
+As a manager,
+So that I can adapt our special offers to the current market,
+I need to be able to add the special offers.
 
 ### extension 1 - domain models
 
