@@ -137,5 +137,11 @@ describe('Basket', () => {
 
       expect(result).toBe('item not found')
     })
+
+    it('return "invalid sku" when sku does not exist in inventory', () => {
+      const result = basket.remove('ZZZZ')
+
+      expect(result).toBe('item is not stocked')
+    })
   })
 })
