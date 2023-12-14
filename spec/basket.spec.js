@@ -171,4 +171,15 @@ describe('Basket', () => {
       expect(result).toBe(10)
     })
   })
+
+  describe('set basket capacity', () => {
+    const basket = new Basket()
+
+    it('set basket capacity to input', () => {
+      const result = basket.setBasketCapacity(20)
+
+      expect(result).toBe(20)
+      expect(basket.capacity).toBe(20)
+    })
+  })
 })
