@@ -5,7 +5,7 @@ class Basket {
   }
 
   isFull () {
-    return this.items.length < this.capacity
+    return this.items.length >= this.capacity
   }
 
   changeCapacity (newCapacity) {
