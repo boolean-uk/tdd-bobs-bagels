@@ -4,10 +4,8 @@
       "sku": "BGLO",
       "price": "0.49",
       "name": "Bagel",
-      "variant": "Onion",
-      "quantity": "1",
-      "fillings":[]
-  
+      "variant": "Onion"
+    
     },
     {
       "sku": "BGLP",

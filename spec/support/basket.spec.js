@@ -9,14 +9,15 @@ describe('Basket', () => {
 
   it('adds an item to the basket', () => {
     basket.addItem('BGLO')
-    expect(basket.items[0]).toEqual({
-      sku: 'BGLO',
-      price: '0.49',
-      name: 'Bagel',
-      variant: 'Onion',
-      quantity: 1,
-      fillings: []
-    })
+    const addedItem = basket.items[0]
+
+    // I compare the individual properties of the added item
+    expect(addedItem.sku).toEqual('BGLO')
+    expect(addedItem.price).toEqual('0.49')
+    expect(addedItem.name).toEqual('Bagel')
+    expect(addedItem.variant).toEqual('Onion')
+    expect(addedItem.quantity).toEqual(1)
+    expect(addedItem.fillings).toEqual([])
   })
 
   it('can add an item more than once to the basket', () => {

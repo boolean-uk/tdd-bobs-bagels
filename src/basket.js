@@ -19,7 +19,7 @@ class Basket {
 
   loadInventoryData() {
     try {
-      const data = fs.readFileSync('./inventory.json', 'utf-8')
+      const data = fs.readFileSync('./inventory.json')
       return JSON.parse(data).inventory
     } catch (error) {
       console.error('Error reading inventory data:', error.message)
@@ -39,9 +39,9 @@ class Basket {
         const newItem = new Item(itemData)
         this.items.push(newItem)
       }
-      return true // Indicate successful addition
+      return true
     } else {
-      return false // Indicate item not found in inventory
+      return false
     }
   }
 
@@ -50,9 +50,8 @@ class Basket {
     if (itemIndex === -1) {
       return false
     }
-
     this.items[itemIndex].quantity--
-    if (itemIndex <= 0) {
+    if (this.items[itemIndex].quantity === 0) {
       this.items.splice(itemIndex, 1)
     }
     return this.items
