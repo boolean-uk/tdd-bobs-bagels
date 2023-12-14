@@ -6,9 +6,9 @@ class IndividualUser {
     
     }
 
-    findExistingItem(item) {
-        return  this.userOrderList.find((itemExist) => itemExist.sku === item)
-    }
+    // findExistingItem(item) {
+    //     return  this.userOrderList.find((itemExist) => itemExist.sku === item)
+    // }
 
     addOrderToBasket(item, name, managerLimit) {
 
@@ -25,8 +25,7 @@ class IndividualUser {
         if(this.userOrderList.length >= 10) {
             return "Your basket is full!"
         } else {
-            const orderedItem = data.inventory.find((order) => order.sku === item)
-            this.userOrderList.push(orderedItem)
+            this.userOrderList.push(item)
             return 'You Can Add More'
         }
     }
@@ -36,15 +35,14 @@ class IndividualUser {
         if (this.userOrderList.length >= managerLimit) {
             return "Your basket is full!";
         } else {
-            const orderedItem = data.inventory.find((order) => order.sku === item)
-            this.userOrderList.push(orderedItem)
+            this.userOrderList.push(item)
             return 'You Can Add More';
         }
     }
 
 
     removeItemFromBasket(item) {
-        const itemToDelete = this.userOrderList.findIndex((order) => order.sku === item)
+        const itemToDelete = this.userOrderList.findIndex((order) => order.sku === item.sku)
 
         if (itemToDelete !== -1) {
             this.userOrderList.splice(itemToDelete, 1)
@@ -66,13 +64,25 @@ class IndividualUser {
         }     
     }
 
+}
 
 
 
 
 
+
+class Item {
+    constructor(data) {
+        this.sku = data.inventory[0].sku;
+        this.price = data.inventory[0].price;
+        this.name = data.inventory[0].name;
+        this.variant = data.inventory[0].variant;
+    }
 
 
 }
 
-module.exports = IndividualUser
+
+
+
+module.exports = { IndividualUser, Item };

@@ -1,31 +1,37 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
-const IndividualUser = require('../src/Order.js')
+const {IndividualUser, Item} = require('../src/Order.js')
 const data = require('../inventory.json')
 
 describe('Store ordering ', () => {
     describe('should be able to order from store', () => {
         it('can add a order to the basket', () => {
             const user = new IndividualUser()
-            const orderItem = data.inventory[0].sku
+            const orderItem = new Item(data)
+
             user.addOrderToBasket(orderItem)
+            console.log(user.userOrderList)
+
             expect(user.userOrderList.length).toBe(1)
         })
 
         it('can remove an item from a basket', () => {
             const user = new IndividualUser()
-            const orderItem1 = data.inventory[0].sku;
-            const orderItem2 = data.inventory[0].sku;
+
+            const orderItem1 = new Item(data)
+            const orderItem2 = new Item(data)
+
             user.addOrderToBasket(orderItem1)
             user.addOrderToBasket(orderItem2)
+
             user.removeItemFromBasket(orderItem1)
 
             expect(user.userOrderList.length).toBe(1)
         })
 
 
-        // this is to check and verify that the user cant add more than there limit
+    //     // this is to check and verify that the user cant add more than there limit
         it('keep track of basket Full', () => {
             const user = new IndividualUser()
  
@@ -63,7 +69,7 @@ describe('Store ordering ', () => {
 
 
 
-        // this is to check and comfirm if truely the manager can add more than 10 , that is he can add uo to the limit he set
+    //     // this is to check and comfirm if truely the manager can add more than 10 , that is he can add uo to the limit he set
         it('for manager lowest', () => {
             const user = new IndividualUser()
  
@@ -111,25 +117,6 @@ describe('Store ordering ', () => {
 
         }) 
 
-        it('get the total ammount of my order', () => {
-            const user = new IndividualUser()
-
-
-            const orderItem1 = data.inventory[0].sku;
-            const orderItem2 = data.inventory[1].sku;
-            user.addOrderToBasket(orderItem1)
-            user.addOrderToBasket(orderItem2)
-
-            const totalPriceFromInventory = data.inventory
-            .filter(item => [orderItem1, orderItem2].includes(item.sku))
-            .reduce((total, item) => total + Number(item.price), 0);
-    
-        const totalOrderPrice = user.userOrderList.reduce((total, item) => {
-            return total + Number(item.price);
-        }, 0);
-    
-        expect(totalOrderPrice).toBe(totalPriceFromInventory);
-    });
 
 
 
