@@ -174,7 +174,21 @@ describe('total cost', () => {
 
 describe('special offers', () => {
   it('found successfully', () => {
-    const inventory = new Inventory(inventory.inventory)
+    const inventoryItem1 = new InventoryItem(inventory.inventory[0])
+    const inventoryItem2 = new InventoryItem(inventory.inventory[1])
+    const inventoryItem3 = new InventoryItem(inventory.inventory[2])
+    const inventoryItem4 = new InventoryItem(inventory.inventory[3])
+    const inventoryItem5 = new InventoryItem(inventory.inventory[4])
+    const inventoryItem6 = new InventoryItem(inventory.inventory[5])
+
+    const inventory = new Inventory([
+      inventoryItem1,
+      inventoryItem2,
+      inventoryItem3,
+      inventoryItem4,
+      inventoryItem5,
+      inventoryItem6
+    ])
 
     const result = inventory.getSpecialOffers()
 
@@ -199,11 +213,13 @@ describe('special offers', () => {
     expect(result[3].discountedPrice).toEqual('1.25')
     expect(result[3].combo).toEqual('Coffee & Plain Bagel')
   })
-})
 
-// |  SKU   |  Name  |  Variant   | Price | Special offers
-// |--------|--------|------------|-------|----
-// |  BGLO  | Bagel  | Onion      |  .49  | 6 for 2.49     
-// |  BGLP  | Bagel  | Plain      |  .39  | 12 for 3.99
-// |  BGLE  | Bagel  | Everything |  .49  | 6 for 2.49
-// |  COF   | Coffee |            |  .99  | Coffee & Plain Bagel for 1.25             
+  it('were not found', () => {
+    it('', () => {
+      const inventory = inventory.inventory
+      const result = inventory.getSpecialOffers()
+
+      expect(result).toEqual('no offers found')
+    })
+  })
+})
