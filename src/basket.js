@@ -22,10 +22,17 @@ class Basket {
       return 'item sku required'
     }
 
-    const item = this.findInventoryItem(sku)
+    const basketItem = this.findBasketItem(sku)
 
-    if (item !== 'item not found') {
-      this.list.push(item)
+    if (typeof basketItem === 'object') {
+      basketItem.quantity++
+      return 'item quantity increased'
+    }
+
+    const inventoryItem = this.findInventoryItem(sku)
+    if (inventoryItem !== 'item not found') {
+      inventoryItem.quantity = 1
+      this.list.push(inventoryItem)
       return 'item added'
     }
 
