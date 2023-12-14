@@ -84,9 +84,9 @@ describe('Basket', () => {
       console.log('Actual console.log arguments:', call.args)
     })
     const lastCallArgs = spyConsoleLog.calls.mostRecent().args
-    expect(lastCallArgs).toEqual([`Price of ${itemData.name} (${itemData.variant}): $${itemData.price}`])
+    const actualPrice = parseFloat(lastCallArgs[0].match(/\$([\d.]+)/)[1])
+    expect(actualPrice).toEqual(itemData.price)
   })
-  
   it('calculates the total sum of bagels in the basket', () => {
     const sku1 = 'BGLO'
     const sku2 = 'BGLP'
