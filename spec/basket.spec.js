@@ -123,7 +123,7 @@ describe('Bobs bagels basket', () => {
       const result = basket.changeBasketSize(16)
 
       expect(result).toEqual(16)
-      expect(basket.basketSize).toEqual(newBasketSize)
+      expect(basket.basketSize).toEqual(16)
     })
   })
 })
