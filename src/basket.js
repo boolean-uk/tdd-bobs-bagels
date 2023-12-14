@@ -16,6 +16,10 @@ class Basket {
   }
 
   add(sku) {
+    const basketQuantity = this.checkBasketQuantity()
+
+    if (basketQuantity >= this.capacity) return 'basket full'
+    
     if (
       typeof sku !== 'string' ||
       (typeof sku === 'string' && sku.length === 0)
