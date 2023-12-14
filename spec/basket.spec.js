@@ -61,6 +61,22 @@ describe('Basket', () => {
       expect(result1).toEqual('item sku required')
       expect(result2).toEqual('item sku required')
     })
+
+    it('increase item quantity if item already in basket', () => {
+      basket.add('BGLE')
+      const result = basket.add('BGLE')
+
+      expect(result).toBe('item added')
+      expect(basket._list).toEqual([
+        {
+          sku: 'BGLE',
+          price: '0.49',
+          name: 'Bagel',
+          variant: 'Everything',
+          quantity: 2
+        }
+      ])
+    })
   })
 
   describe('find item in inventory', () => {
