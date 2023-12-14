@@ -65,7 +65,7 @@ I'd like to know if I try to remove an item that doesn't exist in my basket.
 |[X] changeBasketSize|(Size)|Size(@Number)|if changeBasketZise recieves a number| change the basket size allowance
 ||||if changeBasketSize does not revieve a number| return "error, set basket size"
 |||||
-|[ ] checkBasketItem|(sku)|sku(@string)|if sku does exist in basket| return "false" and "item does not exist in baskey"
+|[ ] checkBasketItem|(sku)|sku(@string)|if sku does not exist in basket| return "false" and "item does not exist in basket"
 ||||if sku does exist in basket| return sku.
 
 
