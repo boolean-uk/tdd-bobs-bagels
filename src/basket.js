@@ -106,6 +106,8 @@ class Basket {
   displayItemPrice(sku) {
     const item = this.findInventoryItem(sku)
 
+    if (item === 'item not found') return 'item not found'
+
     return Number(item.price)
   }
 }
