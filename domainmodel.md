@@ -103,3 +103,21 @@
   INPUT: name, item
   OUTPUT: item's price OR "item not available"
 
+# REGISTER
+## PROPERTIES
+### atStore
+  @Store instance
+### drawer
+  @float, current balance
+### currentCustomer
+  @customer instance
+## METHODS
+### changeToDrawer
+  INPUT: @float, amount (currency)
+  FUNCTION: adds x to this.drawer 
+### takeCustomer
+  INPUT: @customer instance
+  FUNCTION: sets customer as this.currentcustomer
+### receipt
+  INPUT: -
+  FUNCTION: takes current customer and processes his basket items
