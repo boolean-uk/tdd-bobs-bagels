@@ -29,23 +29,27 @@ class Basket {
   }
 
   addItem(sku) {
+    console.log('Current basket capacity in addItem:', this.capacity) // checking
+
     if (this.items.length >= this.capacity) {
-        console.warn('Basket is full. Cannot add more items.')
-        return false
+      console.warn('Basket is full. Cannot add more items.')
+      return false
     }
+
     const itemData = this.inventory.find((item) => item.sku === sku)
 
     if (itemData) {
-      const existingItem = this.items.find((item) => item.sku === sku)
+      const existingItemIndex = this.items.findIndex((item) => item.sku === sku)
 
-      if (existingItem) {
-        existingItem.quantity += 1
+      if (existingItemIndex !== -1) {
+        this.items[existingItemIndex].quantity += 1
       } else {
         const newItem = new Item(itemData)
         this.items.push(newItem)
       }
       return true
     } else {
+      console.warn(`Item with SKU ${sku} not found in inventory.`)
       return false
     }
   }
@@ -64,6 +68,7 @@ class Basket {
 
   setBasketCapacity(newCapacity) {
     this.capacity = newCapacity
+    console.log(`Updated basket capacity: ${this.capacity}`)
   }
 }
 
