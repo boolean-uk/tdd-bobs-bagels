@@ -4,7 +4,7 @@ describe('Basket', () => {
   let basket
 
   beforeEach(() => {
-    //basket = new Basket()
+    // basket = new Basket()
     basket = new Basket(2) // initial capacity to 2 for testing
     spyOn(console, 'warn') // for the error i got Expected a spy, but got Function.
   })
@@ -55,7 +55,6 @@ describe('Basket', () => {
 
     expect(console.warn).toHaveBeenCalledWith('Basket is full. Cannot add more items.')
   })
-  
 
   it('updates basket capacity', () => {
     console.log('Current basket capacity:', basket.capacity)
@@ -66,7 +65,7 @@ describe('Basket', () => {
     console.log('Items after adding BGLO and BGLP:', basket.items)
     basket.addItem('BGLC') // Adding item
     console.log('Items after adding BGLC:', basket.items)
-    const addedItemSkus = basket.items.map(item => item.sku)
+    const addedItemSkus = basket.items.map((item) => item.sku)
     console.log('Added item SKUs:', addedItemSkus)
     expect(addedItemSkus.length).toEqual(2) // I changed this to adjust the expected basket capacity
   })
@@ -81,10 +80,13 @@ describe('Basket', () => {
     const itemData = basket.inventory.find((item) => item.sku === sku)
     const spyConsoleLog = spyOn(console, 'log').and.callThrough()
     basket.addItem(sku)
-    expect(spyConsoleLog).toHaveBeenCalledWith(`Price of ${itemData.name} (${itemData.variant}): $${itemData.price}`)
-
+    spyConsoleLog.calls.all().forEach((call) => {
+      console.log('Actual console.log arguments:', call.args)
+    })
+    const lastCallArgs = spyConsoleLog.calls.mostRecent().args
+    expect(lastCallArgs).toEqual([`Price of ${itemData.name} (${itemData.variant}): $${itemData.price}`])
   })
-
+  
   it('calculates the total sum of bagels in the basket', () => {
     const sku1 = 'BGLO'
     const sku2 = 'BGLP'
@@ -95,6 +97,6 @@ describe('Basket', () => {
     const total = basket.calculateTotal()
 
     expect(total).toEqual(2 * basket.inventory.find((item) => item.sku === sku1).price + 3
-     * basket.inventory.find((item) => item.sku === sku2).price)
+        * basket.inventory.find((item) => item.sku === sku2).price)
   })
 })

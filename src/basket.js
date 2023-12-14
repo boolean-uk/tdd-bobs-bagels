@@ -70,6 +70,20 @@ class Basket {
 
     return true
   }
+  
+  displayItemPrice(sku) {
+    if (typeof sku !== 'string' || sku.length < 1) return 'sku required'
+
+    const item = this.findInventoryItem(sku)
+
+    if (item === 'item not found') return 'item not found'
+
+    return Number(item.price)
+  }
+
+  displayBasketSum() {
+    return this._list.reduce((a, b) => a + b.price * b.quantity, 0)
+  }
 
   calculateTotal() {
     return this.items.reduce((total, item) => total + item.price * item.quantity, 0)
