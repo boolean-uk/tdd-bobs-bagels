@@ -32,6 +32,9 @@
   #### addEmployee ()
   INPUT: name, role
   Function: pushes a new Employee instances to .employees
+  #### presentProductByNameVariant (name, variant)
+  INPUT: name of product, variant
+  OUTPUT: the matching @Obj from .availableproducts
   
 ## Basket
   ### Properties
@@ -87,4 +90,16 @@
   ### PROPERTIES
   #### basket
     @Object: {} OR null
+  #### atStore
+    @Store obj instance
+  ## METHODS
+  #### enterStore
+    INPUT: Store Obj Instance
+    FUNCTION: sets .atStore Property
+  #### receiveBasket
+    INPUT: capacity
+    FUNCTION: sets Basket as basket Obj instance
+  #### askForItem
+  INPUT: name, item
+  OUTPUT: item's price OR "item not available"
 
