@@ -46,7 +46,7 @@ class Basket {
     ) {
       return 'item sku required'
     }
-    
+
     const indexToRemove = this._list.findIndex((item) => item.sku === sku)
 
     if (indexToRemove === -1) {
@@ -81,6 +81,10 @@ class Basket {
 
   findSku(array, sku) {
     return array.find((item) => item.sku === sku)
+  }
+
+  checkBasketQuantity() {
+    return this._list.reduce((a, b) => a + b.quantity, 0)
   }
 }
 
