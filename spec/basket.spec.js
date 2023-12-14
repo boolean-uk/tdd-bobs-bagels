@@ -1,6 +1,6 @@
 import Basket from '../src/basket.js'
 
-describe('Bobs bagels basket methods', () => {
+describe('Bobs bagels basket', () => {
   describe('/ adding basket items', () => {
     const basket = new Basket()
     beforeEach(() => {
@@ -18,7 +18,7 @@ describe('Bobs bagels basket methods', () => {
       const newItem = basket.addItem('')
       expect(newItem).toEqual('sku required!')
     })
-    it('/if sku is not a string', () => {
+    it('/ if sku is not a string', () => {
       const notASku = basket.addItem(1234)
       expect(notASku).toEqual('sku required!')
     })
@@ -110,8 +110,20 @@ describe('Bobs bagels basket methods', () => {
     it('/ if basket quantity exceeds 12 items', () => {
       const itemCheck = basket.checkIfFull()
       const sameBasket = basket.basketList
+
       expect(itemCheck).toEqual('basket is full')
       expect(basket.basketList).toEqual(sameBasket)
+    })
+  
+  })
+  describe('/ change basket size', () => {
+    const basket = new Basket
+    it('/ if changeBasketSize recieves a number, return new basket size', () => {
+      const newBasketSize = basket.basketSize
+      const result = basket.changeBasketSize(16)
+
+      expect(result).toEqual(16)
+      expect(basket.basketSize).toEqual(newBasketSize)
     })
   })
 })
