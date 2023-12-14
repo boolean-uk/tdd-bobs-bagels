@@ -66,6 +66,14 @@ describe('Basket', () => {
       expect(result).toBe('item quantity increased')
       expect(basket._list).toEqual([mockBasketList[1]])
     })
+
+    it('return "basket is full" if basket full', () => {
+      basket.add('AAAA')
+      basket.setBasketCapacity(1)
+      const result = basket.add('BBBB')
+
+      expect(result).toBe('basket full')
+    })
   })
 
   describe('find item in inventory', () => {
