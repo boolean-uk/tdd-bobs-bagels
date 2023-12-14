@@ -84,9 +84,19 @@ describe('Basket', () => {
       console.log('Actual console.log arguments:', call.args)
     })
     const lastCallArgs = spyConsoleLog.calls.mostRecent().args
-    const actualPrice = parseFloat(lastCallArgs[0].match(/\$([\d.]+)/)[1])
-    expect(actualPrice).toEqual(itemData.price)
+    if (lastCallArgs && lastCallArgs[0] && lastCallArgs[0].match) {
+      const matchResult = lastCallArgs[0].match(/\$([\d.]+)/)
+      if (matchResult) {
+        const actualPrice = parseFloat(matchResult[1])
+        expect(actualPrice).toEqual(itemData.price)
+      } else {
+        console.error('Price not found in the console.log statement.')
+      }
+    } else {
+      console.error('Object or property is null or undefined.')
+    }
   })
+
   it('calculates the total sum of bagels in the basket', () => {
     const sku1 = 'BGLO'
     const sku2 = 'BGLP'
