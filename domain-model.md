@@ -97,8 +97,6 @@ V: pay, know
 | setBasketCapacity(capacity)|capacity(@Number)| @Number > 0| positive integer input | change capacity, return capacity | x |
 |||| not positive number input | return "please enter positive number value" | x |
 |||||
-| checkValidSku(sku)|sku(@string)|| valid sku | returns item object
-|||||
 | findBasketItem(sku) | sku(@string) || valid sku, sku in basket | return item object | x |
 |||| valid sku, sku not in basket | return "item not found" | x |
 |||| invalid sku | return "item is not stocked" | x |
