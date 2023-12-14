@@ -90,7 +90,7 @@ class Basket {
 
   checkBasketQuantity() {
     if (Array.isArray(this._list)) {
-    return this._list.reduce((a, b) => a + b.quantity, 0)
+      return this._list.reduce((a, b) => a + b.quantity, 0)
     }
     return 'misconfigured basket'
   }
@@ -117,7 +117,7 @@ class Basket {
   }
 
   displayBasketSum() {
-    return this._list.reduce((a, b) => a + (b.price * b.quantity), 0)
+    return this._list.reduce((a, b) => a + b.price * b.quantity, 0)
   }
 }
 
