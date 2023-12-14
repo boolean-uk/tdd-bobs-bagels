@@ -54,8 +54,16 @@ export default class Basket {
 
   findItemDetails(sku) {
     const foundItem = this.inventory.find((item) => sku === item.sku)
-    if(!foundItem) return false
+    if (!foundItem) return false
     return `Name: ${foundItem.name}, Price: £${foundItem.price}`
   }
 
+  totalCost() {
+    let total = 0
+    this.basketList.forEach((item) => {
+      const sum = item.price * item.quantity
+      return (total += sum)
+    })
+    return `Total Cost: £${total.toFixed(2)}`
+  }
 }
