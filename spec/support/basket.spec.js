@@ -57,13 +57,16 @@ describe('Basket', () => {
   })
 
   it('updates basket capacity', () => {
+    console.log('Current basket capacity:', basket.capacity)
     basket.setBasketCapacity(3)
+    console.log('Updated basket capacity:', basket.capacity)
     basket.addItem('BGLO')
     basket.addItem('BGLP')
-    basket.addItem('BGLC') // Adding one more item within the updated capacity
+    basket.addItem('BGLC')
     const addedItemSkus = basket.items.map(item => item.sku)
+    console.log('Added item SKUs:', addedItemSkus)
     expect(addedItemSkus).toEqual(['BGLO', 'BGLP', 'BGLC'])
-  })
+})
 
 
   it('notifies when removing a non-existent item', () => {

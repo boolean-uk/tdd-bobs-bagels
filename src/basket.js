@@ -30,8 +30,8 @@ class Basket {
 
   addItem(sku) {
     if (this.items.length >= this.capacity) {
-      console.warn('Basket is full. Cannot add more items.')
-      return false
+        console.warn('Basket is full. Cannot add more items.')
+        return false
     }
     const itemData = this.inventory.find((item) => item.sku === sku)
 
