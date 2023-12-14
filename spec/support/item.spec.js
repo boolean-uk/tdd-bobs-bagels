@@ -16,4 +16,12 @@ describe("new item creation", () => {
     expect(myItem.variant).toEqual("skittles")
     expect(myItem.fillings).toBeUndefined()
   })
+
+  it("item with fillings", () => {
+    const myItem = new Item("DNT", "donut", 3.02, "", "vanilla", "chocolate", "strawberry")
+    expect(myItem.name).toEqual("donut")
+    expect(myItem.sku).toEqual("DNT")
+    expect(myItem.variant).toEqual("")
+    expect(myItem.fillings).toBeDefined()
+  })
 })
