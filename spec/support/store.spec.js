@@ -76,9 +76,9 @@ describe("customers", () => {
 })
 
 describe("employees can do employee stuff", () => {
-  it("adding basket templates", () => {
+  it("adding basket templates works for managers", () => {
     const myStore = new Store("Bob's Bagels")
-    myStore.addEmployee("Bob", "cashier")
+    myStore.addEmployee("Bob", "manager")
     const Bob = myStore.employees[0]
     const createdBasketType = Bob.createBasketType("XXL", 25)
     const indexOfNewBasket = myStore.availableBasketTypes.length

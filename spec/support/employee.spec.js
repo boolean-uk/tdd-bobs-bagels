@@ -11,11 +11,10 @@ describe("Employee tests", () => {
     expect(Bob.role).toEqual("manager")
   })
 
-  it("employees can create new baskets", () => {
+  it("employees can only create new baskets as managers", () => {
     const Gene = new Employee("Gene", "mascot")
     const createdBasket = Gene.createBasketType("XS", 1)
-    expect(createdBasket.capacity).toEqual(1)
-    expect(createdBasket.type).toEqual("XS")
+    expect(createdBasket).toEqual("only managers create new baskets")
   })
 })
 

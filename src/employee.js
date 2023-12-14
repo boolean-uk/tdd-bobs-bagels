@@ -5,7 +5,7 @@ class Employee {
   }
 
   createBasketType (typeName, capacity) {
-    if (this.role !== "manager") return "cannot create new baskets"
+    if (this.role !== "manager") return "only managers create new baskets"
     return {
       type: typeName,
       capacity: capacity
