@@ -9,6 +9,7 @@ export default class Basket {
   }
 
   addItem(sku) {
+    
     if (!sku || typeof sku !== 'string') return 'sku required!'
 
     const itemToAdd = this.inventory.find((item) => item.sku === sku)
@@ -16,13 +17,15 @@ export default class Basket {
 
     if (!itemToAdd) return 'item not found'
 
-    if (foundInBasket) return foundInBasket.quantity++
-
+    this.checkIfFull()
     if (this.basketisFull) return this.checkIfFull()
+
+    if (foundInBasket) return foundInBasket.quantity++
 
     itemToAdd.quantity = 1
     this.basketList.push(itemToAdd)
-    return itemToAdd.name
+    
+    return
   }
 
   removeItem(sku) {
@@ -67,3 +70,7 @@ export default class Basket {
     return `Total Cost: £${total.toFixed(2)}`
   }
 }
+
+
+
+

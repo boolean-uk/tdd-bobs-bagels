@@ -31,8 +31,16 @@ describe('Bobs bagels basket', () => {
       ]
     })
     it(' / adding a valid sku', () => {
-      const newItem = basket.addItem('a1a1')
-      expect(newItem).toEqual('Item1')
+      const result =
+        {
+          sku: 'a1a1',
+          price: '1.25',
+          name: 'Item1',
+          variant: 'None',
+          quantity: 1
+        }
+      basket.addItem('a1a1')
+      expect(basket.basketList[0]).toEqual(result)
     })
     it('/ if sku is invalid', () => {
       const newItem = basket.addItem('XXXX')
