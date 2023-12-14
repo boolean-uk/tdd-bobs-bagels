@@ -114,16 +114,23 @@ describe('Bobs bagels basket', () => {
       expect(itemCheck).toEqual('basket is full')
       expect(basket.basketList).toEqual(sameBasket)
     })
-  
   })
   describe('/ change basket size', () => {
-    const basket = new Basket
+    const basket = new Basket()
     it('/ if changeBasketSize recieves a number, return new basket size', () => {
       const newBasketSize = basket.basketSize
       const result = basket.changeBasketSize(16)
 
       expect(result).toEqual(16)
       expect(basket.basketSize).toEqual(16)
+    })
+    it('/ if changeBasketSize does not recieve a number', () => {
+      const basketSize = basket.basketSize
+
+      const result = basket.changeBasketSize('sixteen')
+
+      expect(result).toEqual('error, set basket size')
+      expect(basket.basketSize).toEqual(basketSize)
     })
   })
 })
