@@ -1,5 +1,4 @@
-{
-  "inventory": [
+export const inventory = [
     {
       "sku": "BGLO",
       "price": "0.49",
@@ -27,7 +26,7 @@
     {
       "sku": "COF",
       "price": "0.99",
-      "name": "Bagel",
+      "name": "Coffee",
       "variant": ""
     },
     {
@@ -52,4 +51,3 @@
       ]
     }
   ]
-}
