@@ -2,7 +2,7 @@ const { inventory } = require('../inventory.json')
 class Basket {
   constructor() {
     this.basketList = []
-    this.maxCapacity = null
+    this.maxCapacity = 5
   }
 
   addItemToBasket(bagelType) {
@@ -51,7 +51,7 @@ class Basket {
 }
 
 const b = new Basket()
-console.log(b.increaseBasket(5))
+console.log(b.increaseBasket(10))
 
 console.log('basket', b.addItemToBasket('BGLO'))
 console.log('basket', b.addItemToBasket('BGLO'))
