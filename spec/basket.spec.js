@@ -71,4 +71,34 @@ describe('Basket', () => {
       expect(result).toEqual('first add bagel in the basket')
     })
   })
+
+  describe('basket full:cannot add bagels more ', () => {
+    it('give an error that basket is full', () => {
+      b.addItemToBasket('BGLO')
+      b.addItemToBasket('BGLP')
+      b.addItemToBasket('BGLE')
+      b.addItemToBasket('BGLS')
+      b.addItemToBasket('BGLO')
+
+      const result = b.addItemToBasket('BGLP')
+      expect(result).toEqual('Basket is Full!!cannot add more bagels!')
+    })
+  })
+
+  fdescribe('increase the max capacity of basket', () => {
+    it('basket capacity is changed to this number', () => {
+      b.increaseBasket(10)
+
+      const maxCapacity = 10
+
+      const result = b.maxCapacity
+
+      expect(result).toEqual(maxCapacity)
+    })
+
+    it('returns an error to input a valid number ', () => {
+      const result = b.increaseBasket()
+      expect(result).toEqual('Please enter a valid number')
+    })
+  })
 })
