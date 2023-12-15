@@ -48,22 +48,35 @@ class Basket {
     } else this.maxCapacity = maxNumber
     return `now max capacity is ${maxNumber}`
   }
+
+  checkPrice(bagelType) {
+    const bagelToCheck = b.basketList.find((bagel) => bagel.sku === bagelType)
+
+    if (!bagelToCheck) {
+      return 'Invalid bagel'
+    } else if (!bagelType) {
+      return 'Invalid bagel'
+    } else return `The price of this bagel is ${bagelToCheck.price}`
+  }
 }
 
 const b = new Basket()
-console.log(b.increaseBasket(10))
+// console.log(b.increaseBasket(10))
 
 console.log('basket', b.addItemToBasket('BGLO'))
 console.log('basket', b.addItemToBasket('BGLO'))
 console.log('basket', b.addItemToBasket('BGLO'))
 console.log('basket', b.addItemToBasket('BGLO'))
-console.log('basket', b.addItemToBasket('BGLO'))
-console.log('basket', b.addItemToBasket('BGLO'))
-console.log('basket', b.addItemToBasket('BGLO'))
-console.log('basket', b.addItemToBasket('BGLO'))
-console.log('basket', b.addItemToBasket('BGLO'))
-console.log('basket', b.addItemToBasket('BGLO'))
-console.log('basket', b.addItemToBasket('BGLO'))
+console.log('basket', b.addItemToBasket('BGLP'))
+// console.log('basket', b.addItemToBasket('BGLP'))
+// console.log('basket', b.addItemToBasket('BGLO'))
+// console.log('basket', b.addItemToBasket('BGLO'))
+// console.log('basket', b.addItemToBasket('BGLO'))
+// console.log('basket', b.addItemToBasket('BGLO'))
+// console.log('basket', b.addItemToBasket('BGLO'))
+
+console.log(b.checkPrice('BGLO'))
+console.log(b.checkPrice('BGLP'))
 
 console.log(b.getBasket())
 module.exports = {
