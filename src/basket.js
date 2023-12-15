@@ -2,7 +2,7 @@ const { inventory } = require('../inventory.json')
 class Basket {
   constructor() {
     this.basketList = []
-    this.maxCapacity = 5
+    this.maxCapacity = 3
   }
 
   addItemToBasket(bagelType) {
@@ -66,17 +66,27 @@ class Basket {
       return 'Input some valid bagel'
     } else return `The price of this bagel is ${bagelToCheck.price}`
   }
+
+  totalSum() {
+    if (this.basketList.length === 0) {
+      return 'Basket is empty'
+    }
+    const prices = this.basketList.map((bagel) => bagel.price * bagel.quantity)
+    const sum = prices.reduce((acc, curr) => acc + curr).toFixed(2)
+    return `The total price in the basket is ${sum}`
+  }
 }
-
 const b = new Basket()
-// console.log(b.increaseBasket(10))
+
+console.log(b.increaseBasket(10))
 
 console.log('basket', b.addItemToBasket('BGLO'))
 console.log('basket', b.addItemToBasket('BGLO'))
 console.log('basket', b.addItemToBasket('BGLO'))
-console.log('basket', b.addItemToBasket('BGLP'))
 
-console.log(b.getBasket())
+
+console.log(b.totalSum())
+// console.log(b.getBasket())
 module.exports = {
   Basket
 }
