@@ -13,9 +13,17 @@ class Basket {
       if (!bagelToAdd) {
         return `No bagels found`
       } else {
-        this.basketList.push(bagelToAdd)
-        return bagelToAdd
+        const bagelMultiple = this.basketList.find(
+          (newBagel) => newBagel === bagelToAdd
+        )
+        if (!bagelMultiple) {
+          bagelToAdd.quantity = 1
+          this.basketList.push(bagelToAdd)
+        } else {
+          bagelToAdd.quantity++
+        }
       }
+      return bagelToAdd
     }
   }
 
@@ -55,7 +63,7 @@ class Basket {
     if (!bagelToCheck) {
       return 'Invalid bagel'
     } else if (!bagelType) {
-      return 'Invalid bagel'
+      return 'Input some valid bagel'
     } else return `The price of this bagel is ${bagelToCheck.price}`
   }
 }
@@ -66,17 +74,7 @@ const b = new Basket()
 console.log('basket', b.addItemToBasket('BGLO'))
 console.log('basket', b.addItemToBasket('BGLO'))
 console.log('basket', b.addItemToBasket('BGLO'))
-console.log('basket', b.addItemToBasket('BGLO'))
 console.log('basket', b.addItemToBasket('BGLP'))
-// console.log('basket', b.addItemToBasket('BGLP'))
-// console.log('basket', b.addItemToBasket('BGLO'))
-// console.log('basket', b.addItemToBasket('BGLO'))
-// console.log('basket', b.addItemToBasket('BGLO'))
-// console.log('basket', b.addItemToBasket('BGLO'))
-// console.log('basket', b.addItemToBasket('BGLO'))
-
-console.log(b.checkPrice('BGLO'))
-console.log(b.checkPrice('BGLP'))
 
 console.log(b.getBasket())
 module.exports = {
