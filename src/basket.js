@@ -10,6 +10,15 @@ class Basket {
     }
     return false
   }
+
+  removeitemfromBasket(item) {
+    const index = this.items.indexOf(item)
+    if (index !== -1) {
+      this.items.splice(index, 1)
+      return true
+    }
+    return false
+  }
 }
 
 class Item {

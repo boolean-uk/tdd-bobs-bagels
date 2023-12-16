@@ -18,3 +18,22 @@ describe('Basket', () => {
     expect(result).toBeFalse()
   })
 })
+
+describe('RemoveItem', () => {
+  it('can remove a valid item and returns true', () => {
+    const basket = new Basket()
+    const itemObject = inventory.inventory[0]
+    const item = new Item(itemObject)
+    basket.additemtoBasket(item)
+    const result = basket.removeitemfromBasket(item)
+    expect(result).toBeTrue()
+  })
+  it('cannot remove an invalid item and returns false ', () => {
+    const basket = new Basket()
+    const item = { name: 'Burger' }
+    // WHEN
+    const result = basket.removeitemfromBasket(item)
+    // THEN
+    expect(result).toBeFalse()
+  })
+})
