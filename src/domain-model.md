@@ -23,3 +23,15 @@ Verbs
 | ------ | ------ | ------ | ----- | -----
 | removeitemfromBasket(item ) |  item(@item) | @item:sku@string ,price@string,name@string, variant@string| remove a valid item | returns true
 |||| remove an invalid item | returns false
+# not overfill my basket
+Noun
+-member of the public
+-Item
+-Basket
+Verbs
+-overfill my small bagel basket
+-Add an item
+| Methods | Inputs | Data | Scenario | Outputs
+| ------ | ------ | ------ | ----- | -----
+| notOverfillbasket(item ) |  item(@item) | @item:sku@string ,price@string,name@string, variant@string| overfill basket | returns expected
+|||| overfillbasket | returns false

@@ -19,6 +19,14 @@ class Basket {
     }
     return false
   }
+
+  notOverfillBasket(item) {
+    const overfill = this.items.length
+    if (overfill < 6) {
+      return true
+    }
+    return false
+  }
 }
 
 class Item {
