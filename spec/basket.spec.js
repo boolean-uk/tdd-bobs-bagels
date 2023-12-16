@@ -40,7 +40,7 @@ describe('RemoveItem', () => {
 describe('notOverfillBasket', () => {
   it('cannot overfill basket and returns expected', () => {
     const basket = new Basket()
-    const itemObject = inventory.inventory
+    const itemObject = inventory.inventory[0]
     const item = new Item(itemObject)
     basket.additemtoBasket(item)
     const result = basket.notOverfillBasket(item)
@@ -58,6 +58,27 @@ describe('notOverfillBasket', () => {
     // Attempt to add one more item (overfill)
     const result = basket.notOverfillBasket()
 
+    expect(result).toBeFalse()
+  })
+})
+describe('basketwithlargercapacity', () => {
+  it('can increase items in the basket and returns true', () => {
+    const basket = new Basket()
+    const itemObject = inventory.inventory[0]
+    const item = new Item(itemObject)
+    basket.additemtoBasket(item)
+    for (let i = 1; i < 7; i++) {
+      const additionalItemObject = inventory.inventory[i]
+      const additionalItem = new Item(additionalItemObject)
+      basket.additemtoBasket(additionalItem)
+    }
+    const result = basket.basketwithlargercapacity(item)
+    expect(result).toBeTrue()
+  })
+  it('cannot increase items in the basket and returns false', () => {
+    const basket = new Basket()
+    const item = { name: 'Burger' }
+    const result = basket.basketwithlargercapacity(item)
     expect(result).toBeFalse()
   })
 })

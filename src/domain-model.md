@@ -35,3 +35,16 @@ Verbs
 | ------ | ------ | ------ | ----- | -----
 | notOverfillbasket(item ) |  item(@item) | @item:sku@string ,price@string,name@string, variant@string| overfill basket | returns expected
 |||| overfillbasket | returns false
+# create baskets with larger capacity
+Noun
+-Manager
+-Bobs Bagels
+-sales
+-Basket
+Verbs
+-record
+-create
+| Methods | Inputs | Data | Scenario | Outputs
+| ------ | ------ | ------ | ----- | -----
+| basketwithlargercapacity(item ) |  item(@item) | @item:sku@string ,price@string,name@string, variant@string| largerCapacity | returns true
+|||| lessCapacity | returns false

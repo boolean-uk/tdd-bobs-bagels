@@ -27,6 +27,14 @@ class Basket {
     }
     return false
   }
+
+  basketwithlargercapacity() {
+    if (this.items.length === 7) {
+      this.capacity += 5
+      return true
+    }
+    return false
+  }
 }
 
 class Item {
