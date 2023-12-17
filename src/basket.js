@@ -36,6 +36,17 @@ class ShoppingBasket {
   containsItem(item) {
     return this.items.includes(item)
   }
+  isBasketFull() {
+    return this.items.length >= this.capacity
+  }
+
+  getItemsCount() {
+    return this.items.length
+  }
+
+  getItemsCountByName(name) {
+    return this.items.filter((item) => item.name === name).length
+  }
 }
 
 module.exports = { ShoppingBasket }
