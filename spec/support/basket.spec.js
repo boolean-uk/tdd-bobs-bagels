@@ -41,4 +41,9 @@ describe('ShoppingBasket', () => {
     }
     expect(basket.getItemsCount()).toBeLessThanOrEqual(basket.capacity)
   })
+
+  it("Should return a message if item doesn't exist in basket", () => {
+    const result = basket.findItem('non-existent-sku')
+    expect(result).toBe("Item doesn't exist in basket")
+  })
 })
