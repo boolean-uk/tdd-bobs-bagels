@@ -10,6 +10,16 @@ class ShoppingBasket {
       this.items.push(item)
     }
   }
+  removeItem(itemToRemove) {
+    const index = this.items.findIndex(
+      (item) => item.name === itemToRemove.name
+    )
+    if (index !== -1) {
+      this.items.splice(index, 1)
+    } else {
+      return 'Item not found'
+    }
+  }
 }
 
 module.exports = { ShoppingBasket }
