@@ -59,4 +59,9 @@ describe('ShoppingBasket', () => {
     const result = basket.findItem('non-existent-sku')
     expect(result).toBe("Item doesn't exist in basket")
   })
+  it('Show the price of each item before it goes in the basket', () => {
+    const itemToShow = items[0]
+    const price = basket.getItemPrice(itemToShow)
+    expect(price.toFixed(2)).toBe(itemToShow.price)
+  })
 })
