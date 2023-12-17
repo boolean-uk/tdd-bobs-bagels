@@ -20,6 +20,9 @@ class ShoppingBasket {
       return 'Item not found'
     }
   }
+  getItemPrice(item) {
+    return Number(item.price)
+  }
 }
 
 module.exports = { ShoppingBasket }
