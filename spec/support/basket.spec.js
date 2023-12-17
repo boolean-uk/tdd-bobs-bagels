@@ -71,4 +71,13 @@ describe('ShoppingBasket', () => {
     const countOfAddedItem = basket.getItemsCountByName(itemToAdd.name)
     expect(countOfAddedItem).toBe(2)
   })
+  it('Adds the total price of each item', () => {
+    basket.addItem(items[0])
+    basket.addItem(items[1])
+    const expectedTotal = items
+      .slice(0, 2)
+      .reduce((total, item) => total + Number(item.price), 0)
+      .toFixed(2)
+    expect(basket.getTotalPrice().toFixed(2)).toBe(expectedTotal)
+  })
 })
