@@ -55,4 +55,8 @@ describe('ShoppingBasket', () => {
     const result = basket.findItem(items[0].sku)
     expect(result).toEqual(items[0])
   })
+  it('should not find an item with a non-existent SKU', () => {
+    const result = basket.findItem('non-existent-sku')
+    expect(result).toBe("Item doesn't exist in basket")
+  })
 })
