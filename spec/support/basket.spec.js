@@ -64,4 +64,11 @@ describe('ShoppingBasket', () => {
     const price = basket.getItemPrice(itemToShow)
     expect(price.toFixed(2)).toBe(itemToShow.price)
   })
+  it('Lets you add the same item again', () => {
+    const itemToAdd = items[0]
+    basket.addItem(itemToAdd)
+    basket.addItem(itemToAdd)
+    const countOfAddedItem = basket.getItemsCountByName(itemToAdd.name)
+    expect(countOfAddedItem).toBe(2)
+  })
 })
