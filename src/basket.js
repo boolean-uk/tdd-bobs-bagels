@@ -33,6 +33,9 @@ class ShoppingBasket {
   getTotalPrice() {
     return this.items.reduce((total, item) => total + Number(item.price), 0)
   }
+  containsItem(item) {
+    return this.items.includes(item)
+  }
 }
 
 module.exports = { ShoppingBasket }
