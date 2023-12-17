@@ -50,4 +50,9 @@ describe('ShoppingBasket', () => {
     const largerBasket = new ShoppingBasket(10)
     expect(largerBasket.capacity).toBe(10)
   })
+  it('should find an existing item by SKU', () => {
+    basket.addItem(items[0])
+    const result = basket.findItem(items[0].sku)
+    expect(result).toEqual(items[0])
+  })
 })
