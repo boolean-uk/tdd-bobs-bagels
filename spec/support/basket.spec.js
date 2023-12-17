@@ -29,4 +29,10 @@ describe('ShoppingBasket', () => {
       })
     })
   })
+  it('should add items within capacity', () => {
+    for (let i = 0; i < basket.capacity; i++) {
+      basket.addItem(items[0])
+    }
+    expect(basket.getItemsCount()).toBe(basket.capacity)
+  })
 })
