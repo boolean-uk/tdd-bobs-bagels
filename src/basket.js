@@ -23,6 +23,13 @@ class ShoppingBasket {
   getItemPrice(item) {
     return Number(item.price)
   }
+
+  findItem(sku) {
+    return (
+      this.items.find((item) => item.sku === sku) ||
+      "Item doesn't exist in basket"
+    )
+  }
 }
 
 module.exports = { ShoppingBasket }
