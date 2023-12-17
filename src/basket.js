@@ -35,6 +35,13 @@ class Basket {
     }
     return false
   }
+
+  itemnotExisting() {
+    if (this.items !== Item) {
+      return true
+    }
+    return false
+  }
 }
 
 class Item {

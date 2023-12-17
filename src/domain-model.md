@@ -48,3 +48,30 @@ Verbs
 | ------ | ------ | ------ | ----- | -----
 | basketwithlargercapacity(item ) |  item(@item) | @item:sku@string ,price@string,name@string, variant@string| largerCapacity | returns true
 |||| lessCapacity | returns false
+# remove an item that doesn't exist in my basket. 
+Noun
+-member of the public
+-sanity
+-item
+-basket
+Verbs
+-maintain my sanity
+-remove an item that doesn't exist in my basket
+| Methods | Inputs | Data | Scenario | Outputs
+| ------ | ------ | ------ | ----- | -----
+| itemnotexisting(item ) |  item(@item) | @item:sku@string ,price@string,name@string, variant@string| notExisting | returns true
+|||| existingItem | returns false
+# see the price of each item before I add it to my basket
+Noun
+-member of the public
+-bagels
+-price
+-item
+-basket
+Verbs
+-know how much 
+-see the price
+| Methods | Inputs | Data | Scenario | Outputs
+| ------ | ------ | ------ | ----- | -----
+| price(item ) |  item(@item) | @item:sku@string ,price@string,name@string, variant@string| price | returns number
+|||| invalid price | returns false

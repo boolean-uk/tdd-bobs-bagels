@@ -82,3 +82,19 @@ describe('basketwithlargercapacity', () => {
     expect(result).toBeFalse()
   })
 })
+describe('itemnotexisting', () => {
+  it('returns true when removing an item that doesnt exist', () => {
+    const basket = new Basket()
+    const itemObject = inventory.inventory[0]
+    const item = new Item(itemObject)
+    basket.additemtoBasket(item)
+    const result = basket.itemnotExisting(item)
+    expect(result).toEqual(true)
+  })
+  it('returns false when removing a valid item from the basket', () => {
+    const basket = new Basket()
+    const item = { name: 'Bagel Sandwich' }
+    const result = basket.itemnotExisting(item)
+    expect(result).toEqual(false)
+  })
+})
