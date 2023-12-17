@@ -46,4 +46,8 @@ describe('ShoppingBasket', () => {
     const result = basket.findItem('non-existent-sku')
     expect(result).toBe("Item doesn't exist in basket")
   })
+  it('Basket capacity increased', () => {
+    const largerBasket = new ShoppingBasket(10)
+    expect(largerBasket.capacity).toBe(10)
+  })
 })
