@@ -9,6 +9,7 @@ class BagelBasket {
       this.items.push(item)
     } else {
       console.log('Cannot add item, basket is full')
+      return 'Cannot add item, basket is full'
     }
   }
 
