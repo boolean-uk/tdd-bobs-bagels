@@ -106,7 +106,49 @@ class BagelStore {
   }
 
  
+  viewBasket(basketName) {
+    let basket = basketName
+      ? this.baskets[basketName].items
+      : this.baskets.defaultBasket.items
+
+    const namesOfBaskets = Object.keys(this.baskets)
+
+    if (!basketName) {
+      return basket
+    } else if (namesOfBaskets.includes(basketName)) {
+      return basket
+    } else {
+      return 'ERROR: Please input a valid basket name'
+    }
+  }
+
+  totalPrice(basketName) {
+    let sum = 0
+    let basket = basketName
+      ? this.baskets[basketName].items
+      : this.baskets.defaultBasket.items
+
+    basket.forEach((item) => (sum += item.quantity * item.price))
+
+    return `Total: $${sum}`
+  }
+
+  bagelPrices() {
+    const priceArr = []
+
+    this.inventory.forEach((item, idx) =>
+      priceArr.push(
+        `${item.variant ? `${idx}: ${item.variant}` : `${idx}:`} ${
+          item.name
+        } - $${item.price}\n`
+      )
+    )
+
+    return `Prices:\n${priceArr.join('')}`
+  }
 }
+
+
 
 module.exports = {
   BagelStore

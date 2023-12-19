@@ -77,4 +77,50 @@ describe("Bob's bagels:", () => {
     )
   })
 
+  
+  it('Hits limit of default basket capacity', () => {
+    store.addItemToBasket('bglo')
+    store.addItemToBasket('BGLE')
+    store.addItemToBasket('BGLS')
+    store.addItemToBasket('BGLP')
+    store.addItemToBasket('BGSS')
+    store.addItemToBasket('bglo')
+    store.addItemToBasket('BGLE')
+    store.addItemToBasket('BGLS')
+    store.addItemToBasket('BGLP')
+    store.addItemToBasket('BGSS')
+
+    const result = store.addItemToBasket('BGSE')
+
+    expect(result).toEqual('ERROR: "defaultBasket" has reached max capacity.')
+  })
+
+  it('Ability to view quantity of items when adding to basket', () => {
+    store.addItemToBasket('bglo')
+    store.addItemToBasket('bglo')
+
+    const result = store.baskets.defaultBasket.items
+
+    expect(result).toEqual([
+      {
+        sku: 'BGLO',
+        price: '0.49',
+        name: 'Bagel',
+        variant: 'Onion',
+        quantity: 2
+      }
+    ])
+  })
+
+  it('View total price of items in cart', () => {
+    store.addItemToBasket('bglo')
+    store.addItemToBasket('bglo')
+    store.addItemToBasket('bglo')
+    store.addItemToBasket('bglo')
+
+    const result = store.totalPrice()
+
+    expect(result).toEqual('Total: $1.96')
+  })
+
 })
