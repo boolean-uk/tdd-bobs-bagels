@@ -1,20 +1,113 @@
-class BagelsStore {
-    constructor(sku, price, name, variant) {
-       this.sku = sku
-       this.price = price
-       this.name = name
-       this.variant = variant
+
+const fs = require('fs')
+
+class BagelStore {
+  constructor() {
+    this.baskets = {
+      defaultBasket: {
+        items: [],
+        capacity: 10
+      }
     }
-}
+    this.inventory = []
+  }
 
-class AddToBasket {
-    constructor() {
+  loadFiles() {
+    const data = fs.readFileSync('./inventory.json', 'utf-8')
+    const inventory = JSON.parse(data).inventory
+    this.inventory = inventory
+  }
 
+  createBasket(basketName, capacity) {
+    if (basketName && capacity) {
+      if (typeof basketName !== 'string' || typeof capacity !== 'number') {
+        return "Error: Please input a valid name & capacity e.g. ('John's', 5)."
+      }
+
+      this.baskets[basketName] = {}
+      this.baskets[basketName].items = []
+      this.baskets[basketName].capacity = capacity ? capacity : 10
+
+      return `Success! Created "${basketName}" basket with a capacity of ${this.baskets[basketName].capacity}.`
+    } else {
+      return 'ERROR: Please input a valid name & capacity'
     }
-}
+  }
 
+  addItemToBasket(bagelSku, basketName) {
+    let basket
+    !basketName
+      ? (basket = this.baskets.defaultBasket.items)
+      : (basket = this.baskets[basketName].items)
+    let basketCapacity = !basketName
+      ? this.baskets.defaultBasket.capacity
+      : this.baskets[basketName].capacity
+
+    const bagelSkusArr = []
+    this.inventory.forEach((item) => bagelSkusArr.push(item.sku))
+
+    if (bagelSkusArr.includes(bagelSku.toUpperCase())) {
+      const bagel = this.inventory.find(
+        (item) => item.sku === bagelSku.toUpperCase()
+      )
+      const bagelInBasket = basket.find((item) => item === bagel)
+
+      let basketTotalQuantity = 0
+      basket.forEach((item) => (basketTotalQuantity += item.quantity))
+
+      if (basketTotalQuantity >= basketCapacity) {
+        return `ERROR: "${
+          basketName ? basketName : 'defaultBasket'
+        }" has reached max capacity.`
+      } else {
+        if (bagelInBasket) {
+          bagelInBasket.quantity++
+        } else {
+          basket.push(bagel)
+          const bagelInBasket = basket.find((item) => item === bagel)
+          bagelInBasket.quantity = 1
+        }
+      }
+
+      return `Success! Added ${bagel.variant ? bagel.variant : ''} ${
+        bagel.name
+      } (${bagel.sku}) to '${
+        basketName ? basketName : 'defaultBasket'
+      }' basket.`
+    } else {
+      return 'ERROR: Please input a valid bagel sku :).'
+    }
+  }
+
+  removeItemFromBasket(bagelSku, basketName) {
+    let basket
+    !basketName
+      ? (basket = this.baskets.defaultBasket.items)
+      : (basket = this.baskets[basketName].items)
+
+    const bagelSkusArr = []
+    basket.forEach((item) => bagelSkusArr.push(item.sku))
+
+    if (bagelSkusArr.includes(bagelSku.toUpperCase())) {
+      const filteredBasket = basket.filter(
+        (item) => item.sku !== bagelSku.toUpperCase()
+      )
+
+      if (basketName) {
+        this.baskets[basketName].items = filteredBasket
+      } else {
+        this.baskets.defaultBasket.items = filteredBasket
+      }
+
+      return `${bagelSku.toUpperCase()} was succesfully removed`
+    } else {
+      return 'ERROR: Please input a valid bagel sku.'
+    }
+  }
+
+ 
+}
 
 module.exports = {
-    BagelsStore,
-    AddToBasket,
-  };
+  BagelStore
+}
