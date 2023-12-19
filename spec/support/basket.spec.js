@@ -58,4 +58,23 @@ describe("Bob's bagels:", () => {
     expect(result).toEqual('ERROR: Please input a valid bagel sku.')
   })
 
+  it('Create new basket with given capacity', () => {
+    store.createBasket('new', 5)
+
+    const result = store.baskets.new
+
+    expect(result).toEqual({
+      items: [],
+      capacity: 5
+    })
+  })
+
+  it('Create new basket with incorrect parameters', () => {
+    const result = store.createBasket('new', [])
+
+    expect(result).toEqual(
+      "Error: Please input a valid name & capacity e.g. ('John's', 5)."
+    )
+  })
+
 })
