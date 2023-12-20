@@ -1,55 +1,90 @@
-const BagelBasket = require('../src/basket');
+const { BagelBasket } = require('../src/basket.js')
+const inventoryData = require('../inventory.json');
+const bagels = inventoryData.inventory;
 
 describe('BagelBasket', () => {
-    let basket;
-    const bagel = { name: 'Plain Bagel', price: 2.50 };
-    const anotherBagel = { name: 'Sesame Bagel', price: 3.00 };
+  let basket
 
-    beforeEach(() => {
-        basket = new BagelBasket();
-    });
+  beforeEach(() => {
+    basket = new BagelBasket()
+  })
 
-    it('adds an item to the basket', () => {
+  bagels.forEach((bagel, index) => {
+    describe(`Bagel ${index + 1}`, () => {
+      it('adds and removes an item from the basket', () => {
         basket.addItem(bagel);
         expect(basket.items).toContain(bagel);
-    });
-
-    it('removes an item from the basket', () => {
-        basket.addItem(bagel);
-        basket.removeItem('Plain Bagel');
+        basket.removeItem(bagel);
         expect(basket.items).not.toContain(bagel);
+      });
     });
+  });
 
-    it('does not add an item if the basket is full', () => {
-        for (let i = 0; i < 5; i++) {
-            basket.addItem(bagel);
-        }
-        expect(basket.addItem(anotherBagel)).toBe('Basket is full');
-    });
+  it('should add items within capacity', () => {
+    for (let i = 0; i < basket.capacity; i++) {
+      basket.addItem(bagels[0])
+    }
+    expect(basket.items.length).toBe(basket.capacity)
+  })
 
-    it('allows creating a basket with larger capacity', () => {
-        const largeBasket = new BagelBasket(10);
-        expect(largeBasket.capacity).toBe(10);
-    });
+  it('should not add items beyond capacity', () => {
+    for (let i = 0; i < basket.capacity + 1; i++) {
+      basket.addItem(bagels[0])
+    }
+    expect(basket.items.length).toBeLessThanOrEqual(basket.capacity)
+  })
 
-    it('notifies when removing an item that does not exist', () => {
-        expect(basket.removeItem('Nonexistent Bagel')).toBe('Item not found');
-    });
+  it("Should return a message if item doesn't exist in basket", () => {
+    const result = basket.findBagel('non-existent-sku')
+    expect(result).toBe("Item doesn't exist in basket")
+  })
 
-    it('shows the price of each item', () => {
-        basket.addItem(bagel);
-        expect(basket.items[0].price).toBe(2.50);
-    });
+  it('Basket capacity increased', () => {
+    const largerBasket = new BagelBasket(10)
+    expect(largerBasket.capacity).toBe(10)
+  })
 
-    it('allows adding the same type of bagel more than once', () => {
-        basket.addItem(bagel);
-        basket.addItem(bagel);
-        expect(basket.items.filter(item => item.name === 'Plain Bagel').length).toBe(2);
-    });
+  it('should find an existing item by SKU', () => {
+    basket.addItem(bagels[0])
+    const result = basket.findBagel(bagels[0].sku)
+    expect(result).toEqual(bagels[0])
+  })
 
-    it('calculates the total sum of the bagels in the basket', () => {
-        basket.addItem(bagel);
-        basket.addItem(anotherBagel);
-        expect(basket.getTotalPrice()).toBe(5.50);
-    });
-});
+  it('should not find an item with a non-existent SKU', () => {
+    const result = basket.findBagel('non-existent-sku')
+    expect(result).toBe("Item doesn't exist in basket")
+  })
+
+  it('Show the price of each item before it goes in the basket', () => {
+    const bagelToShow = bagels[0]
+    const price = basket.getItemPrice(bagelToShow)
+    expect(price.toFixed(2)).toBe(bagelToShow.price)
+  })
+
+  it('Lets you add the same item again', () => {
+    const bagelToAdd = bagels[0]
+    basket.addItem(bagelToAdd)
+    basket.addItem(bagelToAdd)
+
+    const countOfAddedBagel = basket.items.filter(
+      (item) => item.name === bagelToAdd.name
+    ).length
+    expect(countOfAddedBagel).toBe(2)
+  })
+
+  it('Adds the total price of each item', () => {
+    basket.addItem(bagels[0])
+    basket.addItem(bagels[1])
+
+    const expectedTotal = bagels
+      .slice(0, 2)
+      .reduce((total, bagel) => {
+        return total + Number(bagel.price)
+      }, 0)
+      .toFixed(2)
+
+    expect(basket.getTotalPrice().toFixed(2)).toBe(expectedTotal)
+  })
+})
+
+module.exports = BagelBasket
