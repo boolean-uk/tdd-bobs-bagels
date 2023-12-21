@@ -1,0 +1,41 @@
+
+PART 3
+
+User story 
+As a member of the public,
+So that I can know how much my bagels are,
+I’d like to see the price of each item before I add it to my basket.
+
+Domain Model:
+* Method: retrieveItemIprice()
+* Input:  itemName(string)
+* Source:   if user want to order, they clcik on the item and I get the price with the item name
+* Output:  the price if the item they want
+
+
+
+
+User story 
+As a member of the public
+So that I can buy many of my favorite bagel
+I'd like to be able to add the same type of bagel to my basket more than once
+
+Domain Model:
+* Method: addquantity()
+* Input:  item(which is a object)
+* Source:   incase user want to add item they already have in basket, we just add the quantity or they pick item that is already in the basket without knowing  we just add the quantity 
+* Output:  existingquantity + 1
+
+
+User story 
+As a member of the public,
+So that I can prepare to pay
+When I go to checkout I'd like to know the total sum of the bagels in my basket
+
+
+Domain Model:
+* Method: TotalAmmountOfOrder()
+* Input:  deoesnt take any input as I am just looping through the orderList which is within the class 
+* Source:   so user can see there total before they clcik on the checkout 
+* Output:  Total Amount of order
+
