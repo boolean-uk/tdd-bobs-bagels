@@ -28,7 +28,7 @@ class Basket {
     if (!newItem) return false
 
     newItem.quantity = 1
-    this.items.push({ ...newItem })
+    this.items.push(newItem)
     return this.items
   }
 
@@ -65,20 +65,33 @@ class Basket {
   }
 
   getItemPrice(sku) {
-    const findItem = inventory.find(item => item.sku === sku)
+    const findItem = inventory.find((item) => item.sku === sku)
     return Number(findItem.price)
   }
 
   getTotalCost() {
     let totalCost = 0
 
-    this.items.forEach(item => {
-        totalCost += (Number(item.price) * item.quantity) 
+    this.items.forEach((item) => {
+      totalCost += Number(item.price) * item.quantity
     })
 
     return totalCost
   }
+
+  getDiscount() {
+    let discountFor6 = 0
+    this.items.forEach(item => {
+      if (item.sku === 'BGLO' || item.sku === 'BGLE') {
+        var discountPrice = 2.49
+      }
+      discountFor6 = discountPrice + item.price * 0
+    })
+
+    return discountFor6
+  }
 }
+
 
 module.exports = {
   Basket

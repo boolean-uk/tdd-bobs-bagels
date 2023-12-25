@@ -1,6 +1,6 @@
 const { Basket } = require('../../src/basket')
 
-describe('Add an item to the basket', () => {
+describe('Basket', () => {
   let basket
 
   beforeEach(() => {
@@ -74,5 +74,18 @@ describe('Add an item to the basket', () => {
     basket.addItem('BGLP')
     basket.addItem('BGLE')
     expect(basket.getTotalCost()).toEqual(1.37)
+  })
+
+  // Extension 1
+
+  it('should apply the special offer for BGLO (6 for 2.49)', () => {
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
+    const result = basket.getDiscount()
+    expect(Number(result)).toEqual(2.49)
   })
 })
