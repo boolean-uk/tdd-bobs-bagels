@@ -9,6 +9,15 @@ class Basket{
 
     }
 
+    removeOrder(orderIndex){
+        this.items = this.items.filter((item, index) => index !== orderIndex);
+        return this.items;
+    }
+    
+    checkBasketCapacity(maximumCapacity){
+        return  this.items.length >=  maximumCapacity ? false : true
+
+    }
    
 }
 
@@ -23,3 +32,6 @@ class Item{
 }
 
 module.exports = { Basket, Item}
+
+
+
