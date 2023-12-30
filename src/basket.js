@@ -8,7 +8,7 @@ class Basket{
         return true
 
     }
-
+    
     removeOrder(orderIndex){
         this.items = this.items.filter((item, index) => index !== orderIndex);
         return this.items;
@@ -19,7 +19,22 @@ class Basket{
 
     }
    
+    increaseCapacity(item, capacity) {
+        if (this.items.length >= capacity) {
+            capacity ++
+            this.items.push(item);
+            return 'Capacity has been increase and a new item has been added'
+        }
+         else {
+            this.items.push(item);
+            return 'New item has been added'
+        }
+    }
+    
 }
+
+
+
 
 
 class Item{

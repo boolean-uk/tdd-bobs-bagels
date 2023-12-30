@@ -73,3 +73,24 @@ I'd like to know when my basket is full when I try adding an item beyond my bask
 | ------- | ----- | ---- | --------- | ------- |
 | checkBasketCapacity|item (@item), @[]| @item : sku(@string), price(@string), name(@string), variant(@string)| when basket is not  overfilled | More items can still be added |
 |||| when basket is overfilled | Basket is full and cannot take more items| 
+
+## User Story for Part 2 (B) :
+
+As a Bob's Bagels manager,
+So that I can record more sales
+I’d like to create baskets with larger capacity when I need to.
+
+## NOUNS and VERBS
+- Nouns
+  - Manager
+  - sales
+  - baskets
+- Verbs
+  - Record
+  - Create
+  
+| Methods | Input | Data | Scenerios | Outputs |
+| ------- | ----- | ---- | --------- | ------- |
+| createLargerCapacity| item (@item), @[]|  @item : sku(@string), price(@string), name(@string), variant(@string)| when basket has reached the maximum level, increase it to have more space| Basket has been increased |
+
+

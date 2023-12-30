@@ -110,5 +110,53 @@ const {Basket, Item} = require('../src/basket')
         })
     })
 
-})  
+
+    describe('To record more sales', ()=>{
+
+        it('When trying to add an item within basket capacity', () => {
+            // GIVEN
+            const basket = new Basket();
+            const item2 = new Item(inventory[1]);
+            const item1 = new Item(inventory[0]);
+       
+            basket.increaseCapacity(item1);
+         
+            const basketCapacity = 3; 
+            // WHEN
+            
+            const result = basket.increaseCapacity(new Item(item2), basketCapacity);
+    
+            // THEN
+            expect(result).toEqual('New item has been added'); 
+        });
+
+        
+        it('When trying to add an item beyond basket capacity', () => {
+            // GIVEN
+            const basket = new Basket();
+            const item2 = new Item(inventory[1]);
+            const item1 = new Item(inventory[0]);
+            const item3 = new Item(inventory[2]);
+            const item4 = new Item(inventory[3]);
+            const item5 = new Item(inventory[4]);
+
+    
+            basket.increaseCapacity(item2);
+            basket.increaseCapacity(item1);
+            basket.increaseCapacity(item3);
+            basket.increaseCapacity(item4);
+
+    
+            const basketCapacity = 3; 
+            // WHEN
+            
+            const result = basket.increaseCapacity(new Item(item5), basketCapacity);
+    
+            // THEN
+            expect(result).toEqual('Capacity has been increase and a new item has been added'); // Basket should be full
+        });
+    });
+    
+
+})
 
