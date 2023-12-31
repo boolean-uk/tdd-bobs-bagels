@@ -135,3 +135,24 @@ I’d like to see the price of each item before I add it to my basket.
 | ------- | ----- | ---- | --------- | ------- |
 | displayPrice()| items@[], item(@string)| @item : sku(@string), price(@string), name(@string), variant(@string)| see the price of each item | Number|
 
+
+## User Story for Part 3 (B) :
+
+As a member of the public
+So that I can buy many of my favorite bagel
+I'd like to be able to add the same type of bagel to my basket more than once
+
+## NOUNS and VERBS
+
+## NOUNS and VERBS
+- NOUN
+  - Member
+  - Bagels
+  - Basket
+- VERB
+- Buy
+- Add
+
+| Methods | Input | Data | Scenerios | Outputs |
+| ------- | ----- | ---- | --------- | ------- |
+| buyFavoriteBagel()| item(@string)| sku(@string), price(@string), name(@string), variant(@string), quantity(@number)| able to increase the quantity of my favorite Bagel| more items added |

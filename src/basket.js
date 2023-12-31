@@ -1,3 +1,5 @@
+const {inventory} = require('../inventory.json')
+
 class Basket{
     constructor(){
         this.items = []
@@ -48,8 +50,34 @@ class Basket{
         return item.price
     }
     
-}
 
+       
+    inCreaseFavoriteBagel(favItem, quantity = 1){
+        const favBagel = this.items.find((item)=> item === favItem )
+        
+        const favItemIndex  = this.items.indexOf(favBagel)
+                    
+        if(!this.items[favItemIndex] !== -1){
+
+            if (!this.items[favItemIndex].quantity){
+               let itemQuanity =  this.items[favItemIndex].quantity = quantity
+             
+                return `${favItem.name}, ${itemQuanity}` 
+ 
+            }
+
+            else{
+                this.items.push({favItem, quantity})
+                return `New Item added`
+            }
+        }
+
+        
+    }
+
+
+    
+}
 
 
 
@@ -64,7 +92,9 @@ class Item{
     }
 }
 
-module.exports = { Basket, Item}
 
+
+module.exports = { Basket, Item}
+ 
 
 

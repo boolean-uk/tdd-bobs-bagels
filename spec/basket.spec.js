@@ -235,5 +235,30 @@ const {Basket, Item} = require('../src/basket')
             })
         })
 
+
+        describe('Add more than one favorite Bagel to the basket', ()=>{
+
+
+            it('Can increase the quantity of favorite bagel',()=>{
+                //GIVEN
+                const item1 = new Item(inventory[0]);
+                const item2 = new Item(inventory[1]);
+                const item3 = new Item(inventory[2]);
+        
+                basket.addItemToBasket(item1);
+                basket.addItemToBasket(item2);
+                basket.addItemToBasket(item3);
+                
+                //WHEN
+                const result = basket.inCreaseFavoriteBagel(item2, 3)
+                
+                //THEN
+                expect(result).toEqual(`${item2.name}, ${3}`)
+
+ 
+
+            })
+        })
+
 })
 
