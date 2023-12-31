@@ -94,3 +94,44 @@ I’d like to create baskets with larger capacity when I need to.
 | createLargerCapacity| item (@item), @[]|  @item : sku(@string), price(@string), name(@string), variant(@string)| when basket has reached the maximum level, increase it to have more space| Basket has been increased |
 
 
+## User Story for Part 2 (C) :
+
+As a member of the public
+So that I can maintain my sanity
+I'd like to know if I try to remove an item that doesn't exist in my basket. 
+
+## NOUNS and VERBS
+- NOUN
+  - Member
+  - Item
+  - Basket
+- VERB
+- Maintain
+- Remove
+
+| Methods | Input | Data | Scenerios | Outputs |
+| ------- | ----- | ---- | --------- | ------- |
+| itemNotExisting()| items@[], item(@string)| @item : sku(@string), price(@string), name(@string), variant(@string)| Unable to reomve item that doesnt exist in the basket| Item doesn't exist|
+
+
+## User Story for Part 3 (A) :
+
+As a member of the public,
+So that I can know how much my bagels are,
+I’d like to see the price of each item before I add it to my basket.
+
+## NOUNS and VERBS
+- NOUN
+  - Member
+  - Bagels
+  - Price
+  - Basket
+  - Item
+- VERB
+- See
+- Add
+
+| Methods | Input | Data | Scenerios | Outputs |
+| ------- | ----- | ---- | --------- | ------- |
+| displayPrice()| items@[], item(@string)| @item : sku(@string), price(@string), name(@string), variant(@string)| see the price of each item | Number|
+

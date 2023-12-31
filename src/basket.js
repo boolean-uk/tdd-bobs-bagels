@@ -25,13 +25,31 @@ class Basket{
             this.items.push(item);
             return 'Capacity has been increase and a new item has been added'
         }
-         else {
+        else {
             this.items.push(item);
             return 'New item has been added'
         }
     }
+
+  
+    
+    itemNotExisting(itemToBeRemoved) {
+        const indexToRemove = this.items.findIndex(item => item === itemToBeRemoved);
+    
+        if (indexToRemove !== -1) {
+            this.items.splice(indexToRemove, 1);
+            return "Item has been removed";
+        } else {
+            return "Item doesn't exist";
+        }
+    }
+
+    displayPrice(item){
+        return item.price
+    }
     
 }
+
 
 
 
