@@ -260,5 +260,34 @@ const {Basket, Item} = require('../src/basket')
             })
         })
 
+
+        describe('Sum up all the items price', ()=>{
+
+
+            it('Can get a total price of all the items',()=>{
+                //GIVEN
+                const item1 = new Item(inventory[0]);
+                const item2 = new Item(inventory[1]);
+                const item3 = new Item(inventory[2]);
+                const item4 = new Item(inventory[2]);
+
+        
+                basket.addItemToBasket(item1);
+                basket.addItemToBasket(item2);
+                basket.addItemToBasket(item3);
+                basket.addItemToBasket(item4);
+
+                
+                //WHEN
+                const result = basket.checkOut()
+                
+                //THEN
+                expect(result).toEqual(1.86)
+
+ 
+
+            })
+        })
+
 })
 

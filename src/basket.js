@@ -10,6 +10,8 @@ class Basket{
         return true
 
     }
+
+
     
     removeOrder(orderIndex){
         this.items = this.items.filter((item, index) => index !== orderIndex);
@@ -72,12 +74,24 @@ class Basket{
             }
         }
 
-        
+    
     }
 
+    checkOut(){
+        let totalPrice = 0;
 
+        this.items.forEach(item => {
+            totalPrice += parseFloat(item.price);
+        });
+      
+        return totalPrice;
+    }
+
+  
+    
     
 }
+
 
 
 
@@ -91,7 +105,6 @@ class Item{
       this.variant = item.variant
     }
 }
-
 
 
 module.exports = { Basket, Item}

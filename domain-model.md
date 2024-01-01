@@ -155,4 +155,26 @@ I'd like to be able to add the same type of bagel to my basket more than once
 
 | Methods | Input | Data | Scenerios | Outputs |
 | ------- | ----- | ---- | --------- | ------- |
-| buyFavoriteBagel()| item(@string)| sku(@string), price(@string), name(@string), variant(@string), quantity(@number)| able to increase the quantity of my favorite Bagel| more items added |
+| inCreaseFavoriteBagel()| item(@string)| sku(@string), price(@string), name(@string), variant(@string), quantity(@number)| able to increase the quantity of my favorite Bagel| more items added |
+
+## User Story for Part 3 (C) :
+
+As a member of the public,
+So that I can prepare to pay
+When I go to checkout I'd like to know the total sum of the bagels in my basket
+
+## NOUNS and VERBS
+
+## NOUNS and VERBS
+- NOUN
+  - Member
+  - Bagels
+  - Basket
+- VERB
+- Prepare
+- Pay
+- Chechout
+
+| Methods | Input | Data | Scenerios | Outputs |
+| ------- | ----- | ---- | --------- | ------- |
+| TotalPrice()|item@[], item(@string)| sku(@string), price(@string), name(@string), variant(@string), quantity(@number)| sum the items' prices together| number |
