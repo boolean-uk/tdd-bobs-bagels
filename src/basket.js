@@ -51,9 +51,13 @@ class Basket {
       }
     })
 
-    if (summary.BGLO.quantity > 6) {
+    if (summary.BGLO?.quantity >= 6) {
       summary.BGLO.price = getBGLODiscountPrice(summary)
     }
+    if (summary.BGLP?.quantity >= 12) {
+      summary.BGLP.price = getBGLPDiscountPrice(summary)
+    }
+
     return summary
   }
 }
@@ -66,5 +70,12 @@ function getBGLODiscountPrice(summary) {
   return totalPrice
 }
 
+function getBGLPDiscountPrice(summary) {
+  const noPlainBagels = summary.BGLP.quantity
+  const extras = noPlainBagels % 12
+  const dodecDiscount = (noPlainBagels - extras) / 12
+  const totalPrice = dodecDiscount * 3.99 + extras * 0.39
+  return totalPrice
+}
 
 export default Basket
