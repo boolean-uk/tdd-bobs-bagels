@@ -73,4 +73,13 @@ describe('Bagel list', () => {
     expect(() => basket.remove('BGLD')).toThrow('bagel not found')
   })
 
+  it('should remove price of bagel from basket when bagel is removed', () => {
+    basket.add('BGLO')
+    basket.add('BGSE')
+    basket.add('BGSS')
+
+    basket.remove('BGSE')
+
+    expect(basket.checkOut()).toBe(5.48)
+  })
 })
