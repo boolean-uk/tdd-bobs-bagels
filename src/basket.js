@@ -4,6 +4,13 @@ class Basket{
     }
 
     addItem(item) {
+        const itemInBasket = this.contents.find((element) => {return element.name === item.name})
+
+        if(itemInBasket){
+            itemInBasket.quantity++
+            return;
+        }
+        
         const newItem = {...item, quantity:1}
 
         this.contents.push(newItem)
