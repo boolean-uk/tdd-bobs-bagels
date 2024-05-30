@@ -66,6 +66,11 @@ class Basket {
     if (summary.COF && summary.BGLP.quantity % 12 !== 0) {
       getPairDiscountPrice(summary)
     }
+    
+    let totalValue = 0
+    Object.values(summary).forEach(item => totalValue += item.price)
+    summary.totalPrice = totalValue
+    totalValue = 0
 
     return summary
   }
