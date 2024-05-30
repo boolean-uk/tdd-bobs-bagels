@@ -26,4 +26,15 @@ describe('Bagel basket', () => {
 
     expect(basket.contents[0].sku).toEqual('BGLO')
   })
+
+  it('should only accept items upto the content limit', () => {
+    const basket = new Basket()
+    basket.addItem('BGLO')
+    basket.addItem('BGLS')
+    basket.addItem('BGLP')
+    basket.addItem('BGLS')
+    basket.addItem('COF')
+    
+    expect(basket.addItem('BGSE')).toEqual('Sorry, your basket is full')
+  })
 })
