@@ -60,6 +60,10 @@ class Basket {
     }
     this.capacity = newCapacity
   }
+
+  totalOrderCost() {
+    return this.items.reduce((total, item) => total + item.price, 0)
+  }
 }
 
 export { Item, Basket }

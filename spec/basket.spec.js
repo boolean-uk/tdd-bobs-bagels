@@ -114,4 +114,20 @@ describe('basket', () => {
     )
     expect(basket.items.length).toBe(3) // Basket should still contain 3 items
   })
+
+  it('should calculate the total order cost', () => {
+    const basket = new Basket()
+
+    const item1 = new Item('Cheese Bagel', 5.5)
+    const item2 = new Item('Cola', 1.5)
+    const item3 = new Item('Cookie', 2.5)
+
+    basket.add(item1)
+    basket.add(item2)
+    basket.add(item3)
+
+    const totalCost = basket.totalOrderCost()
+
+    expect(totalCost).toBe(10.5)
+  })
 })
