@@ -24,6 +24,11 @@ class Basket {
     } else {return 'Your basket does not contain that item'
     }
   }
+
+  checkPrice(SKU) {
+    const item = inventory.find((item) => item.sku === SKU)
+    return item.price
+  }
 }
 
 export default Basket

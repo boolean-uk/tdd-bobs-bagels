@@ -66,4 +66,12 @@ describe('Bagel basket', () => {
       'Your basket does not contain that item'
     )
   })
+
+  it('should tell users the price of a specific item when requested', () => {
+    const basket = new Basket()
+
+    basket.checkPrice('COF')
+
+    expect(basket.checkPrice('COF')).toEqual('0.99')
+  })
 })
