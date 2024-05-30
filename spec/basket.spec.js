@@ -79,7 +79,7 @@ describe("basket", () => {
     it("accepts a new basket size in the basket constructor", () => {
         const bagel = new Bagel("Everything", 20.43)
 
-        const newBasket = Basket(10)
+        const newBasket = new Basket(10)
 
         newBasket.addItem(bagel)
         newBasket.addItem(bagel)
@@ -88,8 +88,9 @@ describe("basket", () => {
         newBasket.addItem(bagel)
         newBasket.addItem(bagel)
 
-        expect(newBasket.contents.length).toBe(6)
+        expect(newBasket.contents[0].quantity).toBe(6)
 
+        newBasket.addItem(bagel)
         newBasket.addItem(bagel)
         newBasket.addItem(bagel)
         newBasket.addItem(bagel)
