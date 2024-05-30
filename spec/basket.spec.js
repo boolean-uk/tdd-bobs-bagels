@@ -74,4 +74,14 @@ describe('Bagel basket', () => {
 
     expect(basket.checkPrice('COF')).toEqual('0.99')
   })
+
+  it('should give users the total price of their basket when they check out', () => {
+    const basket = new Basket()
+
+    basket.addItem('BGLO')
+    basket.addItem('BGLS')
+    basket.addItem('BGLP')
+
+    expect(basket.checkOut()).toEqual('1.37')
+  })
 })
