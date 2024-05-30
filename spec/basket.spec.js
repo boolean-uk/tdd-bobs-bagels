@@ -15,4 +15,15 @@ describe('Bagel list', () => {
     const result = basket.add('BGLO')
     expect(result.length).toBe(1)
   })
+
+  it('should not be able to add bagel to basket if basket is full', () => {
+    basket.add('BGLO')
+    basket.add('BGLO')
+    basket.add('BGLO')
+    basket.add('BGLO')
+    basket.add('BGLO')
+
+    expect(basket.basket.length).toBe(4)
+    expect(() => basket.add('BGLO')).toThrow('basket is full')
+  })
 })
