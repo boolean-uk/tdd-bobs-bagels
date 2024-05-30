@@ -12,6 +12,16 @@ class Basket {
     return total
   }
 
+  totalPrice() {
+    let totalPrice = 0
+
+    this.contents.forEach((element) => {
+        totalPrice += element.quantity * element.price
+    })
+
+    return `£${totalPrice.toFixed(2)}`
+  }
+
   addItem(item) {
     if(this.currentQuantity() === this.size) {
         throw new Error("Cannot add item, as basket is full")
