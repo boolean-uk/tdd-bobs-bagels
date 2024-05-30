@@ -11,7 +11,7 @@ describe('item', () => {
   })
 
   it('should display the price of the item', () => {
-    const item = new Item('Salmon and Cream Cheese Bagel', 5.5)
+    const item = new Item('Salmon and Cream Cheese Bagel', 6.5)
 
     expect(item.displayPrice()).toBe(6.5)
   })
