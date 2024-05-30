@@ -56,6 +56,12 @@ describe("basket", () => {
 
         expect(basket.contents.find((element) => { return element.name === "Everything" && element.price === 20.43}).quantity).toBe(1)
     })
+
+    it("throws an error when the item is not in the basket", () => {
+        const bagel = new Bagel("Everything", 20.43)
+        
+        expect(() => {basket.removeItem(bagel)}).toThrow(Error("The item does not exist in the basket"))
+    })
 })
 
 describe("bagel", () => {
