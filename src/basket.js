@@ -21,7 +21,15 @@ class Basket {
   }
 
   removeItem(item) {
-    this.contents = this.contents.filter((element) => {return !element.name === item.name})
+    const itemInBasket = this.contents.find((element) => {
+        return element.name === item.name
+      })
+  
+      if (itemInBasket) {
+        itemInBasket.quantity--
+      }
+    
+    this.contents = this.contents.filter((element) => {return element.quantity > 0})
     
     return this.contents
   }
