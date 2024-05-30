@@ -1,4 +1,4 @@
-// Part One, Two
+// Part One, Two, Three
 
 class Item {
   constructor(name, price) {
@@ -23,6 +23,16 @@ class Basket {
       throw new Error('Basket is full')
     }
     this.items.push(item)
+    return this.items
+  }
+
+  addMultiple(item, quantity) {
+    if (this.items.length + quantity > this.capacity) {
+      throw new Error('Adding these items will exceed the basket capacity') // Customer can add items but still allow for order capacity
+    }
+    for (let i = 0; i < quantity; i++) {
+      this.add(item)
+    }
     return this.items
   }
 

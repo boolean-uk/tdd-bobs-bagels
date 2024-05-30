@@ -1,6 +1,6 @@
 import { Item, Basket } from '../src/basket.js'
 
-// Part One, Two
+// Part One, Two, Three
 
 describe('item', () => {
   it('should have a name and a price', () => {
@@ -87,5 +87,31 @@ describe('basket', () => {
     expect(() => basket.adjustCapacity(2)).toThrowError(
       'New capacity cannot be less than the number of items in the basket'
     )
+  })
+
+  it('should add multiple items of the same type to the basket', () => {
+    const basket = new Basket(10) // Increased capacity for testing
+
+    const item = new Item('Cheese Bagel', 5.5)
+
+    basket.addMultiple(item, 5)
+
+    expect(basket.items.length).toBe(5)
+    expect(basket.items[0]).toEqual(item)
+    expect(basket.items[4]).toEqual(item)
+  })
+
+  it('should not add multiple items beyond basket capacity', () => {
+    const basket = new Basket(5) // Capacity for testing
+
+    const item = new Item('Cheese Bagel', 5.5)
+
+    basket.addMultiple(item, 9) // Add 3 items first
+    expect(basket.items.length).toBe(3)
+
+    expect(() => basket.addMultiple(item, 3)).toThrowError(
+      'Adding these items will exceed the basket capacity'
+    )
+    expect(basket.items.length).toBe(3) // Basket should still contain 3 items
   })
 })
