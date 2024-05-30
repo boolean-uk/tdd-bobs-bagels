@@ -12,61 +12,60 @@ describe('Basket', () => {
   })
 
   it('should add an order', () => {
-    expect(basket.add('bagel')).toEqual([new Order(1, 'bagel')])
-    expect(basket.add('water')).toEqual([
-      new Order(1, 'bagel'),
-      new Order(2, 'water')
+    expect(basket.add('plain bagel')).toEqual([new Order(1, 'plain bagel', 0.25)])
+    expect(basket.add('blueberry bagel')).toEqual([
+      new Order(1, 'plain bagel', 0.25),
+      new Order(2, 'blueberry bagel', 0.30)
     ])
 
-    expect(() => basket.add(1)).toThrowError('item not string provided')
-    expect(() => basket.add('')).toThrowError('string not valid')
-    expect(() => basket.add('a')).toThrowError('string not valid')
+    expect(() => basket.add(1)).toThrowError('order not string provided')
+    expect(() => basket.add('water')).toThrowError('item not found')
   })
 
   it('should remove an order', () => {
-    basket.add('bagel')
-    basket.add('water')
+    basket.add('plain bagel')
+    basket.add('blueberry bagel')
 
-    expect(basket.remove(1)).toEqual([new Order(2, 'water')])
+    expect(basket.remove(1)).toEqual([new Order(2, 'blueberry bagel', 0.30)])
     expect(basket.remove(2)).toEqual([])
-    expect(basket.add('banana')).toEqual([new Order(3, 'banana')])
+    expect(basket.add('garlic bagel')).toEqual([new Order(3, 'garlic bagel', 0.35)])
 
-    expect(() => basket.remove(4)).toThrowError("order doesn't exist")
+    expect(() => basket.remove(4)).toThrowError('order not found')
   })
 
   it('should have an default maximum capacity', () => {
-    basket.add('bagel')
-    basket.add('water')
-    basket.add('bagel')
-    basket.add('water')
-    basket.add('bagel')
-    basket.add('water')
-    basket.add('bagel')
-    basket.add('water')
-    basket.add('bagel')
-    expect(basket.add('water')).toEqual([
-      new Order(1, 'bagel'),
-      new Order(2, 'water'),
-      new Order(3, 'bagel'),
-      new Order(4, 'water'),
-      new Order(5, 'bagel'),
-      new Order(6, 'water'),
-      new Order(7, 'bagel'),
-      new Order(8, 'water'),
-      new Order(9, 'bagel'),
-      new Order(10, 'water')
+    basket.add('plain bagel')
+    basket.add('blueberry bagel')
+    basket.add('garlic bagel')
+    basket.add('sesame bagel')
+    basket.add('oat bagel')
+    basket.add('cheddar bagel')
+    basket.add('egg bagel')
+    basket.add('asiago bagel')
+    basket.add('multigrain bagel')
+    expect(basket.add('chocolate bagel')).toEqual([
+      new Order(1, 'plain bagel', 0.25),
+      new Order(2, 'blueberry bagel', 0.30),
+      new Order(3, 'garlic bagel', 0.35),
+      new Order(4, 'sesame bagel', 0.20),
+      new Order(5, 'oat bagel', 0.40),
+      new Order(6, 'cheddar bagel', 0.45),
+      new Order(7, 'egg bagel', 0.25),
+      new Order(8, 'asiago bagel', 0.50),
+      new Order(9, 'multigrain bagel', 0.25),
+      new Order(10, 'chocolate bagel', 0.20)
     ])
-    expect(basket.add('bagel')).toBe('The basket is full')
+    expect(basket.add('rainbow bagel')).toBe('The basket is full')
   })
 
   it('should have an dynamic maximum capacity', () => {
     basket.maxCapacity = 5
 
-    basket.add('bagel')
-    basket.add('water')
-    basket.add('bagel')
-    basket.add('water')
-    basket.add('bagel')
-    expect(basket.add('water')).toBe('The basket is full')
+    basket.add('plain bagel')
+    basket.add('blueberry bagel')
+    basket.add('garlic bagel')
+    basket.add('sesame bagel')
+    basket.add('oat bagel')
+    expect(basket.add('chocolate bagel')).toBe('The basket is full')
   })
 })
