@@ -18,9 +18,9 @@ describe('Bagel basket', () => {
 
   it('should not be able to add bagel to basket if basket is full', () => {
     basket.add('BGLO')
-    basket.add('BGLO')
-    basket.add('BGLO')
-    basket.add('BGLO')
+    basket.add('BGLP')
+    basket.add('BGLE')
+    basket.add('BGLS')
 
     expect(() => basket.add('BGLO')).toThrow('basket is full')
     expect(basket.basket.length).toBe(4)
@@ -96,6 +96,15 @@ describe('Bagel basket', () => {
 
     expect(basket.basket[0].quantity).toBe(3)
   })
+
+  it('should print receipt', () => {
+    basket.add('BGLO')
+    basket.add('BGLO')
+    basket.add('BGSE')
+    basket.add('BGSS')
+
+    expect(basket.printReceipt()).toMatch(/8.96/)
+  })
 })
 
 describe('Manager', () => {
@@ -108,23 +117,20 @@ describe('Manager', () => {
   })
 
   it('Manager can add more than 4 items', () => {
-    const managerBasket = new Manager(8)
+    const managerBasket = new Manager(6)
 
     managerBasket.createBasket()
 
     managerBasket.basket.add('BGLO')
-    managerBasket.basket.add('BGLO')
-    managerBasket.basket.add('BGLO')
-    managerBasket.basket.add('BGLO')
-    managerBasket.basket.add('BGLO')
-    managerBasket.basket.add('BGLO')
-    managerBasket.basket.add('BGLO')
+    managerBasket.basket.add('BGLP')
+    managerBasket.basket.add('BGLE')
+    managerBasket.basket.add('BGLS')
+    managerBasket.basket.add('COF')
+    managerBasket.basket.add('BGSE')
 
-    expect(managerBasket.basket.basket.length).toBe(7)
+    expect(managerBasket.basket.basket.length).toBe(6)
 
-    managerBasket.basket.add('BGLO')
-
-    expect(() => managerBasket.basket.add('BGLO')).toThrow('basket is full')
-    expect(managerBasket.basket.basket.length).toBe(8)
+    expect(() => managerBasket.basket.add('BGSS')).toThrow('basket is full')
+    expect(managerBasket.basket.basket.length).toBe(6)
   })
 })

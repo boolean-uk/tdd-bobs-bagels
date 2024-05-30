@@ -26,13 +26,12 @@ class Basket {
         } else if (this.amount < this.capacity && found && foundBagelInBasket) {
             found.quantity++
             this.amount++
-            this.basket.push(found)
 
             const price = Number(found.price)
             this.total += price
 
             return this.basket
-        } else if (this.basket.length >= this.capacity) {
+        } else if (this.amount >= this.capacity) {
             throw 'basket is full'
         } else if (!found) {
             throw 'bagel not found'
