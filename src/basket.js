@@ -4,20 +4,20 @@ class BobsBagels {
     }
 
     addToBasket(title) {
-        const item = new Item(1, title)
-        this.basket.push(item)
-        return item
+        const bagel = new Bagel(1, title)
+        this.basket.push(bagel)
+        return bagel
     }
 
 }
 
-class Item {
+class Bagel {
     constructor(id, title) {
         this.id = id
         this.title = title
     }
 }
 
-export { Item }
+export { Bagel }
 
 export default BobsBagels

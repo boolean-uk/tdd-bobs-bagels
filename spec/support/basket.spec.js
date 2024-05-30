@@ -1,4 +1,4 @@
-import BobsBagels, { Item } from "../../src/basket.js";
+import BobsBagels, { Bagel } from "../../src/basket.js";
 
 describe('Bobs Bagels', () => {
     let bobsBagels
@@ -9,10 +9,19 @@ describe('Bobs Bagels', () => {
         expect(bobsBagels).toBeInstanceOf(BobsBagels)
     })
     it('should add an item to the basket', () => {
-        const item = bobsBagels.addToBasket('poppyseed bagel')
-        expect(item).toBeInstanceOf(Item)
-        expect(item.id).toBe(1)
-        expect(item.title).toBe('poppyseed bagel')
+        const bagel = bobsBagels.addToBasket('poppyseed bagel')
+        expect(bagel).toBeInstanceOf(Bagel)
+        expect(bagel.id).toBe(1)
+        expect(bagel.title).toBe('poppyseed bagel')
         expect(bobsBagels.basket.length).toBe(1)
+    })
+    it('should be allow bagels to be removed from basket', () => {
+        bobsBagels.addToBasket('poppyseed bagel')
+        expect(bobsBagels.basket.length).toBe(1)
+
+        const removed = bobsBagels.basket.remove(1)
+        expect(removed.title).toBe('poppyseed bagel')
+        const newBasket = bobsBagels.basket
+        expect(newBasket.length).toBe(0)
     })
 })
