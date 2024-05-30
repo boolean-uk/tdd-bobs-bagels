@@ -107,5 +107,10 @@ describe('Manager', () => {
     managerBasket.basket.add('BGLO')
 
     expect(managerBasket.basket.basket.length).toBe(7)
+
+    managerBasket.basket.add('BGLO')
+
+    expect(() => managerBasket.basket.add('BGLO')).toThrow('basket is full')
+    expect(managerBasket.basket.basket.length).toBe(8)
   })
 })
