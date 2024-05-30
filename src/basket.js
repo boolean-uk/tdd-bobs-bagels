@@ -16,6 +16,8 @@ class Basket {
             return this.basket
         } else if (this.basket.length >= this.capacity) {
             throw 'basket is full'
+        } else if (!found) {
+            throw 'bagel not found'
         }
     }
 }
