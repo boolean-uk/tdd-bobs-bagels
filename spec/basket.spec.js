@@ -12,10 +12,10 @@ describe('Basket', () => {
   })
 
   it('should add an order', () => {
-    expect(basket.add('plain bagel')).toEqual([new Order(1, 'plain bagel', 0.25)])
+    expect(basket.add('plain bagel')).toEqual([new Order(1, 'plain bagel', 0.25, 1)])
     expect(basket.add('blueberry bagel')).toEqual([
-      new Order(1, 'plain bagel', 0.25),
-      new Order(2, 'blueberry bagel', 0.30)
+      new Order(1, 'plain bagel', 0.25, 1),
+      new Order(2, 'blueberry bagel', 0.3, 1)
     ])
 
     expect(() => basket.add(1)).toThrowError('order not string provided')
@@ -26,9 +26,9 @@ describe('Basket', () => {
     basket.add('plain bagel')
     basket.add('blueberry bagel')
 
-    expect(basket.remove(1)).toEqual([new Order(2, 'blueberry bagel', 0.30)])
+    expect(basket.remove(1)).toEqual([new Order(2, 'blueberry bagel', 0.3, 1)])
     expect(basket.remove(2)).toEqual([])
-    expect(basket.add('garlic bagel')).toEqual([new Order(3, 'garlic bagel', 0.35)])
+    expect(basket.add('garlic bagel')).toEqual([new Order(3, 'garlic bagel', 0.35, 1)])
 
     expect(() => basket.remove(4)).toThrowError('order not found')
   })
@@ -44,16 +44,16 @@ describe('Basket', () => {
     basket.add('asiago bagel')
     basket.add('multigrain bagel')
     expect(basket.add('chocolate bagel')).toEqual([
-      new Order(1, 'plain bagel', 0.25),
-      new Order(2, 'blueberry bagel', 0.30),
-      new Order(3, 'garlic bagel', 0.35),
-      new Order(4, 'sesame bagel', 0.20),
-      new Order(5, 'oat bagel', 0.40),
-      new Order(6, 'cheddar bagel', 0.45),
-      new Order(7, 'egg bagel', 0.25),
-      new Order(8, 'asiago bagel', 0.50),
-      new Order(9, 'multigrain bagel', 0.25),
-      new Order(10, 'chocolate bagel', 0.20)
+      new Order(1, 'plain bagel', 0.25, 1),
+      new Order(2, 'blueberry bagel', 0.3, 1),
+      new Order(3, 'garlic bagel', 0.35, 1),
+      new Order(4, 'sesame bagel', 0.2, 1),
+      new Order(5, 'oat bagel', 0.4, 1),
+      new Order(6, 'cheddar bagel', 0.45, 1),
+      new Order(7, 'egg bagel', 0.25, 1),
+      new Order(8, 'asiago bagel', 0.5, 1),
+      new Order(9, 'multigrain bagel', 0.25, 1),
+      new Order(10, 'chocolate bagel', 0.2, 1)
     ])
     expect(basket.add('rainbow bagel')).toBe('The basket is full')
   })
@@ -72,24 +72,26 @@ describe('Basket', () => {
   it('should show the price of the items', () => {
     expect(basket.checkPrice()).toEqual({
       "plain bagel": 0.25,
-      "blueberry bagel": 0.30,
+      "blueberry bagel": 0.3,
       "garlic bagel": 0.35,
-      "sesame bagel": 0.20,
-      "oat bagel": 0.40,
+      "sesame bagel": 0.2,
+      "oat bagel": 0.4,
       "cheddar bagel": 0.45,
       "egg bagel": 0.25,
-      "asiago bagel": 0.50,
+      "asiago bagel": 0.5,
       "multigrain bagel": 0.25,
-      "chocolate bagel": 0.20,
+      "chocolate bagel": 0.2,
       "rainbow bagel": 0.35
     })
   })
 
-  it('should increment the order', () => {
+  it('should increment the order and its price', () => {
     basket.add('plain bagel')
-    expect(basket.increment(1)).toEqual([
-      new Order(1, 'plain bagel', 0.25),
-      new Order(2, 'plain bagel', 0.25)
+    expect(basket.add('plain bagel')).toEqual([new Order(1, 'plain bagel', 0.5, 2)])
+    expect(basket.add('plain bagel')).toEqual([new Order(1, 'plain bagel', 0.75, 3)])
+    expect(basket.add('garlic bagel')).toEqual([
+      new Order(1, 'plain bagel', 0.75, 3),
+      new Order(2, 'garlic bagel', 0.35, 1)
     ])
   })
 })

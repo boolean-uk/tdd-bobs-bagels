@@ -16,7 +16,6 @@ class Basket {
       "chocolate bagel": 0.20,
       "rainbow bagel": 0.35
     }
-    this.quantity = 1
   }
 
   add(item) {
@@ -24,11 +23,20 @@ class Basket {
       throw new Error('order not string provided')
     }
 
-    const orderFound = Object.keys(this.items).find(
+    const orderFoundInItems = Object.keys(this.items).find(
       (order) => order.trim().toLowerCase() === item.trim().toLowerCase()
     ) 
 
-    if (!orderFound) {
+    const orderFoundInBasket = this.orders.find(order => order.item.toLowerCase() === item.trim().toLowerCase())
+
+    if (orderFoundInBasket) {
+      orderFoundInBasket.quantity++
+      orderFoundInBasket.price = this.items[item] * orderFoundInBasket.quantity
+
+      return this.orders
+    } 
+    
+    if (!orderFoundInItems) {
       throw new Error('item not found')
     }
 
@@ -36,10 +44,9 @@ class Basket {
       return 'The basket is full'
     }
 
-    const newOrder = new Order(this.id, orderFound, this.items[orderFound])
-
-    this.id++
+    const newOrder = new Order(this.id++, item, this.items[item], 1)
     this.orders.push(newOrder)
+
     return this.orders
   }
 
@@ -60,10 +67,11 @@ class Basket {
 }
 
 class Order {
-  constructor(id, item, price) {
+  constructor(id, item, price, quantity) {
     this.id = id
     this.item = item
     this.price = price
+    this.quantity = quantity
   }
 }
 
