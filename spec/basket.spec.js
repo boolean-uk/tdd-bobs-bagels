@@ -57,4 +57,13 @@ describe('basket', () => {
     expect(() => basket.add(item4)).toThrowError('Basket is full')
     expect(basket.items.length).toBe(3)
   })
+
+  it('should notify if trying to remove an item from an empty basket', () => {
+    const basket = new Basket()
+
+    expect(() => basket.remove(new Item('Cheese Bagel', 5.5))).toThrowError(
+      'Basket is empty'
+    )
+    expect(basket.items.length).toBe(0)
+  })
 })

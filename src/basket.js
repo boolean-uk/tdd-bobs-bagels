@@ -23,6 +23,9 @@ class Basket {
   }
 
   remove(item) {
+    if (this.items.length === 0) {
+      throw new Error('Basket is empty')
+    }
     const index = this.items.indexOf(item)
     if (index !== -1) {
       this.items.splice(index, 1)
