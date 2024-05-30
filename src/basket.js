@@ -66,13 +66,18 @@ class Basket {
     if (summary.COF && summary.BGLP.quantity % 12 !== 0) {
       getPairDiscountPrice(summary)
     }
-    
+
     let totalValue = 0
-    Object.values(summary).forEach(item => totalValue += item.price)
+    Object.values(summary).forEach((item) => (totalValue += item.price))
     summary.totalPrice = totalValue
     totalValue = 0
 
     return summary
+  }
+
+  getReceipt() {
+    const summary = this.orderSummary()
+    printReceipt(summary)
   }
 }
 
@@ -114,6 +119,54 @@ function getPairDiscountPrice(summary) {
     summary.BGLP.quantity -= discountPairs
     summary.BGLP.price = getDodecDiscountPrice(summary.BGLP.quantity)
   }
+}
+
+function printReceipt(summary) {
+  let now = new Date()
+  let year = now.getFullYear()
+  let month = padToTwoDigits(now.getMonth() + 1)
+  let day = padToTwoDigits(now.getDate())
+  let hours = padToTwoDigits(now.getHours())
+  let minutes = padToTwoDigits(now.getMinutes())
+  let seconds = padToTwoDigits(now.getSeconds())
+
+  console.log(
+    `
+    ~~~ Bob's Bagels ~~~ \n
+    ${day}-${month}-${year} ${hours}:${minutes}:${seconds} \n
+    -------------------- 
+    `
+  )
+
+  Object.entries(summary).forEach((property) => {
+    if (property[0] === 'totalPrice') {
+      console.log (`-------------------- \n Total: £${property[1]}`)
+      return
+    }
+    switch (property[0]) {
+      case 'BGLO':
+        property[0] = 'Onion Bagel'
+        break
+      case 'BGLP':
+        property[0] = 'Plain Bagel'
+        break
+      case 'BGLE':
+        property[0] = 'Everything Bagel'
+        break
+      case 'COF':
+        property[0] = 'Coffee'
+        break
+      case 'CFBP':
+        property[0] = 'Coffee/Bagel Offer'
+    }
+    console.log(`${property[0]}  ${property[1].quantity}  £${property[1].price.toFixed(2)}`)
+  })
+  console.log('--------------------')
+  console.log('Thanks for your order!')
+}
+
+function padToTwoDigits(num) {
+  return num.toString().padStart(2, '0')
 }
 
 export default Basket
