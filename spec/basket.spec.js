@@ -10,4 +10,8 @@ describe("basket", () => {
     it("is an instance of the class", () => {
         expect(basket).toBeInstanceOf(Basket)
     })
+
+    it("initalises with an empty arr", () => {
+        expect(basket.contents.length).toBe(0)
+    })
 })
