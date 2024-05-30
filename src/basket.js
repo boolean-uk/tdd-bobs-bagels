@@ -13,8 +13,9 @@ class Basket {
 
         if(this.basket.length < this.capacity && found) {
             this.basket.push(found)
-
             return this.basket
+        } else if (this.basket.length >= this.capacity) {
+            throw 'basket is full'
         }
     }
 }

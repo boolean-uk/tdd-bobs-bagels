@@ -21,9 +21,8 @@ describe('Bagel list', () => {
     basket.add('BGLO')
     basket.add('BGLO')
     basket.add('BGLO')
-    basket.add('BGLO')
 
-    expect(basket.basket.length).toBe(4)
     expect(() => basket.add('BGLO')).toThrow('basket is full')
+    expect(basket.basket.length).toBe(4)
   })
 })
