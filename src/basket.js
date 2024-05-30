@@ -63,6 +63,32 @@ class Basket {
             throw 'bagel not found'
         }
     }
+
+    printReceipt() {
+        const date = new Date()
+
+        const bobsBagels = `
+        ~~~ Bob's Bagels ~~~
+      
+        ${date}
+      
+      ----------------------------`
+
+      function getItem(item) {
+        return `${item.variant} ${item.name}         ${item.quantity}   £${item.quantity * item.price} \n`
+      }
+
+      let allItems = this.basket.map((b) => getItem(b))
+      allItems = allItems.join('')
+
+      const totalCost = `      ----------------------------
+      Total                 £${this.total}
+      
+            Thank you
+        for your order!`
+
+        return `${bobsBagels} \n ${allItems.toString()} \n ${totalCost}`
+      }
 }
 
 
