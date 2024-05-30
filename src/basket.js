@@ -51,18 +51,23 @@ class Basket {
         }
     })
     
-    if (Object.keys(summary).includes('BGLO')) {
-      const noOnionBagels = summary.BGLO.quantity
-        if (noOnionBagels >= 6) {
-            const extras = noOnionBagels % 6
-            const hexDiscount = (noOnionBagels - extras) / 6
-            const totalPrice = (hexDiscount * 2.49) + (extras * .49)
-            summary.BGLO.price = totalPrice
-        }
+    if (summary.BGLO.quantity > 6) {
+        summary.BGLO.price = getBGLODiscountPrice(summary)
     }
-    
     return summary
   }
+}
+
+
+function getBGLODiscountPrice(summary) {
+    console.log('in')
+    const noOnionBagels = summary.BGLO.quantity
+    if (noOnionBagels >= 6) {
+        const extras = noOnionBagels % 6
+        const hexDiscount = (noOnionBagels - extras) / 6
+        const totalPrice = (hexDiscount * 2.49) + (extras * .49)
+        return totalPrice
+    }
 }
 
 
