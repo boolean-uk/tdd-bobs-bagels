@@ -16,5 +16,12 @@ describe('basket', () => {
     const basket = new Basket()
 
     expect(basket.items.length).toBe(0)
+
+    const addToBasket = new Item('Cheese Bagel', 5.5)
+    const result = basket.add(addToBasket)
+
+    expect(basket.items.length).toBe(1)
+    expect(result.length).toBe(1)
+    expect(result[0]).toEqual(addToBasket)
   })
 })
