@@ -34,7 +34,7 @@ describe('Bagel basket', () => {
     basket.addItem('BGLP')
     basket.addItem('BGLS')
     basket.addItem('COF')
-    
+
     expect(basket.addItem('BGSE')).toEqual('Sorry, your basket is full')
   })
 
@@ -47,7 +47,18 @@ describe('Bagel basket', () => {
     basket.addItem('BGLS')
     basket.addItem('COF')
     basket.addItem('BGSE')
-  
+
     expect(basket.contents.length).toEqual(6)
+  })
+
+  it('should warn users if they try and remove an item that does not exist', () => {
+    const basket = new Basket()
+
+    basket.addItem('BGLO')
+    basket.addItem('BGLS')
+
+    expect(basket.removeItem('COF')).toEqual(
+      'Your basket does not contain that item'
+    )
   })
 })
