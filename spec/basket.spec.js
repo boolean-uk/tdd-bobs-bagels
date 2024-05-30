@@ -54,6 +54,6 @@ describe('Bagel list', () => {
     basket.add('BGLO')
     basket.add('BGLO')
 
-    expect(basket.total()).toBe(1.96)
+    expect(basket.checkOut()).toBe(1.96)
   })
 })

@@ -33,6 +33,10 @@ class Basket {
             throw 'bagel not found'
         }
     }
+
+    checkOut() {
+        return this.total
+    }
 }
 
 export default Basket
