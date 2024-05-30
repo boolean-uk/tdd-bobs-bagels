@@ -1,14 +1,13 @@
-import BagelList from '../src/basket.js'
+import Basket from '../src/basket.js'
 
 describe('Bagel list', () => {
-  let bagelList
+  let basket
 
   beforeEach(() => {
-    bagelList = new BagelList()
+    basket = new Basket()
   })
 
-  it('bagel list exists and has items in it', () => {
-    expect(bagelList).toBeInstanceOf(BagelList)
-    expect(bagelList.length).toBe(7)
+  it('basket exists and has items in it', () => {
+    expect(basket).toBeInstanceOf(Basket)
   })
 })

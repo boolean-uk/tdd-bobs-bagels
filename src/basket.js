@@ -1,7 +1,9 @@
 import json from "../inventory.json" assert { type: "json" }
 
-class BagelList {
+const bagels = json.inventory
+
+class Basket {
 
 }
 
-export default BagelList
+export default Basket
