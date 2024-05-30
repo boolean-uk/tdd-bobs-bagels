@@ -114,4 +114,10 @@ describe("bagel", () => {
     it("will throw an error with invalid inputs", () => {
         expect(() => {new Bagel(20.43, "Everything")}).toThrow(Error("Invalid argument types"))
     })
+
+    it("will return the price of the bagel", () => {
+        const bagel = new Bagel("Everything", 20.43)
+
+        expect(bagel.displayPrice()).toBe("£20.43")
+    })
 })
