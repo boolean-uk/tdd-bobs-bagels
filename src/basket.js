@@ -131,16 +131,13 @@ function printReceipt(summary) {
   let seconds = padToTwoDigits(now.getSeconds())
 
   console.log(
-    `
-    ~~~ Bob's Bagels ~~~ \n
-    ${day}-${month}-${year} ${hours}:${minutes}:${seconds} \n
-    -------------------- 
+    `\t~~~ Bob's Bagels ~~~ \n \t${day}-${month}-${year} ${hours}:${minutes}:${seconds} \n \t-------------------- 
     `
   )
 
   Object.entries(summary).forEach((property) => {
     if (property[0] === 'totalPrice') {
-      console.log (`-------------------- \n Total: £${property[1]}`)
+      console.log(`\t-------------------- \n \tTotal: £${property[1]}`)
       return
     }
     switch (property[0]) {
@@ -159,10 +156,14 @@ function printReceipt(summary) {
       case 'CFBP':
         property[0] = 'Coffee/Bagel Offer'
     }
-    console.log(`${property[0]}  ${property[1].quantity}  £${property[1].price.toFixed(2)}`)
+    console.log(
+      `\t${property[0]}  ${property[1].quantity}  £${property[1].price.toFixed(
+        2
+      )}`
+    )
   })
-  console.log('--------------------')
-  console.log('Thanks for your order!')
+  console.log('\t--------------------')
+  console.log('\tThanks for your order!')
 }
 
 function padToTwoDigits(num) {
