@@ -97,4 +97,19 @@ describe('Bagel basket', () => {
       BGLP: { quantity: 1, price: 0.39 }
     })
   })
+
+  it('should calculate discounts on onion bagels (6 for 2.49)', () => {
+    const basket = new Basket(10)
+
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
+
+    expect(basket.orderSummary()).toEqual({
+      BGLO: { quantity: 6, price: 2.49 }
+    })
+  })
 })
