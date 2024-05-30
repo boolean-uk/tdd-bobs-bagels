@@ -9,6 +9,12 @@ describe('item', () => {
     expect(item.name).toBe('Salmon and Cream Cheese Bagel')
     expect(item.price).toBe(6.5)
   })
+
+  it('should display the price of the item', () => {
+    const item = new Item('Salmon and Cream Cheese Bagel', 5.5)
+
+    expect(item.displayPrice()).toBe(6.5)
+  })
 })
 
 describe('basket', () => {

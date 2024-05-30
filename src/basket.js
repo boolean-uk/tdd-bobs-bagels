@@ -5,6 +5,10 @@ class Item {
     this.name = name
     this.price = price
   }
+
+  displayPrice() {
+    return this.price
+  }
 }
 
 class Basket {
