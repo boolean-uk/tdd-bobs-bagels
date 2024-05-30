@@ -25,4 +25,8 @@ describe('Bagel list', () => {
     expect(() => basket.add('BGLO')).toThrow('basket is full')
     expect(basket.basket.length).toBe(4)
   })
+
+  it('should throw error if bagel not found', () => {
+    expect(() => basket.add('BGLD')).toThrow('bagel not found')
+  })
 })
