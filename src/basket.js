@@ -2,6 +2,7 @@ class Basket {
   constructor() {
     this.orders = []
     this.id = 1
+    this.maxCapacity = 10
   }
 
   add(item) {
@@ -13,7 +14,12 @@ class Basket {
     const newOrder = new Order(this.id, item)
     this.id++
     this.orders.push(newOrder)
-    return this.orders
+
+    if (this.orders.length <= this.maxCapacity) {
+      return this.orders
+    }
+
+    return 'The basket is full'
   }
 
   remove(id) {

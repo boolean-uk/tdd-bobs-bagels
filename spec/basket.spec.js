@@ -33,4 +33,40 @@ describe('Basket', () => {
 
     expect(() => basket.remove(4)).toThrowError("order doesn't exist")
   })
+
+  it('should have an default maximum capacity', () => {
+    basket.add('bagel')
+    basket.add('water')
+    basket.add('bagel')
+    basket.add('water')
+    basket.add('bagel')
+    basket.add('water')
+    basket.add('bagel')
+    basket.add('water')
+    basket.add('bagel')
+    expect(basket.add('water')).toEqual([
+      new Order(1, 'bagel'),
+      new Order(2, 'water'),
+      new Order(3, 'bagel'),
+      new Order(4, 'water'),
+      new Order(5, 'bagel'),
+      new Order(6, 'water'),
+      new Order(7, 'bagel'),
+      new Order(8, 'water'),
+      new Order(9, 'bagel'),
+      new Order(10, 'water')
+    ])
+    expect(basket.add('bagel')).toBe('The basket is full')
+  })
+
+  it('should have an dynamic maximum capacity', () => {
+    basket.maxCapacity = 5
+
+    basket.add('bagel')
+    basket.add('water')
+    basket.add('bagel')
+    basket.add('water')
+    basket.add('bagel')
+    expect(basket.add('water')).toBe('The basket is full')
+  })
 })
