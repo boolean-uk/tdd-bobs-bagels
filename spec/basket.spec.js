@@ -32,7 +32,7 @@ describe('Bagel basket', () => {
     expect(remainingItems).not.toContain('BGLS')
   })
 
-  it('should only accept items upto the content limit', () => {
+  it('should only accept items up to the content limit', () => {
     const basket = new Basket()
     basket.addItem('BGLO')
     basket.addItem('BGLS')
