@@ -96,7 +96,8 @@ describe('Bagel basket', () => {
 
     expect(basket.orderSummary()).toEqual({
       BGLO: { quantity: 2, price: 0.98 },
-      BGLP: { quantity: 2, price: 0.78 }
+      BGLP: { quantity: 2, price: 0.78 },
+      totalPrice: 1.76
     })
   })
 
@@ -108,7 +109,8 @@ describe('Bagel basket', () => {
     }
 
     expect(basket.orderSummary()).toEqual({
-      BGLO: { quantity: 8, price: 3.47 }
+      BGLO: { quantity: 8, price: 3.47 },
+      totalPrice: 3.47
     })
   })
 
@@ -120,7 +122,8 @@ describe('Bagel basket', () => {
     }
 
     expect(basket.orderSummary()).toEqual({
-      BGLP: { quantity: 15, price: 5.16 }
+      BGLP: { quantity: 15, price: 5.16 },
+      totalPrice: 5.16
     })
   })
 
@@ -132,25 +135,27 @@ describe('Bagel basket', () => {
     }
 
     expect(basket.orderSummary()).toEqual({
-      BGLE: { quantity: 8, price: 3.47 }
+      BGLE: { quantity: 8, price: 3.47 },
+      totalPrice: 3.47
     })
   })
 
-//   it('should calculate discounts for COF and BGLP', () => {
-//     const basket = new Basket(10)
+  it('should calculate discounts for COF and BGLP', () => {
+    const basket = new Basket(10)
 
-//     for (let i = 0; i < 5; i++) {
-//       basket.addItem('COF')
-//     }
-//     for (let i = 0; i < 3; i++) {
-//       basket.addItem('BGLP')
-//     }
+    for (let i = 0; i < 5; i++) {
+      basket.addItem('COF')
+    }
+    for (let i = 0; i < 3; i++) {
+      basket.addItem('BGLP')
+    }
 
-//     expect(basket.orderSummary()).toEqual({
-//       CFBP: { quantity: 3, price: 3.75 },
-//       COF: { quantity: 2, price: 1.98 }
-//     })
-//   })
+    expect(basket.orderSummary()).toEqual({
+      CFBP: { quantity: 3, price: 3.75 },
+      COF: { quantity: 2, price: 1.98 },
+      totalPrice: 5.73
+    })
+  })
 
   it('should handle a mixture of many items with many discounts', () => {
     const basket = new Basket(50)
@@ -171,14 +176,13 @@ describe('Bagel basket', () => {
       basket.addItem('COF')
     }
 
-    // console.log(basket.orderSummary())
-
     expect(basket.orderSummary()).toEqual({
-      CFBP: { quantity: 2, price: 2.5 },
+      CFBP: { quantity: 2, price: 2.50 },
       COF: { quantity: 5, price: 4.95 },
       BGLO: { quantity: 8, price: 3.47 },
       BGLP: { quantity: 12, price: 3.99 },
-      BGLE: { quantity: 7, price: 2.98 }
+      BGLE: { quantity: 7, price: 2.98 },
+      totalPrice: 17.89
     })
   })
 })
