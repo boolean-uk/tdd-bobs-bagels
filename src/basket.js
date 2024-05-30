@@ -1,11 +1,19 @@
 class BobsBagels {
     constructor() {
         this.basket = []
+        this.id = 1
     }
 
     addToBasket(title) {
-        const bagel = new Bagel(1, title)
-        this.basket.push(bagel)
+        const basket = this.basket
+        const bagel = new Bagel(this.id, title)
+        this.id++
+
+        basket.push(bagel)
+
+        if (basket.length > 6) {
+            throw "basket is at full capacity"
+        }
         return bagel
     }
 
