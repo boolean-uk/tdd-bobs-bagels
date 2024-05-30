@@ -97,6 +97,15 @@ describe("basket", () => {
 
         expect(() => {newBasket.addItem(bagel)}).toThrow(Error("Cannot add item, as basket is full"))
     })
+
+    it("returns the total of the items in the basket",() => {
+        const bagel = new Bagel("Everything", 20.43)
+
+        basket.addItem(bagel)
+        basket.addItem(bagel)
+
+        expect(basket.totalPrice()).toBe("£40.86")
+    })
 })
 
 describe("bagel", () => {
