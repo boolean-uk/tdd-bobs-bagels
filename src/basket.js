@@ -2,6 +2,12 @@ class Basket{
     constructor() {
         this.contents = []
     }
+
+    addItem(item) {
+        const newItem = {...item, quantity:1}
+
+        this.contents.push(newItem)
+    }
 }
 
 class Bagel{
