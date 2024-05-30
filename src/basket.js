@@ -63,7 +63,7 @@ class Manager {
         const basket = new Basket(this.capacity)
         return basket
     }
-  }
+}
 
 export { Manager }
 export default Basket

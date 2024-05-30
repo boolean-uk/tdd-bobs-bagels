@@ -92,4 +92,20 @@ describe('Manager', () => {
     const result = managerBasket.createBasket()
     expect(result).toBeInstanceOf(Basket)
   })
+
+  it('Manager can add more than 4 items', () => {
+    const managerBasket = new Manager(8)
+
+    managerBasket.createBasket()
+
+    managerBasket.basket.add('BGLO')
+    managerBasket.basket.add('BGLO')
+    managerBasket.basket.add('BGLO')
+    managerBasket.basket.add('BGLO')
+    managerBasket.basket.add('BGLO')
+    managerBasket.basket.add('BGLO')
+    managerBasket.basket.add('BGLO')
+
+    expect(managerBasket.basket.basket.length).toBe(7)
+  })
 })
