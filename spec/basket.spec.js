@@ -1,4 +1,4 @@
-import Basket, {bagel} from "../src/basket.js"
+import Basket, {Bagel} from "../src/basket.js"
 
 describe("basket", () => {
     let basket

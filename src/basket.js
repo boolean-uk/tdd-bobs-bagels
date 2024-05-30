@@ -4,4 +4,10 @@ class Basket{
     }
 }
 
+class Bagel{
+
+}
+
+export {Bagel}
+
 export default Basket
