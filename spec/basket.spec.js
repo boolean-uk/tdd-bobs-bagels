@@ -43,4 +43,8 @@ describe('Bagel list', () => {
     expect(basket.price('BGLO')).toBe('0.49')
     expect(basket.price('BGSE')).toBe('2.99')
   })
+
+  it('should throw error if bagel not found', () => {
+    expect(() => basket.price('BGLD')).toThrow('bagel not found')
+  })
 })
