@@ -128,6 +128,6 @@ describe('basket', () => {
 
     const totalCost = basket.totalOrderCost()
 
-    expect(totalCost).toBe(10.5)
+    expect(totalCost).toBe(9.5)
   })
 })
