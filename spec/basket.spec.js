@@ -18,7 +18,7 @@ describe("basket", () => {
 
 describe("bagel", () => {
     it("is an instance of bagel", () => {
-        const bagel = new Bagel()
+        const bagel = new Bagel("Everything", 20.43)
     })
 
     it("succesfully creates the bagel with the correct info", () => {
@@ -29,6 +29,6 @@ describe("bagel", () => {
     })
 
     it("will throw an error with invalid inputs", () => {
-        expect(() => {new Bagel(20.43, "Everything")}).toThrowError(Error("Invalid argument types"))
+        expect(() => {new Bagel(20.43, "Everything")}).toThrow(Error("Invalid argument types"))
     })
 })
