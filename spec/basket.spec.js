@@ -1,6 +1,6 @@
 import { Item, Basket } from '../src/basket.js'
 
-// Part One
+// Part One, Two
 
 describe('item', () => {
   it('should have a name and a price', () => {
@@ -65,5 +65,21 @@ describe('basket', () => {
       'Basket is empty'
     )
     expect(basket.items.length).toBe(0)
+  })
+
+  it('should not allow setting capacity less than current number of items', () => {
+    const basket = new Basket(3) // Test capacity
+
+    const item1 = new Item('Cheese Bagel', 5.5)
+    const item2 = new Item('Cola', 1.5)
+    const item3 = new Item('Cookie', 2.5)
+
+    basket.add(item1)
+    basket.add(item2)
+    basket.add(item3)
+
+    expect(() => basket.adjustCapacity(2)).toThrowError(
+      'New capacity cannot be less than the number of items in the basket'
+    )
   })
 })

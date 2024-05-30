@@ -1,4 +1,4 @@
-// Part One
+// Part One, Two
 
 class Item {
   constructor(name, price) {
@@ -36,6 +36,15 @@ class Basket {
 
   basketisFull() {
     return this.items.length >= this.capacity // Full if there is more than the set capacity
+  }
+
+  adjustCapacity(newCapacity) {
+    if (newCapacity < this.items.length) {
+      throw new Error(
+        'New capacity cannot be less than the number of items in the basket'
+      )
+    }
+    this.capacity = newCapacity
   }
 }
 
