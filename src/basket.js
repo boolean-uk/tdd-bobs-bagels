@@ -5,6 +5,11 @@ class Basket {
   }
 
   add(item) {
+    if (typeof item !== 'string') {
+      throw new Error('item not string provided')
+    } else if (item === '' || item.length < 3) {
+      throw new Error('string not valid')
+    }
     const newOrder = new Order(this.id, item)
     this.id++
     this.orders.push(newOrder)
@@ -13,6 +18,9 @@ class Basket {
 
   remove(id) {
     const orderId = this.orders.findIndex((order) => order.id === id)
+    if (orderId === -1) {
+      throw new Error("order doesn't exist")
+    }
     this.orders.splice(orderId, 1)
     return this.orders
   }
