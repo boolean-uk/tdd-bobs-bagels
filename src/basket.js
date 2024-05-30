@@ -52,6 +52,10 @@ class Basket {
     this.orders.splice(orderId, 1)
     return this.orders
   }
+
+  checkPrice() {
+    return this.items
+  }
 }
 
 class Order {
