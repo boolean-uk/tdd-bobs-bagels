@@ -37,4 +37,14 @@ class Basket {
   }
 }
 
+const basket = new Basket
+basket.addItem('COF')
+basket.addItem('BGLO')
+basket.addItem('BGLO')
+basket.addItem('BGLE')
+basket.addItem('BGLS')
+
+console.log(basket.checkOut())
+
+
 export default Basket
