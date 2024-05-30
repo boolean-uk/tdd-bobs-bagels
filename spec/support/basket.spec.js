@@ -8,11 +8,14 @@ describe('Bobs Bagels', () => {
     it('should exist', () => {
         expect(bobsBagels).toBeInstanceOf(BobsBagels)
     })
-    it('should add an item to the basket', () => {
-        const bagel = bobsBagels.addToBasket('poppyseed bagel')
+    it('should create a bagel order', () => {
+        const bagel = bobsBagels.createOrder(('poppyseed bagel'))
         expect(bagel).toBeInstanceOf(Bagel)
         expect(bagel.id).toBe(1)
         expect(bagel.title).toBe('poppyseed bagel')
+    })
+    it('should add bagels to the basket', () => {
+        bobsBagels.addToBasket('poppyseed bagel')
         expect(bobsBagels.basket.length).toBe(1)
     })
     it('should be allow bagels to be removed from basket', () => {

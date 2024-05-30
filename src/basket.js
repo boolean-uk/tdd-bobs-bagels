@@ -4,17 +4,21 @@ class BobsBagels {
         this.id = 1
     }
 
-    addToBasket(title) {
-        const basket = this.basket
+    createOrder(title) {
         const bagel = new Bagel(this.id, title)
         this.id++
 
+        return bagel
+    }
+
+    addToBasket(bagel) {
+        const basket = this.basket
         basket.push(bagel)
 
         if (basket.length > 6) {
             throw "basket is at full capacity"
         }
-        return bagel
+        return this.basket
     }
 
     remove(id) {
