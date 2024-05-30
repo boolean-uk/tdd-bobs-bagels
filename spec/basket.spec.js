@@ -84,4 +84,17 @@ describe('Bagel basket', () => {
 
     expect(basket.checkOut()).toEqual('1.37')
   })
+
+  it('should give users an order summary', () => {
+    const basket = new Basket()
+
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
+    basket.addItem('BGLP')
+
+    expect(basket.orderSummary()).toEqual({
+      BGLO: { quantity: 2, price: 0.98 },
+      BGLP: { quantity: 1, price: 0.39 }
+    })
+  })
 })
