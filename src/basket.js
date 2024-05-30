@@ -1,5 +1,9 @@
 class Basket {
 
+    addToBasket(title) {
+        const item = new Item(1, title)
+        return item
+    }
 
 }
 
