@@ -86,7 +86,7 @@ describe('Bagel basket', () => {
   it('should set quantity to 0 if bagel is not in basket yet', () => {
     basket.add('BGLO')
 
-    expect(basket[0].quantity).toBe(0)
+    expect(basket.basket[0].quantity).toBe(0)
   })
 })
 

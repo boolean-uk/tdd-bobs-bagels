@@ -7,13 +7,27 @@ class Basket {
         this.basket = []
         this.capacity = capacity
         this.total = 0
+        this.amount = 0
     }
 
     add(sku) {
         const found = bagels.find((bagel) => bagel.sku === sku)
+        const foundBagelInBasket = this.basket.find((b) => b.sku === found.sku)
 
-        if(this.basket.length < this.capacity && found) {
+        if(this.amount < this.capacity && found && !foundBagelInBasket) {
+            found.quantity = 0
+            this.amount++
             this.basket.push(found)
+
+            const price = Number(found.price)
+            this.total += price
+
+            return this.basket
+        } else if (this.amount < this.capacity && found && foundBagelInBasket) {
+            found.quantity++
+            this.amount++
+            this.basket.push(found)
+
             const price = Number(found.price)
             this.total += price
 
