@@ -21,19 +21,15 @@ describe('Bagel basket', () => {
   it('should be able to have items removed', () => {
     const basket = new Basket()
     basket.addItem('BGLO')
-    basket.addItem('BGLS')
     basket.addItem('BGLP')
     basket.addItem('BGLS')
     basket.addItem('COF')
-    basket.removeItem('BGLP')
+    basket.removeItem('BGLS')
 
     const remainingItems = []
+    basket.contents.forEach((item) => remainingItems.push(item.sku))
 
-    for (let i = 0; i < basket.contents; i++) {
-      remainingItems.push(basket.contents[i])
-    }
-
-    expect(remainingItems).not.toContain('BGLP')
+    expect(remainingItems).not.toContain('BGLS')
   })
 
   it('should only accept items upto the content limit', () => {
