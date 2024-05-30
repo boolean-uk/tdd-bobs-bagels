@@ -37,4 +37,17 @@ describe('Bagel basket', () => {
     
     expect(basket.addItem('BGSE')).toEqual('Sorry, your basket is full')
   })
+
+  it('should accept adjustments to the default content limit', () => {
+    const basket = new Basket(6)
+
+    basket.addItem('BGLO')
+    basket.addItem('BGLS')
+    basket.addItem('BGLP')
+    basket.addItem('BGLS')
+    basket.addItem('COF')
+    basket.addItem('BGSE')
+  
+    expect(basket.contents.length).toEqual(6)
+  })
 })
