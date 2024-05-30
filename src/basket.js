@@ -1,9 +1,23 @@
 class Basket {
-  constructor() {
+  constructor(size=5) {
     this.contents = []
+    this.size = size
+  }
+
+  currentQuantity() {
+    let total = 0
+    this.contents.forEach((element) => {
+        total += element.quantity
+    })
+    return total
   }
 
   addItem(item) {
+    if(this.currentQuantity() === this.size) {
+        throw new Error("Cannot add item, as basket is full")
+    }
+
+
     const itemInBasket = this.contents.find((element) => {
       return element.name === item.name
     })
