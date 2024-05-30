@@ -41,4 +41,18 @@ describe('basket', () => {
     expect(basket.items.length).toBe(1)
     expect(removedItem).toEqual(item1)
   })
+
+  it('should not add items beyond basket capacity', () => {
+    const basket = new Basket(2) // Test capacity
+
+    const item1 = new Item('Cheese Bagel', 5.5)
+    const item2 = new Item('Cola', 1.5)
+    const item3 = new Item('Cookie', 2.5)
+
+    basket.add(item1)
+    basket.add(item2)
+
+    expect(() => basket.add(item3)).toThrowError('Basket is full')
+    expect(basket.items.length).toBe(2)
+  })
 })

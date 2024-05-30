@@ -8,8 +8,10 @@ class Item {
 }
 
 class Basket {
-  constructor() {
+  constructor(capacity = 2) {
+    // default capacity at 2 for test
     this.items = []
+    this.capacity = capacity
   }
 
   add(item) {
@@ -24,6 +26,10 @@ class Basket {
       return item
     }
     return null // Return null if they're no items in the basket
+  }
+
+  basketisFull() {
+    return this.items.length >= this.capacity // Full if there is more than the set capacity
   }
 }
 
