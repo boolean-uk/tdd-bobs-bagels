@@ -28,7 +28,7 @@ class Basket {
 
   checkPrice(SKU) {
     const item = inventory.find((item) => item.sku === SKU)
-    return item.price
+    return Number(item.price)
   }
 
   checkOut() {
@@ -36,7 +36,7 @@ class Basket {
     this.contents.forEach((item) => {
       totalPrice += Number(item.price)
     })
-    return totalPrice.toString()
+    return totalPrice
   }
 
   orderSummary() {
@@ -45,7 +45,7 @@ class Basket {
       const { sku, price } = item
       if (summary[sku]) {
         summary[sku].quantity++
-        summary[sku].price = summary[sku].quantity * price
+        summary[sku].price = Number((summary[sku].quantity * Number(price)).toFixed(2))
       } else {
         summary[sku] = { quantity: 1, price: Number(price) }
       }
@@ -61,11 +61,13 @@ class Basket {
       summary.BGLE.price = getHexDiscountPrice(summary.BGLE.quantity)
     }
 
-    if (summary.COF && (summary.BGLE.quantity < 12 || (summary.BGLE.quantity > 12 && summary.BGLE.quantity % 12 > 0)))
-     {
-      console.log('in')
+    if (
+      summary.COF &&
+      (summary.BGLP.quantity < 12 ||
+        (summary.BGLP.quantity > 12 && summary.BGLP.quantity % 12 > 0))
+    ) {
+      getPairDiscountPrice(summary)
     }
-
     return summary
   }
 }
@@ -82,6 +84,26 @@ function getDodecDiscountPrice(quantity) {
   const dodecDiscount = (quantity - extras) / 12
   const totalPrice = dodecDiscount * 3.99 + extras * 0.39
   return totalPrice
+}
+
+function getPairDiscountPrice(summary) {
+    const { COF, BGLP } = summary
+    const smallest = Math.min(COF.quantity, BGLP.quantity)
+
+    const cofPrice = inventory.find(item => item.sku === 'COF').price
+    const bglPrice = inventory.find(item => item.sku === 'BGLP').price
+    
+    summary.CFBP = { quantity: smallest, price: (smallest * 1.25) }
+    
+    if (summary.COF.quantity === smallest) {
+        delete summary.COF
+        summary.BGLP.quantity -= smallest
+        summary.BGLP.price = summary.BGLP.quantity * bglPrice
+    } else {
+        delete summary.BGLP
+        summary.COF.quantity -= smallest
+        summary.COF.price = summary.COF.quantity * cofPrice
+    }
 }
 
 export default Basket

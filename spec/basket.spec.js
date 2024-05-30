@@ -72,7 +72,7 @@ describe('Bagel basket', () => {
 
     basket.checkPrice('COF')
 
-    expect(basket.checkPrice('COF')).toEqual('0.99')
+    expect(basket.checkPrice('COF')).toEqual(0.99)
   })
 
   it('should give users the total price of their basket when they check out', () => {
@@ -82,7 +82,7 @@ describe('Bagel basket', () => {
     basket.addItem('BGLS')
     basket.addItem('BGLP')
 
-    expect(basket.checkOut()).toEqual('1.37')
+    expect(basket.checkOut()).toEqual(1.37)
   })
 
   it('should give users an order summary', () => {
@@ -91,10 +91,11 @@ describe('Bagel basket', () => {
     basket.addItem('BGLO')
     basket.addItem('BGLO')
     basket.addItem('BGLP')
+    basket.addItem('BGLP')
 
     expect(basket.orderSummary()).toEqual({
       BGLO: { quantity: 2, price: 0.98 },
-      BGLP: { quantity: 1, price: 0.39 }
+      BGLP: { quantity: 2, price: 0.78 }
     })
   })
 
@@ -140,12 +141,13 @@ describe('Bagel basket', () => {
     for (let i = 0; i < 3; i++) {
       basket.addItem('COF')
     }
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
       basket.addItem('BGLP')
     }
 
     expect(basket.orderSummary()).toEqual({
-      CFBP: { quantity: 3, price: 3.75 }
+      CFBP: { quantity: 3, price: 3.75 },
+      BGLP: { quantity: 2, price: 0.78 }
     })
   })
 })
