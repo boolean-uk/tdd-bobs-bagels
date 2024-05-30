@@ -19,7 +19,7 @@ describe('Bobs Bagels', () => {
         bobsBagels.addToBasket('poppyseed bagel')
         expect(bobsBagels.basket.length).toBe(1)
 
-        const removed = bobsBagels.basket.remove(1)
+        const removed = bobsBagels.remove(1)
         expect(removed.title).toBe('poppyseed bagel')
         const newBasket = bobsBagels.basket
         expect(newBasket.length).toBe(0)
