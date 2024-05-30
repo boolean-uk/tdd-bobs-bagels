@@ -107,9 +107,11 @@ describe('Bagel basket', () => {
     basket.addItem('BGLO')
     basket.addItem('BGLO')
     basket.addItem('BGLO')
+    basket.addItem('BGLO')
+    basket.addItem('BGLO')
 
     expect(basket.orderSummary()).toEqual({
-      BGLO: { quantity: 6, price: 2.49 }
+      BGLO: { quantity: 8, price: 3.47 }
     })
   })
 })
