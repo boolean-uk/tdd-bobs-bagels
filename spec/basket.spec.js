@@ -82,6 +82,12 @@ describe('Bagel basket', () => {
 
     expect(basket.checkOut()).toBe(5.48)
   })
+
+  it('should set quantity to 0 if bagel is not in basket yet', () => {
+    basket.add('BGLO')
+
+    expect(basket[0].quantity).toBe(0)
+  })
 })
 
 describe('Manager', () => {
