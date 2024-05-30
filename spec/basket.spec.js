@@ -1,4 +1,4 @@
-import Basket from "../src/basket.js"
+import Basket, {bagel} from "../src/basket.js"
 
 describe("basket", () => {
     let basket
@@ -13,5 +13,11 @@ describe("basket", () => {
 
     it("initalises with an empty arr", () => {
         expect(basket.contents.length).toBe(0)
+    })
+})
+
+describe("bagel", () => {
+    it("is an instance of bagel", () => {
+        const bagel = new Bagel()
     })
 })
