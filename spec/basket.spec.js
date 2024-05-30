@@ -12,12 +12,10 @@ describe('Basket', () => {
   })
 
   it('should be added an order', () => {
-    basket.add('bagel')
-    basket.add('banana')
-
-    expect(basket.orders).toEqual([
+    expect(basket.add('bagel')).toEqual([new Order(1, 'bagel')])
+    expect(basket.add('water')).toEqual([
       new Order(1, 'bagel'),
-      new Order(2, 'banana')
+      new Order(2, 'water')
     ])
   })
 })
