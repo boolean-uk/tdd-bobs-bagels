@@ -18,14 +18,12 @@ class Basket {
 
   removeItem(SKU) {
     const itemToRemove = this.contents.find((item) => item.sku === SKU)
-    const index = this.contents.indexOf(itemToRemove)
-    this.contents.splice(index, 1)
+    if (itemToRemove) {
+      const index = this.contents.indexOf(itemToRemove)
+      this.contents.splice(index, 1)
+    } else {return 'Your basket does not contain that item'
+    }
   }
 }
-
-// const basket = new Basket()
-
-// basket.addItem('COF')
-// basket.addItem('BGLS')
 
 export default Basket
