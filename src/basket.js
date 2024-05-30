@@ -6,6 +6,7 @@ class Basket {
     constructor(capacity = 4) {
         this.basket = []
         this.capacity = capacity
+        this.total = 0
     }
 
     add(sku) {
@@ -13,6 +14,8 @@ class Basket {
 
         if(this.basket.length < this.capacity && found) {
             this.basket.push(found)
+            const price = Number(found.price)
+            this.total += price
             return this.basket
         } else if (this.basket.length >= this.capacity) {
             throw 'basket is full'
