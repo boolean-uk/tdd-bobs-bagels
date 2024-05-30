@@ -14,6 +14,14 @@ describe("basket", () => {
     it("initalises with an empty arr", () => {
         expect(basket.contents.length).toBe(0)
     })
+
+    it("adds an item to the basket", () => {
+        const bagel = new Bagel("Everything", 20.43)
+
+        basket.addItem(bagel)
+
+        expect(basket.contents.find((element) => { return element.name === "Everything" && element.price === 20.43}))
+    })
 })
 
 describe("bagel", () => {
