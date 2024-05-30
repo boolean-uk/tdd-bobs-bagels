@@ -52,31 +52,29 @@ class Basket {
     })
 
     if (summary.BGLO?.quantity >= 6) {
-      summary.BGLO.price = getHexDiscountPrice(summary)
+      summary.BGLO.price = getHexDiscountPrice(summary.BGLO.quantity)
     }
     if (summary.BGLP?.quantity >= 12) {
-      summary.BGLP.price = getBGLPDiscountPrice(summary)
+      summary.BGLP.price = getDodecDiscountPrice(summary.BGLP.quantity)
     }
     if (summary.BGLE?.quantity >= 6) {
-        summary.BGLO.price = getHexDiscountPrice(summary)
-      }
+      summary.BGLE.price = getHexDiscountPrice(summary.BGLE.quantity)
+    }
 
     return summary
   }
 }
 
-function getHexDiscountPrice(summary) {
-  const noBagels = summary.BGLO.quantity
-  const extras = noBagels % 6
-  const hexDiscount = (noBagels - extras) / 6
+function getHexDiscountPrice(quantity) {
+  const extras = quantity % 6
+  const hexDiscount = (quantity - extras) / 6
   const totalPrice = hexDiscount * 2.49 + extras * 0.49
   return totalPrice
 }
 
-function getBGLPDiscountPrice(summary) {
-  const noPlainBagels = summary.BGLP.quantity
-  const extras = noPlainBagels % 12
-  const dodecDiscount = (noPlainBagels - extras) / 12
+function getDodecDiscountPrice(quantity) {
+  const extras = quantity % 12
+  const dodecDiscount = (quantity - extras) / 12
   const totalPrice = dodecDiscount * 3.99 + extras * 0.39
   return totalPrice
 }

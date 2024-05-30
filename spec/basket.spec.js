@@ -130,7 +130,7 @@ describe('Bagel basket', () => {
     }
 
     expect(basket.orderSummary()).toEqual({
-      BGLO: { quantity: 8, price: 3.47 }
+      BGLE: { quantity: 8, price: 3.47 }
     })
   })
 })
