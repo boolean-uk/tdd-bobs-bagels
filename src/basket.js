@@ -60,6 +60,10 @@ class Bagel {
     this.name = name
     this.price = price
   }
+
+  displayPrice() {
+    return `£${this.price}`
+  }
 }
 
 export { Bagel }
