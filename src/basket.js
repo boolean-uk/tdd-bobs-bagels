@@ -15,7 +15,7 @@ class Basket {
         const foundBagelInBasket = this.basket.find((b) => b.sku === found.sku)
 
         if(this.amount < this.capacity && found && !foundBagelInBasket) {
-            found.quantity = 0
+            found.quantity = 1
             this.amount++
             this.basket.push(found)
 
