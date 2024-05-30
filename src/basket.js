@@ -5,7 +5,10 @@ class Basket{
 }
 
 class Bagel{
-
+    constructor(name, price) {
+        this.name = name
+        this.price = price
+    }
 }
 
 export {Bagel}
