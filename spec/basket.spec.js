@@ -24,4 +24,21 @@ describe('basket', () => {
     expect(result.length).toBe(1)
     expect(result[0]).toEqual(addToBasket)
   })
+
+  it('should remove items from the basket', () => {
+    const basket = new Basket()
+
+    const item1 = new Item('Cheese Bagel', 5.5)
+    const item2 = new Item('Cola', 1.5)
+
+    basket.add(item1)
+    basket.add(item2)
+
+    expect(basket.items.length).toBe(2)
+
+    const removedItem = basket.remove(item1)
+
+    expect(basket.items.length).toBe(1)
+    expect(removedItem).toEqual(item1)
+  })
 })
