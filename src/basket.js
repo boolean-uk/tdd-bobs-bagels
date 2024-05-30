@@ -12,6 +12,11 @@ class Basket {
         const itemToAdd = inventory.find((item) => item.sku === SKU)
         this.contents.push(itemToAdd)
     }
+
+    removeItem(SKU) {
+        const indexToRemove = this.contents.indexOf(SKU)
+        this.contents.splice(indexToRemove, 1)
+    }
 }
 
 

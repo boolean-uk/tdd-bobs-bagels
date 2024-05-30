@@ -17,4 +17,13 @@ describe('Bagel basket', () => {
 
     expect(basket.contents.length).toEqual(3)
   })
+
+  it('should be able to have items removed', () => {
+    const basket = new Basket()
+    basket.addItem('BGLO')
+    basket.addItem('BGLS')
+    basket.removeItem('BGLS')
+
+    expect(basket.contents[0].sku).toEqual('BGLO')
+  })
 })
