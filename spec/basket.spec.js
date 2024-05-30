@@ -49,11 +49,24 @@ describe('Bagel list', () => {
   })
 
   it('should show total price of basket', () => {
+    expect(basket.checkOut()).toBe(0)
+
     basket.add('BGLO')
     basket.add('BGLO')
     basket.add('BGLO')
     basket.add('BGLO')
 
     expect(basket.checkOut()).toBe(1.96)
+  })
+
+  it('should remove bagel from basket', () => {
+    basket.add('BGLO')
+    basket.add('BGSE')
+    basket.add('BGSS')
+
+    const removed = basket.remove('BGSE')
+    expect(removed.sku).toBe('BGSE')
+
+    expect(basket.basket.length).toBe(2)
   })
 })
