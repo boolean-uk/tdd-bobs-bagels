@@ -24,4 +24,19 @@ describe('Bobs Bagels', () => {
         const newBasket = bobsBagels.basket
         expect(newBasket.length).toBe(0)
     })
+    it('should alert customer when basket has reached 6 bagel limit', () => {
+        bobsBagels.addToBasket('poppyseed bagel')
+        bobsBagels.addToBasket('sweet bagel')
+        bobsBagels.addToBasket('plain bagel')
+        bobsBagels.addToBasket('meatfeast bagel')
+        bobsBagels.addToBasket('salmon bagel')
+        bobsBagels.addToBasket('cream cheese bagel')
+        expect(bobsBagels.basket.length).toBe(6)
+
+        const overCapacity = bobsBagels.basketFull(7)
+        expect(overCapacity).toBe(7)
+        const capacity = bobsBagels.basket
+        expect(capacity.length).toBe(6)
+
+    })
 })
