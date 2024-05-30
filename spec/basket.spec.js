@@ -62,6 +62,19 @@ describe("basket", () => {
         
         expect(() => {basket.removeItem(bagel)}).toThrow(Error("The item does not exist in the basket"))
     })
+
+    it("cannot add an item if it would cause the quantity of items to be larger than the size of the basket", () => {
+        const bagel = new Bagel("Everything", 20.43)
+
+        basket.addItem(bagel)
+        basket.addItem(bagel)
+        basket.addItem(bagel)
+        basket.addItem(bagel)
+        basket.addItem(bagel)
+        
+
+        expect(() => {basket.addItem(bagel)}).toThrow(Error("Cannot add item, as basket is full"))
+    })
 })
 
 describe("bagel", () => {
