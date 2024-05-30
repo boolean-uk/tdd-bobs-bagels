@@ -84,4 +84,12 @@ describe('Basket', () => {
       "rainbow bagel": 0.35
     })
   })
+
+  it('should increment the order', () => {
+    basket.add('plain bagel')
+    expect(basket.increment(1)).toEqual([
+      new Order(1, 'plain bagel', 0.25),
+      new Order(2, 'plain bagel', 0.25)
+    ])
+  })
 })

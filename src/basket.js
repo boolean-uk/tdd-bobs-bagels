@@ -16,6 +16,7 @@ class Basket {
       "chocolate bagel": 0.20,
       "rainbow bagel": 0.35
     }
+    this.quantity = 1
   }
 
   add(item) {
