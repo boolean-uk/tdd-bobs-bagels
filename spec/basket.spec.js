@@ -68,4 +68,9 @@ describe('Bagel list', () => {
 
     expect(basket.basket.length).toBe(2)
   })
+
+  it('should throw error if bagel not found', () => {
+    expect(() => basket.remove('BGLD')).toThrow('bagel not found')
+  })
+
 })
