@@ -94,4 +94,12 @@ describe('Basket', () => {
       new Order(2, 'garlic bagel', 0.35, 1)
     ])
   })
+
+  it('should show the total price of the basket', () => {
+    basket.add('plain bagel')
+    basket.add('plain bagel')
+    basket.add('blueberry bagel')
+    basket.add('garlic bagel')
+    expect(basket.totalPrice()).toMatch(1,15)
+  })
 })
