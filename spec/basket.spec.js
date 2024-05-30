@@ -1,3 +1,5 @@
+import Basket from '../src/basket.js'
+
 describe('Basket', () => {
   let basket
 
