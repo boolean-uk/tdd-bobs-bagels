@@ -8,13 +8,16 @@ class Item {
 }
 
 class Basket {
-  constructor(capacity = 2) {
-    // default capacity at 2 for test
+  constructor(capacity = 3) {
+    // default capacity at 3 for test
     this.items = []
     this.capacity = capacity
   }
 
   add(item) {
+    if (this.items.length >= this.capacity) {
+      throw new Error('Basket is full')
+    }
     this.items.push(item)
     return this.items
   }
