@@ -3,9 +3,9 @@ import data from '../inventory.json' assert { type: 'json' }
 const { inventory } = data
 
 class Basket {
-    constructor() {
+    constructor(contentLimit = 5) {
         this.contents = []
-        this.contentLimit = 5
+        this.contentLimit = contentLimit
     }
 
     addItem(SKU) {
