@@ -27,4 +27,8 @@ describe("bagel", () => {
         expect(bagel.name).toBe("Everything")
         expect(bagel.price).toBe(20.43)
     })
+
+    it("will throw an error with invalid inputs", () => {
+        expect(() => {new Bagel(20.43, "Everything")}).toThrowError(Error("Invalid argument types"))
+    })
 })
