@@ -36,4 +36,8 @@ describe('Bobs Bagels', () => {
         bobsBagels.addToBasket('meat feast bagel')
         expect(() => bobsBagels.addToBasket()).toThrow("basket is at full capacity")
     })
+    it('should allow managers to create a larger capacity basket', () => {
+        bobsBagels.createManagerXlBasket()
+        expect(bobsBagels.xlBasket.length).toBe(0)
+    })
 })

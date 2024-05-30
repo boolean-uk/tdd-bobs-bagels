@@ -27,6 +27,10 @@ class BobsBagels {
         return bagels
     }
 
+    createManagerXlBasket() {
+        this.xlBasket = []
+    }
+
 }
 
 class Bagel {
