@@ -75,6 +75,27 @@ describe("basket", () => {
 
         expect(() => {basket.addItem(bagel)}).toThrow(Error("Cannot add item, as basket is full"))
     })
+
+    it("accepts a new basket size in the basket constructor", () => {
+        const bagel = new Bagel("Everything", 20.43)
+
+        const newBasket = Basket(10)
+
+        newBasket.addItem(bagel)
+        newBasket.addItem(bagel)
+        newBasket.addItem(bagel)
+        newBasket.addItem(bagel)
+        newBasket.addItem(bagel)
+        newBasket.addItem(bagel)
+
+        expect(newBasket.contents.length).toBe(6)
+
+        newBasket.addItem(bagel)
+        newBasket.addItem(bagel)
+        newBasket.addItem(bagel)
+
+        expect(() => {newBasket.addItem(bagel)}).toThrow(Error("Cannot add item, as basket is full"))
+    })
 })
 
 describe("bagel", () => {
