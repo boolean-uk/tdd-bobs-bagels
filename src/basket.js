@@ -37,6 +37,14 @@ class Basket {
     checkOut() {
         return this.total
     }
+
+    remove(sku) {
+        const foundIndex = this.basket.findIndex((bagel) => bagel.sku === sku)
+
+        if (foundIndex > 0) {
+          this.basket.splice(foundIndex, 1)
+        }
+    }
 }
 
 export default Basket

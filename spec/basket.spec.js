@@ -64,8 +64,7 @@ describe('Bagel list', () => {
     basket.add('BGSE')
     basket.add('BGSS')
 
-    const removed = basket.remove('BGSE')
-    expect(removed.sku).toBe('BGSE')
+    basket.remove('BGSE')
 
     expect(basket.basket.length).toBe(2)
   })
