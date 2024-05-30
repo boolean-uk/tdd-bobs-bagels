@@ -101,14 +101,9 @@ describe('Bagel basket', () => {
   it('should calculate discounts on onion bagels (6 for 2.49)', () => {
     const basket = new Basket(10)
 
-    basket.addItem('BGLO')
-    basket.addItem('BGLO')
-    basket.addItem('BGLO')
-    basket.addItem('BGLO')
-    basket.addItem('BGLO')
-    basket.addItem('BGLO')
-    basket.addItem('BGLO')
-    basket.addItem('BGLO')
+    for (let i = 0; i < 8; i++) {
+      basket.addItem('BGLO')
+    }
 
     expect(basket.orderSummary()).toEqual({
       BGLO: { quantity: 8, price: 3.47 }
@@ -124,6 +119,18 @@ describe('Bagel basket', () => {
 
     expect(basket.orderSummary()).toEqual({
       BGLP: { quantity: 15, price: 5.16 }
+    })
+  })
+
+  it('should calculate discounts on everything bagels (6 for 2.49)', () => {
+    const basket = new Basket(10)
+
+    for (let i = 0; i < 8; i++) {
+      basket.addItem('BGLE')
+    }
+
+    expect(basket.orderSummary()).toEqual({
+      BGLO: { quantity: 8, price: 3.47 }
     })
   })
 })

@@ -52,20 +52,23 @@ class Basket {
     })
 
     if (summary.BGLO?.quantity >= 6) {
-      summary.BGLO.price = getBGLODiscountPrice(summary)
+      summary.BGLO.price = getHexDiscountPrice(summary)
     }
     if (summary.BGLP?.quantity >= 12) {
       summary.BGLP.price = getBGLPDiscountPrice(summary)
     }
+    if (summary.BGLE?.quantity >= 6) {
+        summary.BGLO.price = getHexDiscountPrice(summary)
+      }
 
     return summary
   }
 }
 
-function getBGLODiscountPrice(summary) {
-  const noOnionBagels = summary.BGLO.quantity
-  const extras = noOnionBagels % 6
-  const hexDiscount = (noOnionBagels - extras) / 6
+function getHexDiscountPrice(summary) {
+  const noBagels = summary.BGLO.quantity
+  const extras = noBagels % 6
+  const hexDiscount = (noBagels - extras) / 6
   const totalPrice = hexDiscount * 2.49 + extras * 0.49
   return totalPrice
 }
