@@ -1,7 +1,11 @@
-class Basket {
+class BobsBagels {
+    constructor() {
+        this.basket = []
+    }
 
     addToBasket(title) {
         const item = new Item(1, title)
+        this.basket.push(item)
         return item
     }
 
@@ -16,4 +20,4 @@ class Item {
 
 export { Item }
 
-export default Basket
+export default BobsBagels

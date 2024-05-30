@@ -1,17 +1,18 @@
-import Basket, { Item } from "../../src/basket.js";
+import BobsBagels, { Item } from "../../src/basket.js";
 
-describe('Basket', () => {
-    let basket
+describe('Bobs Bagels', () => {
+    let bobsBagels
     beforeEach(() => {
-        basket = new Basket()
+        bobsBagels = new BobsBagels()
     })
     it('should exist', () => {
-        expect(basket).toBeInstanceOf(Basket)
+        expect(bobsBagels).toBeInstanceOf(BobsBagels)
     })
     it('should add an item to the basket', () => {
-        const item = basket.addToBasket('poppyseed bagel')
+        const item = bobsBagels.addToBasket('poppyseed bagel')
         expect(item).toBeInstanceOf(Item)
         expect(item.id).toBe(1)
         expect(item.title).toBe('poppyseed bagel')
+        expect(bobsBagels.basket.length).toBe(1)
     })
 })
