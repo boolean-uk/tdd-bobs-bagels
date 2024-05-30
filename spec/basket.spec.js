@@ -1,6 +1,6 @@
-import Basket from '../src/basket.js'
+import Basket, { Manager } from '../src/basket.js'
 
-describe('Bagel list', () => {
+describe('Bagel basket', () => {
   let basket
 
   beforeEach(() => {
@@ -81,5 +81,15 @@ describe('Bagel list', () => {
     basket.remove('BGSE')
 
     expect(basket.checkOut()).toBe(5.48)
+  })
+})
+
+describe('Manager', () => {
+  it('Manager can make basket', () => {
+    const managerBasket = new Manager(8)
+    expect(managerBasket).toBeInstanceOf(Manager)
+
+    const result = managerBasket.createBasket()
+    expect(result).toBeInstanceOf(Basket)
   })
 })

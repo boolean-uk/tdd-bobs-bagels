@@ -52,4 +52,10 @@ class Basket {
     }
 }
 
+
+class Manager {
+
+}
+
+export { Manager }
 export default Basket
