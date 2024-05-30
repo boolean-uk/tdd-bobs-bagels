@@ -68,4 +68,20 @@ describe('Basket', () => {
     basket.add('oat bagel')
     expect(basket.add('chocolate bagel')).toBe('The basket is full')
   })
+
+  it('should show the price of the items', () => {
+    expect(basket.checkPrice()).toEqual({
+      "plain bagel": 0.25,
+      "blueberry bagel": 0.30,
+      "garlic bagel": 0.35,
+      "sesame bagel": 0.20,
+      "oat bagel": 0.40,
+      "cheddar bagel": 0.45,
+      "egg bagel": 0.25,
+      "asiago bagel": 0.50,
+      "multigrain bagel": 0.25,
+      "chocolate bagel": 0.20,
+      "rainbow bagel": 0.35
+    })
+  })
 })
