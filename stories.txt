@@ -1,0 +1,3 @@
+As a business owner
+in order to make calculating totals easier,
+I'd like to get an itemised order that automatically calculates the total price including offers
