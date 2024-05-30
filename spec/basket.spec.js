@@ -97,9 +97,14 @@ describe('Basket', () => {
 
   it('should show the total price of the basket', () => {
     basket.add('plain bagel')
+    expect(basket.totalPrice()).toBe(0.25)
     basket.add('plain bagel')
+    expect(basket.totalPrice()).toBe(0.5)
     basket.add('blueberry bagel')
+    expect(basket.totalPrice()).toBe(0.8)
     basket.add('garlic bagel')
-    expect(basket.totalPrice()).toMatch(1,15)
+    expect(basket.totalPrice()).toBe(1.15)
+    basket.add('asiago bagel')
+    expect(basket.totalPrice()).toBe(1.65)
   })
 })

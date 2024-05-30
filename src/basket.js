@@ -64,6 +64,16 @@ class Basket {
   checkPrice() {
     return this.items
   }
+
+  totalPrice() {
+    let total = 0
+
+    this.orders.forEach((order) => {
+      total += order.price
+    })
+
+    return total
+  }
 }
 
 class Order {
