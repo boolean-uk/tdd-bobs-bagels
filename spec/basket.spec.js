@@ -29,4 +29,13 @@ describe('Bagel list', () => {
   it('should throw error if bagel not found', () => {
     expect(() => basket.add('BGLD')).toThrow('bagel not found')
   })
+
+  it('should add price to total when adding bagel to basket', () => {
+    basket.add('BGLO')
+    basket.add('BGLO')
+    basket.add('BGLO')
+    basket.add('BGLO')
+
+    expect(basket.total).toBe(1.96)
+  })
 })
