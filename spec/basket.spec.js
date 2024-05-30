@@ -23,6 +23,8 @@ describe('Basket', () => {
     basket.add('bagel')
     basket.add('water')
 
-    expect(basket.remove(1)).toEqual([new Order(2, 'bagel')])
+    expect(basket.remove(1)).toEqual([new Order(2, 'water')])
+    expect(basket.remove(2)).toEqual([])
+    expect(basket.add('banana')).toEqual([new Order(3, 'banana')])
   })
 })

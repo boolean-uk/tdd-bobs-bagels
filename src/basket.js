@@ -10,6 +10,12 @@ class Basket {
     this.orders.push(newOrder)
     return this.orders
   }
+
+  remove(id) {
+    const orderId = this.orders.findIndex((order) => order.id === id)
+    this.orders.splice(orderId, 1)
+    return this.orders
+  }
 }
 
 class Order {
