@@ -133,4 +133,19 @@ describe('Bagel basket', () => {
       BGLE: { quantity: 8, price: 3.47 }
     })
   })
+
+  it('should calculate discounts for COF and BGLP', () => {
+    const basket = new Basket(10)
+
+    for (let i = 0; i < 3; i++) {
+      basket.addItem('COF')
+    }
+    for (let i = 0; i < 3; i++) {
+      basket.addItem('BGLP')
+    }
+
+    expect(basket.orderSummary()).toEqual({
+      CFBP: { quantity: 3, price: 3.75 }
+    })
+  })
 })

@@ -61,6 +61,11 @@ class Basket {
       summary.BGLE.price = getHexDiscountPrice(summary.BGLE.quantity)
     }
 
+    if (summary.COF && (summary.BGLE.quantity < 12 || (summary.BGLE.quantity > 12 && summary.BGLE.quantity % 12 > 0)))
+     {
+      console.log('in')
+    }
+
     return summary
   }
 }
