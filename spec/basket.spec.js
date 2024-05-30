@@ -20,4 +20,11 @@ describe("bagel", () => {
     it("is an instance of bagel", () => {
         const bagel = new Bagel()
     })
+
+    it("succesfully creates the bagel with the correct info", () => {
+        const bagel = new Bagel("Everything", 20.43)
+        
+        expect(bagel.name).toBe("Everything")
+        expect(bagel.price).toBe(20.43)
+    })
 })
