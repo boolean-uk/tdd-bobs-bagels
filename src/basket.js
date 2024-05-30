@@ -42,32 +42,28 @@ class Basket {
   orderSummary() {
     let summary = {}
     this.contents.forEach((item) => {
-        const { sku, price } = item
-        if (summary[sku]) {
-            summary[sku].quantity ++
-            summary[sku].price = summary[sku].quantity * price
-        } else {
-        summary[sku] = {quantity: 1, price: Number(price)}
-        }
+      const { sku, price } = item
+      if (summary[sku]) {
+        summary[sku].quantity++
+        summary[sku].price = summary[sku].quantity * price
+      } else {
+        summary[sku] = { quantity: 1, price: Number(price) }
+      }
     })
-    
+
     if (summary.BGLO.quantity > 6) {
-        summary.BGLO.price = getBGLODiscountPrice(summary)
+      summary.BGLO.price = getBGLODiscountPrice(summary)
     }
     return summary
   }
 }
 
-
 function getBGLODiscountPrice(summary) {
-    console.log('in')
-    const noOnionBagels = summary.BGLO.quantity
-    if (noOnionBagels >= 6) {
-        const extras = noOnionBagels % 6
-        const hexDiscount = (noOnionBagels - extras) / 6
-        const totalPrice = (hexDiscount * 2.49) + (extras * .49)
-        return totalPrice
-    }
+  const noOnionBagels = summary.BGLO.quantity
+  const extras = noOnionBagels % 6
+  const hexDiscount = (noOnionBagels - extras) / 6
+  const totalPrice = hexDiscount * 2.49 + extras * 0.49
+  return totalPrice
 }
 
 
