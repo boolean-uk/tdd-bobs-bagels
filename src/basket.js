@@ -29,6 +29,8 @@ class Basket {
         const found = bagels.find((bagel) => bagel.sku === sku)
         if(found) {
             return found.price
+        } else {
+            throw 'bagel not found'
         }
     }
 }
