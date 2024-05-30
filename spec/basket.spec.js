@@ -8,4 +8,13 @@ describe('Bagel basket', () => {
 
     expect(basket.contents.length).toEqual(1)
   })
+
+  it('should be able to have several new items added', () => {
+    const basket = new Basket()
+    basket.addItem('BGLO')
+    basket.addItem('BGLE')
+    basket.addItem('BGLS')
+
+    expect(basket.contents.length).toEqual(3)
+  })
 })
