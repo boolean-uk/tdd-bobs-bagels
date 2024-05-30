@@ -4,4 +4,6 @@ allBagels.inventory.forEach(bg => {
     bg.price = parseFloat(bg.price)
 })
 
-console.log(allBagels);
+class Bagel{
+    constructor()
+}
