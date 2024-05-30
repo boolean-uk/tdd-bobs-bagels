@@ -38,4 +38,18 @@ describe('Bagel list', () => {
 
     expect(basket.total).toBe(1.96)
   })
+
+  it('should add price to total when adding bagel to basket', () => {
+    basket.add('BGLO')
+    basket.add('BGLO')
+    basket.add('BGLO')
+    basket.add('BGLO')
+
+    expect(basket.total).toBe(1.96)
+  })
+
+  it('should check the price of a bagel', () => {
+    expect(basket.price('BGLO')).toBe('0.49')
+    expect(basket.price('BGSE')).toBe('2.99')
+  })
 })

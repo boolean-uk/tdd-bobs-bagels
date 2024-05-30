@@ -16,6 +16,7 @@ class Basket {
             this.basket.push(found)
             const price = Number(found.price)
             this.total += price
+
             return this.basket
         } else if (this.basket.length >= this.capacity) {
             throw 'basket is full'
