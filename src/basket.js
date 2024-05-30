@@ -25,9 +25,11 @@ class Basket {
         return element.name === item.name
       })
   
-      if (itemInBasket) {
-        itemInBasket.quantity--
+      if (!itemInBasket) {
+        throw(new Error("The item does not exist in the basket"))
       }
+    
+    itemInBasket.quantity--
     
     this.contents = this.contents.filter((element) => {return element.quantity > 0})
     
