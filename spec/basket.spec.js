@@ -20,7 +20,20 @@ describe("basket", () => {
 
         basket.addItem(bagel)
 
-        expect(basket.contents.find((element) => { return element.name === "Everything" && element.price === 20.43}))
+        expect(basket.contents.find((element) => { return element.name === "Everything" && element.price === 20.43}).name).toBe("Everything")
+    })
+
+    it("increments the quantity of items already in the basket", () => {
+        const bagel = new Bagel("Everything", 20.43)
+
+        basket.addItem(bagel)
+
+        expect(basket.contents.find((element) => { return element.name === "Everything" && element.price === 20.43}).quantity).toBe(1)
+
+        basket.addItem(bagel)
+
+        expect(basket.contents.find((element) => { return element.name === "Everything" && element.price === 20.43}).quantity).toBe(2)
+
     })
 })
 
