@@ -54,8 +54,16 @@ class Basket {
 
 
 class Manager {
-
-}
+    constructor (capacity) {
+        this.capacity = capacity
+        this.basket = this.createBasket()
+    }
+  
+    createBasket() {
+        const basket = new Basket(this.capacity)
+        return basket
+    }
+  }
 
 export { Manager }
 export default Basket
