@@ -35,6 +35,16 @@ describe("basket", () => {
         expect(basket.contents.find((element) => { return element.name === "Everything" && element.price === 20.43}).quantity).toBe(2)
 
     })
+
+    it("removes the item from the basket", () => {
+        const bagel = new Bagel("Everything", 20.43)
+
+        basket.addItem(bagel)
+
+        basket.removeItem(bagel)
+
+        expect(basket.contents.length).toBe(0)
+    })
 })
 
 describe("bagel", () => {
