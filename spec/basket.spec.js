@@ -106,7 +106,7 @@ describe('basket', () => {
 
     const item = new Item('Cheese Bagel', 5.5)
 
-    basket.addMultiple(item, 9) // Add 3 items first
+    basket.addMultiple(item, 3) // Add 3 items first
     expect(basket.items.length).toBe(3)
 
     expect(() => basket.addMultiple(item, 3)).toThrowError(
