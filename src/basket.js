@@ -43,6 +43,8 @@ class Basket {
 
         if (foundIndex > 0) {
           this.basket.splice(foundIndex, 1)
+        } else {
+            throw 'bagel not found'
         }
     }
 }
