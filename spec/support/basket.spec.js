@@ -49,9 +49,9 @@ describe('Bobs Bagels', () => {
         expect(warning).toBe(expected)
     })
     it('should return the price of the bagel selected', () => {
-        const expected = 5.99
-        bobsBagels.checkPrice('poppyseed bagel')
-        let price = bobsBagels.checkPrice('poppyseed bagel')
-        expect(price).toBe(5.99)
+        const expected = { bagel: 'poppyseed', price: 5.99 }
+        bobsBagels.checkPrice('poppyseed')
+        let price = bobsBagels.checkPrice('poppyseed')
+        expect(price).toEqual(expected)
     })
 })

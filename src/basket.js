@@ -1,3 +1,16 @@
+class Menu {
+    fullMenu() {
+        return [
+            {bagel: 'plain',
+                price: 3.99},
+            {bagel: 'poppyseed',
+                price: 5.99},
+            {bagel: 'salmon',
+                price: 6.99}
+        ] 
+    }
+}
+
 class BobsBagels {
     constructor() {
         this.basket = []
@@ -40,7 +53,17 @@ class BobsBagels {
         return this.xlBasket
     }
 
+    checkPrice(name) {
+        const menu = new Menu
+        const fullMenu = menu.fullMenu()
+
+        const item = fullMenu.find(i => {if(i.bagel === name) return i})
+        return item
+    }
 }
+
+const fullMenu = new BobsBagels
+fullMenu.checkPrice('poppyseed')
 
 class Bagel {
     constructor(id, name) {
@@ -48,6 +71,8 @@ class Bagel {
         this.name = name
     }
 }
+
+
 
 export { Bagel }
 
