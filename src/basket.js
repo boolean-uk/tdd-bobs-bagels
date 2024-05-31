@@ -5,10 +5,10 @@ class Basket {
     this.basketSize = basketSize
     this.bagelsIn = []
   }
+
+  
+
 }
-
-
-
 
 class Bagel {
   constructor(sku, qty = 1) {
@@ -17,7 +17,7 @@ class Bagel {
     this.loadBagels()
   }
 
- loadBagels() {
+  loadBagels() {
     const bagelData = allBagels.inventory.find(
       (bagel) => bagel.sku === this.sku
     )
@@ -28,9 +28,7 @@ class Bagel {
     } else {
       throw new Error(`Bagel with SKU ${this.sku} not found.`)
     }
-    // console.log(bagelData);
   }
-
 }
 
 export { Bagel }
