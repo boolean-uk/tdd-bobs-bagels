@@ -60,7 +60,12 @@ class BobsBagels {
         const item = fullMenu.find(i => {if(i.bagel === name) return i})
         return item
     }
+
+    
 }
+
+const multiBuys = new BobsBagels
+multiBuys.multiBuys('poppyseed')
 
 const fullMenu = new BobsBagels
 fullMenu.checkPrice('poppyseed')

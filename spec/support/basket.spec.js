@@ -54,4 +54,10 @@ describe('Bobs Bagels', () => {
         let price = bobsBagels.checkPrice('poppyseed')
         expect(price).toEqual(expected)
     })
+    it('should create a new property on the item that increments', () => {
+        const expected = { bagel: 'poppyseed', price: 5.99, quantity: 2 }
+        bobsBagels.multiBuys('poppyseed')
+        let quantity = bobsBagels.multiBuys('poppyseed')
+        expect(expected).toBe(quantity)
+    })
 })
