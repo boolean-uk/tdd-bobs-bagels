@@ -48,4 +48,10 @@ describe('Bobs Bagels', () => {
         const warning = bobsBagels.remove('chips')
         expect(warning).toBe(expected)
     })
+    it('should return the price of the bagel selected', () => {
+        const expected = 5.99
+        bobsBagels.checkPrice('poppyseed bagel')
+        let price = bobsBagels.checkPrice('poppyseed bagel')
+        expect(price).toBe(5.99)
+    })
 })
