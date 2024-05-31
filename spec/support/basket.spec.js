@@ -12,7 +12,7 @@ describe('Bobs Bagels', () => {
         const bagel = bobsBagels.createOrder(('poppyseed bagel'))
         expect(bagel).toBeInstanceOf(Bagel)
         expect(bagel.id).toBe(1)
-        expect(bagel.title).toBe('poppyseed bagel')
+        expect(bagel.name).toBe('poppyseed bagel')
     })
     it('should add bagels to the basket', () => {
         bobsBagels.addToBasket('poppyseed bagel')
@@ -23,7 +23,7 @@ describe('Bobs Bagels', () => {
         expect(bobsBagels.basket.length).toBe(1)
 
         const removed = bobsBagels.remove(1)
-        expect(removed.title).toBe('poppyseed bagel')
+        expect(removed.name).toBe('poppyseed bagel')
         const newBasket = bobsBagels.basket
         expect(newBasket.length).toBe(0)
     })
@@ -37,7 +37,15 @@ describe('Bobs Bagels', () => {
         expect(() => bobsBagels.addToBasket()).toThrow("basket is at full capacity")
     })
     it('should allow managers to create a larger capacity basket', () => {
-        bobsBagels.createManagerXlBasket()
-        expect(bobsBagels.xlBasket.length).toBe(0)
+        bobsBagels.createManagerXlBasket('poppyseed bagel')
+        expect(bobsBagels.xlBasket.length).toBe(1)
+    })
+    it("should alert customer if they try to remove an item that doesn't exist", () => {
+        const expected = "this item doesn't exist"
+        
+        bobsBagels.addToBasket('poppyseed bagel')
+
+        const warning = bobsBagels.remove('chips')
+        expect(warning).toBe(expected)
     })
 })

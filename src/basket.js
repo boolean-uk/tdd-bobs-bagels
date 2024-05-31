@@ -4,8 +4,8 @@ class BobsBagels {
         this.id = 1
     }
 
-    createOrder(title) {
-        const bagel = new Bagel(this.id, title)
+    createOrder(name) {
+        const bagel = new Bagel(this.id, name)
         this.id++
 
         return bagel
@@ -21,22 +21,26 @@ class BobsBagels {
         return this.basket
     }
 
-    remove(id) {
-        const bagels = this.basket.find(bagel => bagel.id === id)
-        this.basket = this.basket.filter(bagel => bagel.id !== bagel.id)
+    remove(name) {
+    
+        const bagels = basket.find(bagel => bagel.name === name)
+        this.basket = basket.filter(bagel => bagel.name !== name)
         return bagels
     }
 
-    createManagerXlBasket() {
+    createManagerXlBasket(bagel) {
         this.xlBasket = []
+        this.xlBasket.push(bagel)
+
+        return this.xlBasket
     }
 
 }
 
 class Bagel {
-    constructor(id, title) {
+    constructor(id, name) {
         this.id = id
-        this.title = title
+        this.name = name
     }
 }
 
