@@ -16,5 +16,7 @@ describe('Bagel', () => {
         expect(bagel.sku).toBe('BGLO')
         expect(bagel.qty).toBe(2)
         expect(bagel.price).toBe(0.49)
+        expect(bagel.name).toBe('Bagel')
+        expect(bagel.variant).toBe('Onion')
     })
 })
