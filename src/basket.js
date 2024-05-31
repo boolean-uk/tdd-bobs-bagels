@@ -27,10 +27,21 @@ class Basket {
             found.quantity++
             this.amount++
 
+            if (
+                (foundBagelInBasket.sku === 'BGLO' 
+                || foundBagelInBasket.sku === 'BGLE') 
+                && foundBagelInBasket.quantity % 6 === 0
+            ) {
+                this.total -= 0.45
+            }
+
+            if(foundBagelInBasket.sku === 'BGLP' && foundBagelInBasket.quantity % 12 === 0) {
+                this.total -= 0.69
+            }
+
+
             const price = Number(found.price)
             this.total += price
-
-            this.discount()
 
             return this.basket
         }
@@ -100,14 +111,6 @@ class Basket {
         allItems = allItems.join('')
 
         return `${bobsBagels} \n ${allItems.toString()} \n ${totalCost}`
-      }
-
-      discount() {
-        for (let i = 0; i < this.basket.length; i++) {
-            if(this.basket[i].sku === 'BGLO' && this.basket[i].quantity % 6 === 0) {
-                this.total -= 0.45
-            }
-        }
       }
 }
 
