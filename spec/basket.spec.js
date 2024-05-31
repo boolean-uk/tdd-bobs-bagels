@@ -41,7 +41,9 @@ describe('Bagel basket', () => {
     basket.addItem('BGLS')
     basket.addItem('COF')
 
-    expect(basket.addItem('BGSE')).toEqual('Sorry, your basket is full')
+    expect(() => basket.addItem('BGSE')).toThrowError(
+      'Sorry, your basket is full'
+    )
   })
 
   it('should accept adjustments to the default content limit', () => {
@@ -63,7 +65,7 @@ describe('Bagel basket', () => {
     basket.addItem('BGLO')
     basket.addItem('BGLS')
 
-    expect(basket.removeItem('COF')).toEqual(
+    expect(() => basket.removeItem('COF')).toThrowError(
       'Your basket does not contain that item'
     )
   })
@@ -117,7 +119,7 @@ describe('Bagel basket', () => {
   it('should calculate discounts on plain bagels (12 for 3.99)', () => {
     const basket = new Basket(15)
 
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < 15; i++) {
       basket.addItem('BGLP')
     }
 
@@ -155,6 +157,7 @@ describe('Bagel basket', () => {
       COF: { quantity: 2, price: 1.98 },
       totalPrice: 5.73
     })
+    
   })
 
   it('should handle a mixture of many items with many discounts', () => {
@@ -186,6 +189,6 @@ describe('Bagel basket', () => {
       totalPrice: 17.89
     })
 
-    basket.getReceipt()
+    
   })
 })

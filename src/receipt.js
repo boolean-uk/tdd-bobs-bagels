@@ -19,7 +19,7 @@ function printReceipt(summary) {
   Object.entries(summary).forEach((property) => {
     if (property[0] === 'totalPrice') {
       console.log(`\t-------------------- \n \tTotal: £${property[1]}`)
-      console.log(`You saved a total of £${Math.abs(overallDiscount).toFixed(2)}`)
+      console.log(`\tYou saved a total of £${Math.abs(overallDiscount).toFixed(2)}`)
       return
     }
     let bagelName = ''
@@ -44,7 +44,7 @@ function printReceipt(summary) {
     )
     if (getUndiscountedPrice(property) > property[1].price.toFixed(2)) {
       overallDiscount -= (getUndiscountedPrice(property) - property[1].price).toFixed(2)
-      console.log(`\t \t \t - (£${(getUndiscountedPrice(property) - property[1].price).toFixed(2)})`)
+      console.log(`\t \t - (£${(getUndiscountedPrice(property) - property[1].price).toFixed(2)})`)
     }
     
     

@@ -12,7 +12,7 @@ class Basket {
 
   addItem(SKU) {
     if (this.contents.length >= this.contentLimit) {
-      return 'Sorry, your basket is full'
+      throw new Error('Sorry, your basket is full')
     }
     const itemToAdd = inventory.find((item) => item.sku === SKU)
     this.contents.push(itemToAdd)
@@ -24,7 +24,7 @@ class Basket {
       const index = this.contents.indexOf(itemToRemove)
       this.contents.splice(index, 1)
     } else {
-      return 'Your basket does not contain that item'
+      throw new Error('Your basket does not contain that item')
     }
   }
 
@@ -46,8 +46,7 @@ class Basket {
   }
 
   getReceipt() {
-    const summary = this.orderSummary()
-    printReceipt(summary)
+    printReceipt(this.orderSummary())
   }
 }
 
