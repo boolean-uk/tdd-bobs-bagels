@@ -32,7 +32,7 @@ class Basket {
     return totalQuantity
   }
 
-  add(item) {
+  add(item, quantity = 1) {
     if (typeof item !== 'string') {
       throw new Error('order not string provided')
     }
@@ -54,17 +54,17 @@ class Basket {
     const totalQuantity = this.getTotalQuantity()
 
     if (totalQuantity >= this.maxCapacity) {
-      return 'The basket is full'
+      throw new Error('The basket is full')
     }
 
     if (orderFoundInBasket) {
-      orderFoundInBasket.quantity++
-      orderFoundInBasket.price = this.items[item] * orderFoundInBasket.quantity
-      
+      orderFoundInBasket.quantity += quantity
+      orderFoundInBasket.price = this.items[orderFoundInItems] * orderFoundInBasket.quantity
+
       return this.orders
     } 
     
-    const newOrder = new Order(this.id++, item, this.items[orderFoundInItems], 1)
+    const newOrder = new Order(this.id++, item, this.items[orderFoundInItems] * quantity, quantity)
     this.orders.push(newOrder)
 
     return this.orders

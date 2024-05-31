@@ -34,29 +34,9 @@ describe('Basket', () => {
   })
 
   it('should have an default maximum capacity', () => {
-    basket.add('plain bagel')
-    basket.add('blueberry bagel')
-    basket.add('garlic bagel')
-    basket.add('sesame bagel')
-    basket.add('oat bagel')
-    basket.add('cheddar bagel')
-    basket.add('egg bagel')
-    basket.add('multigrain bagel')
-    basket.add('multigrain bagel')
+    basket.add('plain bagel', 10)
 
-    expect(basket.add('chocolate bagel')).toEqual([
-      new Order(1, 'plain bagel', 0.25, 1),
-      new Order(2, 'blueberry bagel', 0.3, 1),
-      new Order(3, 'garlic bagel', 0.35, 1),
-      new Order(4, 'sesame bagel', 0.2, 1),
-      new Order(5, 'oat bagel', 0.4, 1),
-      new Order(6, 'cheddar bagel', 0.45, 1),
-      new Order(7, 'egg bagel', 0.25, 1),
-      new Order(8, 'multigrain bagel', 0.5, 2),
-      new Order(9, 'chocolate bagel', 0.2, 1)
-    ])
-
-    expect(basket.add('rainbow bagel')).toBe('The basket is full')
+    expect(() => basket.add('plain bagel', 1)).toThrowError('The basket is full')
   })
 
   it('should have an dynamic maximum capacity', () => {
@@ -67,7 +47,7 @@ describe('Basket', () => {
     basket.add('garlic bagel')
     basket.add('sesame bagel')
     basket.add('oat bagel')
-    expect(basket.add('chocolate bagel')).toBe('The basket is full')
+    expect(() => basket.add('chocolate bagel')).toThrowError('The basket is full')
   })
 
   it("should show the item's price", () => {
@@ -82,5 +62,12 @@ describe('Basket', () => {
     basket.add('asiago bagel')
 
     expect(basket.totalPrice()).toBe(1.65)
+  })
+
+  it('should print receipt', () => {
+    basket.add('plain bagel', 16)
+
+    expect(basket.getReceipt()).toBe(`Plain Bagel 16 £4 | Total £4
+    `)
   })
 })
