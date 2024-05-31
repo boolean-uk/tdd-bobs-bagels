@@ -59,7 +59,7 @@ describe('Bagel basket', () => {
     expect(basket.checkOut()).toBe(1.96)
   })
 
-  it('should remove bagel from basket', () => {
+  it('should remove bagel from basket if quantity equals 1', () => {
     basket.add('BGLO')
     basket.add('BGSE')
     basket.add('BGSS')
@@ -67,6 +67,18 @@ describe('Bagel basket', () => {
     basket.remove('BGSE')
 
     expect(basket.basket.length).toBe(2)
+  })
+
+  it('should remove 1 of quantity of bagel from basket if quantity >1', () => {
+    basket.add('BGLO')
+    basket.add('BGLO')
+    basket.add('BGSE')
+    basket.add('BGSS')
+
+    basket.remove('BGLO')
+
+    expect(basket.basket.length).toBe(3)
+    expect(basket.basket[0].quantity).toBe(1)
   })
 
   it('should throw error if bagel not found', () => {
