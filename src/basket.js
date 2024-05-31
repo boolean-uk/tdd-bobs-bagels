@@ -1,8 +1,14 @@
 import allBagels from '../inventory.json' assert { type: 'json' }
 
-// class Basket {
-//   constructor() {}
-// }
+class Basket {
+  constructor(basketSize = 5) {
+    this.basketSize = basketSize
+    this.bagelsIn = []
+  }
+}
+
+
+
 
 class Bagel {
   constructor(sku, qty = 1) {
@@ -22,12 +28,13 @@ class Bagel {
     } else {
       throw new Error(`Bagel with SKU ${this.sku} not found.`)
     }
-    console.log(bagelData);
+    // console.log(bagelData);
   }
 
 }
 
 export { Bagel }
+export default Basket
 // console.log(allBagels);
 // const test = new Bagel('BGLO', 2)
 // console.log('t',test)
