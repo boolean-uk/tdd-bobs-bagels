@@ -22,7 +22,12 @@ class BobsBagels {
     }
 
     remove(name) {
-    
+        const basket = this.basket
+        for(let i = 0; i < basket.length; i++) {
+            if(basket[i].bagel !== name) {
+                return "this item doesn't exist"
+            }
+        }
         const bagels = basket.find(bagel => bagel.name === name)
         this.basket = basket.filter(bagel => bagel.name !== name)
         return bagels
