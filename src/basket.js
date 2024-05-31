@@ -101,7 +101,6 @@ class Basket {
       }
 }
 
-
 class Manager {
     constructor (capacity) {
         this.capacity = capacity
