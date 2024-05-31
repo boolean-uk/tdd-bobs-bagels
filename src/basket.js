@@ -22,6 +22,10 @@ class Basket {
     return item.split(' ').join('').toLowerCase()
   }
 
+  capitalizeWords(string) {
+    return string.replace(/\b[a-z]/g, character => character.toUpperCase())
+  }
+
   getTotalQuantity() {
     let totalQuantity = 0
 
@@ -103,6 +107,18 @@ class Basket {
     })
 
     return total
+  }
+
+  getReceipt() {
+    let receipt = ''
+
+    this.orders.forEach((order) => {
+      receipt += `${this.capitalizeWords(order.item)} ${order.quantity} £${order.price} | `
+    })
+    
+    receipt += `Total £${this.totalPrice()}`
+
+    return receipt
   }
 }
 

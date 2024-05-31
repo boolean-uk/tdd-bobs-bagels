@@ -65,9 +65,10 @@ describe('Basket', () => {
   })
 
   it('should print receipt', () => {
+    basket.maxCapacity = 20
     basket.add('plain bagel', 16)
+    basket.add('asiago bagel', 4)
 
-    expect(basket.getReceipt()).toBe(`Plain Bagel 16 £4 | Total £4
-    `)
+    expect(basket.getReceipt()).toBe('Plain Bagel 16 £4 | Asiago Bagel 4 £2 | Total £6')
   })
 })
