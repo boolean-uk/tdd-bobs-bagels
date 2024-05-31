@@ -1,5 +1,3 @@
-// Part One, Two, Three
-
 class Item {
   constructor(name, price) {
     this.name = name
@@ -28,7 +26,7 @@ class Basket {
 
   addMultiple(item, quantity) {
     if (this.items.length + quantity > this.capacity) {
-      throw new Error('Adding these items will exceed the basket capacity') // Customer can add items but still allow for order capacity
+      throw new Error('Adding these items will exceed the basket capacity')
     }
     for (let i = 0; i < quantity; i++) {
       this.add(item)
@@ -49,7 +47,7 @@ class Basket {
   }
 
   basketisFull() {
-    return this.items.length >= this.capacity // Full if there is more than the set capacity
+    return this.items.length >= this.capacity 
   }
 
   adjustCapacity(newCapacity) {

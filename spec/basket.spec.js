@@ -1,7 +1,5 @@
 import { Item, Basket } from '../src/basket.js'
 
-// Part One, Two, Three
-
 describe('item', () => {
   it('should have a name and a price', () => {
     const item = new Item('Salmon and Cream Cheese Bagel', 6.5)
@@ -49,7 +47,7 @@ describe('basket', () => {
   })
 
   it('should not add items beyond basket capacity', () => {
-    const basket = new Basket(3) // Test capacity
+    const basket = new Basket(3) 
 
     const item1 = new Item('Cheese Bagel', 5.5)
     const item2 = new Item('Cola', 1.5)
@@ -74,7 +72,7 @@ describe('basket', () => {
   })
 
   it('should not allow setting capacity less than current number of items', () => {
-    const basket = new Basket(3) // Test capacity
+    const basket = new Basket(3) 
 
     const item1 = new Item('Cheese Bagel', 5.5)
     const item2 = new Item('Cola', 1.5)
@@ -102,17 +100,17 @@ describe('basket', () => {
   })
 
   it('should not add multiple items beyond basket capacity', () => {
-    const basket = new Basket(5) // Capacity for testing
+    const basket = new Basket(5) 
 
     const item = new Item('Cheese Bagel', 5.5)
 
-    basket.addMultiple(item, 3) // Add 3 items first
+    basket.addMultiple(item, 3) 
     expect(basket.items.length).toBe(3)
 
     expect(() => basket.addMultiple(item, 3)).toThrowError(
       'Adding these items will exceed the basket capacity'
     )
-    expect(basket.items.length).toBe(3) // Basket should still contain 3 items
+    expect(basket.items.length).toBe(3)
   })
 
   it('should calculate the total order cost', () => {
