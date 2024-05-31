@@ -30,6 +30,8 @@ class Basket {
             const price = Number(found.price)
             this.total += price
 
+            this.discount()
+
             return this.basket
         }
         
@@ -52,7 +54,7 @@ class Basket {
     }
 
     checkOut() {
-        return this.total
+        return Number(this.total.toFixed(2))
     }
 
     remove(sku) {
@@ -98,6 +100,14 @@ class Basket {
         allItems = allItems.join('')
 
         return `${bobsBagels} \n ${allItems.toString()} \n ${totalCost}`
+      }
+
+      discount() {
+        for (let i = 0; i < this.basket.length; i++) {
+            if(this.basket[i].sku === 'BGLO' && this.basket[i].quantity % 6 === 0) {
+                this.total -= 0.45
+            }
+        }
       }
 }
 
