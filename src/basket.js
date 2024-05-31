@@ -13,11 +13,21 @@ class Basket {
     add(sku) {
         const found = bagels.find((bagel) => bagel.sku === sku)
         const foundBagelInBasket = this.basket.find((b) => b.sku === found.sku)
+        const foundPlainBagel = this.basket.find((b) => b.sku === 'BGLP')
+        const foundCoffee = this.basket.find((b) => b.sku === 'COF')
 
         if(this.amount < this.capacity && found && !foundBagelInBasket) {
             found.quantity = 1
             this.amount++
             this.basket.push(found)
+
+            if (
+                (found.sku === 'COF' && foundPlainBagel && foundPlainBagel.quantity % 12 !== 0) ||
+                (found.sku === 'BGLP' && foundCoffee)
+
+            ) {
+                this.total -= 0.13
+            }
 
             const price = Number(found.price)
             this.total += price
@@ -35,10 +45,17 @@ class Basket {
                 this.total -= 0.45
             }
 
-            if(foundBagelInBasket.sku === 'BGLP' && foundBagelInBasket.quantity % 12 === 0) {
+            if (foundBagelInBasket.sku === 'BGLP' && foundBagelInBasket.quantity % 12 === 0) {
                 this.total -= 0.69
             }
 
+            if (
+                foundBagelInBasket.sku === 'COF' && 
+                foundPlainBagel.quantity >= 1 &&
+                foundPlainBagel.quantity % 12 !== 0
+            ) {
+                this.total -= 0.13
+            }
 
             const price = Number(found.price)
             this.total += price
@@ -57,7 +74,7 @@ class Basket {
 
     price(sku) {
         const found = bagels.find((bagel) => bagel.sku === sku)
-        if(found) {
+        if (found) {
             return found.price
         } else {
             throw 'bagel not found'

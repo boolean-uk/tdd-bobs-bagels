@@ -239,9 +239,9 @@ describe('Manager', () => {
 
     managerBasket.createBasket()
 
-    managerBasket.basket.add('BGLP')
-
     managerBasket.basket.add('COF')
+
+    managerBasket.basket.add('BGLP')
 
     expect(Number(managerBasket.basket.total.toFixed(2))).toBe(1.25)
   })
