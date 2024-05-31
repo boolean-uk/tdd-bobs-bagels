@@ -11,12 +11,9 @@ class Bagel {
     this.loadBagels()
   }
 
-  async loadBagels() {
-    const allBagels = await import('../inventory.json').then(
-      
-       bagelData = allBagels.inventory.find(
-        (bagel) => bagel.sku === this.sku
-    )
+ loadBagels() {
+    const bagelData = allBagels.inventory.find(
+      (bagel) => bagel.sku === this.sku
     )
     if (bagelData) {
       this.price = parseFloat(bagelData.price)
@@ -25,8 +22,12 @@ class Bagel {
     } else {
       throw new Error(`Bagel with SKU ${this.sku} not found.`)
     }
+    console.log(bagelData);
   }
+
 }
 
 export { Bagel }
-console.log(allBagels);
+// console.log(allBagels);
+// const test = new Bagel('BGLO', 2)
+// console.log('t',test)
