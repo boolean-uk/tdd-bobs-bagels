@@ -1,6 +1,6 @@
 import data from '../inventory.json' assert { type: 'json' }
 import printReceipt from './receipt.js'
-import { getOrderSummary } from './discountFunctions.js'
+import getOrderSummary from './summary.js'
 
 const { inventory } = data
 

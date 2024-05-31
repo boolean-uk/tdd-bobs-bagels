@@ -1,4 +1,6 @@
 export default printReceipt
+import data from '../inventory.json' assert { type: 'json' }
+const { inventory } = data
 
 function printReceipt(summary) {
   let now = new Date()
@@ -13,38 +15,52 @@ function printReceipt(summary) {
     `\t~~~ Bob's Bagels ~~~ \n \t${day}-${month}-${year} ${hours}:${minutes}:${seconds} \n \t-------------------- 
           `
   )
-
+  let overallDiscount = 0
   Object.entries(summary).forEach((property) => {
     if (property[0] === 'totalPrice') {
       console.log(`\t-------------------- \n \tTotal: £${property[1]}`)
+      console.log(`You saved a total of £${Math.abs(overallDiscount).toFixed(2)}`)
       return
     }
+    let bagelName = ''
     switch (property[0]) {
       case 'BGLO':
-        property[0] = 'Onion Bagel'
+        bagelName = 'Onion Bagel'
         break
       case 'BGLP':
-        property[0] = 'Plain Bagel'
+        bagelName = 'Plain Bagel'
         break
       case 'BGLE':
-        property[0] = 'Everything Bagel'
+        bagelName = 'Everything Bagel'
         break
       case 'COF':
-        property[0] = 'Coffee'
+        bagelName = 'Coffee'
         break
       case 'CFBP':
-        property[0] = 'Coffee/Bagel Offer'
+        bagelName = 'Coffee/Bagel Offer'
     }
     console.log(
-      `\t${property[0]}  ${property[1].quantity}  £${property[1].price.toFixed(
-        2
-      )}`
+      `\t${bagelName}  ${property[1].quantity}  £${property[1].price.toFixed(2)}`
     )
+    if (getUndiscountedPrice(property) > property[1].price.toFixed(2)) {
+      overallDiscount -= (getUndiscountedPrice(property) - property[1].price).toFixed(2)
+      console.log(`\t \t \t - (£${(getUndiscountedPrice(property) - property[1].price).toFixed(2)})`)
+    }
+    
+    
   })
   console.log('\t--------------------')
   console.log('\tThanks for your order!')
 }
 
 function padToTwoDigits(num) {
-    return num.toString().padStart(2, '0')
+  return num.toString().padStart(2, '0')
+}
+
+function getUndiscountedPrice(property) {
+  if (property[0] === 'CFBP') {
+    return (property[1].quantity * (0.39 + 0.99)).toString()
   }
+  const bagel = inventory.find(bagel => bagel.sku === property[0])
+  return (property[1].quantity * bagel.price).toFixed(2)
+}

@@ -175,7 +175,7 @@ describe('Bagel basket', () => {
     for (let i = 0; i < 7; i++) {
       basket.addItem('COF')
     }
-    basket.getReceipt()
+ 
 
     expect(basket.orderSummary()).toEqual({
       CFBP: { quantity: 2, price: 2.50 },
@@ -185,5 +185,7 @@ describe('Bagel basket', () => {
       BGLE: { quantity: 7, price: 2.98 },
       totalPrice: 17.89
     })
+
+    basket.getReceipt()
   })
 })
