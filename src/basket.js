@@ -5,17 +5,31 @@ class Basket {
     this.maxCapacity = 10
     this.items = {
       "plain bagel": 0.25,
-      "blueberry bagel": 0.30,
+      "blueberry bagel": 0.3,
       "garlic bagel": 0.35,
-      "sesame bagel": 0.20,
-      "oat bagel": 0.40,
+      "sesame bagel": 0.2,
+      "oat bagel": 0.4,
       "cheddar bagel": 0.45,
       "egg bagel": 0.25,
-      "asiago bagel": 0.50,
+      "asiago bagel": 0.5,
       "multigrain bagel": 0.25,
-      "chocolate bagel": 0.20,
+      "chocolate bagel": 0.2,
       "rainbow bagel": 0.35
     }
+  }
+
+  normalizeItemName(item) {
+    return item.split(' ').join('').toLowerCase()
+  }
+
+  getTotalQuantity() {
+    let totalQuantity = 0
+
+    this.orders.forEach((order) => {
+      totalQuantity += order.quantity
+    })
+
+    return totalQuantity
   }
 
   add(item) {
@@ -23,28 +37,34 @@ class Basket {
       throw new Error('order not string provided')
     }
 
+    const normalizedItem = this.normalizeItemName(item)
+
     const orderFoundInItems = Object.keys(this.items).find(
-      (order) => order.trim().toLowerCase() === item.trim().toLowerCase()
+      (order) => this.normalizeItemName(order) === normalizedItem
     ) 
 
-    const orderFoundInBasket = this.orders.find(order => order.item.toLowerCase() === item.trim().toLowerCase())
-
-    if (orderFoundInBasket) {
-      orderFoundInBasket.quantity++
-      orderFoundInBasket.price = this.items[item] * orderFoundInBasket.quantity
-
-      return this.orders
-    } 
-    
     if (!orderFoundInItems) {
       throw new Error('item not found')
     }
 
-    if (this.orders.length >= this.maxCapacity) {
+    const orderFoundInBasket = this.orders.find(
+      (order) => this.normalizeItemName(order.item) === normalizedItem
+    )
+
+    const totalQuantity = this.getTotalQuantity()
+
+    if (totalQuantity >= this.maxCapacity) {
       return 'The basket is full'
     }
 
-    const newOrder = new Order(this.id++, item, this.items[item], 1)
+    if (orderFoundInBasket) {
+      orderFoundInBasket.quantity++
+      orderFoundInBasket.price = this.items[item] * orderFoundInBasket.quantity
+      
+      return this.orders
+    } 
+    
+    const newOrder = new Order(this.id++, item, this.items[orderFoundInItems], 1)
     this.orders.push(newOrder)
 
     return this.orders
@@ -61,8 +81,18 @@ class Basket {
     return this.orders
   }
 
-  checkPrice() {
-    return this.items
+  checkPrice(item) {
+    const normalizedItem = this.normalizeItemName(item)
+
+    const orderFoundInItems = Object.keys(this.items).find(
+      (order) => this.normalizeItemName(order) === normalizedItem
+    ) 
+    
+    if (orderFoundInItems) {
+      return this.items[orderFoundInItems]
+    }
+
+    throw new Error('item not found')
   }
 
   totalPrice() {
@@ -86,5 +116,4 @@ class Order {
 }
 
 export { Order }
-
 export default Basket
