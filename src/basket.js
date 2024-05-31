@@ -13,10 +13,10 @@ class Bagel {
 
   async loadBagels() {
     const allBagels = await import('../inventory.json').then(
-      (module) => module.default
+      
+       bagelData = allBagels.inventory.find(
+        (bagel) => bagel.sku === this.sku
     )
-    const bagelData = allBagels.inventory.find(
-      (bagel) => bagel.sku === this.sku
     )
     if (bagelData) {
       this.price = parseFloat(bagelData.price)
@@ -29,3 +29,4 @@ class Bagel {
 }
 
 export { Bagel }
+console.log(allBagels);
