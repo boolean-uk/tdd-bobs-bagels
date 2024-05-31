@@ -69,7 +69,7 @@ describe('Bagel basket', () => {
     expect(basket.basket.length).toBe(2)
   })
 
-  it('should remove 1 of quantity of bagel from basket if quantity >1', () => {
+  it('should remove 1 of quantity of bagel from basket if quantity > 1', () => {
     basket.add('BGLO')
     basket.add('BGLO')
     basket.add('BGSE')

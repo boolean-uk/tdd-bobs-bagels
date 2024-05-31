@@ -55,10 +55,14 @@ class Basket {
         const foundIndex = this.basket.findIndex((bagel) => bagel.sku === sku)
         const found = this.basket.find((b) => b.sku === sku)
 
-        if (foundIndex > 0 && found) {
+        if (foundIndex >= 0 && found && found.quantity === 1) {
             const price = Number(found.price)
             this.total -= price
             this.basket.splice(foundIndex, 1)
+        } else if (foundIndex >= 0 && found && found.quantity > 1) {
+            const price = Number(found.price)
+            this.total -= price
+            found.quantity--
         } else {
             throw 'bagel not found'
         }
