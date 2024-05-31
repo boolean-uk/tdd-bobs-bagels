@@ -1,9 +1,15 @@
-import allBagels from '../inventory.json' assert {type: 'json'}
+import allBagels from '../inventory.json' assert { type: 'json' }
 
-allBagels.inventory.forEach(bg => {
-    bg.price = parseFloat(bg.price)
-})
+// class Basket {
+//   constructor() {}
+// }
 
-class Bagel{
-    constructor()
+class Bagel {
+  constructor(sku, qty = 1) {
+    this.sku = sku
+    this.qty = qty
+    const bagelData = allBagels.inventory.find((bgl) => bgl.sku === sku)
+  }
 }
+
+export { Bagel }
