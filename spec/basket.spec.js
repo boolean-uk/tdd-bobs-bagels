@@ -169,4 +169,34 @@ describe('Manager', () => {
 
     expect(Number(managerBasket.basket.total.toFixed(2))).toBe(4.98)
   })
+
+  it('ordering a special bagel order should give a discount', () => {
+    const managerBasket = new Manager(30)
+
+    managerBasket.createBasket()
+
+    managerBasket.basket.add('BGLP')
+    managerBasket.basket.add('BGLP')
+    managerBasket.basket.add('BGLP')
+    managerBasket.basket.add('BGLP')
+    managerBasket.basket.add('BGLP')
+    managerBasket.basket.add('BGLP')
+    managerBasket.basket.add('BGLP')
+    managerBasket.basket.add('BGLP')
+    managerBasket.basket.add('BGLP')
+    managerBasket.basket.add('BGLP')
+    managerBasket.basket.add('BGLP')
+    managerBasket.basket.add('BGLP')
+
+    expect(Number(managerBasket.basket.total.toFixed(2))).toBe(3.99)
+
+    managerBasket.basket.add('BGLE')
+    managerBasket.basket.add('BGLE')
+    managerBasket.basket.add('BGLE')
+    managerBasket.basket.add('BGLE')
+    managerBasket.basket.add('BGLE')
+    managerBasket.basket.add('BGLE')
+
+    expect(Number(managerBasket.basket.total.toFixed(2))).toBe(6.48)
+  })
 })
