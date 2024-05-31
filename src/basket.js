@@ -23,7 +23,7 @@ class Basket {
             this.total += price
 
             return this.basket
-        } else if (this.amount < this.capacity && found && foundBagelInBasket) {
+        } else if (this.amount < this.capacity && foundBagelInBasket) {
             found.quantity++
             this.amount++
 
@@ -31,9 +31,13 @@ class Basket {
             this.total += price
 
             return this.basket
-        } else if (this.amount >= this.capacity) {
+        }
+        
+        if (this.amount >= this.capacity) {
             throw 'basket is full'
-        } else if (!found) {
+        } 
+        
+        if (!found) {
             throw 'bagel not found'
         }
     }
@@ -63,33 +67,35 @@ class Basket {
             const price = Number(found.price)
             this.total -= price
             found.quantity--
-        } else {
+        }
+        
+        if (!found) {
             throw 'bagel not found'
         }
     }
 
     printReceipt() {
-        const date = new Date()
+            const date = new Date()
 
-        const bobsBagels = `
-        ~~~ Bob's Bagels ~~~
-      
+            const bobsBagels = `
+            ~~~ Bob's Bagels ~~~
+        
         ${date}
-      
-      ----------------------------`
+        
+        ----------------------------`
 
-      function getItem(item) {
-        return `${item.variant} ${item.name}         ${item.quantity}   £${item.quantity * item.price} \n`
-      }
+        const totalCost = `      ----------------------------
+        Total                 £${this.total}
+        
+                    Thank you
+                for your order!`
 
-      let allItems = this.basket.map((b) => getItem(b))
-      allItems = allItems.join('')
+        function getItem(item) {
+            return `${item.variant} ${item.name}         ${item.quantity}   £${item.quantity * item.price} \n`
+        }
 
-      const totalCost = `      ----------------------------
-      Total                 £${this.total}
-      
-            Thank you
-        for your order!`
+        let allItems = this.basket.map((b) => getItem(b))
+        allItems = allItems.join('')
 
         return `${bobsBagels} \n ${allItems.toString()} \n ${totalCost}`
       }
