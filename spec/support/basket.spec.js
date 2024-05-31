@@ -1,3 +1,4 @@
+
 import BobsBagels, { Bagel } from "../../src/basket.js";
 
 describe('Bobs Bagels', () => {
@@ -9,23 +10,20 @@ describe('Bobs Bagels', () => {
         expect(bobsBagels).toBeInstanceOf(BobsBagels)
     })
     it('should create a bagel order', () => {
-        const bagel = bobsBagels.createOrder(('poppyseed bagel'))
-        expect(bagel).toBeInstanceOf(Bagel)
-        expect(bagel.id).toBe(1)
-        expect(bagel.name).toBe('poppyseed bagel')
+        const expected = [new Bagel(1, 'poppyseed')]
+        const order = bobsBagels.addToBasket('poppyseed')
+        expect(order).toEqual(expected)
     })
     it('should add bagels to the basket', () => {
-        bobsBagels.addToBasket('poppyseed bagel')
+        bobsBagels.addToBasket({ id: 1, name: 'poppyseed' })
         expect(bobsBagels.basket.length).toBe(1)
     })
     it('should be allow bagels to be removed from basket', () => {
-        bobsBagels.addToBasket('poppyseed bagel')
-        expect(bobsBagels.basket.length).toBe(1)
-
-        const removed = bobsBagels.remove(1)
-        expect(removed.name).toBe('poppyseed bagel')
-        const newBasket = bobsBagels.basket
-        expect(newBasket.length).toBe(0)
+        const expected = [{ id: 1, name: 'poppyseed' }]
+        bobsBagels.addToBasket('plain')
+        bobsBagels.addToBasket('poppyseed')
+        const removed = bobsBagels.remove('plain')
+        expect(removed).toBe(expected)
     })
     it('should alert customer when basket has reached 6 bagel limit', () => {
         bobsBagels.addToBasket('poppyseed bagel')
@@ -55,9 +53,8 @@ describe('Bobs Bagels', () => {
         expect(price).toEqual(expected)
     })
     it('should create a new property on the item that increments', () => {
-        const expected = { bagel: 'poppyseed', price: 5.99, quantity: 2 }
-        bobsBagels.multiBuys('poppyseed')
-        let quantity = bobsBagels.multiBuys('poppyseed')
-        expect(expected).toBe(quantity)
+        const expected = { id: 1, name: 'poppyseed', quantity: 2 }
+        let order = bobsBagels.multiBuys({ id: 1, name: 'poppyseed' })
+        expect(order).toBe(expected)
     })
 })

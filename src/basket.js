@@ -1,83 +1,83 @@
+class Bagel {
+  constructor(id, name) {
+    this.id = id
+    this.name = name
+  }
+}
+
 class Menu {
-    fullMenu() {
-        return [
-            {bagel: 'plain',
-                price: 3.99},
-            {bagel: 'poppyseed',
-                price: 5.99},
-            {bagel: 'salmon',
-                price: 6.99}
-        ] 
-    }
+  fullMenu() {
+    return [
+      { bagel: 'plain', price: 3.99 },
+      { bagel: 'poppyseed', price: 5.99 },
+      { bagel: 'salmon', price: 6.99 }
+    ]
+  }
 }
 
 class BobsBagels {
-    constructor() {
-        this.basket = []
-        this.id = 1
+  constructor() {
+    this.basket = []
+    this.id = 1
+  }
+
+  addToBasket(name) {
+    const basket = this.basket
+    const bagel = new Bagel(this.id, name)
+    this.id++
+
+    basket.push(bagel)
+    if (basket.length > 6) {
+      throw 'basket is at full capacity'
     }
+    return basket
+  }
 
-    createOrder(name) {
-        const bagel = new Bagel(this.id, name)
-        this.id++
-
-        return bagel
+  remove(order) {
+    const basket = this.basket
+    for (let i = 0; i < basket.length; i++) {
+      if (basket[i].bagel !== order) {
+        return "this item doesn't exist"
+      }
     }
+    const bagels = basket.find((bagel) => bagel.name === order)
+    this.basket = basket.filter((bagel) => bagel.name !== order)
+    return bagels
+  }
 
-    addToBasket(bagel) {
-        const basket = this.basket
-        basket.push(bagel)
+  createManagerXlBasket(bagel) {
+    this.xlBasket = []
+    this.xlBasket.push(bagel)
 
-        if (basket.length > 6) {
-            throw "basket is at full capacity"
-        }
-        return this.basket
-    }
+    return this.xlBasket
+  }
 
-    remove(name) {
-        const basket = this.basket
-        for(let i = 0; i < basket.length; i++) {
-            if(basket[i].bagel !== name) {
-                return "this item doesn't exist"
-            }
-        }
-        const bagels = basket.find(bagel => bagel.name === name)
-        this.basket = basket.filter(bagel => bagel.name !== name)
-        return bagels
-    }
+  checkPrice(order) {
+    const menu = new Menu()
+    const fullMenu = menu.fullMenu()
 
-    createManagerXlBasket(bagel) {
-        this.xlBasket = []
-        this.xlBasket.push(bagel)
+    const item = fullMenu.find((i) => {
+      if (i.bagel === order) return i
+    })
+    return item
+  }
 
-        return this.xlBasket
-    }
-
-    checkPrice(name) {
-        const menu = new Menu
-        const fullMenu = menu.fullMenu()
-
-        const item = fullMenu.find(i => {if(i.bagel === name) return i})
-        return item
-    }
-
-    
-}
-
-const multiBuys = new BobsBagels
-multiBuys.multiBuys('poppyseed')
-
-const fullMenu = new BobsBagels
-fullMenu.checkPrice('poppyseed')
-
-class Bagel {
-    constructor(id, name) {
-        this.id = id
-        this.name = name
-    }
+  multiBuys(order) {
+    //     const basket = this.basket
+    //     const checkBasket = basket.find(i => i.name === order.name)
+    // if(checkBasket.quantity === undefined) {
+    //     checkBasket.quantity = 2
+    // } else {checkBasket.quantity++}
+    // return checkBasket
+  }
 }
 
 
+const newOrder = new BobsBagels()
+newOrder.addToBasket('poppyseed')
+
+const bagel = new BobsBagels()
+bagel.multiBuys({ id: 1, name: 'poppyseed' })
 
 export { Bagel }
 
