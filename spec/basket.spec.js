@@ -1,13 +1,13 @@
 import Basket, { Bagel } from '../src/basket.js'
 
 describe('Bagel', () => {
-  let bagel
-  // let noBgl
+  // let bagel
+  // // let noBgl
 
-  beforeEach(() => {
-    bagel = new Bagel('BGLO', 2)
-  })
+  // beforeEach(() => {
+  // })
 
+  const bagel = new Bagel('BGLO', 2)
   it('should exist', () => {
     expect(bagel).toBeInstanceOf(Bagel)
   })
@@ -21,7 +21,14 @@ describe('Bagel', () => {
   })
 
   it('should show the price of bagel with provided sku', () => {
-    expect(bagel.showPrice()).toBe(0.49)
+    expect(bagel.showPrice('BGLO')).toBe(0.49)
+  })
+
+  
+  it('should throw an error if wrong sku is provided', () => {
+    expect(() => {
+      noBgl.showPrice('wrong').toThrowError(`Bagel with SKU ${sku} not found.`)
+    })
   })
 })
 
@@ -64,6 +71,10 @@ describe('Basket', () => {
     expect(smallBasket.basket[1].sku).toBe('BGLO')
     expect(smallBasket.basket[1].qty).toBe(1)
   })
+
+  it('should not add non existing baggels and instead throw an error', () => {
+    expect(() => smallBasket.addBagels('wrong', 1).toThrowError(`There in no bagel with sku ${sku} `))
+   })
 
   it('should add 1 bagel or multiple same-type bagels and should throw an error "Basket is full" if basket size is exceeded when adding bagels of any kind beyond basket capacity', () => {
     expect(() =>
@@ -118,7 +129,7 @@ describe('Basket', () => {
 
     const total = smallBasket.showCost()
     expect(total).toBe(2.15)
-    
+
     smallBasket.removeBagels('BGLP')
     const total2 = smallBasket.showCost()
     expect(total2).toBe(1.76)

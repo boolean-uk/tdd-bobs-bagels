@@ -16,15 +16,26 @@ class Bagel {
       this.name = bagelData.name
       this.variant = bagelData.variant
     } else {
+      console.log(`Bagel with SKU ${this.sku} not found.`)
       throw new Error(`Bagel with SKU ${this.sku} not found.`)
     }
   }
 
-  showPrice() {
-    console.log(this.price)
-    return this.price
+  showPrice(sku) {
+    const bagelToCheck = allBagels.inventory.find((bgl) => bgl.sku === this.sku)
+    if (bagelToCheck) {
+      console.log(this.price)
+      return this.price
+    } else {
+      const errorMessage = `Bagel with SKU ${sku} not found.`
+      console.log(errorMessage)
+      throw new Error(errorMessage)
+    }
   }
 }
+
+// const bagelInstance = new Bagel('BGLr', )
+// console.log(bagelInstance.showPrice('BGLO'))
 
 class Basket {
   constructor(basketSize = 5) {
@@ -44,8 +55,8 @@ class Basket {
       if (bagel) {
         this.basket.push(bagel)
       } else {
-        console.log(`No bagel with sku ${sku} `)
-        throw new Error(`Bagel with SKU ${sku} not found.`)
+        console.log(`There is no bagel with sku ${sku} `)
+        throw new Error(`There is no bagel with sku ${sku}`)
       }
     }
     return this.basket
@@ -64,10 +75,10 @@ class Basket {
 
   showCost() {
     let total = 0
-    for (let i = 0; i < this.basket.length; i++){
+    for (let i = 0; i < this.basket.length; i++) {
       total += this.basket[i].price
     }
-    console.log(total);
+    console.log(total)
     return total
   }
 }
