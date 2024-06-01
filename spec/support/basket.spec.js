@@ -18,11 +18,11 @@ describe('Bobs Bagels', () => {
         bobsBagels.addToBasket({ id: 1, name: 'poppyseed' })
         expect(bobsBagels.basket.length).toBe(1)
     })
-    fit('should be allow bagels to be removed from basket', () => {
+    it('should be allow bagels to be removed from basket', () => {
         const expected = [new Bagel(2, 'poppyseed')]
         bobsBagels.addToBasket('plain')
         bobsBagels.addToBasket('poppyseed')
-        const removed = bobsBagels.remove('plain')
+        const removed = bobsBagels.remove('poppyseed')
         expect(removed).toEqual(expected)
     })
     it('should alert customer when basket has reached 6 bagel limit', () => {
@@ -39,12 +39,7 @@ describe('Bobs Bagels', () => {
         expect(bobsBagels.xlBasket.length).toBe(1)
     })
     it("should alert customer if they try to remove an item that doesn't exist", () => {
-        const expected = "this item doesn't exist"
-        
-        bobsBagels.addToBasket('poppyseed bagel')
-
-        const warning = bobsBagels.remove('chips')
-        expect(warning).toBe(expected)
+        expect(() => bobsBagels.remove('chips')).toThrow("this item doesn't exist")
     })
     it('should return the price of the bagel selected', () => {
         const expected = { bagel: 'poppyseed', price: 5.99 }

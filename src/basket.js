@@ -34,13 +34,12 @@ class BobsBagels {
   }
 
   remove(order) {
-    const removed = this.basket.filter((bagel) => bagel.name !== order)
+    const removed = this.basket.find((bagel) => bagel.name === order)
 
     if(!removed) {
       throw "this item doesn't exist"
     }
-    
-    this.basket = this.basket.find((bagel) => bagel.name === order)
+    this.basket = this.basket.filter((bagel) => bagel.name !== order)
 
     return removed
   }
