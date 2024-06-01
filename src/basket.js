@@ -34,15 +34,15 @@ class BobsBagels {
   }
 
   remove(order) {
-    const basket = this.basket
-    for (let i = 0; i < basket.length; i++) {
-      if (basket[i].bagel !== order) {
-        return "this item doesn't exist"
-      }
+    const removed = this.basket.filter((bagel) => bagel.name !== order)
+
+    if(!removed) {
+      throw "this item doesn't exist"
     }
-    const bagels = basket.find((bagel) => bagel.name === order)
-    this.basket = basket.filter((bagel) => bagel.name !== order)
-    return bagels
+    
+    this.basket = this.basket.find((bagel) => bagel.name === order)
+
+    return removed
   }
 
   createManagerXlBasket(bagel) {
@@ -73,8 +73,11 @@ class BobsBagels {
 }
 
 
-const newOrder = new BobsBagels()
-newOrder.addToBasket('poppyseed')
+// const newOrder = new BobsBagels()
+// newOrder.addToBasket('poppyseed')
+
+// const removed = new BobsBagels()
+// removed.remove('plain')
 
 const bagel = new BobsBagels()
 bagel.multiBuys({ id: 1, name: 'poppyseed' })

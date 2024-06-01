@@ -18,12 +18,12 @@ describe('Bobs Bagels', () => {
         bobsBagels.addToBasket({ id: 1, name: 'poppyseed' })
         expect(bobsBagels.basket.length).toBe(1)
     })
-    it('should be allow bagels to be removed from basket', () => {
-        const expected = [{ id: 1, name: 'poppyseed' }]
+    fit('should be allow bagels to be removed from basket', () => {
+        const expected = [new Bagel(2, 'poppyseed')]
         bobsBagels.addToBasket('plain')
         bobsBagels.addToBasket('poppyseed')
         const removed = bobsBagels.remove('plain')
-        expect(removed).toBe(expected)
+        expect(removed).toEqual(expected)
     })
     it('should alert customer when basket has reached 6 bagel limit', () => {
         bobsBagels.addToBasket('poppyseed bagel')
