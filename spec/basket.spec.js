@@ -23,7 +23,6 @@ describe('Bagel', () => {
   it('should show the price of bagel with provided sku', () => {
     expect(bagel.showPrice()).toBe(0.49)
   })
-
 })
 
 describe('Basket', () => {
@@ -38,8 +37,11 @@ describe('Basket', () => {
   it('should exist', () => {
     expect(smallBasket).toBeInstanceOf(Basket)
   })
+  it('should exist', () => {
+    expect(largeBasket).toBeInstanceOf(Basket)
+  })
 
-  it('basket should have a basketSize 5', () => {
+  it('smallBasket should have a basketSize 5', () => {
     expect(smallBasket.basketSize).toBe(5)
   })
 
@@ -113,8 +115,10 @@ describe('Basket', () => {
   it('should return the total cost of bagels in the basket', () => {
     smallBasket.addBagels('BGLP', 3)
     smallBasket.addBagels('BGLO', 2)
-    
+
     const total = smallBasket.showCost()
     expect(total).toBe(2.15)
-    })
+  })
+
+  //I don't think there is a reason to repeat tests for largeBasket since it exists and has proper length
 })
