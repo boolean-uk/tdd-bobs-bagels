@@ -56,6 +56,14 @@ class Basket {
       throw new Error(`There is no bagel of this type in the basket`)
     }
   }
+
+  showCost() {
+    let total = 0
+    for (let i = 0; i < this.basket.length; i++){
+      total += this.basket[i].price
+    }
+    return total
+  }
 }
 
 export { Bagel }

@@ -66,7 +66,7 @@ describe('Basket', () => {
     expect(smallBasket.basket[1].qty).toBe(1)
   })
 
-  it('should add multiple same-type bagels and should throw an error "Basket is full" if basket size is exceeded when adding bagels of any kind beyond basket capacity', () => {
+  it('should add 1 bagel or multiple same-type bagels and should throw an error "Basket is full" if basket size is exceeded when adding bagels of any kind beyond basket capacity', () => {
     expect(() =>
       smallBasket.addBagels('BGLP', 6).toThrowError(`Basket is full`)
     )
@@ -106,5 +106,18 @@ describe('Basket', () => {
         .removeBagels('BGLO')
         .toThrowError(`There is no bagel of this type in the basket`)
     )
+    expect(() =>
+      smallBasket
+        .removeBagels('BGLO')
+        .toThrowError(`There is no bagel of this type in the basket`)
+    )
   })
+
+  it('should return the total cost of bagels in the basket', () => {
+    smallBasket.addBagels('BGLP', 3)
+    smallBasket.addBagels('BGLO', 2)
+    
+    const total = smallBasket.showCost()
+    expect(total).toBe(2.15)
+    })
 })
