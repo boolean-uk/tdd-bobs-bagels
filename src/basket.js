@@ -21,6 +21,7 @@ class Bagel {
   }
 
   showPrice() {
+    console.log(this.price)
     return this.price
   }
 }
@@ -66,6 +67,7 @@ class Basket {
     for (let i = 0; i < this.basket.length; i++){
       total += this.basket[i].price
     }
+    console.log(total);
     return total
   }
 }

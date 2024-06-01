@@ -118,6 +118,10 @@ describe('Basket', () => {
 
     const total = smallBasket.showCost()
     expect(total).toBe(2.15)
+    
+    smallBasket.removeBagels('BGLP')
+    const total2 = smallBasket.showCost()
+    expect(total2).toBe(1.76)
   })
 
   //I don't think there is a reason to repeat tests for largeBasket since it exists and has proper length
