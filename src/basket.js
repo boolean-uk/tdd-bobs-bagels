@@ -29,8 +29,7 @@ class Basket {
   }
 
   addBagels(sku, qty) {
-    
-    for (let i = 0; i < qty; i++){
+    for (let i = 0; i < qty; i++) {
       const bagel = new Bagel(sku, 1)
       this.bagelsIn += 1
       if (this.bagelsIn > this.basketSize) {
@@ -45,6 +44,17 @@ class Basket {
       }
     }
     return this.basket
+  }
+
+  removeBagels(sku) {
+    const bagelToRemove = this.basket.findIndex((bg) => bg.sku === sku)
+    if (bagelToRemove !== -1) {
+      this.basket.splice(bagelToRemove, 1)
+      return this.basket
+    } else {
+      console.log(`There is no bagel of this type in the basket`)
+      throw new Error(`There is no bagel of this type in the basket`)
+    }
   }
 }
 

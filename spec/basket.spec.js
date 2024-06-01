@@ -67,13 +67,19 @@ describe('Basket', () => {
   })
 
   it('should add multiple same-type bagels and should throw an error "Basket is full" if basket size is exceeded when adding bagels of any kind beyond basket capacity', () => {
+    expect(() =>
+      smallBasket.addBagels('BGLP', 6).toThrowError(`Basket is full`)
+    )
+
     smallBasket.addBagels('BGLP', 3)
     expect(smallBasket.basket.length).toBe(3)
     expect(smallBasket.basket[0].sku).toBe('BGLP')
 
     smallBasket.addBagels('BGLP', 1)
     expect(smallBasket.basket.length).toBe(4)
-    expect(smallBasket.basket[0].sku).toBe('BGLP')
+    expect(smallBasket.basket[1].sku).toBe('BGLP')
+    expect(smallBasket.basket[2].sku).toBe('BGLP')
+    expect(smallBasket.basket[3].sku).toBe('BGLP')
 
     smallBasket.addBagels('BGLO', 1)
     expect(smallBasket.basket.length).toBe(5)
@@ -81,6 +87,24 @@ describe('Basket', () => {
 
     expect(() =>
       smallBasket.addBagels('BGLP', 2).toThrowError(`Basket is full`)
+    )
+  })
+
+  it('should remove a bagel from the basket if it exists or throw an error if it does not', () => {
+    smallBasket.addBagels('BGLP', 3)
+    expect(smallBasket.basket.length).toBe(3)
+
+    smallBasket.removeBagels('BGLP')
+    expect(smallBasket.basket.length).toBe(2)
+    smallBasket.removeBagels('BGLP')
+    expect(smallBasket.basket.length).toBe(1)
+    smallBasket.removeBagels('BGLP')
+    expect(smallBasket.basket.length).toBe(0)
+
+    expect(() =>
+      smallBasket
+        .removeBagels('BGLO')
+        .toThrowError(`There is no bagel of this type in the basket`)
     )
   })
 })
