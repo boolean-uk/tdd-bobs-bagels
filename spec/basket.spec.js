@@ -50,29 +50,37 @@ describe('Basket', () => {
     expect(largeBasket.basketSize).toBe(10)
   })
 
-  it('should have an empty bagelsIn[] before adding bagels', () => {
-    expect(smallBasket.bagelsIn.length).toBe(0)
+  it('should have an empty basket[] before adding bagels', () => {
+    expect(smallBasket.basket.length).toBe(0)
   })
 
-  it('should add baggels to bagelsIn[] using sku and qty', () => {
+  it('should add baggels to basket[] using sku and qty', () => {
     smallBasket.addBagels('BGLO', 1)
-    expect(smallBasket.bagelsIn.length).toBe(1)
-    expect(smallBasket.bagelsIn[0].sku).toBe('BGLO')
-    expect(smallBasket.bagelsIn[0].qty).toBe(1)
+    expect(smallBasket.basket.length).toBe(1)
+    expect(smallBasket.basket[0].sku).toBe('BGLO')
+    expect(smallBasket.basket[0].qty).toBe(1)
 
     smallBasket.addBagels('BGLO', 1)
-    expect(smallBasket.bagelsIn.length).toBe(2)
-    expect(smallBasket.bagelsIn[1].sku).toBe('BGLO')
-    expect(smallBasket.bagelsIn[1].qty).toBe(1)
+    expect(smallBasket.basket.length).toBe(2)
+    expect(smallBasket.basket[1].sku).toBe('BGLO')
+    expect(smallBasket.basket[1].qty).toBe(1)
   })
 
-  it('should throw an error "Basket is full" if basket size is exceeded when adding bagels beyond basket capacity', () => {
-    basket.addBagels('BGLP', 3)
-    console.log(basket);
-    expect(basket.bagelsIn.length).toBe(3)
-    expect(basket.bagelsIn[0].sku).toBe('BGLP')
+  it('should add multiple same-type bagels and should throw an error "Basket is full" if basket size is exceeded when adding bagels of any kind beyond basket capacity', () => {
+    smallBasket.addBagels('BGLP', 3)
+    expect(smallBasket.basket.length).toBe(3)
+    expect(smallBasket.basket[0].sku).toBe('BGLP')
 
-    // expect(() => basket.addBagels('BGLP', 2).toThrowError(`Basket is full`))
-    // expect(() => basket.addBagels('BGLP', 2).toThrowError(`Basket is full`))
+    smallBasket.addBagels('BGLP', 1)
+    expect(smallBasket.basket.length).toBe(4)
+    expect(smallBasket.basket[0].sku).toBe('BGLP')
+
+    smallBasket.addBagels('BGLO', 1)
+    expect(smallBasket.basket.length).toBe(5)
+    expect(smallBasket.basket[4].sku).toBe('BGLO')
+
+    expect(() =>
+      smallBasket.addBagels('BGLP', 2).toThrowError(`Basket is full`)
+    )
   })
 })

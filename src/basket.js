@@ -24,25 +24,27 @@ class Bagel {
 class Basket {
   constructor(basketSize = 5) {
     this.basketSize = basketSize
-
+    this.bagelsIn = 0
     this.basket = []
   }
 
   addBagels(sku, qty) {
-    const bagel = new Bagel(sku, qty)
-
-    for (let i = 0; i <= qty; i++){
-      if (this.basket.length + qty > this.basketSize) {
+    
+    for (let i = 0; i < qty; i++){
+      const bagel = new Bagel(sku, 1)
+      this.bagelsIn += 1
+      if (this.bagelsIn > this.basketSize) {
         console.log(`Basket is full`)
         throw new Error(`Basket is full`)
-      }else if (bagel) {
+      }
+      if (bagel) {
         this.basket.push(bagel)
-        return this.basket
       } else {
         console.log(`No bagel with sku ${sku} `)
         throw new Error(`Bagel with SKU ${sku} not found.`)
       }
     }
+    return this.basket
   }
 }
 
