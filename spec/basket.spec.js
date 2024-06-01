@@ -44,8 +44,12 @@ describe('Basket', () => {
     expect(basket).toBeInstanceOf(Basket)
   })
 
-  it('should have a basketSize 5', () => {
+  it('basket should have a basketSize 5', () => {
     expect(basket.basketSize).toBe(5)
+  })
+
+  it('largeBasket to have a size of 10', () => {
+    expect(largeBasket.basketSize).toBe(10)
   })
 
   it('should have an empty bagelsIn array before adding bagels', () => {
@@ -55,11 +59,16 @@ describe('Basket', () => {
   it('should add baggels to bagelsIn[] using sku and qty', () => {
     basket.addBagels('BGLO',1)
     expect(basket.bagelsIn.length).toBe(1)
+    expect(basket.bagelsIn[0].sku).toBe('BGLO')
+    expect(basket.bagelsIn[0].qty).toBe(1)
+    
     basket.addBagels('BGLO',1)
     expect(basket.bagelsIn.length).toBe(2)
+        expect(basket.bagelsIn[1].sku).toBe('BGLO')
+        expect(basket.bagelsIn[1].qty).toBe(1)
   })
 
-  it('should throw an error if sku provided is not valid', () => {
+  // it('should throw an error if sku provided is not valid', () => {
     
-  })
+  // })
 })

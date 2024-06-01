@@ -29,10 +29,16 @@ class Basket {
   }
 
   addBagels(sku, qty) {
-    this.bagelsIn.push(new Bagel(sku, qty))
-    if
+    const bagel = new Bagel(sku, qty)
+    if (bagel) {
+      this.bagelsIn.push(bagel)
+      return this.bagelsIn      
+    } else {
+      console.log(`No bagel with sku ${sku} `)
+      throw new Error(`Bagel with SKU ${sku} not found.`)
+      return false
+    }
 
-    return this.bagelsIn
   }
 
 }
