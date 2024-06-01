@@ -34,9 +34,6 @@ class Bagel {
   }
 }
 
-// const bagelInstance = new Bagel('BGLr', )
-// console.log(bagelInstance.showPrice('BGLO'))
-
 class Basket {
   constructor(basketSize = 5) {
     this.basketSize = basketSize
@@ -49,14 +46,16 @@ class Basket {
       const bagel = new Bagel(sku, 1)
       this.bagelsIn += 1
       if (this.bagelsIn > this.basketSize) {
-        console.log(`Basket is full`)
-        throw new Error(`Basket is full`)
+        const errorMessage = `Basket is full`
+        console.log(errorMessage)
+        throw new Error(errorMessage)
       }
       if (bagel) {
         this.basket.push(bagel)
       } else {
-        console.log(`There is no bagel with sku ${sku} `)
-        throw new Error(`There is no bagel with sku ${sku}`)
+        const errorMessage = `There is no bagel with sku ${sku} `
+        console.log(errorMessage)
+        throw new Error(errorMessage)
       }
     }
     return this.basket
@@ -68,8 +67,9 @@ class Basket {
       this.basket.splice(bagelToRemove, 1)
       return this.basket
     } else {
-      console.log(`There is no bagel of this type in the basket`)
-      throw new Error(`There is no bagel of this type in the basket`)
+      const errorMessage = `There is no bagel of this type in the basket`
+      console.log(errorMessage)
+      throw new Error(errorMessage)
     }
   }
 
@@ -85,6 +85,3 @@ class Basket {
 
 export { Bagel }
 export default Basket
-// console.log(allBagels);
-// const test = new Bagel('BGLO', 2)
-// console.log('t',test)

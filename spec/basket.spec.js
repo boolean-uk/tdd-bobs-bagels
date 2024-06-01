@@ -1,12 +1,6 @@
 import Basket, { Bagel } from '../src/basket.js'
 
 describe('Bagel', () => {
-  // let bagel
-  // // let noBgl
-
-  // beforeEach(() => {
-  // })
-
   const bagel = new Bagel('BGLO', 2)
   it('should exist', () => {
     expect(bagel).toBeInstanceOf(Bagel)
