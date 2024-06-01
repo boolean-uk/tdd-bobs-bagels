@@ -1,15 +1,5 @@
 import allBagels from '../inventory.json' assert { type: 'json' }
 
-class Basket {
-  constructor(basketSize = 5) {
-    this.basketSize = basketSize
-    this.bagelsIn = []
-  }
-
-  
-
-}
-
 class Bagel {
   constructor(sku, qty = 1) {
     this.sku = sku
@@ -30,6 +20,23 @@ class Bagel {
     }
   }
 }
+
+
+class Basket {
+  constructor(basketSize = 5) {
+    this.basketSize = basketSize
+    this.bagelsIn = []
+  }
+
+  addBagels(sku, qty) {
+    this.bagelsIn.push(new Bagel(sku, qty))
+    if
+
+    return this.bagelsIn
+  }
+
+}
+
 
 export { Bagel }
 export default Basket

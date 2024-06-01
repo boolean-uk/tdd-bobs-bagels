@@ -53,6 +53,13 @@ describe('Basket', () => {
   })
 
   it('should add baggels to bagelsIn[] using sku and qty', () => {
+    basket.addBagels('BGLO',1)
     expect(basket.bagelsIn.length).toBe(1)
+    basket.addBagels('BGLO',1)
+    expect(basket.bagelsIn.length).toBe(2)
+  })
+
+  it('should throw an error if sku provided is not valid', () => {
+    
   })
 })
