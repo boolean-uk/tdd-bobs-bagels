@@ -21,28 +21,30 @@ class Bagel {
   }
 }
 
-
 class Basket {
   constructor(basketSize = 5) {
     this.basketSize = basketSize
-    this.bagelsIn = []
+
+    this.basket = []
   }
 
   addBagels(sku, qty) {
     const bagel = new Bagel(sku, qty)
-    if (bagel) {
-      this.bagelsIn.push(bagel)
-      return this.bagelsIn      
-    } else {
-      console.log(`No bagel with sku ${sku} `)
-      throw new Error(`Bagel with SKU ${sku} not found.`)
-      return false
+
+    for (let i = 0; i <= qty; i++){
+      if (this.basket.length + qty > this.basketSize) {
+        console.log(`Basket is full`)
+        throw new Error(`Basket is full`)
+      }else if (bagel) {
+        this.basket.push(bagel)
+        return this.basket
+      } else {
+        console.log(`No bagel with sku ${sku} `)
+        throw new Error(`Bagel with SKU ${sku} not found.`)
+      }
     }
-
   }
-
 }
-
 
 export { Bagel }
 export default Basket
