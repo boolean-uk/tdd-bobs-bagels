@@ -19,6 +19,10 @@ class Bagel {
       throw new Error(`Bagel with SKU ${this.sku} not found.`)
     }
   }
+
+  showPrice() {
+    return this.price
+  }
 }
 
 class Basket {

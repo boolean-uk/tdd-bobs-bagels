@@ -6,7 +6,6 @@ describe('Bagel', () => {
 
   beforeEach(() => {
     bagel = new Bagel('BGLO', 2)
-    // noBgl = new Bagel('tst',1)
   })
 
   it('should exist', () => {
@@ -21,12 +20,10 @@ describe('Bagel', () => {
     expect(bagel.variant).toBe('Onion')
   })
 
-  // it('should throw an error if incorrect sku is passed', () => {
-  //   const noBgl = new Bagel('test', 3)
-  //   expect(() =>
-  //     noBgl.toThrowAnyError(`Bagel with SKU ${this.sku} not found.`)
-  //   )
-  // })
+  it('should show the price of bagel with provided sku', () => {
+    expect(bagel.showPrice()).toBe(0.49)
+  })
+
 })
 
 describe('Basket', () => {
