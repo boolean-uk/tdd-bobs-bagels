@@ -17,7 +17,7 @@ export default class Bagelbakery {
       salt: 0.65,
       chocolate: 0.9
     }
-    this.basketCapacity = 10
+    this.basketCapacity = 3
   }
 
   isAddedBefore(type) {

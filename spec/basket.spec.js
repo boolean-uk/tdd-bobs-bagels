@@ -58,5 +58,14 @@ describe('BagelBakery', () => {
       'The item that you want to remove does not exist in the basket'
     )
   })
+
+  it('should check when the basket is full when adding an item beyond the basket capacity', () => {
+    bagelBakery.addItem('salt')
+    bagelBakery.addItem('egg')
+    bagelBakery.addItem('sesame')
+    const item4 = bagelBakery.addItem('cheddar')
+
+    expect(item4).toBe('You basket is full')
+  })
   // ---------
 })
