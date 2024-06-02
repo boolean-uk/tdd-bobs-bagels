@@ -66,6 +66,10 @@ export default class Bagelbakery {
     this.basket = this.basket.filter((item) => item.id !== itemToRemove.id)
   }
 
+  setBasketCapacity(num) {
+    this.basketCapacity = num
+  }
+
   // ----
 }
 

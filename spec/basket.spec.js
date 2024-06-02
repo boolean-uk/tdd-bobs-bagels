@@ -67,5 +67,16 @@ describe('BagelBakery', () => {
 
     expect(item4).toBe('You basket is full')
   })
+
+  it('should create baskets with larger capacity when I need to', () => {
+    bagelBakery.setBasketCapacity(10)
+
+    bagelBakery.addItem('salt')
+    bagelBakery.addItem('egg')
+    bagelBakery.addItem('sesame')
+    bagelBakery.addItem('cheddar')
+
+    expect(bagelBakery.basket.length).toBe(4)
+  })
   // ---------
 })
