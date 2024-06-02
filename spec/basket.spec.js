@@ -18,5 +18,12 @@ describe('BagelBakery', () => {
     expect(item.quantity).toBe(1)
     expect(item.price).toBe(0.65)
   })
+
+  it('should add the new item to the basket', () => {
+    const item1 = bagelBakery.addItem('salt')
+    const item2 = bagelBakery.addItem('egg')
+
+    expect(bagelBakery.basket.length).toBe(2)
+  })
   // ---------
 })
