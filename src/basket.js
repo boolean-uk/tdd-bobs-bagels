@@ -94,9 +94,9 @@ class Basket {
         hour12: false
       })
       .replace(/\//g, '-')
-    process.stdout.write(`~~~ Bob's Bagels ~~~\n`)
+    process.stdout.write(`\n~~~ Bob's Bagels ~~~\n\n`)
     process.stdout.write(`${formattedDate}\n`)
-    process.stdout.write(`-------------------------------------- \n`)
+    process.stdout.write(`-------------------------------------- \n\n`)
 
     let receipt = {}
 
@@ -116,15 +116,22 @@ class Basket {
     for (let sku in receipt) {
       let bgl = receipt[sku]
       process.stdout.write(
-        `${bgl.variant} ${bgl.name} qty: ${bgl.qty} x ${bgl.price} \n`
+        `${bgl.variant} ${bgl.name} qty: ${bgl.qty} x ${bgl.price} \n\n`
       )
-      process.stdout.write(`-------------------------------------- \n`)
     }
+    process.stdout.write(`-------------------------------------- \n`)
     process.stdout.write(`Total: ${this.showCost()}` + '\n')
-    process.stdout.write('Thank you for your order!')
+    process.stdout.write('Thank you for your order! \n\n')
   }
 }
 
 
 export { Bagel }
 export default Basket
+
+const nb = new Basket(10)
+nb.addBagels('BGLO',3)
+nb.addBagels('BGLP',2)
+nb.addBagels('BGLS', 4)
+nb.addBagels('BGLO',1)
+nb.printReceipt()

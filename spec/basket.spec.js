@@ -135,7 +135,8 @@ describe('Basket', () => {
   it('should print a receipt with the correct bagels, prices quantities and total', () => {
     largeBasket.addBagels('BGLO', 3)
     largeBasket.addBagels('BGLP', 2)
-    largeBasket.addBagels('BGLS', 5)
+    largeBasket.addBagels('BGLS', 4)
+    largeBasket.addBagels('BGLO', 1)
     const expectedDate =
       new Date()
         .toLocaleString('en-GB', {
@@ -151,19 +152,19 @@ describe('Basket', () => {
 
     const spy = spyOn(process.stdout, 'write')
     largeBasket.printReceipt()
-    expect(spy).toHaveBeenCalledWith(`~~~ Bob's Bagels ~~~\n`)
+    expect(spy).toHaveBeenCalledWith(`\n~~~ Bob's Bagels ~~~\n\n`)
     expect(spy).toHaveBeenCalledWith(expectedDate)
     expect(spy).toHaveBeenCalledWith(
-      `-------------------------------------- \n`
+      `-------------------------------------- \n\n`
     )
-    expect(spy).toHaveBeenCalledWith('Onion Bagel qty: 3 x 0.49 \n')
-    expect(spy).toHaveBeenCalledWith('Plain Bagel qty: 2 x 0.39 \n')
-    expect(spy).toHaveBeenCalledWith('Sesame Bagel qty: 5 x 0.49 \n')
+    expect(spy).toHaveBeenCalledWith('Onion Bagel qty: 4 x 0.49 \n\n')
+    expect(spy).toHaveBeenCalledWith('Plain Bagel qty: 2 x 0.39 \n\n')
+    expect(spy).toHaveBeenCalledWith('Sesame Bagel qty: 4 x 0.49 \n\n')
     expect(spy).toHaveBeenCalledWith(
       `-------------------------------------- \n`
     )
-    expect(spy).toHaveBeenCalledWith(`Total: ${largeBasket.showCost()}\n`)
-    expect(spy).toHaveBeenCalledWith('Thank you for your order!')
+    expect(spy).toHaveBeenCalledWith(`Total: 4.7\n`)
+    expect(spy).toHaveBeenCalledWith('Thank you for your order! \n\n')
   })
 
   //I don't think there is a reason to repeat more tests for largeBasket since it exists, has proper length and it can print a receipt
