@@ -19,6 +19,18 @@ export default class Bagelbakery {
     }
     this.basketCapacity = 10
   }
+
+  addItem(type, quantity = 1) {
+    this.id++
+    const item = {
+      id: this.id,
+      type: type,
+      quantity: quantity,
+      price: this.bagelPrice[type]
+    }
+
+    return item
+  }
 }
 
 const bagelBakery = new Bagelbakery()
