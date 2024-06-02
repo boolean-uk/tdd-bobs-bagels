@@ -18,7 +18,6 @@ describe('Bagel', () => {
     expect(bagel.showPrice('BGLO')).toBe(0.49)
   })
 
-  
   it('should throw an error if wrong sku is provided', () => {
     expect(() => {
       noBgl.showPrice('wrong').toThrowError(`Bagel with SKU ${sku} not found.`)
@@ -67,8 +66,12 @@ describe('Basket', () => {
   })
 
   it('should not add non existing baggels and instead throw an error', () => {
-    expect(() => smallBasket.addBagels('wrong', 1).toThrowError(`There in no bagel with sku ${sku} `))
-   })
+    expect(() =>
+      smallBasket
+        .addBagels('wrong', 1)
+        .toThrowError(`There in no bagel with sku ${sku} `)
+    )
+  })
 
   it('should add 1 bagel or multiple same-type bagels and should throw an error "Basket is full" if basket size is exceeded when adding bagels of any kind beyond basket capacity', () => {
     expect(() =>
@@ -129,5 +132,27 @@ describe('Basket', () => {
     expect(total2).toBe(1.76)
   })
 
-  //I don't think there is a reason to repeat tests for largeBasket since it exists and has proper length
+  it('should print a receipt with the correct bagels, prices quantities and total', () => {
+    largeBasket.addBagels('BGLO', 3)
+    largeBasket.addBagels('BGLP', 2)
+    largeBasket.addBagels('BGLS', 5)
+    const expectedDate =
+      new Date()
+        .toLocaleString('en-GB', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        })
+        .replace(/\//g, '-') + '\n'
+
+    
+    largeBasket.printReceipt()
+
+  })
+
+  //I don't think there is a reason to repeat more tests for largeBasket since it exists and has proper length and it can print a receipt
 })
