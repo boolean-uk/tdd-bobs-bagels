@@ -155,7 +155,10 @@ describe('Basket', () => {
         expect(spy).toHaveBeenCalledWith(expectedDate)
         expect(spy).toHaveBeenCalledWith(
           `-------------------------------------- \n`
-        )
+    )
+      expect(spy).toHaveBeenCalledWith('Onion Bagel qty: 3 x 0.49 \n')
+      expect(spy).toHaveBeenCalledWith('Plain Bagel qty: 2 x 0.39 \n')
+      expect(spy).toHaveBeenCalledWith('Sesame Bagel qty: 5 x 0.49 \n')
 
   })
 
