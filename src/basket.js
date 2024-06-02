@@ -48,6 +48,11 @@ export default class Bagelbakery {
       return item
     }
   }
+
+  removeItem(id) {
+    this.basket = this.basket.filter((item) => item.id !== id)
+  }
+
   // ----
 }
 
