@@ -148,18 +148,20 @@ describe('Basket', () => {
           hour12: false
         })
         .replace(/\//g, '-') + '\n'
-    
-        const spy = spyOn(process.stdout, 'write')
-        largeBasket.printReceipt()
-        expect(spy).toHaveBeenCalledWith(`~~~ Bob's Bagels ~~~\n`)
-        expect(spy).toHaveBeenCalledWith(expectedDate)
-        expect(spy).toHaveBeenCalledWith(
-          `-------------------------------------- \n`
-    )
-      expect(spy).toHaveBeenCalledWith('Onion Bagel qty: 3 x 0.49 \n')
-      expect(spy).toHaveBeenCalledWith('Plain Bagel qty: 2 x 0.39 \n')
-      expect(spy).toHaveBeenCalledWith('Sesame Bagel qty: 5 x 0.49 \n')
 
+    const spy = spyOn(process.stdout, 'write')
+    largeBasket.printReceipt()
+    expect(spy).toHaveBeenCalledWith(`~~~ Bob's Bagels ~~~\n`)
+    expect(spy).toHaveBeenCalledWith(expectedDate)
+    expect(spy).toHaveBeenCalledWith(
+      `-------------------------------------- \n`
+    )
+    expect(spy).toHaveBeenCalledWith('Onion Bagel qty: 3 x 0.49 \n')
+    expect(spy).toHaveBeenCalledWith('Plain Bagel qty: 2 x 0.39 \n')
+    expect(spy).toHaveBeenCalledWith('Sesame Bagel qty: 5 x 0.49 \n')
+    expect(spy).toHaveBeenCalledWith(
+      `-------------------------------------- \n`
+    )
   })
 
   //I don't think there is a reason to repeat more tests for largeBasket since it exists and has proper length and it can print a receipt

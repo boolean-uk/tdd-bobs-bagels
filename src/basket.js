@@ -96,6 +96,29 @@ class Basket {
     process.stdout.write(`~~~ Bob's Bagels ~~~\n`)
     process.stdout.write(`${formattedDate}\n`)
     process.stdout.write(`-------------------------------------- \n`)
+
+    let receipt = {}
+
+    for (let i = 0; i < this.basket.length; i++) {
+      let bgl = this.basket[i]
+      if (!receipt[bgl.sku]) {
+        receipt[bgl.sku] = {
+          sku: bgl.sku,
+          name: bgl.name,
+          variant: bgl.variant,
+          qty: 0,
+          price: bgl.price
+        }
+      }
+      receipt[bgl.sku].qty += bgl.qty
+    }
+    for (let sku in receipt) {
+      let bgl = receipt[sku]
+      process.stdout.write(
+        `${bgl.variant} ${bgl.name} qty: ${bgl.qty} x ${bgl.price} \n`
+      )
+      process.stdout.write(`-------------------------------------- \n`)
+    }
   }
 }
 
