@@ -44,4 +44,17 @@ describe("Basket", () => {
         expect(basket.quantity).toEqual(15)
     })
 
+    it("should return the price of a valid product", () => {
+        expect(basket.checkPrice("dirty bagel")).toEqual(0.99)
+    })
+
+    it("should return an error when trying to find the price of an invalid item", () => {
+        expect(basket.checkPrice("doom bagel")).toEqual("This item doesn't exist")
+    })
+
+    it("should return the total of all products in the basket", () => {
+        basket.addItem("dirty bagel", 2)
+        basket.addItem("seed bagel", 2)
+        expect(basket.total()).toEqual(5.96)
+    })
 })
