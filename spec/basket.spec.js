@@ -148,9 +148,14 @@ describe('Basket', () => {
           hour12: false
         })
         .replace(/\//g, '-') + '\n'
-
     
-    largeBasket.printReceipt()
+        const spy = spyOn(process.stdout, 'write')
+        largeBasket.printReceipt()
+        expect(spy).toHaveBeenCalledWith(`~~~ Bob's Bagels ~~~\n`)
+        expect(spy).toHaveBeenCalledWith(expectedDate)
+        expect(spy).toHaveBeenCalledWith(
+          `-------------------------------------- \n`
+        )
 
   })
 
