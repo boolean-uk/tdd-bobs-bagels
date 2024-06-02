@@ -38,5 +38,14 @@ describe('BagelBakery', () => {
 
     expect(item).toBe('This Bagel is not available')
   })
+
+  it('should remove an item from the basket', () => {
+    bagelBakery.addItem('salt')
+    bagelBakery.addItem('egg')
+
+    bagelBakery.removeItem(1)
+
+    expect(bagelBakery.basket.length).toBe(1)
+  })
   // ---------
 })
