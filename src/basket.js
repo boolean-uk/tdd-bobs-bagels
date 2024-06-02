@@ -75,6 +75,16 @@ export default class Bagelbakery {
       ? this.bagelPrice[type]
       : 'This Bagel is not available'
   }
+
+  getTotalSum() {
+    const sum = this.basket.reduce((total, current) => {
+      const quantity = current.quantity
+      const price = current.price
+      return total + quantity * price
+    }, 0)
+
+    return Number.parseFloat(sum.toFixed(2))
+  }
   // ----
 }
 

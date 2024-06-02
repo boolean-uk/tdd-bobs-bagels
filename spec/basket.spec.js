@@ -92,6 +92,8 @@ describe('BagelBakery', () => {
   })
 
   it('should get the total sum of the bagels in the basket', () => {
+    bagelBakery.setBasketCapacity(10)
+
     bagelBakery.addItem('salt')
     bagelBakery.addItem('egg')
     bagelBakery.addItem('sesame')
