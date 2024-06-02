@@ -84,5 +84,11 @@ describe('BagelBakery', () => {
 
     expect(itemPrice).toBe(0.65)
   })
+
+  it('should check the item to get its price is available', () => {
+    const itemPrice = bagelBakery.getItemPrice('salt')
+
+    expect(itemPrice).toBe('This Bagel is not available')
+  })
   // ---------
 })
