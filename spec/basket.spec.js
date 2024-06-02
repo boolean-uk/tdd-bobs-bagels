@@ -25,5 +25,12 @@ describe('BagelBakery', () => {
 
     expect(bagelBakery.basket.length).toBe(2)
   })
+
+  it('should check if the item was added before to increase its quantity', () => {
+    const item1 = bagelBakery.addItem('salt')
+    const item2 = bagelBakery.addItem('sslt')
+
+    expect(bagelBakery.basket[0].quantity).toBe(2)
+  })
   // ---------
 })
