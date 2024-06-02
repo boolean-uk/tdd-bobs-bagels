@@ -166,5 +166,5 @@ describe('Basket', () => {
     expect(spy).toHaveBeenCalledWith('Thank you for your order!')
   })
 
-  //I don't think there is a reason to repeat more tests for largeBasket since it exists and has proper length and it can print a receipt
+  //I don't think there is a reason to repeat more tests for largeBasket since it exists, has proper length and it can print a receipt
 })

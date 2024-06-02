@@ -81,6 +81,7 @@ class Basket {
     console.log(Number(total.toFixed(2)))
     return Number(total.toFixed(2))
   }
+  
   printReceipt() {
     const formattedDate = new Date()
       .toLocaleString('en-GB', {
@@ -124,18 +125,6 @@ class Basket {
   }
 }
 
-// const bgl = new Bagel('BGLO', 1);
-// bgl.showPrice('BGLO')
-
-const nb = new Basket(10)
-
-// nb.addBagels('BGLO', 3)
-// nb.addBagels('BGLP', 2)
-// nb.addBagels('BGLS', 5)
-
-// nb.showCost()
-
-// console.log(nb.showCost());
 
 export { Bagel }
 export default Basket
