@@ -70,6 +70,11 @@ export default class Bagelbakery {
     this.basketCapacity = num
   }
 
+  getItemPrice(type) {
+    return this.bagelPrice[type]
+      ? this.bagelPrice[type]
+      : 'This Bagel is not available'
+  }
   // ----
 }
 

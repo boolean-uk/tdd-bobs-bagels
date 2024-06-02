@@ -80,7 +80,7 @@ describe('BagelBakery', () => {
   })
 
   it('should get the price of an item before I adding it to the basket', () => {
-    const itemPrice = getItemPrice('salt')
+    const itemPrice = bagelBakery.getItemPrice('salt')
 
     expect(itemPrice).toBe(0.65)
   })
