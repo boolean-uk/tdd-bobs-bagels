@@ -35,7 +35,11 @@ class Basket {
         }
     }
 
-    
+    increaseBasketSize() {
+        if (this.quantity === 5) {
+            this.quantity = 15
+        }
+    }
 }
 
 export default Basket
