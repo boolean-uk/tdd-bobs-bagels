@@ -25,6 +25,8 @@ export default class Bagelbakery {
   }
 
   addItem(type, quantity = 1) {
+    if (!this.bagelPrice[type]) return 'This Bagel is not available'
+
     if (this.isAddedBefore(type)) {
       this.basket.forEach((item) => {
         if (item?.type === type) {
