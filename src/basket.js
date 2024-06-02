@@ -20,17 +20,33 @@ export default class Bagelbakery {
     this.basketCapacity = 10
   }
 
-  addItem(type, quantity = 1) {
-    this.id++
-    const item = {
-      id: this.id,
-      type: type,
-      quantity: quantity,
-      price: this.bagelPrice[type]
-    }
-    this.basket.push(item)
-    return item
+  isAddedBefore(type) {
+    return Boolean(this.basket.find((item) => item?.type === type))
   }
+
+  addItem(type, quantity = 1) {
+    if (this.isAddedBefore(type)) {
+      this.basket.forEach((item) => {
+        if (item?.type === type) {
+          quantity === 1
+            ? item.quantity++
+            : (item.quantity = item.quantity + quantity)
+        }
+      })
+    } else {
+      this.id++
+      const item = {
+        id: this.id,
+        type: type,
+        quantity: quantity,
+        price: this.bagelPrice[type]
+      }
+
+      this.basket.push(item)
+      return item
+    }
+  }
+  // ----
 }
 
 const bagelBakery = new Bagelbakery()
