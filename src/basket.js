@@ -28,7 +28,7 @@ export default class Bagelbakery {
       quantity: quantity,
       price: this.bagelPrice[type]
     }
-
+    this.basket.push(item)
     return item
   }
 }
