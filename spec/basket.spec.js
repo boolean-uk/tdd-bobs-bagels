@@ -47,5 +47,16 @@ describe('BagelBakery', () => {
 
     expect(bagelBakery.basket.length).toBe(1)
   })
+
+  it('should check if the item to remove exists in the basket', () => {
+    bagelBakery.addItem('salt')
+    bagelBakery.addItem('egg')
+
+    const message = bagelBakery.removeItem(3)
+
+    expect(message).toBe(
+      'The item that you want to remove does not exist in the basket'
+    )
+  })
   // ---------
 })
