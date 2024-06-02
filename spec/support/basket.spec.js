@@ -10,7 +10,7 @@ describe('Bobs Bagels', () => {
         expect(bobsBagels).toBeInstanceOf(BobsBagels)
     })
     it('should create a bagel order', () => {
-        const expected = [new Bagel(1, 'poppyseed')]
+        const expected = [new Bagel(1, 'poppyseed', 1)]
         const order = bobsBagels.addToBasket('poppyseed')
         expect(order).toEqual(expected)
     })
@@ -19,7 +19,7 @@ describe('Bobs Bagels', () => {
         expect(bobsBagels.basket.length).toBe(1)
     })
     it('should be allow bagels to be removed from basket', () => {
-        const expected = new Bagel(2, 'poppyseed')
+        const expected = new Bagel(2, 'poppyseed', 2)
         bobsBagels.addToBasket('plain')
         bobsBagels.addToBasket('poppyseed')
         const removed = bobsBagels.remove('poppyseed')
@@ -48,8 +48,16 @@ describe('Bobs Bagels', () => {
         expect(price).toEqual(expected)
     })
     it('should create a new property on the item that increments', () => {
-        const expected = { id: 1, name: 'poppyseed', quantity: 2 }
-        let order = bobsBagels.multiBuys({ id: 1, name: 'poppyseed' })
-        expect(order).toBe(expected)
+        bobsBagels.addToBasket('poppyseed')
+        const expected = new Bagel(2, 'poppyseed', 2)
+        let order = bobsBagels.multiBuys('poppyseed')
+        expect(order).toEqual(expected)
+    })
+    it('should sum up the total price of the basket', () => {
+        bobsBagels.addToBasket('poppyseed')
+        bobsBagels.addToBasket('plain')
+        const expected = '£9.98'
+        let result = bobsBagels.basketTotal()
+        expect(result).toBe(expected)
     })
 })

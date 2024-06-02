@@ -1,7 +1,8 @@
 class Bagel {
-  constructor(id, name) {
+  constructor(id, name, quantity) {
     this.id = id
     this.name = name
+    this.quantity = quantity
   }
 }
 
@@ -19,14 +20,17 @@ class BobsBagels {
   constructor() {
     this.basket = []
     this.id = 1
+    this.quantity = 1
   }
 
   addToBasket(name) {
     const basket = this.basket
-    const bagel = new Bagel(this.id, name)
+    const bagel = new Bagel(this.id, name, this.quantity)
     this.id++
+    this.quantity++
 
     basket.push(bagel)
+
     if (basket.length > 6) {
       throw 'basket is at full capacity'
     }
@@ -61,25 +65,18 @@ class BobsBagels {
     return item
   }
 
-  multiBuys(order) {
-    //     const basket = this.basket
-    //     const checkBasket = basket.find(i => i.name === order.name)
-    // if(checkBasket.quantity === undefined) {
-    //     checkBasket.quantity = 2
-    // } else {checkBasket.quantity++}
-    // return checkBasket
-  }
+  // multiBuys(order) {
+  //       const found = this.basket.find(i => i.name === order.name)
+
+  //       found.quantity++
+  //   return found
+  // }
 }
 
+const order = new BobsBagels()
+order.addToBasket('poppyseed')
 
-// const newOrder = new BobsBagels()
-// newOrder.addToBasket('poppyseed')
 
-// const removed = new BobsBagels()
-// removed.remove('plain')
-
-const bagel = new BobsBagels()
-bagel.multiBuys({ id: 1, name: 'poppyseed' })
 
 export { Bagel }
 
