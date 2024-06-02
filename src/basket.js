@@ -71,10 +71,28 @@ class BobsBagels {
   //       found.quantity++
   //   return found
   // }
+
+  basketTotal() {
+    const menu = new Menu()
+    const fullMenu = menu.fullMenu()
+    let total = 0
+
+    for(let i = 0; i < this.basket.length; i++) {
+      for(let j = 0; j < fullMenu.length; j++) {
+        if(this.basket[i].name === fullMenu[j].bagel) {
+          return total += fullMenu[j].price * this.basket.quantity
+        }
+      }
+    }
+    return `£${total}`
+  }
 }
 
 const order = new BobsBagels()
 order.addToBasket('poppyseed')
+
+const order1 = new BobsBagels()
+order1.addToBasket('plain')
 
 
 
