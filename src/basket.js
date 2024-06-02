@@ -119,7 +119,8 @@ class Basket {
       )
       process.stdout.write(`-------------------------------------- \n`)
     }
-    
+    process.stdout.write(`Total: ${this.showCost()}` + '\n')
+    process.stdout.write('Thank you for your order!')
   }
 }
 
