@@ -32,5 +32,11 @@ describe('BagelBakery', () => {
 
     expect(bagelBakery.basket[0].quantity).toBe(2)
   })
+
+  it('should check if the type of the item is available', () => {
+    const item = bagelBakery.addItem('banana')
+
+    expect(item).toBe('This Bagel is not available')
+  })
   // ---------
 })
