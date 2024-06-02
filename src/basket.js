@@ -72,6 +72,8 @@ export default class Bagelbakery {
 
   getItemPrice(type) {
     return this.bagelPrice[type]
+      ? this.bagelPrice[type]
+      : 'This Bagel is not available'
   }
   // ----
 }
