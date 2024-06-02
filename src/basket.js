@@ -50,7 +50,14 @@ export default class Bagelbakery {
   }
 
   removeItem(id) {
-    this.basket = this.basket.filter((item) => item.id !== id)
+    const itemToRemove = this.basket.find((item) => item.id === id)
+
+    if (!itemToRemove)
+      return 'The item that you want to remove does not exist in the basket'
+
+    this.removedItems.push(itemToRemove)
+
+    this.basket = this.basket.filter((item) => item.id !== itemToRemove.id)
   }
 
   // ----
