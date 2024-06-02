@@ -33,4 +33,15 @@ describe("Basket", () => {
         expect(basket.addItem("toasted bagel", 3)).toEqual("Adding this quantity will overfill your basket")
     })
 
+    it("should be able to increase basket size from small", () => {
+        basket.increaseBasketSize()
+        expect(basket.quantity).toEqual(15)
+    })
+
+    it("shouldn't increase basket size if already large", () => {
+        basket.increaseBasketSize()
+        basket.increaseBasketSize()
+        expect(basket.quantity).toEqual(15)
+    })
+
 })
