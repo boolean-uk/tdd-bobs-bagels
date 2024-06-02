@@ -90,5 +90,15 @@ describe('BagelBakery', () => {
 
     expect(itemPrice).toBe('This Bagel is not available')
   })
+
+  it('should get the total sum of the bagels in the basket', () => {
+    bagelBakery.addItem('salt')
+    bagelBakery.addItem('egg')
+    bagelBakery.addItem('sesame')
+    bagelBakery.addItem('cheddar')
+
+    const totalSum = bagelBakery.getTotalSum()
+    expect(totalSum).toBe(2.5)
+  })
   // ---------
 })
