@@ -162,6 +162,8 @@ describe('Basket', () => {
     expect(spy).toHaveBeenCalledWith(
       `-------------------------------------- \n`
     )
+    expect(spy).toHaveBeenCalledWith(`Total: ${largeBasket.showCost()}\n`)
+    expect(spy).toHaveBeenCalledWith('Thank you for your order!')
   })
 
   //I don't think there is a reason to repeat more tests for largeBasket since it exists and has proper length and it can print a receipt

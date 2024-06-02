@@ -119,6 +119,7 @@ class Basket {
       )
       process.stdout.write(`-------------------------------------- \n`)
     }
+    
   }
 }
 
