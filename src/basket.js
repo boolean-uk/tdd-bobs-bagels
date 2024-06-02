@@ -24,7 +24,13 @@ export default class Bagelbakery {
     return Boolean(this.basket.find((item) => item?.type === type))
   }
 
+  checkBasketCapacity() {
+    return this.basket.length >= this.basketCapacity
+  }
+
   addItem(type, quantity = 1) {
+    if (this.checkBasketCapacity()) return 'You basket is full'
+
     if (!this.bagelPrice[type]) return 'This Bagel is not available'
 
     if (this.isAddedBefore(type)) {
