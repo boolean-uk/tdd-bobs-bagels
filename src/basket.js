@@ -81,24 +81,6 @@ class Basket {
     console.log(Number(total.toFixed(2)))
     return Number(total.toFixed(2))
   }
-
-  //   printReceipt() {
-  //     let recQty = 0
-
-  //     process.stdout.write(`~~~ Bob's Bagels ~~~\n`);
-  //     process.stdout.write(Date().toString() + '\n');
-  //     process.stdout.write(`-------------------------------------- \n`);
-
-  //     for (let i = 0; i < this.basket.length; i++) {
-  //       process.stdout.write(
-  //         `${this.basket[i].variant} ${this.basket[i].name} ${this.basket[i].qty} ${this.basket[i].price} \n`
-  //       )
-  //     }
-  //     process.stdout.write(`--------------------------------------  \n`);
-  //     process.stdout.write(`Total: ${this.showCost()}` + '\n');
-  //     process.stdout.write('Thank you for your order!');
-  //   }
-
   printReceipt() {
 
   }
