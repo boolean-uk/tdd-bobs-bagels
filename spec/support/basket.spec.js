@@ -19,7 +19,7 @@ describe('Bobs Bagels', () => {
         expect(bobsBagels.basket.length).toBe(1)
     })
     it('should be allow bagels to be removed from basket', () => {
-        const expected = [new Bagel(2, 'poppyseed')]
+        const expected = new Bagel(2, 'poppyseed')
         bobsBagels.addToBasket('plain')
         bobsBagels.addToBasket('poppyseed')
         const removed = bobsBagels.remove('poppyseed')
