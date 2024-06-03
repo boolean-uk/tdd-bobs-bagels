@@ -40,6 +40,24 @@ class Basket {
             this.quantity = 15
         }
     }
+    checkPrice(item) {
+        const itemInMenu = this.menu.find((product) => {
+            return product.name === item
+        })
+        if (itemInMenu === undefined) {
+            return "This item doesn't exist"
+        }
+        else {
+            return itemInMenu.price
+        }
+    }
+    total() {
+        let cost = 0
+        this.basket.forEach((product) => {
+            cost += product.price * product.quantity
+        })
+        return cost
+    }
 }
 
 export default Basket
