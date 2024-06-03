@@ -57,4 +57,20 @@ describe("Basket", () => {
         basket.addItem("seed bagel", 2)
         expect(basket.total()).toEqual(5.96)
     })
+
+    it("should reduce the quantity of an item in the basket by 1", () => {
+        basket.addItem("seed bagel", 2)
+        basket.removeItem("seed bagel")
+        expect(basket.basket).toEqual([{name: "seed bagel", price: 1.99, quantity: 1}])
+    })
+
+    it("should remove an item from the basket when the quantity is 0", () => {
+        basket.addItem("seed bagel")
+        basket.removeItem("seed bagel")
+        expect(basket.basket).toEqual([])
+    })
+
+    it("should return a message if the item isn't in the basket", () => {
+        expect(basket.removeItem("toasted bagel")).toEqual("This item isn't in your basket")
+    })
 })
