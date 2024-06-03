@@ -58,6 +58,25 @@ class Basket {
         })
         return cost
     }
+    removeItem(item) {
+        let itemInBasket = false
+        let itemIndexInBasket
+        this.basket.forEach((product, index) => {
+            if (product.name === item) {
+                itemInBasket = true
+                itemIndexInBasket = index
+            }
+        })
+        if (itemInBasket === true) {
+            this.basket[itemIndexInBasket].quantity -= 1
+            if (this.basket[itemIndexInBasket].quantity === 0) {
+                this.basket.splice(itemIndexInBasket, 1)
+            }
+        }
+        else {
+            return "This item isn't in your basket"
+        }
+    }
 }
 
 export default Basket
