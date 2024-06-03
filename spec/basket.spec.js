@@ -16,28 +16,28 @@ describe("basket", () => {
     })
 
     it("adds an item to the basket", () => {
-        const bagel = new Bagel("Everything", 20.43)
+        const bagel = new Bagel("BGLE","Bagel", "Everything", 0.49)
 
         basket.addItem(bagel)
 
-        expect(basket.contents.find((element) => { return element.name === "Everything" && element.price === 20.43}).name).toBe("Everything")
+        expect(basket.contents.find((element) => { return element.variant === "Everything" && element.price === 0.49}).variant).toBe("Everything")
     })
 
     it("increments the quantity of items already in the basket", () => {
-        const bagel = new Bagel("Everything", 20.43)
+        const bagel = new Bagel("BGLE","Bagel", "Everything", 0.49)
 
         basket.addItem(bagel)
 
-        expect(basket.contents.find((element) => { return element.name === "Everything" && element.price === 20.43}).quantity).toBe(1)
+        expect(basket.contents.find((element) => { return element.variant === "Everything" && element.price === 0.49}).quantity).toBe(1)
 
         basket.addItem(bagel)
 
-        expect(basket.contents.find((element) => { return element.name === "Everything" && element.price === 20.43}).quantity).toBe(2)
+        expect(basket.contents.find((element) => { return element.variant === "Everything" && element.price === 0.49}).quantity).toBe(2)
 
     })
 
     it("removes the item from the basket", () => {
-        const bagel = new Bagel("Everything", 20.43)
+        const bagel = new Bagel("BGLE","Bagel", "Everything", 0.49)
 
         basket.addItem(bagel)
 
@@ -47,24 +47,24 @@ describe("basket", () => {
     })
 
     it("decrements the quantity of items with a quantity greater than 1", () => {
-        const bagel = new Bagel("Everything", 20.43)
+        const bagel = new Bagel("BGLE","Bagel", "Everything", 0.49)
 
         basket.addItem(bagel)
         basket.addItem(bagel)
 
         basket.removeItem(bagel)
 
-        expect(basket.contents.find((element) => { return element.name === "Everything" && element.price === 20.43}).quantity).toBe(1)
+        expect(basket.contents.find((element) => { return element.variant === "Everything" && element.price === 0.49}).quantity).toBe(1)
     })
 
     it("throws an error when the item is not in the basket", () => {
-        const bagel = new Bagel("Everything", 20.43)
+        const bagel = new Bagel("BGLE","Bagel", "Everything", 0.49)
         
         expect(() => {basket.removeItem(bagel)}).toThrow(Error("The item does not exist in the basket"))
     })
 
     it("cannot add an item if it would cause the quantity of items to be larger than the size of the basket", () => {
-        const bagel = new Bagel("Everything", 20.43)
+        const bagel = new Bagel("BGLE","Bagel", "Everything", 0.49)
 
         basket.addItem(bagel)
         basket.addItem(bagel)
@@ -77,7 +77,7 @@ describe("basket", () => {
     })
 
     it("accepts a new basket size in the basket constructor", () => {
-        const bagel = new Bagel("Everything", 20.43)
+        const bagel = new Bagel("BGLE","Bagel", "Everything", 0.49)
 
         const newBasket = new Basket(10)
 
@@ -99,34 +99,34 @@ describe("basket", () => {
     })
 
     it("returns the total of the items in the basket",() => {
-        const bagel = new Bagel("Everything", 20.43)
+        const bagel = new Bagel("BGLE","Bagel", "Everything", 0.49)
 
         basket.addItem(bagel)
         basket.addItem(bagel)
 
-        expect(basket.totalPrice()).toBe("£40.86")
+        expect(basket.totalPrice()).toBe("£0.98")
     })
 })
 
 describe("bagel", () => {
     it("is an instance of bagel", () => {
-        const bagel = new Bagel("Everything", 20.43)
+        const bagel = new Bagel("BGLE","Bagel", "Everything", 0.49)
     })
 
     it("succesfully creates the bagel with the correct info", () => {
-        const bagel = new Bagel("Everything", 20.43)
+        const bagel = new Bagel("BGLE","Bagel", "Everything", 0.49)
         
-        expect(bagel.name).toBe("Everything")
-        expect(bagel.price).toBe(20.43)
+        expect(bagel.variant).toBe("Everything")
+        expect(bagel.price).toBe(0.49)
     })
 
     it("will throw an error with invalid inputs", () => {
-        expect(() => {new Bagel(20.43, "Everything")}).toThrow(Error("Invalid argument types"))
+        expect(() => {new Bagel(0.49, "Everything")}).toThrow(Error("Invalid argument types"))
     })
 
     it("will return the price of the bagel", () => {
-        const bagel = new Bagel("Everything", 20.43)
+        const bagel = new Bagel("BGLE","Bagel", "Everything", 0.49)
 
-        expect(bagel.displayPrice()).toBe("£20.43")
+        expect(bagel.displayPrice()).toBe("£0.49")
     })
 })

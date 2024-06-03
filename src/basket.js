@@ -62,12 +62,14 @@ class Basket {
 }
 
 class Bagel {
-  constructor(name, price) {
+  constructor(sku, name, variant, price) {
     if (typeof name !== 'string' || typeof price !== 'number') {
       throw new Error('Invalid argument types')
     }
 
+    this.sku = sku
     this.name = name
+    this.variant = variant
     this.price = price
   }
 
