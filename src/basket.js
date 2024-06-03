@@ -70,10 +70,18 @@ export default class Bagelbakery {
     this.basketCapacity = num
   }
 
+  setBagelPrice(type, newPrice) {
+    this.bagelPrice[type] = newPrice
+  }
+
   getItemPrice(type) {
     return this.bagelPrice[type]
       ? this.bagelPrice[type]
       : 'This Bagel is not available'
+  }
+
+  getBasketItems() {
+    return this.basket
   }
 
   getTotalSum() {
