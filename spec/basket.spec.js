@@ -20,6 +20,10 @@ describe('BasketManager', () => {
   })
 
   it('add bagel to basket', () => {
-    basketManager.add('chocolate')
+    const result = basketManager.add('honey')
+    expect(result).toBe('We dont have that bagel')
+
+    basketManager.add('Chocolate')
+    expect(basketManager.items.length).toBe(1)
   })
 })
