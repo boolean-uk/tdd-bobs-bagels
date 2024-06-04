@@ -42,6 +42,17 @@ class Basket {
     }
     return 'Item not found in the basket.'
   }
+
+  totalPrice() {
+    const total = this.items.reduce((sum, item) => sum + item.price, 0)
+    return `Total price of items in the basket is $${total.toFixed(2)}.`
+  }
+
+  checkout() {
+    const total = this.totalPrice()
+    this.items = []
+    return `Checked out. ${total} Thank you for your purchase!`
+  }
 }
 
 module.exports = Basket
