@@ -17,3 +17,9 @@ test('Basket class removes an item from the basket', () => {
   expect(response).toBe('Removed Plain Bagel from the basket.')
   expect(basket.items).not.toContainEqual(bagel)
 })
+
+test('Basket class handles removing an item not in the basket', () => {
+  const basket = new Basket()
+  const response = basket.removeItem('Plain Bagel')
+  expect(response).toBe('Item not found in the basket.')
+})

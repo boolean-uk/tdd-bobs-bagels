@@ -26,6 +26,14 @@ class Basket {
   isFull() {
     return this.items.length >= this.capacity
   }
+
+  increaseCapacity(newCapacity) {
+    if (newCapacity > this.capacity) {
+      this.capacity = newCapacity
+      return `Capacity increased to ${newCapacity}.`
+    }
+    return 'New capacity must be greater than current capacity.'
+  }
 }
 
 module.exports = Basket
