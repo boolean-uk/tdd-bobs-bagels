@@ -5,6 +5,10 @@ class BasketManager {
     this.items = []
     this.basicCap = 5
   }
+
+  add(bName) {
+    return 0
+  }
 }
 
 module.exports = BasketManager

@@ -19,7 +19,7 @@ describe('BasketManager', () => {
     expect(basketManager.basicCap).toBe(5)
   })
 
-  // it('add bagel to basket', () => {
-  //   basketManager.add('chocolate')
-  // })
+  it('add bagel to basket', () => {
+    basketManager.add('chocolate')
+  })
 })
