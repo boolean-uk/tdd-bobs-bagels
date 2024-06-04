@@ -10,4 +10,11 @@ describe('BasketManager', () => {
     expect(basketManager).toBeInstanceOf(BasketManager)
   })
 
+  it('should have empty items ', () => {
+    expect(basketManager.items).toEqual([])
+  })
+
+  it('should be basicCap equal 5', () => {
+    expect(basketManager.basicCap).toBe(5)
+  })
 })

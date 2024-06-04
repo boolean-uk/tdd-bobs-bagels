@@ -1,6 +1,7 @@
 class BasketManager {
   constructor() {
-    this.basket = []
+    this.items = []
+    this.basicCap = 5
   }
 }
 
