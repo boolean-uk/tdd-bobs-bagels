@@ -34,6 +34,14 @@ class Basket {
     }
     return 'New capacity must be greater than current capacity.'
   }
+
+  showPrice(itemName) {
+    const item = this.items.find((item) => item.name === itemName)
+    if (item) {
+      return `The price of ${item.name} is $${item.price.toFixed(2)}.`
+    }
+    return 'Item not found in the basket.'
+  }
 }
 
 module.exports = Basket

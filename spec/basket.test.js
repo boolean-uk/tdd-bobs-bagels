@@ -23,3 +23,11 @@ test('Basket class handles removing an item not in the basket', () => {
   const response = basket.removeItem('Plain Bagel')
   expect(response).toBe('Item not found in the basket.')
 })
+
+test('Basket class shows the price of an item in the basket', () => {
+  const basket = new Basket()
+  const bagel = new Item('Plain Bagel', 1.5)
+  basket.addItem(bagel)
+  const response = basket.showPrice('Plain Bagel')
+  expect(response).toBe('The price of Plain Bagel is $1.50.')
+})
