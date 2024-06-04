@@ -1,3 +1,5 @@
+const Menu = require('./menu.js')
+
 class BasketManager {
   constructor() {
     this.items = []

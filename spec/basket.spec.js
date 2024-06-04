@@ -1,3 +1,4 @@
+
 const BasketManager = require('../src/basket.js')
 
 describe('BasketManager', () => {
@@ -17,4 +18,8 @@ describe('BasketManager', () => {
   it('should be basicCap equal 5', () => {
     expect(basketManager.basicCap).toBe(5)
   })
+
+  // it('add bagel to basket', () => {
+  //   basketManager.add('chocolate')
+  // })
 })
