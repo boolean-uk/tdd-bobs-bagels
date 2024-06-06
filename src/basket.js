@@ -29,8 +29,19 @@ class BasketManager {
       const index = this.items.findIndex((item) => {
         return item.bName === bName
       })
+
       this.items.splice(index, 1)
       return this.items
+    }
+  }
+
+  basketCapacity() {
+    if (this.items.length > 5) {
+      this.basicCap = 10
+      return `basket capacity is 10`
+    } else {
+      const remainSpace = this.basicCap - this.items.length
+      return `You still have ${remainSpace} space!`
     }
   }
 }

@@ -55,4 +55,21 @@ describe('BasketManager', () => {
       Object({ bName: 'Salt', bPrice: 0.99 })
     ])
   })
+
+  it('should check capacity of basket', () => {
+    expect(basketManager.basketCapacity()).toBe(`You still have 5 space!`)
+
+    basketManager.add('Egg')
+    basketManager.add('Plain')
+
+    expect(basketManager.basketCapacity()).toBe(`You still have 3 space!`)
+
+    basketManager.add('Egg')
+    basketManager.add('Plain')
+    basketManager.add('Egg')
+    basketManager.add('Plain')
+
+    expect(basketManager.basketCapacity()).toBe(`basket capacity is 10`)
+    expect(basketManager.basicCap).toBe(10)
+  })
 })
