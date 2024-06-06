@@ -72,4 +72,13 @@ describe('BasketManager', () => {
     expect(basketManager.basketCapacity()).toBe(`basket capacity is 10`)
     expect(basketManager.basicCap).toBe(10)
   })
+
+  it('should return the total price of basket', () => {
+    expect(basketManager.totalPrice()).toBe(0)
+
+    basketManager.add('Egg')
+    basketManager.add('Plain')
+
+    expect(basketManager.totalPrice()).toBe(5.98)
+  })
 })

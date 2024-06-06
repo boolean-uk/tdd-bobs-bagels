@@ -44,6 +44,15 @@ class BasketManager {
       return `You still have ${remainSpace} space!`
     }
   }
+
+  totalPrice() {
+    let totalPrice = 0
+    this.items.forEach((item) => {
+      totalPrice += item.bPrice
+    })
+
+    return totalPrice
+  }
 }
 
 module.exports = BasketManager
