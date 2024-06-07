@@ -1,5 +1,6 @@
 
 const BasketManager = require('../src/basket.js')
+const Menu = require('../src/menu.js')
 
 describe('BasketManager', () => {
   let basketManager
@@ -80,5 +81,18 @@ describe('BasketManager', () => {
     basketManager.add('Plain')
 
     expect(basketManager.totalPrice()).toBe(5.98)
+  })
+})
+
+describe('Menu', () => {
+  let myMenu
+
+  beforeEach(() => {
+    myMenu = new Menu()
+    myMenu.add('bagel', 2)
+  })
+
+  it('should exist', () => {
+    expect(myMenu).toBeInstanceOf(Menu)
   })
 })
