@@ -95,4 +95,16 @@ describe('Menu', () => {
   it('should exist', () => {
     expect(myMenu).toBeInstanceOf(Menu)
   })
+
+  it('should add item', () => {
+    expect(myMenu.menuItems.length).toBe(1)
+    expect(myMenu.add('bagel', 3)).toEqual([
+      Object({ bName: 'bagel', bPrice: 2 }),
+      Object({ bName: 'bagel', bPrice: 3 })
+    ])
+  })
+
+  it('should get the price', () => {
+    expect(myMenu.getPrice('bName'))
+  })
 })
